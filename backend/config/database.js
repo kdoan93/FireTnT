@@ -1,6 +1,6 @@
 // backend/config/database.js
 //  Allows one to load the database config environment variables
-// from the .env file to the config/index.js and defines global schema for project
+//  from the .env file to the config/index.js and defines global schema for project
 const config = require('./index');
 
 module.exports = {

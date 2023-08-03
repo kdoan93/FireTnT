@@ -1,5 +1,5 @@
 // backend/config/index.js
-//  Each environment variable will be read and exported as a key from index.js
+//  Reads and exports each environment variable as a key from index.js
 module.exports = {
     environment: process.env.NODE_ENV || 'development',
     port: process.env.PORT || 8000,
