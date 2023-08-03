@@ -38,6 +38,12 @@ router.post('/', async (req, res, next) => {
     return res.json({ user: safeUser })
 });
 
+//  Logout route
+router.delete('/', (_req, res) => {
+    res.clearCookie('token');
+    return res.json({ message: 'Successfully logged out.' });
+});
+
 
 
 
