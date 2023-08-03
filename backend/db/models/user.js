@@ -4,15 +4,11 @@ const { Model, Validator } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       // define association here
     }
-  }
+  };
+
   User.init({
     username: {
       type: DataTypes.STRING,
@@ -39,6 +35,12 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
+    //  defaultScope helps protect sensitive user info by not exposing to other users
+    defaultScope: {
+      attributes: {
+        exclude: [ "hashedPassword", "email", "createdAt", "updatedAt" ]
+      }
+    }
   });
   return User;
 };
