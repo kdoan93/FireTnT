@@ -1,6 +1,12 @@
 //  backend/routes/api/index.js
 const router = require('express').Router();
+const sessionRouter = require('./session');
+const usersRouter = require('./users');
 const { restoreUser } = require('../../utils/auth.js');
+
+router.use(restoreUser);
+router.use('/session', sessionRouter);
+router.use('/users', usersRouter);
 
 router.post('/test', function(req, res) {
     res.json({ requestBody: req.body });
@@ -11,7 +17,6 @@ router.post('/test', function(req, res) {
 
 /***    Middlware for testing user authentication routes
  //  Middlware to restore user session
- router.use(restoreUser);
  router.get('/restore-user', (req, res) => res.json(req.user));
 
  //  Middleware to return error if no session user
