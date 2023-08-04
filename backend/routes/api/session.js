@@ -13,7 +13,12 @@ router.post('/', async (req, res, next) => {
 
     const user = await User.unscoped().findOne({
         //  Query for user ID by provided creds: username/email
-        where: { [Op.or]: { username: credential, email: credential } }
+        where: { [Op.or]: {
+            firstName: credential,
+            lastName: credential,
+            email: credential,
+            username: credential,
+        } }
     });
 
     //  If no credentials/password != hashedPassword found in db, throw error
@@ -29,6 +34,8 @@ router.post('/', async (req, res, next) => {
     //  DO NOT INCLUDE 'hashedPassword'
     const safeUser = {
         id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
         email: user.email,
         username: user.username
     };
@@ -49,7 +56,13 @@ router.delete('/', (_req, res) => {
 router.get('/', (req, res) => {
     const { user } = req;
     if (user) {
-        const safeUser = { id: user.id, email: user.email, username: user.username };
+        const safeUser = {
+            id: user.id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            username: user.username
+        };
         return res.json({ user: safeUser });
     } else return res.json({ user: null })
 });
@@ -66,7 +79,12 @@ router.post('/', validateLogin, async (req, res, next) => {
     const { credential, password } = req.body;
 
     const user = await User.unscoped().findOne({
-        where: { [Op.or]: { username: credential, email: credential } }
+        where: { [Op.or]: {
+            firstName: credential,
+            lastName: credential,
+            email: credential,
+            username: credential,
+        }}
     });
 
     if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) {
@@ -77,7 +95,13 @@ router.post('/', validateLogin, async (req, res, next) => {
         return next(err);
     }
 
-    const safeUser = { id: user.id, email: user.email, username: user.username };
+    const safeUser = {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        username: user.username
+    };
 
     await setTokenCookie(res, safeUser);
 
