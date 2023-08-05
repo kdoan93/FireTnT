@@ -7,12 +7,12 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const routes = require('./routes');
 
+//  Initialize Express application
+const app = express();
 //  If environment is in production, variable isProduction will be set to true
 const { environment } = require('./config');
 const isProduction = environment === 'production';
 
-//  Initialize Express application
-const app = express();
 
 /***    SECURITY MIDDLEWARE  ***/
 
