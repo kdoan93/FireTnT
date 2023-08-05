@@ -1,4 +1,3 @@
-// backend/.sequelizerc
 //  Instructs Sequelize to look in backend/config/database.js file for it's database configs.
 const path = require('path');
 

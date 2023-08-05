@@ -5,8 +5,9 @@ const cors = require('cors');
 const csurf = require('csurf');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
+const routes = require('./routes');
 
-//  If environment is in productin, variable isProduction will be set to true
+//  If environment is in production, variable isProduction will be set to true
 const { environment } = require('./config');
 const isProduction = environment === 'production';
 
@@ -25,30 +26,29 @@ app.use(express.json());
 
 /***    Security Middleware   ***/
 if (!isProduction) {
-    //  enabel cors only in development
+    //  enable cors only in development
     app.use(cors());
 }
 
 //  helmet helps set a variety of headers to better secure your app
 app.use(
     helmet.crossOriginResourcePolicy({
-        policy: "cross-origin"
+      policy: "cross-origin"
     })
-);
+  );
 
 //  Set the _csrf token and create req.csrfToken method
 app.use(
     csurf({
-        cookie: {
-            secure: isProduction,
-            sameSite: isProduction && "Lax",
-            httpOnly: true
-        }
+      cookie: {
+        secure: isProduction,
+        sameSite: isProduction && "Lax",
+        httpOnly: true
+      }
     })
-);
+  );
 /***    SECURITY MIDDLEWARE  ***/
 
-const routes = require('./routes');
 //  Connects all the routes
 app.use(routes);
 

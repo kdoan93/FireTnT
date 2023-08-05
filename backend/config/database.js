@@ -1,4 +1,3 @@
-// backend/config/database.js
 //  Allows one to load the database config environment variables
 //  from the .env file to the config/index.js and defines global schema for project
 const config = require('./index');
@@ -16,13 +15,8 @@ module.exports = {
     dialect: 'postgres',
     seederStorage: 'sequelize',
     dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false
-      }
+      ssl: { require: true, rejectUnauthorized: false }
     },
-    define: {
-      schema: process.env.SCHEMA
-    }
+    define: { schema: process.env.SCHEMA }
   }
 };
