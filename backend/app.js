@@ -13,8 +13,6 @@ const isProduction = environment === 'production';
 
 //  Initialize Express application
 const app = express();
-//  Connects all the routes
-app.use('/api', routes);
 
 /***    SECURITY MIDDLEWARE  ***/
 
@@ -28,19 +26,19 @@ app.use(express.json());
 
 /***    Security Middleware   ***/
 if (!isProduction) {
-    //  enable cors only in development
-    app.use(cors());
+  //  enable cors only in development
+  app.use(cors());
 }
 
 //  helmet helps set a variety of headers to better secure your app
 app.use(
-    helmet.crossOriginResourcePolicy({
-      policy: "cross-origin"
-    })
+  helmet.crossOriginResourcePolicy({
+    policy: "cross-origin"
+  })
   );
 
-//  Set the _csrf token and create req.csrfToken method
-app.use(
+  //  Set the _csrf token and create req.csrfToken method
+  app.use(
     csurf({
       cookie: {
         secure: isProduction,
@@ -48,15 +46,17 @@ app.use(
         httpOnly: true
       }
     })
-  );
-/***    SECURITY MIDDLEWARE  ***/
+    );
+    /***    SECURITY MIDDLEWARE  ***/
+
+    //  Connects all the routes
+    app.use('/api', routes);
 
 
-
-/***        Error-Handlers      ***/
-//  Catch unhandled requests and foward to error handler.
-app.use((_req, _res, next) => {
-    const err = new Error('The requested resource couldn\'t be found.');
+    /***        Error-Handlers      ***/
+    //  Catch unhandled requests and foward to error handler.
+    app.use((_req, _res, next) => {
+      const err = new Error('The requested resource couldn\'t be found.');
     err.title = 'Resource Not Found';
     err.errors = { message: "The requested resource couldn't be found." };
     err.status = 404;
@@ -69,23 +69,23 @@ app.use((_req, _res, next) => {
   app.use((err, _req, _res, next) => {
     //  check if error is a Sequelize error
     if (err instanceof ValidationError) {
-        let errors = {};
-        for (let error of err.errors) {
-            errors[error.path] = error.message;
-          }
-        err.title = 'Validation error';
-        err.errors = errors;
+      let errors = {};
+      for (let error of err.errors) {
+        errors[error.path] = error.message;
       }
-      next(err);
-});
+      err.title = 'Validation error';
+      err.errors = errors;
+    }
+    next(err);
+  });
 
-//  Error handler for formatting all errors before returning a res.JSON.
-//  Will include error message as a JSON object with key-value pairs & error stack trace with status code of error message
-app.use((err, _req, res, _next) => {
-  res.status(err.status || 500);
+  //  Error handler for formatting all errors before returning a res.JSON.
+  //  Will include error message as a JSON object with key-value pairs & error stack trace with status code of error message
+  app.use((err, _req, res, _next) => {
+    res.status(err.status || 500);
     console.error(err);
     res.json({
-        title: err.title || 'Server Error',
+      title: err.title || 'Server Error',
         message: err.message,
         errors: err.errors,
         stack: isProduction ? null : err.stack
