@@ -49,35 +49,33 @@ app.use(
     );
     /***    SECURITY MIDDLEWARE  ***/
 
-    //  Connects all the routes
-    app.use(routes);
 
 
     /***        Error-Handlers      ***/
     //  Catch unhandled requests and foward to error handler.
     app.use((_req, _res, next) => {
       const err = new Error('The requested resource couldn\'t be found.');
-    err.title = 'Resource Not Found';
-    err.errors = { message: "The requested resource couldn't be found." };
-    err.status = 404;
-    next(err);
-  })
+      err.title = 'Resource Not Found';
+      err.errors = { message: "The requested resource couldn't be found." };
+      err.status = 404;
+      next(err);
+    })
 
-  //  2nd error handler for catching Sequelize errors & formatting before sending error response
-  const { ValidationError } = require('sequelize');
+    //  2nd error handler for catching Sequelize errors & formatting before sending error response
+    const { ValidationError } = require('sequelize');
 
-  app.use((err, _req, _res, next) => {
-    //  check if error is a Sequelize error
-    if (err instanceof ValidationError) {
-      let errors = {};
-      for (let error of err.errors) {
-        errors[error.path] = error.message;
+    app.use((err, _req, _res, next) => {
+      //  check if error is a Sequelize error
+      if (err instanceof ValidationError) {
+        let errors = {};
+        for (let error of err.errors) {
+          errors[error.path] = error.message;
+        }
+        err.title = 'Validation error';
+        err.errors = errors;
       }
-      err.title = 'Validation error';
-      err.errors = errors;
-    }
-    next(err);
-  });
+      next(err);
+    });
 
   //  Error handler for formatting all errors before returning a res.JSON.
   //  Will include error message as a JSON object with key-value pairs & error stack trace with status code of error message
@@ -86,14 +84,16 @@ app.use(
     console.error(err);
     res.json({
       title: err.title || 'Server Error',
-        message: err.message,
-        errors: err.errors,
-        stack: isProduction ? null : err.stack
-      });
-});
-/***        Error-Handlers      ***/
+      message: err.message,
+      errors: err.errors,
+      stack: isProduction ? null : err.stack
+    });
+  });
+  /***        Error-Handlers      ***/
+
+  //  Connects all the routes
+  app.use(routes);
 
 
-
-//  Export app.js
-module.exports = app;
+  //  Export app.js
+  module.exports = app;
