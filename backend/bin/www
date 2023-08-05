@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-// backend/bin/www
 //  Starts express application to listen for server req only after authenticating db connection
 
 // Import environment variables
