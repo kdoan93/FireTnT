@@ -48,6 +48,9 @@ app.use( csurf({
 //  Connects all the routes
 app.use(routes);
 
+app.get('/', async (req, res) => {
+  res.json( {message: "Welcome to the FireTnT homepage! 🐱‍👤🔥🙌"} )
+})
 
 /***        Error-Handlers      ***/
 //  Catch unhandled requests and foward to error handler.
