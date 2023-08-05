@@ -49,7 +49,7 @@ app.use( csurf({
 app.use(routes);
 
 app.get('/', async (req, res) => {
-  res.json( {message: "Welcome to the FireTnT homepage! 🐱‍👤🔥🙌"} )
+  res.json( "Welcome to the FireTnT homepage! 🐱‍👤🔥🙌" )
 })
 
 /***        Error-Handlers      ***/
