@@ -6,6 +6,7 @@ const csurf = require('csurf');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const routes = require('./routes');
+const { ValidationError } = require('sequelize');
 
 //  Initialize Express application
 const app = express();
@@ -62,7 +63,6 @@ app.use(
     })
 
     //  2nd error handler for catching Sequelize errors & formatting before sending error response
-    const { ValidationError } = require('sequelize');
 
     app.use((err, _req, _res, next) => {
       //  check if error is a Sequelize error
