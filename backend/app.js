@@ -8,15 +8,14 @@ const cookieParser = require('cookie-parser');
 const routes = require('./routes');
 const { ValidationError } = require('sequelize');
 
-//  Initialize Express application
-const app = express();
 //  If environment is in production, variable isProduction will be set to true
 const { environment } = require('./config');
 const isProduction = environment === 'production';
 
+//  Initialize Express application
+const app = express();
 
 /***    SECURITY MIDDLEWARE  ***/
-
 //  Connect morgan middleware for logging info about req/res
 app.use(morgan('dev'));
 
