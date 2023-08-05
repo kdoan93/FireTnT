@@ -1,9 +1,7 @@
 'use strict';
 
-/* @type {import('sequelize-cli').Migration} */
-
 const { User } = require('../models');
-const bcrypt = require('bcryptjs');
+const bcrypt = require("bcryptjs");
 
 let options = {};
 if (process.env.NODE_ENV === 'production') {
@@ -43,7 +41,7 @@ module.exports = {
 
     options.tableName = 'Users';
     const Op = Sequelize.Op;
-    return queryInterface.bulkDelete(options, {
+    await queryInterface.bulkDelete(options, {
       username: { [Op.in]: [ 'JumboWumbo', 'Demo-lition', 'SenorDerp' ] }
     }, {});
   }
