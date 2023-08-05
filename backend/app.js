@@ -80,6 +80,7 @@ app.use(
 
   //  Error handler for formatting all errors before returning a res.JSON.
   //  Will include error message as a JSON object with key-value pairs & error stack trace with status code of error message
+  // Error formatter
   app.use((err, _req, res, _next) => {
     res.status(err.status || 500);
     console.error(err);
