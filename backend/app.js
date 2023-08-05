@@ -64,18 +64,19 @@ app.use(
 
     //  2nd error handler for catching Sequelize errors & formatting before sending error response
 
-    app.use((err, _req, _res, next) => {
-      //  check if error is a Sequelize error
-      if (err instanceof ValidationError) {
-        let errors = {};
-        for (let error of err.errors) {
-          errors[error.path] = error.message;
-        }
-        err.title = 'Validation error';
-        err.errors = errors;
+    // Process sequelize errors
+  app.use((err, _req, _res, next) => {
+    // check if error is a Sequelize error:
+    if (err instanceof ValidationError) {
+      let errors = {};
+      for (let error of err.errors) {
+        errors[error.path] = error.message;
       }
-      next(err);
-    });
+      err.title = 'Validation error';
+      err.errors = errors;
+    }
+    next(err);
+  });
 
   //  Error handler for formatting all errors before returning a res.JSON.
   //  Will include error message as a JSON object with key-value pairs & error stack trace with status code of error message
