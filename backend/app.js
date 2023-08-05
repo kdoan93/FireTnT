@@ -14,7 +14,7 @@ const isProduction = environment === 'production';
 //  Initialize Express application
 const app = express();
 //  Connects all the routes
-app.use(routes);
+app.use('/api', routes);
 
 /***    SECURITY MIDDLEWARE  ***/
 
