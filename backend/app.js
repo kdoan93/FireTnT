@@ -13,6 +13,8 @@ const isProduction = environment === 'production';
 
 //  Initialize Express application
 const app = express();
+//  Connects all the routes
+app.use(routes);
 
 /***    SECURITY MIDDLEWARE  ***/
 
@@ -91,8 +93,6 @@ app.use((err, _req, res, _next) => {
 });
 /***        Error-Handlers      ***/
 
-//  Connects all the routes
-app.use(routes);
 
 
 //  Export app.js
