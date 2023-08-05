@@ -50,7 +50,7 @@ app.use(
     /***    SECURITY MIDDLEWARE  ***/
 
     //  Connects all the routes
-    app.use('/api', routes);
+    app.use(routes);
 
 
     /***        Error-Handlers      ***/
