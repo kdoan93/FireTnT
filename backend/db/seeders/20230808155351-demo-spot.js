@@ -17,8 +17,8 @@ module.exports = {
         city: "San Francisco",
         state: "California",
         country: "USA",
-        lat: 37.7645358,
-        lng: -122.4730327,
+        lat: 37.7645,
+        lng: -122.4730,
         name: "App Academy",
         description: "A place where web developers are created",
         price: 123.00
@@ -29,8 +29,8 @@ module.exports = {
         city: "San Francisco",
         state: "California",
         country: "USA",
-        lat: 40.7645358,
-        lng: 12.4730327,
+        lat: 40.7645,
+        lng: 12.4730,
         name: "App Academy II",
         description: "Another place where web developers are created",
         price: 124.00
@@ -41,8 +41,8 @@ module.exports = {
         city: "San Francisco",
         state: "California",
         country: "USA",
-        lat: -40.7645358,
-        lng: -2.4730327,
+        lat: -40.7645,
+        lng: -2.4730,
         name: "App Academy III",
         description: "A third place where web developers are created",
         price: 125.00
@@ -52,7 +52,7 @@ module.exports = {
 
   async down (queryInterface, Sequelize) {
 
-    options.tableName = 'Spot';
+    options.tableName = 'Spots';
     const Op = Sequelize.Op;
     await queryInterface.bulkDelete(options, {
       name: { [Op.or]: [ "App Academy", "App Academy II", "App Academy III" ] }
