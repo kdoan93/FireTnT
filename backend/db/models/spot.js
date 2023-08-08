@@ -32,63 +32,32 @@ module.exports = (sequelize, DataTypes) => {
     address: {
       type: DataTypes.STRING,
       allowNull: false,
-      // validate: {
-      //   isRequired(value) {
-      //     if (!value) throw new Error('Street address is required')
-      //   }
-      // }
     },
     city: {
       type: DataTypes.STRING,
       allowNull: false,
-      // validate: {
-      //   isRequired(value) {
-      //     if (!value) throw new Error('City is required')
-      //   }
-      // }
     },
     state: {
       type: DataTypes.STRING,
       allowNull: false,
-      // validate: {
-      //   isRequired(value) {
-      //     if (!value) throw new Error('State is required')
-      //   }
-      // }
     },
     country: {
       type: DataTypes.STRING,
       allowNull: false,
-      // validate: {
-      //   isRequired(value) {
-      //     if (!value) throw new Error('Country is required')
-      //   }
-      // }
     },
     lat: {
       type: DataTypes.DECIMAL,
       allowNull: false,
-      // validate: {
-      //   isValid(value) {
-      //     if (!value) throw new Error('Latitude is not valid')
-      //   }
-      // }
     },
     lng: {
       type: DataTypes.DECIMAL,
       allowNull: false,
-      // validate: {
-      //   isValid(value) {
-      //     if (!value) throw new Error('Longitude is not valid')
-      //   }
-      // }
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [1, 50],
-
       }
     },
     description: {
