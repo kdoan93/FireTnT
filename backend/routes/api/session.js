@@ -11,24 +11,31 @@ const router = express.Router();
 router.post('/', async (req, res, next) => {
     const { credential, password } = req.body;
 
+    if (!credential || !password) {
+    const err = new Error('Bad Request');   // message
+    err.status = 400;
+    err.title = 'Login failed'; // title
+    err.errors = { credential: 'Email or username is required.' };
+    return next(err);
+    }
+
+
     const user = await User.unscoped().findOne({
         //  Query for user ID by provided creds: username/email
         where: { [Op.or]: {
-            firstName: credential,
-            lastName: credential,
             email: credential,
             username: credential,
         } }
     });
 
-    //  If no credentials/password != hashedPassword found in db, throw error
+
+    //  If no credentials/password != hashedPassword match in db, throw error
     if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) {
-        const err = new Error('Login failed');
-        err.status = 401;
-        err.title = 'Login failed';
-        err.errors = { credential: 'The provided credentials were invalid.' };
-        return next(err);
+        return res.status(401).json({
+            message: 'Invalid credentials'
+        })
     }
+
 
     //  If successful login, setTokenCookie() & res.JSON w/ user non-sensitive info
     //  DO NOT INCLUDE 'hashedPassword'
@@ -42,7 +49,7 @@ router.post('/', async (req, res, next) => {
 
     await setTokenCookie(res, safeUser);
 
-    return res.json({ user: safeUser })
+    return res.status(200).json({ user: safeUser })
 });
 
 //  Logout route
