@@ -4,6 +4,7 @@ const { Spot } = require('../models')
 
 let options = {};
 if (process.env.NODE_ENV === 'production') {
+  //  Defines your schema through the options object
   options.schema = process.env.SCHEMA;
 }
 
