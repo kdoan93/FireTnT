@@ -15,6 +15,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      reviewId: {
+        type: Sequelize.INTEGER,
+        references: { model: 'Reviews', key: 'id' }
+      },
       url: {
         type: Sequelize.STRING,
         allowNull: false
