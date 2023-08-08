@@ -17,7 +17,7 @@ module.exports = {
       },
       reviewId: {
         type: Sequelize.INTEGER,
-        references: { model: 'Review', key: 'id' }
+        references: { model: 'Reviews', key: 'id' }
       },
       url: {
         type: Sequelize.STRING,
@@ -33,7 +33,7 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
-    });
+    }, options);
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('ReviewImages');

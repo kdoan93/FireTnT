@@ -17,11 +17,11 @@ module.exports = {
       },
       spotId: {
         type: Sequelize.INTEGER,
-        references: { model: 'Spot', key: 'id' }
+        references: { model: 'Spots', key: 'id' }
       },
       userId: {
         type: Sequelize.INTEGER,
-        references: { model: 'User', key: 'id' }
+        references: { model: 'Users', key: 'id' }
       },
       review: {
         type: Sequelize.STRING,
@@ -41,7 +41,7 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
-    });
+    }, options);
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Reviews');

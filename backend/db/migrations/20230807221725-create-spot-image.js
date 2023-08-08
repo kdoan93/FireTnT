@@ -16,7 +16,7 @@ module.exports = {
       },
       spotId: {
         type: Sequelize.INTEGER,
-        references: { model: 'Spot', key: 'id' }
+        references: { model: 'Spots', key: 'id' }
       },
       url: {
         type: Sequelize.STRING,
@@ -35,7 +35,7 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
-    });
+    }, options);
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('SpotImages');
