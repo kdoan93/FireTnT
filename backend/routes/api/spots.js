@@ -78,6 +78,33 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async(req, res) => 
 })
 
 
+//  Editing a spot
+router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
+    let editSpot = await Spot.findByPk(req.params.spotId)
+    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+
+    //  If spot doesn't exist, throw error
+    if (!editSpot) return res.status(404).json({ message: "Spot couldn't be found" })
+
+    //  Check if req.user.id === spot.ownerId before editing
+    if (editSpot.ownerId === req.user.id) {
+        editSpot.address = address,
+        editSpot.city = city,
+        editSpot.state = state,
+        editSpot.country = country,
+        editSpot.lat = lat,
+        editSpot.lng = lng,
+        editSpot.name = name,
+        editSpot.description = description,
+        editSpot.price = price
+
+        await editSpot.save()
+
+        return res.status(200).json(editSpot);
+    } else res.status(403).json({ message: "Forbidden" })
+})
+
+
 
 
 module.exports = router;
