@@ -1,9 +1,9 @@
-const express = require('express')
+const express = require('express');
 const { Op } = require('sequelize');
 const bcrypt = require('bcryptjs');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const {setTokenCookie, restoreUser } = require('../../utils/auth');
+const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');
 const router = express.Router();
 
@@ -18,20 +18,6 @@ const validateLogIn = [
 router.post('/', validateLogIn, async (req, res, next) => {
     const { credential, password } = req.body;
 
-    // if (!credential) {
-    //     return res.status(400).json({
-    //         message: 'Bad Request',
-    //         errors: { credential: 'Email or username is required' }
-    //     })
-    // }
-
-    // if (!password) {
-    //     return res.status(400).json({
-    //         message: 'Bad Request',
-    //         errors: { password: 'Password is required' }
-    //     })
-    // }
-
     const user = await User.unscoped().findOne({
         //  Query for user ID by provided creds: username/email
         where: { [Op.or]: { email: credential, username: credential } }
@@ -43,7 +29,7 @@ router.post('/', validateLogIn, async (req, res, next) => {
     }
 
     //  If successful login, setTokenCookie() & res.JSON w/ user non-sensitive info
-    //  DO NOT INCLUDE 'hashedPassword'
+    /***      DO NOT INCLUDE 'hashedPassword'    ***/
     const safeUser = {
         id: user.id,
         firstName: user.firstName,

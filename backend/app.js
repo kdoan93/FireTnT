@@ -48,6 +48,7 @@ app.use( csurf({
 //  Connects all the routes
 app.use(routes);
 
+//  Homepage welcome message
 app.get('/', async (req, res) => {
   res.json( "Welcome to the FireTnT homepage! 🐱‍👤🔥🙌" )
 })
