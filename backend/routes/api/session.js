@@ -7,35 +7,40 @@ const {setTokenCookie, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');
 const router = express.Router();
 
+//  Log in validation middleware
+const validateLogIn = [
+    check('credential').exists({ checkFalsy: true }).withMessage('Email or username is required'),
+    check('password').exists({ checkFalsy: true }).withMessage('Password is required'),
+    handleValidationErrors
+]
+
 //  Log in route
-router.post('/', async (req, res, next) => {
+router.post('/', validateLogIn, async (req, res, next) => {
     const { credential, password } = req.body;
 
-    if (!credential || !password) {
-    const err = new Error('Bad Request');   // message
-    err.status = 400;
-    err.title = 'Login failed'; // title
-    err.errors = { credential: 'Email or username is required.' };
-    return next(err);
-    }
+    // if (!credential) {
+    //     return res.status(400).json({
+    //         message: 'Bad Request',
+    //         errors: { credential: 'Email or username is required' }
+    //     })
+    // }
 
+    // if (!password) {
+    //     return res.status(400).json({
+    //         message: 'Bad Request',
+    //         errors: { password: 'Password is required' }
+    //     })
+    // }
 
     const user = await User.unscoped().findOne({
         //  Query for user ID by provided creds: username/email
-        where: { [Op.or]: {
-            email: credential,
-            username: credential,
-        } }
+        where: { [Op.or]: { email: credential, username: credential } }
     });
-
 
     //  If no credentials/password != hashedPassword match in db, throw error
     if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) {
-        return res.status(401).json({
-            message: 'Invalid credentials'
-        })
+        return res.status(401).json( { message: 'Invalid credentials' } )
     }
-
 
     //  If successful login, setTokenCookie() & res.JSON w/ user non-sensitive info
     //  DO NOT INCLUDE 'hashedPassword'
@@ -75,45 +80,45 @@ router.get('/', (req, res) => {
 });
 
 //  Validating login req.body
-const validateLogin = [
-    //  Checking req.body.credential & req.body.password is not empty, if empty, throws an error
-    check('credential').exists({ checkFalsy: true }).notEmpty().withMessage('Please provide a valid email or username.'),
-    check('password').exists({ checkFalsy: true }).withMessage('Please provide a password.'),
-    handleValidationErrors];
+// const validateLogin = [
+//     //  Checking req.body.credential & req.body.password is not empty, if empty, throws an error
+//     check('credential').exists({ checkFalsy: true }).notEmpty().withMessage('Please provide a valid email or username.'),
+//     check('password').exists({ checkFalsy: true }).withMessage('Please provide a password.'),
+//     handleValidationErrors];
 
-//  Route to validate login
-router.post('/', validateLogin, async (req, res, next) => {
-    const { credential, password } = req.body;
+// //  Route to validate login
+// router.post('/', validateLogin, async (req, res, next) => {
+//     const { credential, password } = req.body;
 
-    const user = await User.unscoped().findOne({
-        where: { [Op.or]: {
-            firstName: credential,
-            lastName: credential,
-            email: credential,
-            username: credential,
-        }}
-    });
+//     const user = await User.unscoped().findOne({
+//         where: { [Op.or]: {
+//             firstName: credential,
+//             lastName: credential,
+//             email: credential,
+//             username: credential,
+//         }}
+//     });
 
-    if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) {
-        const err = new Error('Login failed');
-        err.status = 401;
-        err.title = 'Login failed';
-        err.errors = { credential: 'The provided credentials were invalid.' };
-        return next(err);
-    }
+//     if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) {
+//         const err = new Error('Login failed');
+//         err.status = 401;
+//         err.title = 'Login failed';
+//         err.errors = { credential: 'The provided credentials were invalid.' };
+//         return next(err);
+//     }
 
-    const safeUser = {
-        id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        username: user.username
-    };
+//     const safeUser = {
+//         id: user.id,
+//         firstName: user.firstName,
+//         lastName: user.lastName,
+//         email: user.email,
+//         username: user.username
+//     };
 
-    await setTokenCookie(res, safeUser);
+//     await setTokenCookie(res, safeUser);
 
-    return res.json({ user: safeUser });
-})
+//     return res.json({ user: safeUser });
+// })
 
 
 

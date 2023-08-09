@@ -15,7 +15,8 @@ const validateSignup = [
     check('email').exists({ checkFalsy: true }).isEmail().withMessage("Invalid email."),
     check('username').exists({ checkFalsy: true }).isLength({ min: 4 }).withMessage('Username is required.').not().isEmail().withMessage('Username cannot be an email.'),
     check('password').exists({ checkFalsy: true }).isLength({ min: 6 }).withMessage('Password must be 6 characters or more.'),
-    handleValidationErrors];
+    handleValidationErrors
+];
 
 //  Sign up route
 //  Route to use validateSignup middleware
