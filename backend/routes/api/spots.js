@@ -2,7 +2,7 @@ const express = require('express');
 const { Op } = require('sequelize');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { Spot, User } = require('../../db/models');
+const { Spot, User, Rating, SpotImage } = require('../../db/models');
 const { setTokenCookie } = require('../../utils/auth');
 // const bcrypt = require('bcryptjs');
 const { requireAuth } = require('../../utils/auth');
@@ -27,25 +27,20 @@ const validateSpot = [
 router.post('/', requireAuth, validateSpot, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
-    // if(!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
-    //     return res.status(400)
-    // }
-
     //  Create a new spot
     const newSpot = await Spot.create({
-        ownerId: req.user.id,
-        address,
-        city,
-        state,
-        country,
-        lat,
-        lng,
-        name,
-        description,
-        price
+        ownerId: req.user.id, address, city, state, country, lat, lng, name, description, price
     });
-
     return res.status(201).json( newSpot )
 })
+
+//  Get all spots
+router.get('/', async (req, res) => {
+    const spots = await Spot.findAll()
+    return res.status(200).json({ Spots: spots })
+})
+
+
+
 
 module.exports = router;
