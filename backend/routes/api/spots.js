@@ -117,16 +117,21 @@ router.get('/current', requireAuth, async (req, res) => {
         delete spot.SpotImages
     })
 
-    if (!currentUserSpots) return res.status(404).json({ message: "Current user owns no spots" });
+    if (!currentUserSpots.length) return res.status(404).json({ message: "Current user owns no spots" });
 
     return res.status(200).json({ Spots: userSpots })
 })
 
 
 /***        Get details for a Spot from an ID       ***/
-router.get('/:id', async (req, res) => {
-    const spots = await Spot.findByPk(req.params.id)
-    return res.status(200).json( spots )
+router.get('/:spotId', async (req, res) => {
+
+    const spot = await Spot.findByPk(req.params.spotId, {
+        include: [ { model: SpotImage }, { model: User }, { model: Review } ]
+    })
+
+
+
 })
 
 
