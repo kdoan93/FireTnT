@@ -2,14 +2,12 @@ const express = require('express');
 const { Op } = require('sequelize');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { Spot, User, Rating, SpotImage, Review } = require('../../db/models');
-const { setTokenCookie } = require('../../utils/auth');
-// const bcrypt = require('bcryptjs');
+const { Spot, Booking, User, Rating, SpotImage, Review } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 
 const router = express.Router();
 
-//  Validate new Spots created
+/***        Validate new Spots created      ***/
 const validateSpot = [
     check('address').exists({ checkFalsy: true }).withMessage('Street address is required'),
     check('city').exists({ checkFalsy: true }).withMessage('City is required'),
@@ -24,7 +22,7 @@ const validateSpot = [
 ];
 
 
-//  Validate review
+/***        Validate review       ***/
 const validateReview = [
     check('review').exists({ checkFalsy: true }).withMessage('Review text is required'),
     check('stars').exists({ checkFalsy: true }).isInt({ min: 1, max: 5 }).withMessage('Stars must be an integer from 1 to 5'),
@@ -32,7 +30,7 @@ const validateReview = [
 ];
 
 
-//  Create new spot
+/***        Create new spot       ***/
 router.post('/', requireAuth, validateSpot, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
@@ -44,21 +42,55 @@ router.post('/', requireAuth, validateSpot, async (req, res) => {
 })
 
 
-//  Get all spots
+/***        Get all spots       ***/
 router.get('/', async (req, res) => {
-    const spots = await Spot.findAll()
-    return res.status(200).json({ Spots: spots })
+
+    //  Find all spots and include the related Review and SpotImage models data
+    const spots = await Spot.findAll( { include: [ { model: Review }, { model: SpotImage } ] } );
+
+    //  Create an array of objects
+    let spotsList = [];
+
+    //  Call .toJSON to each index of Spot array to allow data manipulation
+    spots.forEach(spot => { spotsList.push(spot.toJSON()) })
+
+    //  Iterate through spotsList to find avgRating for each spot in each index
+    spotsList.forEach(spot => {
+        //  Set base for avgRating
+        spot.avgRating = 0;
+
+        //  Add each review.stars to avgRating and divide by array length to get avgRating
+        spot.Reviews.forEach(review => { spot.avgRating += review.stars })
+        spot.avgRating = spot.avgRating / spot.Reviews.length
+
+        //  Delete extra data not needed
+        delete spot.Reviews
+    })
+
+    //  Iterate through each spotsList index to add an image.url if image.preview === true
+    spotsList.forEach(spot => {
+        spot.SpotImages.forEach(image => { if (image.preview === true) spot.previewImage = image.url })
+
+        //  If image.preview === false, return message stating spot image not found
+        if (!spot.previewImage) spot.previewImage = "Spot Image couldn't be found"
+        // if (!spot.preview) spot.previewImage = "Spot Image couldn't be found"
+
+        //  Remove extra data not needed
+        delete spot.SpotImages
+    })
+
+    return res.status(200).json({ Spots: spotsList })
 })
 
 
-//  Get details for a Spot from an ID
+/***        Get details for a Spot from an ID       ***/
 router.get('/:id', async (req, res) => {
     const spots = await Spot.findByPk(req.params.id)
     return res.status(200).json( spots )
 })
 
 
-//  Router to create a review
+/***        Router to create a review       ***/
 router.post('/:spotId/reviews', requireAuth, validateReview, async(req, res) => {
     const { review, stars } = req.body;
 
@@ -78,7 +110,7 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async(req, res) => 
 })
 
 
-//  Editing a spot
+/***        Editing a spot      ***/
 router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
     let editSpot = await Spot.findByPk(req.params.spotId)
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
@@ -105,23 +137,21 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
 })
 
 
-//  Get all Reviews by a Spot's id
+/***        Get all Reviews by a Spot's id      ***/
 router.get('/:spotId/reviews', async (req, res) => {
     const spotsById = await Review.findAll({
         where: {
-            spotId: req.params.spotId,
-            // include: {
-            //     User
-            // }
-        }})
+            spotId: req.params.spotId
+        }
+    })
 
-    if (!spotsById) return res.status(404).json({ message: "Spot couldn't be found" })
+    if (!spotsById.length) return res.status(404).json({ message: "Spot couldn't be found" })
 
     return res.status(200).json({ Reviews: spotsById })
 })
 
 
-//  Add an image to a spot based on spot's id
+/***        Add an image to a spot based on spot's id       ***/
 router.post('/:spotId/images', requireAuth, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId);
     const { url, preview } = req.body;
@@ -139,7 +169,7 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 })
 
 
-//  Delete a spot
+/***        Delete a spot       ***/
 router.delete('/:spotId', requireAuth, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId)
 
