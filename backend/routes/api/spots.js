@@ -105,6 +105,40 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
 })
 
 
+//  Get all Reviews by a Spot's id
+router.get('/:spotId/reviews', async (req, res) => {
+    const spotsById = await Review.findAll({
+        where: {
+            spotId: req.params.spotId,
+            // include: {
+            //     User
+            // }
+        }})
+
+    if (!spotsById) return res.status(404).json({ message: "Spot couldn't be found" })
+
+    return res.status(200).json({ Reviews: spotsById })
+})
+
+
+//  Add an image to a spot based on spot's id
+router.post('/:spotId/images', requireAuth, async (req, res) => {
+    const spot = await Spot.findByPk(req.params.spotId);
+    const { url, preview } = req.body;
+
+    //  If spot doesn't exist, throw an error
+    if (!spot) return res.status(404).json({ message: "Spot couldn't be found" });
+
+    //  Check if req.user.id === spot.ownerId before adding an image
+    if (spot.ownerId === req.user.id) {
+        spot.url = url,
+        spot.preview = preview
+        await spot.save()
+        return res.status(200).json(Spot.id, Spot.url, Spot.preview)
+    } else res.status(403).json({ message: "Forbidden" })
+})
+
+
 //  Delete a spot
 router.delete('/:spotId', requireAuth, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId)
@@ -112,7 +146,7 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
     //  If spot doesn't exist, throw an error
     if (!spot) return res.status(404).json({ message: "Spot couldn't be found" });
 
-    //  Check if req.user.id matches spot.ownerId before deleting spot
+    //  Check if req.user.id === spot.ownerId before deleting spot
     if (spot.ownerId === req.user.id) {
         await spot.destroy()
         return res.status(200).json({ message: "Successfully deleted" })

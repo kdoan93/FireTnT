@@ -1,12 +1,12 @@
 'use strict';
 
-const { Spot } = require('../models')
+const { Spot } = require('../models');
 
 let options = {};
-if (process.env.NODE_ENV === 'production') {
-  //  Defines your schema through the options object
-  options.schema = process.env.SCHEMA;
-}
+//  Defines your schema through the options object
+if (process.env.NODE_ENV === 'production') options.schema = process.env.SCHEMA;
+
+
 
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -55,8 +55,6 @@ module.exports = {
 
     options.tableName = 'Spots';
     const Op = Sequelize.Op;
-    await queryInterface.bulkDelete(options, {
-      name: { [Op.or]: [ "App Academy", "App Academy II", "App Academy III" ] }
-    }, {});
+    await queryInterface.bulkDelete(options, {});
   }
 };
