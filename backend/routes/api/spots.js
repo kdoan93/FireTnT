@@ -52,7 +52,7 @@ router.get('/', async (req, res) => {
     let spotsList = [];
 
     //  Call .toJSON to each index of Spot array to allow data manipulation
-    spots.forEach(spot => { spotsList.push(spot.toJSON()) })
+    spots.forEach(spot => { spotsList.push(spot.toJSON()) });
 
     //  Iterate through spotsList to find avgRating for each spot in each index
     spotsList.forEach(spot => {
@@ -80,6 +80,46 @@ router.get('/', async (req, res) => {
     })
 
     return res.status(200).json({ Spots: spotsList })
+})
+
+
+/***        Get all Spots owned by the Current User     ***/
+router.get('/current', requireAuth, async (req, res) => {
+
+    //  Get all spots owned by req.user.id and include related data from Review and SpotImage models
+    const currentUserSpots = await Spot.findAll({
+        where: { ownerId: req.user.id },
+        include: [ { model: Review }, { model: SpotImage } ]
+    })
+
+    //  Create an array of objects
+    let userSpots = [];
+
+    //  Call .toJSON to each index of Spot array to allow for data manipulation
+    currentUserSpots.forEach(spot => { userSpots.push(spot.toJSON())});
+
+    //  Iterate through userSpots to get avgRating of each Spot
+    userSpots.forEach(spot => {
+        spot.avgRating = 0;
+
+        spot.Reviews.forEach(review => { spot.avgRating += review.stars })
+        spot.avgRating = spot.avgRating / spot.Reviews.length
+
+        delete spot.Reviews
+    })
+
+    //  Iterate through userSpots to return a previewImage
+    userSpots.forEach(spot => {
+        spot.SpotImages.forEach(image => { if (image.preview === true) spot.previewImage = image.url })
+
+        if (!spot.previewImage) spot.previewImage = "Spot Image couldn't be found"
+
+        delete spot.SpotImages
+    })
+
+    if (!currentUserSpots) return res.status(404).json({ message: "Current user owns no spots" });
+
+    return res.status(200).json({ Spots: userSpots })
 })
 
 
