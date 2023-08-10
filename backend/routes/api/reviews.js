@@ -37,6 +37,7 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
 })
 
 
+//  Delete a review
 router.delete('/:reviewId', requireAuth, async (req, res) => {
     const review = await Review.findByPk(req.params.reviewId)
 
