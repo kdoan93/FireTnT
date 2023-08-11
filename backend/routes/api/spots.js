@@ -2,7 +2,7 @@ const express = require('express');
 const { Op } = require('sequelize');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { Spot, Booking, User, SpotImage, Review } = require('../../db/models');
+const { Spot, Booking, User, SpotImage, Review, ReviewImage } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 
 const router = express.Router();
@@ -216,7 +216,13 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
 
 /***        Get all Reviews by a Spot's id      ***/
 router.get('/:spotId/reviews', async (req, res) => {
-    const spotsById = await Review.findAll( { where: { spotId: req.params.spotId } } )
+    const spotsById = await Review.findAll( {
+        where: { spotId: req.params.spotId },
+        include: [
+            { model: User, attributes: [ 'id', 'firstName', 'lastName' ] },
+            { model: ReviewImage, attributes: [ 'id', 'url' ] }
+        ]
+    } )
 
     if (!spotsById.length) return res.status(404).json({ message: "Spot couldn't be found" })
 
