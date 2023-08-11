@@ -127,10 +127,26 @@ router.get('/current', requireAuth, async (req, res) => {
 router.get('/:spotId', async (req, res) => {
 
     const spot = await Spot.findByPk(req.params.spotId, {
-        include: [ { model: SpotImage }, { model: User }, { model: Review } ]
+        include: [
+            { model: SpotImage, attributes: [ 'id', 'url', 'preview' ] },
+            { model: User, attributes: [ 'id', 'firstName', 'lastName' ] },
+            { model: Review,
+                attributes: [Review.length]
+            }
+        ]
     })
 
+    let spotById = []
 
+
+
+    // console.log(Spot.Review)
+    let numReviews = spot.Reviews.length
+    // let numReviews = Review.count()
+    // console.log(numReviews)
+
+    // return res.status(200).json(spotById)
+    return res.status(200).json(spot)
 
 })
 
@@ -206,10 +222,8 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 
     //  Check if req.user.id === spot.ownerId before adding an image
     if (spot.ownerId === req.user.id) {
-        spot.url = url,
-        spot.preview = preview
-        await spot.save()
-        return res.status(200).json(Spot.id, Spot.url, Spot.preview)
+        let newSpotImage = await SpotImage.create({ spotId: req.params.spotId, url, preview })
+        return res.status(200).json(newSpotImage)
     } else res.status(403).json({ message: "Forbidden" })
 })
 
