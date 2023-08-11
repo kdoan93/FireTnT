@@ -13,8 +13,8 @@ router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 router.use('/spots', spotsRouter);
 router.use('/reviews', reviewsRouter);
-router.use('/reviewImages', reviewImagesRouter);
-router.use('/spotImages', spotImagesRouter);
+router.use('/review-images', reviewImagesRouter);
+router.use('/spot-images', spotImagesRouter);
 router.use('/bookings', bookingsRouter);
 
 router.post('/test', function(req, res) {
