@@ -130,9 +130,7 @@ router.get('/:spotId', async (req, res) => {
         include: [
             { model: SpotImage, attributes: [ 'id', 'url', 'preview' ] },
             { model: User, attributes: [ 'id', 'firstName', 'lastName' ] },
-            { model: Review,
-                attributes: [Review.length]
-            }
+            { model: Review, attributes: [Review.length] }
         ]
     })
 
@@ -200,11 +198,7 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
 
 /***        Get all Reviews by a Spot's id      ***/
 router.get('/:spotId/reviews', async (req, res) => {
-    const spotsById = await Review.findAll({
-        where: {
-            spotId: req.params.spotId
-        }
-    })
+    const spotsById = await Review.findAll( { where: { spotId: req.params.spotId } } )
 
     if (!spotsById.length) return res.status(404).json({ message: "Spot couldn't be found" })
 

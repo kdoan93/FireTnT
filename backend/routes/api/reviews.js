@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
-const { Review, Spots, User, ReviewImage } = require('../../db/models');
+const { Review, Spot, User, ReviewImage, SpotImage } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const router = express.Router();
 
@@ -33,7 +33,43 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
 
         return res.status(200).json(editReview);
     } else res.status(403).json({ message: "Forbidden" })
+})
 
+
+/***        Get all Reviews of the Current User     ***/
+router.get('/current', requireAuth, async (req, res) => {
+    const currentUserReviews = await Review.findAll({
+        where: { userId: req.user.id },
+        include: [
+            { model: User, attributes: [ 'id', 'firstName', 'lastName' ] },
+            { model: Spot,
+                attributes:
+                [ 'id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price' ],
+                include:
+                [ { model: SpotImage } ]
+            },
+            { model: ReviewImage, attributes: [ 'id', 'url' ] },
+        ]
+    })
+
+    //  Create an array to push objects in
+    let reviewsList = [];
+
+    //  Iterate through currentUserReviews array to .toJSON() each indexed object
+    currentUserReviews.forEach(review => { reviewsList.push(review.toJSON()) });
+
+    //  Iterate through reviewsList to add an image.url if image.preview === true
+    reviewsList.forEach(review => {
+        review.Spot.SpotImages.forEach(image => { if (image.preview === true) {
+            review.Spot.previewImage = image.url
+        } } )
+
+        // console.log('LOOK HERE: ', review.Spot.SpotImages)
+        if (!review.Spot.previewImage) review.Spot.previewImage = "Spot Image couldn't be found"
+        delete review.Spot.SpotImages
+    })
+
+    return res.status(200).json({ Reviews: reviewsList})
 })
 
 
