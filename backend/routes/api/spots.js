@@ -30,6 +30,21 @@ const validateReview = [
 ];
 
 
+/***        Validate query filter       ***/
+const validateQueryParameters = [
+    check('page').optional().isInt({ min: 1, max: 10 }).withMessage('Page must be greater than or equal to 1'),
+    check('size').optional().isInt({ min: 1, max: 20 }).withMessage('Size must be greater than or equal to 1'),
+    check('maxLat').isDecimal().optional().withMessage('Maximum latitude is invalid'),
+    check('minLat').isDecimal().optional().withMessage('Minimum latitude is invalid'),
+    check('minLng').isDecimal().optional().withMessage('Minimum longitude is invalid'),
+    check('maxLng').isDecimal().optional().withMessage('Maximum longitude is invalid'),
+    check('minPrice').isDecimal({ min: 0 }).optional().withMessage('Minimum price must be greater than or equal to 0'),
+    check('maxPrice').isDecimal({ min: 0 }).optional().withMessage('Maximum price must be greater than or equal to 0'),
+    handleValidationErrors
+];
+
+
+
 /***        Create new spot       ***/
 router.post('/', requireAuth, validateSpot, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
@@ -43,10 +58,16 @@ router.post('/', requireAuth, validateSpot, async (req, res) => {
 
 
 /***        Get all spots       ***/
-router.get('/', async (req, res) => {
+router.get('/', validateQueryParameters, async (req, res) => {
+    let { page, size, maxLat, minLat, minLng, maxLng, minPrice, maxPrice } = req.query;
 
-    //  Find all spots and include the related Review and SpotImage models data
-    const spots = await Spot.findAll( { include: [ { model: Review }, { model: SpotImage } ] } );
+    page = parseInt(page)
+    size = parseInt(size)
+
+    if (Number.isNaN(page)) page = 1;
+    if (Number.isNaN(size)) size = 20;
+
+    const spots = await Spot.findAll( { include: [ { model: Review }, { model: SpotImage } ], offset: size * (page - 1), limit: size } );
 
     //  Create an array of objects
     let spotsList = [];
@@ -72,14 +93,13 @@ router.get('/', async (req, res) => {
         spot.SpotImages.forEach(image => { if (image.preview === true) spot.previewImage = image.url })
 
         //  If image.preview === false, return message stating spot image not found
-        if (!spot.previewImage) spot.previewImage = "Spot Image couldn't be found"
-        // if (!spot.preview) spot.previewImage = "Spot Image couldn't be found"
+        if (!spot.previewImage) spot.previewImage = "Spot Image preview not available"
 
         //  Remove extra data not needed
         delete spot.SpotImages
     })
 
-    return res.status(200).json({ Spots: spotsList })
+    return res.status(200).json({ Spots: spotsList, page, size })
 })
 
 
