@@ -2,7 +2,7 @@ const express = require('express');
 const { Op } = require('sequelize');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { Spot, Booking, User, Rating, SpotImage, Review } = require('../../db/models');
+const { Spot, Booking, User, SpotImage, Review } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 
 const router = express.Router();
@@ -126,26 +126,44 @@ router.get('/current', requireAuth, async (req, res) => {
 /***        Get details for a Spot from an ID       ***/
 router.get('/:spotId', async (req, res) => {
 
-    const spot = await Spot.findByPk(req.params.spotId, {
+    const spots = await Spot.findAll({
+        where: { id: req.params.spotId },
         include: [
+            { model: Review },
             { model: SpotImage, attributes: [ 'id', 'url', 'preview' ] },
-            { model: User, attributes: [ 'id', 'firstName', 'lastName' ] },
-            { model: Review, attributes: [Review.length] }
+            { model: User, as: 'Owner', attributes: [ 'id', 'firstName', 'lastName' ] },
         ]
     })
 
-    let spotById = []
+    //  If spot doesn't exist, throw error
+    if (!spots.length) res.status(404).json({ message: "Spot couldn't be found" })
 
+    //  Create an array to push spot object into
+    let spotsList = []
 
+    spots.forEach(spot => { spotsList.push(spot.toJSON()) })
 
-    // console.log(Spot.Review)
-    let numReviews = spot.Reviews.length
-    // let numReviews = Review.count()
-    // console.log(numReviews)
+    spotsList.forEach(spot => {
+        spot.Owner
+    })
 
-    // return res.status(200).json(spotById)
-    return res.status(200).json(spot)
+    //  Iterate through each spotsList index
+    spotsList.forEach(spot => {
+        //  Each index is given a base avgStarRating = 0
+        spot.avgStarRating = 0;
+        //  Set a variable to keep track of Reviews array's length
+        let numReviews = spot.Reviews.length;
+        //  For each index with Reviews array, add stars from each index to avgStarRating
+        spot.Reviews.forEach(starRating => { spot.avgStarRating += starRating.stars })
+        //  Get avg for avgStarRating
+        spot.avgStarRating = spot.avgStarRating / spot.Reviews.length
+        //  Add numReviews to spot index
+        spot.numReviews = numReviews
 
+        delete spot.Reviews
+    })
+
+    return res.status(200).json(spotsList.shift())
 })
 
 

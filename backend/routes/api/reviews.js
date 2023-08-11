@@ -59,6 +59,7 @@ router.get('/current', requireAuth, async (req, res) => {
     currentUserReviews.forEach(review => { reviewsList.push(review.toJSON()) });
 
     //  Iterate through reviewsList to add an image.url if image.preview === true
+    //  *** SpotImages is nested in Spot object ***
     reviewsList.forEach(review => {
         review.Spot.SpotImages.forEach(image => { if (image.preview === true) {
             review.Spot.previewImage = image.url
@@ -66,6 +67,7 @@ router.get('/current', requireAuth, async (req, res) => {
 
         // console.log('LOOK HERE: ', review.Spot.SpotImages)
         if (!review.Spot.previewImage) review.Spot.previewImage = "Spot Image couldn't be found"
+
         delete review.Spot.SpotImages
     })
 
