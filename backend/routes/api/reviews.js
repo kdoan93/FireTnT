@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
-const { Review, Spots, User, ReviewImages } = require('../../db/models');
+const { Review, Spots, User, ReviewImage } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const router = express.Router();
 
@@ -37,7 +37,29 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
 })
 
 
-//  Delete a review
+/***        Add an image to a review based on the Review's id       ***/
+router.post('/:reviewId/images', requireAuth, async (req, res) => {
+    const review = await Review.findByPk(req.params.reviewId);
+    const { url } = req.body;
+
+    //  If review doesn't exist, throw an error
+    if (!review) return res.status(404).json({ message: "Review couldn't be found" });
+
+    //  Check if 10 ReviewImage exist per review
+    const checkImagesCount = await ReviewImage.findAll( { where: { reviewId: req.params.reviewId } } )
+    if (checkImagesCount.length >= 10) {
+        return res.status(403).json({ message: "Maximum number of images for this resource was reached" })
+    }
+
+    //  Check if req.user.id === review.userId before adding an image
+    if (review.userId === req.user.id) {
+        let newReviewImage = await ReviewImage.create({ reviewId: req.params.reviewId, url })
+        return res.status(200).json(newReviewImage)
+    } else res.status(403).json({ message: "Forbidden" })
+})
+
+
+/***        Delete a review      ***/
 router.delete('/:reviewId', requireAuth, async (req, res) => {
     const review = await Review.findByPk(req.params.reviewId)
 
