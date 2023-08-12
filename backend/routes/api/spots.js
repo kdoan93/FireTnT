@@ -44,6 +44,12 @@ const validateQueryParameters = [
 ];
 
 
+/***        Validate booking dates      ***/
+const validateDate = [
+    // check('endDate').isDate().
+]
+
+
 
 /***        Create new spot       ***/
 router.post('/', requireAuth, validateSpot, async (req, res) => {
@@ -279,6 +285,59 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
         return res.status(200).json({ message: "Successfully deleted" })
     } else res.status(403).json({ message: "Forbidden" })
 })
+
+
+/***        Get all Bookings for a Spot based on the Spot's id      ***/
+router.get('/:spotId/bookings', requireAuth, async (req, res) => {
+
+    //  Get spot where req.params.spotId === Spot.id
+    const spot = await Spot.findByPk(req.params.spotId)
+
+    //  If no spot exists, throw an error
+    if (!spot) return res.status(404).json({ message: "Spot couldn't be found" })
+
+    //  If user is not the owner
+    if (req.user.id !== spot.ownerId) {
+        const bookingByCustomer = await Booking.findAll({
+            where: { spotId: req.params.spotId },
+            attributes: [ 'spotId', 'startDate', 'endDate' ]
+        })
+        return res.status(200).json({ Bookings: bookingByCustomer })
+    }
+
+    //  If user is the owner, return data for Booking and User data
+    if (req.user.id === spot.ownerId) {
+        const ownerData = await Booking.findAll({
+            where: { spotId: req.params.spotId },
+            attributes: [ 'id', 'spotId', 'userId', 'startDate', 'endDate', 'createdAt', 'updatedAt' ],
+            include: [ { model: User , attributes: [ 'id', 'firstName', 'lastName' ] } ]
+        })
+        return res.status(200).json({ Bookings: ownerData })
+    }
+})
+
+
+/***        Create a Booking from a Spot based on the Spot's id         ***/
+router.post('/:spotId/bookings', requireAuth, async (req, res) => {
+    let { startDate, endDate } = req.body;
+
+    //  Convert dates to date objects
+    startDate = new Date(startDate);
+    endDate = new Date(endDate)
+
+
+    return res.status(200).json()
+})
+
+/*
+startDate = '2023-01-01'
+endDate = '2023-01-02'
+
+if (startDate < endDate) console.log('startDate is before endDate')
+else console.log('startDate is after endDate')
+
+value returns true. Arrow points to earlier date
+*/
 
 
 
