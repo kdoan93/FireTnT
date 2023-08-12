@@ -40,13 +40,14 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
 router.get('/current', requireAuth, async (req, res) => {
     const currentUserReviews = await Review.findAll({
         where: { userId: req.user.id },
-        include: [
+        include:
+        [
             { model: User, attributes: [ 'id', 'firstName', 'lastName' ] },
             { model: Spot,
                 attributes:
-                [ 'id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price' ],
+                    [ 'id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price' ],
                 include:
-                [ { model: SpotImage } ]
+                    [ { model: SpotImage } ]
             },
             { model: ReviewImage, attributes: [ 'id', 'url' ] },
         ]
