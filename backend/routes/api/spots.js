@@ -44,11 +44,18 @@ const validateQueryParameters = [
 ];
 
 
-/***        Validate booking dates      ***/
-const validateDate = [
-    // check('endDate').isDate().
-]
+/***        Validate endDate selection      ***/
+const validateEndDate = (value, { req }) => {
+    if (new Date(value) <= new Date(req.body.startDate)) throw new Error("endDate cannot be on or before startDate");
+    return true;
+}
 
+
+/***        Validate booking endDate        ***/
+const validateBooking = [
+    check("endDate").exists({ checkFalsy: true }).custom(validateEndDate),
+    handleValidationErrors
+]
 
 
 /***        Create new spot       ***/
@@ -318,16 +325,55 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
 
 
 /***        Create a Booking from a Spot based on the Spot's id         ***/
-router.post('/:spotId/bookings', requireAuth, async (req, res) => {
+router.post('/:spotId/bookings', requireAuth, validateBooking, async (req, res) => {
     let { startDate, endDate } = req.body;
 
     //  Convert dates to date objects
     startDate = new Date(startDate);
     endDate = new Date(endDate)
 
+    //  Get spot at spotId to compare dates
+    const spot = await Spot.findByPk(req.params.spotId)
 
-    return res.status(200).json()
+    //  If no spot exists, throw an error
+    if (!spot) return res.status(404).json({ message: "Spot couldn't be found" })
+
+    //  Spot cannot belong to current user
+    if (req.user.id === spot.ownerId) return res.status(403).json({ message: "Forbidden" })
+
+
+    //  Get the booking for a spot and compare if req.body dates conflict with booked dates
+    const booking = await Booking.findOne({
+        where: { spotId: req.params.spotId,
+            [ Op.or ]:
+                [
+                    { startDate: { [ Op.between ]: [ startDate, endDate ] } },
+                    { endDate: { [Op.between]: [ startDate, endDate ] } }
+                ]
+        }
+    })
+
+    //  If booking exists, throw an error
+    if (booking) {
+        return res.status(403).json({
+            message: "Sorry, this spot is already booked for the specified dates",
+            errors: {
+                startDate: "Start date conflicts with an existing booking",
+                endDate: "End date conflicts with an existing booking"
+            }
+        })
+    }
+
+    const newBooking = await Booking.create({
+        spotId: parseInt(req.params.spotId),
+        userId: req.user.id,
+        startDate,
+        endDate
+    })
+
+    return res.status(200).json(newBooking)
 })
+
 
 /*
 startDate = '2023-01-01'
