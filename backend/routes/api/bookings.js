@@ -69,7 +69,7 @@ router.put('/:bookingId', requireAuth, validateBooking, async (req, res) => {
     if (!editBooking) return res.status(404).json({ message: "Booking couldn't be found" });
 
     //  Bookings that have started can't be deleted
-    // if (editBooking.startDate < new Date()) return res.status(403).json({ message: "Past bookings can't be modified" })
+    if (editBooking.startDate < new Date()) return res.status(403).json({ message: "Past bookings can't be modified" })
 
     //  Check if booking exists
     const booking = await Booking.findOne({
