@@ -10,14 +10,20 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 // Configures Redux store
 import configureStore from './store';
+import { restoreCSRF, csrfFetch } from './store/csrf';
+import * as sessionActions from './store/session'
 
 // store variable used to access Redux store
 const store = configureStore();
 
 // Exposes store to window ONLY in development
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== "production") {
+  restoreCSRF();
+
+  window.csrfFetch = csrfFetch;
   window.store = store;
-};
+  window.sessionActions = sessionActions;
+}
 
 function Root() {
   return (
