@@ -16,9 +16,9 @@ function App() {
   return (
     isLoaded && (
       <Switch>
-        {/* <Route exact path='/'>
+        <Route exact path='/'>
           <h1>🔥 Welcome to FireTnT! 🙌🐱‍👤</h1>
-        </Route> */}
+        </Route>
         <Route path="/login">
           <LoginFormPage />
         </Route>
