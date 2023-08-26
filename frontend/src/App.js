@@ -14,16 +14,13 @@ function App() {
 
   return (
     <>
-    <Navigation isLoaded={isLoaded} />
-    {isLoaded && (
-      <Switch>
-        <Route exact path='/'>
-          <h1>🔥 Welcome to FireTnT! 🙌🐱‍👤</h1>
-        </Route>
-      </Switch>
-    )}
-  </>
-);
+      <Navigation isLoaded={isLoaded} />
+      {isLoaded && (
+        <Switch>
+        </Switch>
+      )}
+    </>
+  );
 }
 
 export default App;
