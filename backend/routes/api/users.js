@@ -12,8 +12,8 @@ const router = express.Router();
 const validateSignup = [
     check('firstName').exists({ checkFalsy: true }).withMessage('First Name is required.'),
     check('lastName').exists({ checkFalsy: true }).withMessage('Last Name is required.'),
-    check('email').exists({ checkFalsy: true }).isEmail().withMessage("Invalid email."),
-    check('username').exists({ checkFalsy: true }).isLength({ min: 4 }).withMessage('Username is required.').not().isEmail().withMessage('Username cannot be an email.'),
+    check('email').exists({ checkFalsy: true }).isEmail().withMessage("Please provide a valid email."),
+    check('username').exists({ checkFalsy: true }).isLength({ min: 4 }).withMessage('Please provide a username with at least 4 characters.').not().isEmail().withMessage('Username cannot be an email.'),
     check('password').exists({ checkFalsy: true }).isLength({ min: 6 }).withMessage('Password must be 6 characters or more.'),
     handleValidationErrors
 ];

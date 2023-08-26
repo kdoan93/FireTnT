@@ -25,7 +25,10 @@ router.post('/', validateLogIn, async (req, res, next) => {
 
     //  If no credentials/password != hashedPassword match in db, throw error
     if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) {
-        return res.status(401).json( { message: 'Invalid credentials' } )
+        return res.status(401).json( {
+            message: 'The provided credentials were invalid.',
+            errors: { credential: "The provided credentials were invalid."}
+        } )
     }
 
     //  If successful login, setTokenCookie() & res.JSON w/ user non-sensitive info

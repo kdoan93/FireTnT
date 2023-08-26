@@ -49,9 +49,9 @@ app.use( csurf({
 app.use(routes);
 
 //  Homepage welcome message
-app.get('/', async (req, res) => {
-  res.json( "Welcome to the FireTnT homepage! 🐱‍👤🔥🙌" )
-})
+// app.get('/', async (req, res) => {
+//   res.json( "Welcome to the FireTnT homepage! 🐱‍👤🔥🙌" )
+// })
 
 /***        Error-Handlers      ***/
 //  Catch unhandled requests and foward to error handler.
