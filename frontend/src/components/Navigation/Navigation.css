@@ -1,5 +1,5 @@
 .hidden {
-    display: none
+    display: none;
 }
 
 .navigationBar {
@@ -10,7 +10,7 @@
 }
 
 .logo {
-    /* border: 3px solid white; */
+    /* border: 3px solid red; */
     height: 40px;
     padding-left: 10px;
     padding-top: 10px;
@@ -23,7 +23,6 @@ button {
     border-radius: 20px;
     display: flex;
     align-items: center;
-    /* flex-direction: column; */
     height: 30px;
 }
 
@@ -41,4 +40,32 @@ i {
     width: 15px;
     height: 1px;
     margin: 3px
+}
+
+.profile-dropdown {
+    border: 1px solid black;
+    background-color: white;
+    position: absolute;
+    right: 13px;
+    width: 60px;
+    transform: translateY(2.5rem);
+}
+
+ul { /*  Login modal */
+    border: 1px solid black;
+}
+
+.profile-dropdown div {
+    /* border: 1px solid red; */
+    padding-top: 3px;
+    padding-bottom: 3px;
+
+}
+
+.loginSignup {
+    /* border: 1px solid red; */
+    font-size: 10px;
+    font-weight: 700;
+    position: relative;
+    right: 40%;
 }
