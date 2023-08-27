@@ -47,8 +47,8 @@ i {
     background-color: white;
     position: absolute;
     right: 13px;
-    width: 60px;
-    transform: translateY(2.5rem);
+    min-width: 60px;
+    top: 50px;
 }
 
 ul { /*  Login modal */
@@ -59,7 +59,12 @@ ul { /*  Login modal */
     /* border: 1px solid red; */
     padding-top: 3px;
     padding-bottom: 3px;
+}
 
+.profile-dropdown button {
+    background-color: gray;
+    color: white;
+    margin-bottom: 5px;
 }
 
 .loginSignup {
@@ -68,4 +73,11 @@ ul { /*  Login modal */
     font-weight: 700;
     position: relative;
     right: 40%;
+}
+
+.userMenu div {
+    /* border: 1px solid red; */
+    font-size: 10px;
+    position: relative;
+    right: 20%;
 }
