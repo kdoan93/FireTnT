@@ -24,21 +24,21 @@ button {
     display: flex;
     align-items: center;
     /* flex-direction: column; */
-    height: 20px;
+    height: 30px;
 }
 
 i {
-    height: 13px;
+    height: 12px;
 }
 
 .menu {
     flex-direction: column;
-    padding-right: 3px;
+    padding-right: 2px;
 }
 
 .menu div {
     background-color: black;
-    width: 10px;
+    width: 15px;
     height: 1px;
     margin: 3px
 }
