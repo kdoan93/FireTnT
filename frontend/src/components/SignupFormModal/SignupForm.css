@@ -1,0 +1,27 @@
+.signupButton {
+    border: 2px solid black;
+    background-color: #FF5A60;
+    color: white;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    right: 20px;
+    width: 315px;
+    border-radius: 0px;
+    box-shadow: 3px 3px 1px black;
+    margin-bottom: 10px;
+}
+
+.signupButton:disabled {
+    border: 2px solid gray;
+    background-color: white;
+    color: gray;
+    box-shadow: 3px 3px 1px gray;
+}
+
+.errorsDiv {
+    /* border: 1px solid red; */
+    /* position: relative;
+    left: 10px; */
+    padding-left: 15px;
+}

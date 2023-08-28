@@ -1,23 +1,14 @@
-.LoginFormModal {
-    /* border: 2px solid red; */
-    width: 350px;
-}
-
 #modal-content {
     /* border: 2px solid red; */
     border-radius: 10px;
+    width: 350px;
 }
 
 h1 {
     /* border: 1px solid red; */
     display: flex;
     justify-content: center;
-
 }
-
-/* form {
-    border: 1px solid red;
-} */
 
 input {
     border: 2px solid black;
@@ -55,6 +46,7 @@ form label {
     box-shadow: 3px 3px 1px gray;
 }
 
-.loginModalInputsButton p {
+form p {
+    /* border: 1px solid red; */
     color:#FF5A60;
 }
