@@ -50,3 +50,11 @@ form p {
     /* border: 1px solid red; */
     color:#FF5A60;
 }
+
+.demoUser {
+    /* border: 1px solid red; */
+    display: flex;
+    color: #FF5A60;
+    justify-content: center;
+    padding: 15px 0px 30px 0px;
+}
