@@ -47,7 +47,7 @@ i {
     background-color: white;
     position: absolute;
     right: 13px;
-    /* min-width: 60px; */
+    width: auto;
     top: 50px;
 }
 

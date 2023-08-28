@@ -1,5 +1,60 @@
-/* body {
-    font-family: sans-serif;
+.LoginFormModal {
+    /* border: 2px solid red; */
+    width: 350px;
+}
+
+#modal-content {
+    /* border: 2px solid red; */
+    border-radius: 10px;
+}
+
+h1 {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+
+}
+
+/* form {
+    border: 1px solid red;
 } */
 
+input {
+    border: 2px solid black;
+    box-shadow: 1px 1px 1px black;
+    width: 100%;
+}
 
+form label {
+    /* border: 1px solid red; */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    right: 7%;
+}
+
+.LoginFormModal button {
+    border: 2px solid black;
+    background-color: #FF5A60;
+    color: white;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    left: 5%;
+    width: 90%;
+    border-radius: 0px;
+    box-shadow: 3px 3px 1px black;
+    margin-bottom: 10px;
+}
+
+.LoginFormModal button:disabled {
+    border: 2px solid gray;
+    background-color: white;
+    color: gray;
+    box-shadow: 3px 3px 1px gray;
+}
+
+.loginModalInputsButton p {
+    color:#FF5A60;
+}
