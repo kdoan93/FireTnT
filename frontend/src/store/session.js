@@ -5,7 +5,8 @@ const SET_USER = "session/setUser";
 const REMOVE_USER = "session/removeUser";
 
 
-// POJO action creator: Sets user in session slice of state to action creator's input params
+// POJO action creator: Sets user in session slice of state to
+// action creator's input params
 const setUser = (user) => {
     return {
         type: SET_USER,

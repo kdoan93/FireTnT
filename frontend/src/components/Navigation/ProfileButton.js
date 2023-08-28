@@ -44,11 +44,11 @@ function ProfileButton({ user }) {
         <>
           <button onClick={openMenu}>
             <div className="menu">
-              <div class='one'></div>
-              <div class='two'></div>
-              <div class='three'></div>
+              <div className='one'></div>
+              <div className='two'></div>
+              <div className='three'></div>
             </div>
-            <i class="fa-solid fa-circle-user"></i>
+            <i className="fa-solid fa-circle-user"></i>
           </button>
           <ul className={ulClassName} ref={ulRef}>
             {user ? (
