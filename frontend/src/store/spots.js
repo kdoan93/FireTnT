@@ -50,8 +50,8 @@ export const getSpot = (spotId) => async dispatch => {
 
 
 // key into 2nd
-// const initialState = { allSpots: {}, singleSpot: { SpotImages: [] } }
-const initialState = { allSpots: {}, singleSpot: {} }
+const initialState = { allSpots: {}, singleSpot: { SpotImages: [] } }
+// const initialState = { allSpots: {}, singleSpot: {} }
 
 const spotsReducer = (state = initialState, action) => {
     let newState;

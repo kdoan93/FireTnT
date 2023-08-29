@@ -32,6 +32,7 @@ const SpotsBrowser = () => {
                         <span className='rating'><i className="fa-solid fa-star"></i>{spot.avgRating}</span>
                     </div>
                     <span className='price'>${spot.price}/night</span>
+                    <div className='tooltip'>{spot.name}</div>
                 </NavLink>
             ))}
         </div>
