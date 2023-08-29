@@ -1,0 +1,26 @@
+.spotsBrowser {
+    display: flex;
+    margin: 0px 30px 0px 30px;
+}
+
+.spot {
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    max-width: 25%;
+    margin: 15px 5px 5px 5px;
+}
+
+.spotsBrowser .spot img {
+    /* border: 1px solid green; */
+    max-width: 225px;
+    /* max-height: 225px; */
+    object-fit:fill;
+}
+
+.spot span {
+    border: 1px solid blue;
+    font-size: 12px;
+    display: flex;
+
+}
