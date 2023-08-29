@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useHistory, NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 // Thunk action to getSpots from store/db
 import { getSpots } from '../../store/spots'
@@ -12,6 +13,7 @@ const SpotsBrowser = () => {
     // turn store data objects into an array
     const spotsArray = Object.values(allSpots)
     // console.log('spotsArray: ', spotsArray)
+    const history = useHistory()
 
     // useEffect dispatches the thunk function 'getSpots()'
     useEffect(() => {
@@ -23,14 +25,14 @@ const SpotsBrowser = () => {
     return (
         <div className='spotsBrowser'>
             {spotsArray.map(spot => (
-                <div className='spot'>
+                <NavLink key={`${spot.name}`} className='spot' to={`/spots/${spot.id}`}>
                     <div className='image'><img src={spot.previewImage} alt='spotImg' /></div>
                     <div className='topRow'>
                         <span className='cityState'>{spot.city}, {spot.state}</span>
                         <span className='rating'><i className="fa-solid fa-star"></i>{spot.avgRating}</span>
                     </div>
                     <span className='price'>${spot.price}/night</span>
-                </div>
+                </NavLink>
             ))}
         </div>
     )

@@ -26,6 +26,9 @@ function App() {
           <Route path='/spots/:spotId'>
             <SingleSpot />
           </Route>
+          <Route>
+            <h1>404: Page Not Found A-Aron!!!</h1>
+          </Route>
         </Switch>
       )}
     </>
