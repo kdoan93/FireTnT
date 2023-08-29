@@ -24,6 +24,7 @@ button {
     display: flex;
     align-items: center;
     height: 30px;
+    cursor: pointer;
 }
 
 i {
@@ -49,6 +50,7 @@ i {
     right: 13px;
     width: auto;
     top: 50px;
+    cursor: pointer;
 }
 
 .userMenu {
