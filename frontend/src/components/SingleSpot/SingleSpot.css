@@ -46,7 +46,7 @@
 }
 
 .spotDetails {
-    /* border: 1px solid red; */
+    border-bottom: 1px solid black;
     width: 95%;
     height: 200px;
     position: relative;

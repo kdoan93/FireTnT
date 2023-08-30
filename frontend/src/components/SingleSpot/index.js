@@ -74,9 +74,13 @@ const SingleSpot = () => {
                     <div className="topInfo">
                         <h3 className="price">${spot.price} <h6 className="night">night</h6> </h3>
                         <div className="ratingReviews">
-                            <h5 className="rating"><i className="fa-solid fa-star"></i>{!spot.avgStarRating ? <span>NEW</span> : spot.avgStarRating}</h5>
-                            <i className="fa-solid fa-circle"></i>
-                            <h5 className="numReviews"> {spot.numReviews} reviews</h5>
+                            <h5 className="rating">
+                                <i className="fa-solid fa-star"></i>{!spot.avgStarRating ? <span>NEW</span> : spot.avgStarRating}
+                            </h5>
+                            {spot.numReviews ? <i className="fa-solid fa-circle"></i> : <p></p>}
+                            <h5 className="numReviews">
+                                {spot.numReviews ? `${spot.numReviews} reviews` : <p></p>}
+                            </h5>
                         </div>
                     </div>
                     <button className="reserve">
