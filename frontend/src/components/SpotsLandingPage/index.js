@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useHistory, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 // Thunk action to getSpots from store/db
 import { getSpots } from '../../store/spots'
@@ -15,9 +15,7 @@ const SpotsBrowser = () => {
 
     // turn store data objects into an array
     const spotsArray = Object.values(allSpots)
-    console.log('spotsArray: ', spotsArray)
-
-    const history = useHistory()
+    // console.log('spotsArray: ', spotsArray)
 
     // useEffect dispatches the thunk function 'getSpots()'
     useEffect(() => {

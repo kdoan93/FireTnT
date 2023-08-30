@@ -12,8 +12,9 @@ import App from './App';
 // Configures Redux store
 import configureStore from './store';
 import { restoreCSRF, csrfFetch } from './store/csrf';
-import * as sessionActions from './store/session'
-import * as spotsActions from './store/spots'
+import * as sessionActions from './store/session';
+import * as spotsActions from './store/spots';
+import * as reviewsActions from './store/reviews';
 
 // store variable used to access Redux store
 const store = configureStore();
@@ -26,6 +27,7 @@ if (process.env.NODE_ENV !== "production") {
   window.store = store;
   window.sessionActions = sessionActions;
   window.spotsActions = spotsActions;
+  window.reviewsActions = reviewsActions;
 }
 
 // Wrap the application with the Modal provider and render the Modal component

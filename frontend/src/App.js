@@ -6,6 +6,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotsBrowser from './components/SpotsLandingPage'
 import SingleSpot from "./components/SingleSpot";
+import SpotReviews from "./components/SpotReviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function App() {
           </Route>
           <Route path='/spots/:spotId'>
             <SingleSpot />
+            <SpotReviews />
           </Route>
           <Route>
             <h1>404: Page Not Found A-Aron!!!</h1>

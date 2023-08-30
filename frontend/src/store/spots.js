@@ -40,7 +40,7 @@ export const getSpot = (spotId) => async dispatch => {
     if (response.ok) {
         const spot = await response.json()
         dispatch(getASpot(spot))
-        // console.log('spot: ', spot)
+        // console.log('getSpot: ', spot)
         return spot
     } else {
         const errors = await response.json();
@@ -58,7 +58,8 @@ const spotsReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case GET_ALL_SPOTS:
-            newState = { ...state, allSpots: {}, singleSpot: {} };
+            newState = { ...state, allSpots: {} };
+            // key into 'spot' from action creator and 'Spots' from the return in backend route
             action.spot.Spots.forEach(spot => {
                 newState.allSpots[spot.id] = spot
             });

@@ -1,7 +1,7 @@
-import { useHistory } from "react-router";
+// import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
-import { NavLink, Route, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getSpot } from '../../store/spots'
 import './SingleSpot.css'
 
@@ -14,7 +14,7 @@ const SingleSpot = () => {
     spotId = parseInt(spotId)
     // selecting with 'useSelector' an object from 'store/index' then 'store/spots'
     let spot = useSelector(state => state.spot.singleSpot)
-    console.log('spot: ', spot)
+    // console.log('spot: ', spot)
     // getting spotImages
     const spotImages = useSelector(state => state.spot.singleSpot.SpotImages)
 
@@ -25,8 +25,6 @@ const SingleSpot = () => {
 
     if (!spotImages) return null;
 
-
-
     const firstImg = spotImages[0]
     // console.log('firstImg: ', firstImg)
     if (!firstImg) return null;
@@ -36,11 +34,10 @@ const SingleSpot = () => {
 
     const bottomBox = spotImages.slice(3)
 
-
-
-
-
-
+    const handleClick = (e) => {
+        e.preventDefault();
+        alert("FEATURE COMING SOON!")
+    }
 
     return (
         <div className="entireSpot">
@@ -72,7 +69,10 @@ const SingleSpot = () => {
                 </div>
                 <div className="infoBox">
                     <div className="topInfo">
-                        <h3 className="price">${spot.price} <h6 className="night">night</h6> </h3>
+                        <div className="priceNight">
+                            <h3 className="price">${spot.price} </h3>
+                            <h5 className="night"> night</h5>
+                        </div>
                         <div className="ratingReviews">
                             <h5 className="rating">
                                 <i className="fa-solid fa-star"></i>{!spot.avgStarRating ? <span>NEW</span> : spot.avgStarRating}
@@ -83,7 +83,7 @@ const SingleSpot = () => {
                             </h5>
                         </div>
                     </div>
-                    <button className="reserve">
+                    <button className="reserve" onClick={handleClick}>
                             Reserve
                     </button>
                 </div>
