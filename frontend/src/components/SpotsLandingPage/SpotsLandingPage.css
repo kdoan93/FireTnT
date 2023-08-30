@@ -21,17 +21,17 @@
 .tooltip {
     /* border: 1px solid green; */
     visibility: hidden;
+    opacity: 0;
     display: flex;
     padding: 1px 5px;
     justify-content: center;
-    position: relative;
+    position: sticky;
     font-size: 12px;
-    bottom: 250px;
+    bottom: 100%;
     color: #FF5A60;
     background-color: white;
     border: 1px solid black;
     border-radius: 10px;
-    opacity: 0;
     transition: opacity 0.4s;
 }
 
@@ -43,8 +43,8 @@
 .spotsBrowser .spot img {
     /* border: 1px solid green; */
     max-width: 100%;
-    min-height: 200px;
-    max-height: auto;
+    height: auto;
+    /* max-height: 200px; */
     object-fit: fill;
     border-radius: 10px;
 }
