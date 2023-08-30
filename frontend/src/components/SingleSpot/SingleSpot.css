@@ -90,9 +90,15 @@
     /* border: 1px solid blue; */
     display: flex;
     justify-content: space-evenly;
-    width: 40%;
+    align-items: baseline;
+    width: 55%;
     max-height: 80%;
+}
 
+.fa-circle {
+    font-size: 3px;
+    position: relative;
+    bottom: 5px;
 }
 
 .reserve {
@@ -104,6 +110,6 @@
     display: flex;
     justify-content: center;
     width: 90%;
-    left: 20px;
+    left: 17px;
     margin-top: 5px;
 }

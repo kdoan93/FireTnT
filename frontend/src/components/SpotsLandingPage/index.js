@@ -15,8 +15,8 @@ const SpotsBrowser = () => {
 
     // turn store data objects into an array
     const spotsArray = Object.values(allSpots)
+    console.log('spotsArray: ', spotsArray)
 
-    // console.log('spotsArray: ', spotsArray)
     const history = useHistory()
 
     // useEffect dispatches the thunk function 'getSpots()'
@@ -35,7 +35,7 @@ const SpotsBrowser = () => {
                     <div className='image'><img src={spot.previewImage} alt='spotImg' /></div>
                     <div className='topRow'>
                         <span className='cityState'>{spot.city}, {spot.state}</span>
-                        <span className='rating'><i className="fa-solid fa-star"></i>{spot.avgRating}</span>
+                        <span className='rating'><i className="fa-solid fa-star"></i>{!spot.avgRating ? <span>NEW</span> : spot.avgRating}</span>
                     </div>
                     <span className='price'>${spot.price}/night</span>
                     <div className='tooltip'>{spot.name}</div>

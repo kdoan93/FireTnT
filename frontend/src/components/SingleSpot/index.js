@@ -29,6 +29,7 @@ const SingleSpot = () => {
 
     const firstImg = spotImages[0]
     // console.log('firstImg: ', firstImg)
+    if (!firstImg) return null;
 
     const topBox = spotImages.slice(1, 3)
     // console.log('imgBox: ', imgBox)
@@ -73,8 +74,9 @@ const SingleSpot = () => {
                     <div className="topInfo">
                         <h3 className="price">${spot.price} <h6 className="night">night</h6> </h3>
                         <div className="ratingReviews">
-                            <h5 className="rating"><i className="fa-solid fa-star"></i>{spot.avgStarRating}</h5>
-                            <h5 className="numReviews">{spot.numReviews} reviews</h5>
+                            <h5 className="rating"><i className="fa-solid fa-star"></i>{!spot.avgStarRating ? <span>NEW</span> : spot.avgStarRating}</h5>
+                            <i className="fa-solid fa-circle"></i>
+                            <h5 className="numReviews"> {spot.numReviews} reviews</h5>
                         </div>
                     </div>
                     <button className="reserve">
