@@ -14,7 +14,13 @@ const SingleSpot = () => {
     // selecting with 'useSelector' an object from 'store/index' then 'store/spots'
     const spot = useSelector(state => state.spot.singleSpot)
     const { id, name, previewImage, city, state, avgRating, price } = spot;
-    console.log('spot: ', spot)
+
+    const spotImages = useSelector(state => state.spot.singleSpot.SpotImages)
+    console.log('spotImages: ', spotImages)
+
+    // const image = spotImages.map(image => (image.url))
+    // console.log('image: ', image)
+
 
 
 
@@ -26,9 +32,17 @@ const SingleSpot = () => {
     // if (!spot.length) return null;
 
     return (
-        <div className="singleSpotContainer">
-            <h1>SingleSpot page</h1>
-
+        <div className="entireSpot">
+            <div className="nameLocation">
+                <h2>{spot.name}</h2>
+                <h5>{spot.city}, {spot.state}, {spot.country}</h5>
+            </div>
+            <div className="imagesContainer">
+                {spotImages.map(image => (
+                    <img src={image.url} alt="spotImg" />
+                ))}
+                {/* <img src={image} alt='spotImg' /> */}
+            </div>
         </div>
     )
 }
