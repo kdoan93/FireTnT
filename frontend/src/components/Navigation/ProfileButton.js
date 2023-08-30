@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from 'react-redux';
+import { NavLink } from "react-router-dom";
 import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
@@ -42,6 +43,13 @@ function ProfileButton({ user }) {
 
     return (
         <>
+          {user ? (
+            <NavLink className="createASpot" to={`/spots/new`}>
+              Create a New Spot
+            </NavLink>
+          ) : (
+            <></>
+          )}
           <button onClick={openMenu}>
             <div className="menu">
               <div className='one'></div>
@@ -55,24 +63,26 @@ function ProfileButton({ user }) {
               <>
                 <div className="userMenu">
                   <div>Hello,   {user.firstName}</div>
-                  {/* <div>{user.username}</div> */}
                   <div>{user.email}</div>
                 </div>
                 <button onClick={logout}>Log Out</button>
               </>
             ) : (
                 <div className="loginSignup">
-                <OpenModalMenuItem
-                  itemText="Sign Up"
-                  onItemClick={closeMenu}
-                  modalComponent={<SignupFormModal />}
-                />
-                <OpenModalMenuItem
-                  itemText="Log In"
-                  onItemClick={closeMenu}
-                  modalComponent={<LoginFormModal />}
-                />
-              </div>
+
+                  <OpenModalMenuItem
+                    itemText="Sign Up"
+                    onItemClick={closeMenu}
+                    modalComponent={<SignupFormModal />}
+                  />
+
+                  <OpenModalMenuItem
+                    itemText="Log In"
+                    onItemClick={closeMenu}
+                    modalComponent={<LoginFormModal />}
+                  />
+
+                </div>
             )}
           </ul>
         </>

@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import SpotsBrowser from './components/SpotsLandingPage'
 import SingleSpot from "./components/SingleSpot";
 import SpotReviews from "./components/SpotReviews";
+import CreateNewSpot from "./components/NewSpot";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +24,9 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <SpotsBrowser />
+          </Route>
+          <Route path='/spots/new'>
+            <CreateNewSpot />
           </Route>
           <Route path='/spots/:spotId'>
             <SingleSpot />

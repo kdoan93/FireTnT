@@ -79,7 +79,7 @@ const SingleSpot = () => {
                             </h5>
                             {spot.numReviews ? <i className="fa-solid fa-circle"></i> : <p></p>}
                             <h5 className="numReviews">
-                                {spot.numReviews ? `${spot.numReviews} reviews` : <p></p>}
+                                {spot.numReviews ? `${spot.numReviews}  ${spot.numReviews > 1 ? 'reviews' : 'review'}` : <p></p>}
                             </h5>
                         </div>
                     </div>
@@ -94,7 +94,7 @@ const SingleSpot = () => {
             </h3>
             {spot.numReviews ? <i className="fa-solid fa-circle"></i> : <p></p>}
             <h3 className="reviewsNumReviews">
-                {spot.numReviews ? `${spot.numReviews} reviews` : <p></p>}
+                {spot.numReviews ? `${spot.numReviews} ${spot.numReviews > 1 ? 'reviews' : 'review'}` : <p></p>}
             </h3>
             </div>
         </div>
