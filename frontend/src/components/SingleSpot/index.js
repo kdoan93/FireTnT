@@ -7,16 +7,29 @@ import './SingleSpot.css'
 // console.log('getSpots ', getSpots)
 
 const SingleSpot = () => {
+
     const dispatch = useDispatch();
     let { spotId } = useParams();
     // turn id from string into a number value
     spotId = parseInt(spotId)
     // selecting with 'useSelector' an object from 'store/index' then 'store/spots'
-    const spot = useSelector(state => state.spot.singleSpot)
-    const { id, name, previewImage, city, state, avgRating, price } = spot;
+    let spot = useSelector(state => state.spot.singleSpot)
+
+    // console.log('spot: ', spot)
+
+    // const images = spot[13]
+    // console.log('images: ', images)
+    // const { id, name, previewImage, city, state, avgRating, price } = spot;
 
     const spotImages = useSelector(state => state.spot.singleSpot.SpotImages)
-    console.log('spotImages: ', spotImages)
+    // const [images, setImages] = useState(spotImages)
+    // console.log('images: ', images)
+
+    // const firstImg = spotImages[0]
+    // console.log('firstImg: ', firstImg)
+
+    // const imgBox = spotImages.slice(1)
+    // console.log('imgBox: ', imgBox)
 
     // const image = spotImages.map(image => (image.url))
     // console.log('image: ', image)
@@ -29,7 +42,8 @@ const SingleSpot = () => {
         dispatch(getSpot(spotId))
     }, [dispatch])
 
-    // if (!spot.length) return null;
+
+    if (!spotImages) return null;
 
     return (
         <div className="entireSpot">
@@ -38,11 +52,14 @@ const SingleSpot = () => {
                 <h5>{spot.city}, {spot.state}, {spot.country}</h5>
             </div>
             <div className="imagesContainer">
-                {spotImages.map(image => (
-                    <img src={image.url} alt="spotImg" />
-                ))}
-                {/* <img src={image} alt='spotImg' /> */}
+                {/* <div className="bigImg"><img src={spotImages[0].url} alt='firstImg' /></div> */}
+                <div className="imgBox">
+                    {spotImages.map(image => (
+                        <img src={image.url} className="img" alt="imgBox" />
+                    ))}
+                </div>
             </div>
+                {/* <img src={image} alt='spotImg' /> */}
         </div>
     )
 }

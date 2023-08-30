@@ -6,12 +6,16 @@ import { getSpots } from '../../store/spots'
 import './SpotsLandingPage.css'
 
 const SpotsBrowser = () => {
+    
     // dispatch is to interact with store
     const dispatch = useDispatch();
+
     // useSelector selects store data objects
     const allSpots = useSelector(state => state.spot.allSpots)
+
     // turn store data objects into an array
     const spotsArray = Object.values(allSpots)
+
     // console.log('spotsArray: ', spotsArray)
     const history = useHistory()
 
