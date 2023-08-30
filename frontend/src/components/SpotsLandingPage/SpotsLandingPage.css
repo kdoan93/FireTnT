@@ -64,3 +64,13 @@
     justify-content: space-between;
     margin: 3px 0px 3px 0px;
 }
+
+
+/* May need for making more rows */
+/* @media (max-width: 400px) {
+    .flex-grid {
+      display: block;
+    }
+
+    flex: 1 will cause to auto shrink with equal width
+  } */

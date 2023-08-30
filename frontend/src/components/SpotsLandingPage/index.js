@@ -6,7 +6,7 @@ import { getSpots } from '../../store/spots'
 import './SpotsLandingPage.css'
 
 const SpotsBrowser = () => {
-    
+
     // dispatch is to interact with store
     const dispatch = useDispatch();
 
@@ -23,6 +23,8 @@ const SpotsBrowser = () => {
     useEffect(() => {
         dispatch(getSpots());
     }, [dispatch]);
+
+    // if more than 4 spots, create a new row
 
     if (!spotsArray) return null;
 
