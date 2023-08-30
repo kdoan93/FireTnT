@@ -51,12 +51,12 @@ const SingleSpot = () => {
                 <div className="imgBox">
                     <div className="topBox">
                         {topBox.map(image => (
-                            <img src={image.url} className="img" alt="imgBox" />
+                            <img key={image.url} src={image.url} className="img" alt="imgBox" />
                         ))}
                     </div>
                     <div className="bottomBox">
                         {bottomBox.map(image => (
-                            <img src={image.url} className="img" alt="imgBox" />
+                            <img key={image.url} src={image.url} className="img" alt="imgBox" />
                         ))}
                     </div>
                 </div>
@@ -64,7 +64,7 @@ const SingleSpot = () => {
 
             <div className="spotDetails">
                 <div className="ownerAndDescription">
-                    <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+                    <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
                     <div className="description">{spot.description}</div>
                 </div>
                 <div className="infoBox">
@@ -87,6 +87,15 @@ const SingleSpot = () => {
                             Reserve
                     </button>
                 </div>
+            </div>
+            <div className="starReviews">
+            <h3 className="reviewsRating">
+                <i className="fa-solid fa-star"></i>{!spot.avgStarRating ? <span>NEW</span> : spot.avgStarRating}
+            </h3>
+            {spot.numReviews ? <i className="fa-solid fa-circle"></i> : <p></p>}
+            <h3 className="reviewsNumReviews">
+                {spot.numReviews ? `${spot.numReviews} reviews` : <p></p>}
+            </h3>
             </div>
         </div>
     )

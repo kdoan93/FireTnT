@@ -35,7 +35,7 @@ const reviewReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case GET_ALL_REVIEWS:
-            newState = { ...state, reviews: {} };
+            newState = { ...state, allReviews: {} };
             // key into 'review' from above action creator and 'Reviews' from the return in backend route
             action.review.Reviews.forEach(review => {
                 newState.allReviews[review.id] = review
