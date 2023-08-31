@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import * as sessionActions from "./store/session";
 // import * as spotsActions from './store/spots'
 import Navigation from "./components/Navigation";
@@ -11,11 +11,16 @@ import CreateNewSpot from "./components/NewSpot";
 
 function App() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [isLoaded, setIsLoaded] = useState(false);
   // dispatch dispatches thunk action .restoreUser()
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
+
+  const onClick = (e) => {
+    history.push('/')
+  }
 
   return (
     <>
@@ -33,7 +38,10 @@ function App() {
             <SpotReviews />
           </Route>
           <Route>
-            <h1>404: Page Not Found A-Aron!!!</h1>
+            <img style={{ width: '100%', height: '100%', marginTop: 1 }}
+              src="https://cdn.mos.cms.futurecdn.net/PuXipAW3AXUzUJ4uYyxPKC-1200-80.jpg" alt="404"
+              onClick={onClick}
+            />
           </Route>
         </Switch>
       )}

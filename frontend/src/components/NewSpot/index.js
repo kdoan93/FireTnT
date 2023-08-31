@@ -36,6 +36,7 @@ function CreateNewSpot() {
         )
         .catch (async (res) => {
             const data = await res.json();
+            console.log('DATA: ', data)
             if (data && data.errors) {
                 setErrors(data.errors)
             }
@@ -47,13 +48,16 @@ function CreateNewSpot() {
             <h2>Create a new Spot</h2>
             <form onSubmit={handleSubmit}>
                     <div className='locationParagraph'>
-                        <h4>Where's your place located?</h4>
-                        <span>Guests will oly get your exact address once they booked a reservation.</span>
+                        <div className='t'>
+                            <span>Where's your place located?</span>
+                            <p>Guests will oly get your exact address once they booked a reservation.</p>
+                        </div>
                     </div>
                     <div className='spotLocationContainer'>
                     <ul>
                         <span>Country</span>
                         <input
+                            className='i'
                             type='text'
                             placeholder='Country'
                             value={country}
@@ -64,6 +68,7 @@ function CreateNewSpot() {
                     <ul>
                         <span>Street Addrress</span>
                         <input
+                            className='i'
                             type='text'
                             placeholder='Address'
                             value={address}
@@ -71,10 +76,11 @@ function CreateNewSpot() {
                             required
                         />
                     </ul>
-                        <div className='cityState'>
-                            <ul>
+                        <div className='cityStateContainer'>
+                            <ul className='cityContainer'>
                             <span>City</span>
                             <input
+                                className='cityInput'
                                 type='text'
                                 placeholder='City'
                                 value={city}
@@ -82,10 +88,12 @@ function CreateNewSpot() {
                                 required
                                 />
                             </ul>
-                            <ul>,</ul>
-                            <ul>
+                            <ul className='commaContainer'>,</ul>
+
+                            <ul className='stateContainer'>
                             <span>State</span>
                             <input
+                                className='stateInput'
                                 type='text'
                                 placeholder='STATE'
                                 value={state}
@@ -96,11 +104,13 @@ function CreateNewSpot() {
                         </div>
                     </div>
                     <div className='descriptionContainer'>
-                        <h4>Describe your place to guests</h4>
-                        <span>
-                            Mention the best features of your space, any special amentities like fast wifi
-                            or parking, and what you love about the neighborhood.
-                        </span>
+                        <div className='t'>
+                            <span>Describe your place to guests</span>
+                            <p>
+                                Mention the best features of your space, any special amentities like fast wifi
+                                or parking, and what you love about the neighborhood.
+                            </p>
+                        </div>
                         <input
                             className='descriptionInput'
                             type='text'
@@ -111,11 +121,14 @@ function CreateNewSpot() {
                         />
                     </div>
                     <div className='titleContainer'>
-                        <h4>Create a title for your spot</h4>
-                        <span>
-                            Catch guests' attention with a spot title that highlights what makes your place special.
-                        </span>
+                        <div className='t'>
+                            <span>Create a title for your spot</span>
+                            <p>
+                                Catch guests' attention with a spot title that highlights what makes your place special.
+                            </p>
+                        </div>
                         <input
+                            className='i'
                             type='text'
                             placeholder='Name of your spot'
                             value={title}
@@ -124,10 +137,12 @@ function CreateNewSpot() {
                         />
                     </div>
                     <div className='priceContainer'>
-                        <h4>Set a base price for your spot</h4>
-                        <span>
-                            Competitive pricing can help your listing stand out and rank higher in search results.
-                        </span>
+                        <div className='t'>
+                            <span>Set a base price for your spot</span>
+                            <p>
+                                Competitive pricing can help your listing stand out and rank higher in search results.
+                            </p>
+                        </div>
                         <input
                             type='number'
                             placeholder='Price per night (USD)'
@@ -137,11 +152,14 @@ function CreateNewSpot() {
                         />
                     </div>
                     <div className='photoContainer'>
-                        <h4>Liven up your spot with photos</h4>
-                        <span>
-                            Submit a link to at least one photo to publish your spot.
-                        </span>
+                        <div className='t'>
+                            <span>Liven up your spot with photos</span>
+                            <p>
+                                Submit a link to at least one photo to publish your spot.
+                            </p>
+                        </div>
                         <input
+                            className='i'
                             type='text'
                             placeholder='Preview Image URL'
                             value={previewImg}
@@ -149,6 +167,7 @@ function CreateNewSpot() {
                             required
                         />
                         <input
+                            className='i'
                             type='text'
                             placeholder='Image URL'
                             value={img1}
@@ -156,6 +175,7 @@ function CreateNewSpot() {
                             required
                         />
                         <input
+                            className='i'
                             type='text'
                             placeholder='Image URL'
                             value={img2}
@@ -163,6 +183,7 @@ function CreateNewSpot() {
                             required
                         />
                         <input
+                            className='i'
                             type='text'
                             placeholder='Image URL'
                             value={img3}
@@ -170,6 +191,7 @@ function CreateNewSpot() {
                             required
                         />
                         <input
+                            className='i'
                             type='text'
                             placeholder='Image URL'
                             value={img4}
@@ -178,6 +200,7 @@ function CreateNewSpot() {
                         />
                     </div>
             </form>
+            <button>Create Spot</button>
         </div>
     )
 }

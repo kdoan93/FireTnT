@@ -27,6 +27,13 @@ button {
     cursor: pointer;
 }
 
+.createASpot {
+    /* border: 1px solid red; */
+    text-decoration: none;
+    position: sticky;
+    left: 79%;
+}
+
 i {
     height: 12px;
 }
