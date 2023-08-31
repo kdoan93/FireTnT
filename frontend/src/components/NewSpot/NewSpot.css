@@ -1,3 +1,34 @@
-.spotFormContainer {
+/* .spotFormContainer {
     border: 1px solid red;
+    max-width: 1000px;
+    margin: 0px 20px;
+}
+
+.spotFormContainer label {
+    display: flex;
+    align-items: start;
+}
+
+.locationParagraph {
+    border: 1px solid green;
+    display: flex;
+    flex-direction: column;
+}
+
+.spotLocationContainer {
+    border: 1px solid blue;
+    border-bottom: 2px solid black;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.spotLocationContainer input {
+    width: 70%;
+} */
+
+.cityState {
+    display: flex;
+    border: 1px solid orange;
 }

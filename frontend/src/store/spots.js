@@ -77,18 +77,17 @@ const spotsReducer = (state = initialState, action) => {
 
 // CreateSpot thunk action
 export const createSpot = (spot) => async (dispatch) => {
-    const { country, streetAddress, city, state, description, title, price, img } = spot;
+    const { country, address, city, state, description, title, price } = spot;
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
         body: JSON.stringify({
             country,
-            streetAddress,
+            address,
             city,
             state,
             description,
             title,
             price,
-            img
         })
     })
     const data = await response.json()
