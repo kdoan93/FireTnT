@@ -45,13 +45,43 @@ function CreateNewSpot() {
             <form onSubmit={handleSubmit}>
                 <ul>
                     <label>
-                        <input
-                            type='text'
-                            placeholder='Country'
-                            value={country}
-                            onChange={(e) => setCountry(e.target.value)}
-                            required
-                        />
+                        <div className='spotLocationContainer'>
+                            <span>Country</span>
+                            <input
+                                type='text'
+                                placeholder='Country'
+                                value={country}
+                                onChange={(e) => setCountry(e.target.value)}
+                                required
+                            />
+                            <span>Street Addrress</span>
+                            <input
+                                type='text'
+                                placeholder='Address'
+                                value={streetAddress}
+                                onChange={(e) => setStreetAddress(e.target.value)}
+                                required
+                            />
+                            <div className='cityState'>
+                                <span>City</span>
+                                <input
+                                    type='text'
+                                    placeholder='City'
+                                    value={streetAddress}
+                                    onChange={(e) => setStreetAddress(e.target.value)}
+                                    required
+                                />
+                                <span>State</span>
+                                <input
+                                    type='text'
+                                    placeholder='STATE'
+                                    value={state}
+                                    onChange={(e) => setState(e.target.value)}
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <span></span>
                     </label>
                 </ul>
             </form>
