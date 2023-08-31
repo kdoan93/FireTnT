@@ -32,14 +32,6 @@ h2 {
     font-size: 13px;
 }
 
-
-.spotLocationContainer {
-    /* border: 1px solid blue; */
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-evenly; */
-}
-
 .spotLocationContainer span {
     /* border: 1px solid red; */
     font-size: 13px;
@@ -91,4 +83,18 @@ h2 {
     /* border: 1px solid green; */
     display: flex;
     flex-direction: column;
+}
+
+.descriptionContainer {
+    border-bottom: 2px solid black;
+    padding-bottom: 25px;
+}
+
+.descriptionInput {
+    /* border: 2px solid red; */
+    max-width: 97%;
+    height: 100px;
+    max-height: auto;
+    display: block;
+    resize: both;
 }

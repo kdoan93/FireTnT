@@ -57,7 +57,8 @@ i {
     right: 13px;
     width: auto;
     top: 50px;
-    cursor: pointer;
+    /* cursor: pointer; */
+    /* padding: 0px; */
 }
 
 .userMenu {
@@ -75,6 +76,10 @@ i {
     margin-bottom: 5px;
     position: relative;
     right:10%;
+}
+
+.loginSignup {
+    cursor: pointer;
 }
 
 .loginSignup div {
