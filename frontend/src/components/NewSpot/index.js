@@ -23,17 +23,25 @@ function CreateNewSpot() {
         e.preventDefault();
         // add createSpot thunk function. use components/SignUpFormModal for reference. Line 23
         setErrors({})
-        return dispatch(
-            spotsActions.createSpot({
-                country,
-                address,
-                city,
-                state,
-                description,
-                title,
-                price,
-            })
-        )
+        console.log('submitted spot: ')
+        console.log('country: ', country)
+        console.log('address: ', address)
+        console.log('city: ', city)
+        console.log('state: ', state)
+        console.log('description: ', description)
+        console.log('title: ', title)
+        console.log('price: ', price)
+        // return dispatch(
+        //     spotsActions.createSpot({
+        //         country,
+        //         address,
+        //         city,
+        //         state,
+        //         description,
+        //         title,
+        //         price,
+        //     })
+        // )
         .catch (async (res) => {
             const data = await res.json();
             console.log('DATA: ', data)
@@ -199,8 +207,8 @@ function CreateNewSpot() {
                             required
                         />
                     </div>
-            </form>
             <button>Create Spot</button>
+            </form>
         </div>
     )
 }
