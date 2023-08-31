@@ -19,6 +19,15 @@ function CreateNewSpot() {
     const [img4, setImg4] = useState('')
     const [errors, setErrors] = useState({})
 
+    function checkValue (e) {
+        setPrice(decimalsOnly(e.target.value))
+    }
+
+    function decimalsOnly (value) {
+        const regex = /([0-9]*[\.|\,]{0,1}[0-9]{0,2})/s;
+        return value.match(regex)[0];
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         // add createSpot thunk function. use components/SignUpFormModal for reference. Line 23
@@ -42,13 +51,13 @@ function CreateNewSpot() {
         //         price,
         //     })
         // )
-        .catch (async (res) => {
-            const data = await res.json();
-            console.log('DATA: ', data)
-            if (data && data.errors) {
-                setErrors(data.errors)
-            }
-        })
+        // .catch (async (res) => {
+        //     const data = await res.json();
+        //     console.log('DATA: ', data)
+        //     if (data && data.errors) {
+        //         setErrors(data.errors)
+        //     }
+        // })
     }
 
     return (
@@ -61,7 +70,7 @@ function CreateNewSpot() {
                             <p>Guests will oly get your exact address once they booked a reservation.</p>
                         </div>
                     </div>
-                    <div className='spotLocationContainer'>
+                    <div className='c spotLocationContainer'>
                     <ul>
                         <span>Country</span>
                         <input
@@ -111,7 +120,7 @@ function CreateNewSpot() {
                             </ul>
                         </div>
                     </div>
-                    <div className='descriptionContainer'>
+                    <div className='c descriptionContainer'>
                         <div className='t'>
                             <span>Describe your place to guests</span>
                             <p>
@@ -128,7 +137,7 @@ function CreateNewSpot() {
                             required
                         />
                     </div>
-                    <div className='titleContainer'>
+                    <div className='c titleContainer'>
                         <div className='t'>
                             <span>Create a title for your spot</span>
                             <p>
@@ -144,22 +153,26 @@ function CreateNewSpot() {
                             required
                         />
                     </div>
-                    <div className='priceContainer'>
+                    <div className='c priceContainer'>
                         <div className='t'>
                             <span>Set a base price for your spot</span>
                             <p>
                                 Competitive pricing can help your listing stand out and rank higher in search results.
                             </p>
                         </div>
-                        <input
-                            type='number'
-                            placeholder='Price per night (USD)'
-                            value={price}
-                            onChange={e => setPrice(e.target.value)}
-                            required
-                        />
+                        <div className='dollarByInput'>
+                            <i className="fa-solid fa-dollar-sign"></i>
+                            <input
+                                className='priceInput'
+                                type='text'
+                                placeholder='Price per night (USD)'
+                                value={price}
+                                onChange={e => checkValue(e, 'change')}
+                                required
+                            />
+                        </div>
                     </div>
-                    <div className='photoContainer'>
+                    <div className='c photoContainer'>
                         <div className='t'>
                             <span>Liven up your spot with photos</span>
                             <p>
@@ -180,7 +193,7 @@ function CreateNewSpot() {
                             placeholder='Image URL'
                             value={img1}
                             onChange={e => setImg1(e.target.value)}
-                            required
+                            // required
                         />
                         <input
                             className='i'
@@ -188,7 +201,7 @@ function CreateNewSpot() {
                             placeholder='Image URL'
                             value={img2}
                             onChange={e => setImg2(e.target.value)}
-                            required
+                            // required
                         />
                         <input
                             className='i'
@@ -196,7 +209,7 @@ function CreateNewSpot() {
                             placeholder='Image URL'
                             value={img3}
                             onChange={e => setImg3(e.target.value)}
-                            required
+                            // required
                         />
                         <input
                             className='i'
@@ -204,7 +217,7 @@ function CreateNewSpot() {
                             placeholder='Image URL'
                             value={img4}
                             onChange={e => setImg4(e.target.value)}
-                            required
+                            // required
                         />
                     </div>
             <button>Create Spot</button>

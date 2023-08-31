@@ -59,9 +59,8 @@ h2 {
 }
 
 .cityStateContainer {
-    border-bottom: 2px solid black;
+    /* border: 2px solid red; */
     display: flex;
-    padding-bottom: 10px;
 }
 
 .stateContainer {
@@ -85,11 +84,6 @@ h2 {
     flex-direction: column;
 }
 
-.descriptionContainer {
-    border-bottom: 2px solid black;
-    padding-bottom: 25px;
-}
-
 .descriptionInput {
     /* border: 2px solid red; */
     max-width: 97%;
@@ -97,4 +91,37 @@ h2 {
     max-height: auto;
     display: block;
     resize: both;
+}
+
+.dollarByInput {
+    /* border: 1px solid red; */
+    /* padding: 0px 5px; */
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.priceInput {
+    /* border: 1px solid red; */
+    width: 93%;
+}
+
+.c {
+    border-bottom: 2px solid black;
+    padding-bottom: 25px;
+}
+
+.spotFormContainer button {
+    background-color: #FF5A60;
+    border: 2px solid black;
+    color: white;
+    box-shadow: 3px 3px 1px black;
+    border-radius: 0px;
+    width: 90px;
+    height: 24px;
+    margin: 20px 40%;
+}
+
+.photoContainer input {
+    margin: 5px 0px;
 }

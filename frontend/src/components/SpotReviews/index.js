@@ -24,7 +24,7 @@ const SpotReviews = () => {
 
     return (
         <div className="spotReviewsContainer">
-            {!reviews.length ? <h2>Be the first to post a review!</h2> : reviews.map(review => (
+            {reviews.length < 1 ? <h2>Be the first to post a review!</h2> : reviews.map(review => (
                 <div key={`${review.id}`} className="review">
                     <span className="name">{review.User.firstName}</span>
                     <span className="date">{review.createdAt}</span>
