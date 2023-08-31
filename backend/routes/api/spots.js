@@ -60,11 +60,13 @@ const validateBooking = [
 
 /***        Create new spot       ***/
 router.post('/', requireAuth, validateSpot, async (req, res) => {
-    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    // const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    const { address, city, state, country, name, description, price } = req.body;
 
     //  Create a new spot
     const newSpot = await Spot.create({
-        ownerId: req.user.id, address, city, state, country, lat, lng, name, description, price
+        // ownerId: req.user.id, address, city, state, country, lat, lng, name, description, price
+        ownerId: req.user.id, address, city, state, country, name, description, price
     });
     return res.status(201).json( newSpot )
 })
