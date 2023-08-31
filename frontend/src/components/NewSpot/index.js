@@ -10,7 +10,7 @@ function CreateNewSpot() {
     const [city, setCity] = useState('')
     const [state, setState] = useState('')
     const [description, setDescription] = useState('')
-    const [title, setTitle] = useState('')
+    const [name, setName] = useState('')
     const [price, setPrice] = useState()
     const [previewImg, setPreviewImg] = useState('')
     const [img1, setImg1] = useState('')
@@ -31,33 +31,35 @@ function CreateNewSpot() {
     const handleSubmit = (e) => {
         e.preventDefault();
         // add createSpot thunk function. use components/SignUpFormModal for reference. Line 23
-        setErrors({})
-        console.log('submitted spot: ')
-        console.log('country: ', country)
-        console.log('address: ', address)
-        console.log('city: ', city)
-        console.log('state: ', state)
-        console.log('description: ', description)
-        console.log('title: ', title)
-        console.log('price: ', price)
-        // return dispatch(
-        //     spotsActions.createSpot({
-        //         country,
-        //         address,
-        //         city,
-        //         state,
-        //         description,
-        //         title,
-        //         price,
-        //     })
-        // )
-        // .catch (async (res) => {
-        //     const data = await res.json();
-        //     console.log('DATA: ', data)
-        //     if (data && data.errors) {
-        //         setErrors(data.errors)
-        //     }
-        // })
+        // if (!errors) {
+            // setErrors({})
+            // console.log('submitted spot: ')
+            // console.log('country: ', country)
+            // console.log('address: ', address)
+            // console.log('city: ', city)
+            // console.log('state: ', state)
+            // console.log('description: ', description)
+            // console.log('title: ', title)
+            // console.log('price: ', price)
+        // }
+        return dispatch(
+            spotsActions.createSpot({
+                country,
+                address,
+                city,
+                state,
+                description,
+                name,
+                price,
+            })
+        )
+        .catch (async (res) => {
+            const data = await res.json();
+            console.log('DATA: ', data)
+            if (data && data.errors) {
+                setErrors(data.errors)
+            }
+        })
     }
 
     return (
@@ -73,49 +75,55 @@ function CreateNewSpot() {
                     <div className='c spotLocationContainer'>
                     <ul>
                         <span>Country</span>
+                        {errors.country && <span className='error sideError'>Country is required</span>}
                         <input
                             className='i'
                             type='text'
                             placeholder='Country'
                             value={country}
                             onChange={(e) => setCountry(e.target.value)}
-                            required
+                            // required
                         />
                     </ul>
                     <ul>
                         <span>Street Addrress</span>
+                        {errors.address && <span className='error sideError'>Address is required</span>}
                         <input
                             className='i'
                             type='text'
                             placeholder='Address'
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
-                            required
+                            // required
                         />
                     </ul>
                         <div className='cityStateContainer'>
                             <ul className='cityContainer'>
-                            <span>City</span>
+                            <span>City {errors.city && <span className='error sideError'>City is required</span>}</span>
+
                             <input
                                 className='cityInput'
                                 type='text'
                                 placeholder='City'
                                 value={city}
                                 onChange={(e) => setCity(e.target.value)}
-                                required
+                                // required
                                 />
                             </ul>
                             <ul className='commaContainer'>,</ul>
 
                             <ul className='stateContainer'>
-                            <span>State</span>
+                            <span>
+                                State
+                                {errors.state && <span className='error stateError'>State is required</span>}
+                            </span>
                             <input
                                 className='stateInput'
                                 type='text'
                                 placeholder='STATE'
                                 value={state}
                                 onChange={(e) => setState(e.target.value)}
-                                required
+                                // required
                             />
                             </ul>
                         </div>
@@ -134,8 +142,9 @@ function CreateNewSpot() {
                             placeholder='Description'
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                            required
+                            // required
                         />
+                        {errors.description && <span className='error bottomError'>Description needs a minimum of 30 characters</span>}
                     </div>
                     <div className='c titleContainer'>
                         <div className='t'>
@@ -148,10 +157,11 @@ function CreateNewSpot() {
                             className='i'
                             type='text'
                             placeholder='Name of your spot'
-                            value={title}
-                            onChange={e => setTitle(e.target.value)}
-                            required
+                            value={name}
+                            onChange={e => setName(e.target.value)}
+                            // required
                         />
+                        {errors.name && <span className='error bottomError'>Name is required</span>}
                     </div>
                     <div className='c priceContainer'>
                         <div className='t'>
@@ -168,9 +178,10 @@ function CreateNewSpot() {
                                 placeholder='Price per night (USD)'
                                 value={price}
                                 onChange={e => checkValue(e, 'change')}
-                                required
+                                // required
                             />
                         </div>
+                        {errors.price && <span className='error bottomError'>Price is required</span>}
                     </div>
                     <div className='c photoContainer'>
                         <div className='t'>
@@ -185,8 +196,9 @@ function CreateNewSpot() {
                             placeholder='Preview Image URL'
                             value={previewImg}
                             onChange={e => setPreviewImg(e.target.value)}
-                            required
+                            // required
                         />
+                        {errors.previewImg && <span className='error bottomError'>Preview image is required.</span>}
                         <input
                             className='i'
                             type='text'

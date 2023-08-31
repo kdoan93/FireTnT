@@ -108,7 +108,7 @@ h2 {
 
 .c {
     border-bottom: 2px solid black;
-    padding-bottom: 25px;
+    padding-bottom: 15px;
 }
 
 .spotFormContainer button {
@@ -124,4 +124,25 @@ h2 {
 
 .photoContainer input {
     margin: 5px 0px;
+}
+
+.error {
+    color: #FF5A60;
+    font-size: 13px;
+}
+
+.sideError {
+    padding-left: 5px;
+}
+
+.stateError {
+    position: absolute;
+    width: 80%;
+    padding-left: 5px;
+}
+
+.bottomError {
+    /* border: 1px solid red; */
+    position: relative;
+    top: 5px;
 }

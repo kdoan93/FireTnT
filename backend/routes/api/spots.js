@@ -13,8 +13,8 @@ const validateSpot = [
     check('city').exists({ checkFalsy: true }).withMessage('City is required'),
     check('state').exists({ checkFalsy: true }).withMessage('State is required'),
     check('country').exists({ checkFalsy: true }).withMessage('Country is required'),
-    check('lat').exists({ checkFalsy: true }).withMessage('Latitude is not valid'),
-    check('lng').exists({ checkFalsy: true }).withMessage('Longitude is not valid'),
+    // check('lat').exists({ checkFalsy: true }).withMessage('Latitude is not valid'),
+    // check('lng').exists({ checkFalsy: true }).withMessage('Longitude is not valid'),
     check('name').exists({ checkFalsy: true }).isLength({ min: 1, max: 50 }).withMessage('Name must be less than 50 characters'),
     check('description').exists({ checkFalsy: true }).withMessage('Description is required'),
     check('price').exists({ checkFalsy: true }).withMessage('Price per day is required'),
@@ -34,10 +34,10 @@ const validateReview = [
 const validateQueryParameters = [
     check('page').optional().isInt({ min: 1, max: 10 }).withMessage('Page must be greater than or equal to 1'),
     check('size').optional().isInt({ min: 1, max: 20 }).withMessage('Size must be greater than or equal to 1'),
-    check('maxLat').isDecimal().optional().withMessage('Maximum latitude is invalid'),
-    check('minLat').isDecimal().optional().withMessage('Minimum latitude is invalid'),
-    check('minLng').isDecimal().optional().withMessage('Minimum longitude is invalid'),
-    check('maxLng').isDecimal().optional().withMessage('Maximum longitude is invalid'),
+    // check('maxLat').isDecimal().optional().withMessage('Maximum latitude is invalid'),
+    // check('minLat').isDecimal().optional().withMessage('Minimum latitude is invalid'),
+    // check('minLng').isDecimal().optional().withMessage('Minimum longitude is invalid'),
+    // check('maxLng').isDecimal().optional().withMessage('Maximum longitude is invalid'),
     check('minPrice').isDecimal({ min: 0 }).optional().withMessage('Minimum price must be greater than or equal to 0'),
     check('maxPrice').isDecimal({ min: 0 }).optional().withMessage('Maximum price must be greater than or equal to 0'),
     handleValidationErrors
@@ -223,7 +223,8 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async(req, res) => 
 /***        Editing a spot      ***/
 router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
     let editSpot = await Spot.findByPk(req.params.spotId)
-    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    // const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    const { address, city, state, country, name, description, price } = req.body;
 
     //  If spot doesn't exist, throw error
     if (!editSpot) return res.status(404).json({ message: "Spot couldn't be found" })
@@ -234,8 +235,8 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
         editSpot.city = city,
         editSpot.state = state,
         editSpot.country = country,
-        editSpot.lat = lat,
-        editSpot.lng = lng,
+        // editSpot.lat = lat,
+        // editSpot.lng = lng,
         editSpot.name = name,
         editSpot.description = description,
         editSpot.price = price
