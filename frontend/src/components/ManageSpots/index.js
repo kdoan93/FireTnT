@@ -32,11 +32,14 @@ const UserSpots = () => {
         dispatch(spotsActions.getUserSpots())
     }, [dispatch])
 
-
+    // function onClickUpdate(spotId) {
+    //     // e.preventDefault()
+    //     history.push(`/spots/${spotId}/new`)
+    // }
 
     // may need to handle error with async/await try/catch
     // console.log('response error: ', Response.ok)
-    // if (!Response.ok) return null;
+    // if (!Response.ok) return console.log(Response.ok);
 
     if (!userSpots) return null;
 
@@ -47,7 +50,7 @@ const UserSpots = () => {
                 <button onClick={onClick}>Create a New Spot</button>
             </div>
             <div className='spotsContainer'>
-                {Response.ok === false ? <NavLink to='/spots/new'>Create a new spot</NavLink> : spotsArray.map(spot => (
+                {!Response.ok === undefined ? <NavLink to='/spots/new'>Create a new spot</NavLink> : spotsArray.map(spot => (
                     <div className='manageSpotsBrowser'>
                         <NavLink key={`${spot.name}`} className='ownedSpot' to={`/spots/${spot.id}`}>
                             <div className='image'><img src={spot.previewImage} alt='spotImg' /></div>
@@ -61,7 +64,7 @@ const UserSpots = () => {
                             <div className='tooltip'>{spot.name}</div>
                         </NavLink>
                         <div className='bottomButtons'>
-                            <button>Update</button>
+                            <NavLink to={`/spots/${spot.id}/edit`}>Update</NavLink>
                             {/* Import OpenModalMenuItem, then set modalComponent to desired modal */}
                             <OpenModalMenuItem
                                 itemText='Delete'
