@@ -13,7 +13,7 @@ const SpotReviews = () => {
 
     let reviews = useSelector(state => state.review.allReviews)
     const spotReviews = Object.values(reviews)
-    console.log('IN SpotReviews: spotReviews: ', spotReviews)
+    // console.log('IN SpotReviews: spotReviews: ', spotReviews)
 
     useEffect(() => {
         dispatch(getSpotReviews(spotId))

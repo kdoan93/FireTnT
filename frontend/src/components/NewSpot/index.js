@@ -15,12 +15,13 @@ function CreateNewSpot() {
     const [description, setDescription] = useState('')
     const [name, setName] = useState('')
     const [price, setPrice] = useState()
-    const [previewImg, setPreviewImg] = useState('')
     const [img1, setImg1] = useState('')
     const [img2, setImg2] = useState('')
     const [img3, setImg3] = useState('')
     const [img4, setImg4] = useState('')
     const [errors, setErrors] = useState({})
+    const [imgErrors, setImgErrors] = useState({})
+    const [previewImg, setPreviewImg] = useState('')
     const [needPreviewImg, setNeedPreviewImg] = useState(false)
     const [correctImg1, setCorrectImg1] = useState(false)
     const [correctImg2, setCorrectImg2] = useState(false)
@@ -39,42 +40,20 @@ function CreateNewSpot() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors({})
-        // add createSpot thunk function. use components/SignUpFormModal for reference. Line 23
+        setImgErrors({})
+        const imgErrorsObj = { previewImgError: 'Preview image is required' }
+
+        // if no previewImg, set useState for imgErrors and return
         if (!previewImg) {
-            console.log('previewImg: ', previewImg)
             setNeedPreviewImg(true)
+            setImgErrors(imgErrorsObj)
+
         }
-        if (img1) {
-            (
-                img1.endsWith('jpg') ? setCorrectImg1(false) : setCorrectImg1(true) ||
-                img1.endsWith('jpeg') ? setCorrectImg1(false) : setCorrectImg1(true) ||
-                img1.endsWith('png') ? setCorrectImg1(false) : setCorrectImg1(true)
-            )
-        }
-        if (img2) {
-            (
-                img2.endsWith('jpg') ? setCorrectImg2(false) : setCorrectImg2(true) ||
-                img2.endsWith('jpeg') ? setCorrectImg2(false) : setCorrectImg2(true) ||
-                img2.endsWith('png') ? setCorrectImg2(false) : setCorrectImg2(true)
-            )
-        }
-        if (img3) {
-            (
-                img3.endsWith('jpg') ? setCorrectImg3(false) : setCorrectImg3(true) ||
-                img3.endsWith('jpeg') ? setCorrectImg3(false) : setCorrectImg3(true) ||
-                img3.endsWith('png') ? setCorrectImg3(false) : setCorrectImg3(true)
-            )
-        }
-        if (img4) {
-            (
-                img4.endsWith('jpg') ? setCorrectImg4(false) : setCorrectImg4(true) ||
-                img4.endsWith('jpeg') ? setCorrectImg4(false) : setCorrectImg4(true) ||
-                img4.endsWith('png') ? setCorrectImg4(false) : setCorrectImg4(true)
-            )
-        }
+
         try {
             // variable to save newSpotId
             const newSpot = await dispatch(
+                // add createSpot thunk function. use components/SignUpFormModal for reference. Line 23
                 spotsActions.createSpot({
                     country,
                     address,
@@ -85,6 +64,57 @@ function CreateNewSpot() {
                     price,
                 })
             )
+
+            if (!previewImg) {
+                // setNeedPreviewImg(true)
+                // setImgErrors(imgErrorsObj)
+                // console.log('imgErrors: ', imgErrors)
+                return imgErrors
+            }
+
+            // if previewImg, set imgErrors and return
+            if (previewImg) {
+                (
+                    // if previewImg does end with ..., setPreviewImg to false, else set true
+                    previewImg.endsWith('jpg') ? setPreviewImg(false) : setPreviewImg(true) ||
+                    previewImg.endsWith('jpeg') ? setPreviewImg(false) : setPreviewImg(true) ||
+                    previewImg.endsWith('png') ? setPreviewImg(false) : setPreviewImg(true)
+                )
+
+                // ?
+                //     setNeedPreviewImg(false)
+                //         :
+                //     setImgErrors(imgErrorsObj)
+                //     return imgErrors
+            }
+            if (img1) {
+                (
+                    img1.endsWith('jpg') ? setCorrectImg1(false) : setCorrectImg1(true) ||
+                    img1.endsWith('jpeg') ? setCorrectImg1(false) : setCorrectImg1(true) ||
+                    img1.endsWith('png') ? setCorrectImg1(false) : setCorrectImg1(true)
+                )
+            }
+            if (img2) {
+                (
+                    img2.endsWith('jpg') ? setCorrectImg2(false) : setCorrectImg2(true) ||
+                    img2.endsWith('jpeg') ? setCorrectImg2(false) : setCorrectImg2(true) ||
+                    img2.endsWith('png') ? setCorrectImg2(false) : setCorrectImg2(true)
+                )
+            }
+            if (img3) {
+                (
+                    img3.endsWith('jpg') ? setCorrectImg3(false) : setCorrectImg3(true) ||
+                    img3.endsWith('jpeg') ? setCorrectImg3(false) : setCorrectImg3(true) ||
+                    img3.endsWith('png') ? setCorrectImg3(false) : setCorrectImg3(true)
+                )
+            }
+            if (img4) {
+                (
+                    img4.endsWith('jpg') ? setCorrectImg4(false) : setCorrectImg4(true) ||
+                    img4.endsWith('jpeg') ? setCorrectImg4(false) : setCorrectImg4(true) ||
+                    img4.endsWith('png') ? setCorrectImg4(false) : setCorrectImg4(true)
+                )
+            }
             // console.log('newSpot: ', newSpot)
             // creates new previewImg and following spot images
             if (newSpot.id) {

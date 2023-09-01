@@ -15,7 +15,7 @@ const UserSpots = () => {
     const userSpots = useSelector(state => state.spot.allSpots)
     // console.log('userSpots: ', userSpots)
     const spotsArray = Object.values(userSpots)
-    console.log('spotsArray: ', spotsArray)
+    // console.log('MANAGESPOTS spotsArray: ', spotsArray)
 
     const onClick = (e) => {
         history.push('/spots/new')

@@ -14,22 +14,27 @@ const SingleSpot = () => {
     spotId = parseInt(spotId)
     // selecting with 'useSelector' an object from 'store/index' then 'store/spots'
     let spot = useSelector(state => state.spot.singleSpot)
-    console.log('SPOT: ', spot)
+    // console.log('SPOT: ', spot)
 
     //spot.ownerId === session.user.id
     // getting spotImages
-    const spotImages = useSelector(state => state.spot.singleSpot.SpotImages)
-    const firstImg = spotImages[0]
 
     // Renders spot object with 'dispatch' from store using thunk function 'getSpots'
+    const spotImages = useSelector(state => state.spot.singleSpot.SpotImages)
     useEffect(() => {
         dispatch(getSpot(spotId))
     }, [dispatch])
 
+    console.log('SINGLESPOT spot: ', spot)
+
     if (!spot) return null;
-    if (spotImages.length < 0) return null;
+    // if (spotImages.length < 0) return null;
+    // if (!spotImages) return null;
+    // if (!spotImages.length) return null;
+    // if (Object.values(spotImages).length === 0) return null
 
     // console.log('firstImg: ', firstImg)
+    const firstImg = spotImages[0]
     if (!firstImg) return null;
 
     const topBox = spotImages.slice(1, 3)

@@ -20,7 +20,7 @@ export const createSpotImage = (spotImage, spotId) => async (dispatch) => {
         body: JSON.stringify({ url, preview })
     })
     const data = await response.json()
-    console.log('store/spotsImages response: ', data)
+    // console.log('store/spotsImages response: ', data)
     return data;
 }
 

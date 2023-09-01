@@ -4,6 +4,7 @@ import { csrfFetch } from "./csrf";
 const GET_ALL_SPOTS = 'spots/GET_ALL_SPOTS';
 const GET_SPOT = 'spots/GET_SPOT';
 const GET_USER_SPOTS = 'spots/GET_USER_SPOTS';
+const DELETE_SPOT = 'spots/DELETE_SPOT'
 
 // POJO action creator
 const getAllSpots = spot => {
@@ -24,6 +25,12 @@ const getAllUserSpots = spot => {
     return {
         type: GET_USER_SPOTS,
         spot
+    }
+}
+
+const deleteSpot = spotId => {
+    return {
+        type: DELETE_SPOT
     }
 }
 
@@ -101,6 +108,9 @@ const spotsReducer = (state = initialState, action) => {
                 newState.allSpots[spot.id] = spot
             })
             return newState;
+
+        case DELETE_SPOT:
+            newState = { ...state }
 
         default:
             return state;
