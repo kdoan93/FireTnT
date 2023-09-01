@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
 import * as spotsActions from '../../store/spots'
 import { createSpotImage } from '../../store/spotsImages';
 // import './UpdateSpot.css';
@@ -15,18 +15,18 @@ function UpdateSpot() {
     const [description, setDescription] = useState('')
     const [name, setName] = useState('')
     const [price, setPrice] = useState()
-    const [img1, setImg1] = useState('')
-    const [img2, setImg2] = useState('')
-    const [img3, setImg3] = useState('')
-    const [img4, setImg4] = useState('')
     const [errors, setErrors] = useState({})
-    const [imgErrors, setImgErrors] = useState({})
-    const [previewImg, setPreviewImg] = useState('')
-    const [needPreviewImg, setNeedPreviewImg] = useState(false)
-    const [correctImg1, setCorrectImg1] = useState(false)
-    const [correctImg2, setCorrectImg2] = useState(false)
-    const [correctImg3, setCorrectImg3] = useState(false)
-    const [correctImg4, setCorrectImg4] = useState(false)
+    // const [img1, setImg1] = useState('')
+    // const [img2, setImg2] = useState('')
+    // const [img3, setImg3] = useState('')
+    // const [img4, setImg4] = useState('')
+    // const [imgErrors, setImgErrors] = useState({})
+    // const [previewImg, setPreviewImg] = useState('')
+    // const [needPreviewImg, setNeedPreviewImg] = useState(false)
+    // const [correctImg1, setCorrectImg1] = useState(false)
+    // const [correctImg2, setCorrectImg2] = useState(false)
+    // const [correctImg3, setCorrectImg3] = useState(false)
+    // const [correctImg4, setCorrectImg4] = useState(false)
 
     function checkValue (e) {
         setPrice(decimalsOnly(e.target.value))
@@ -37,11 +37,18 @@ function UpdateSpot() {
         return value.match(regex)[0];
     }
 
+    // Use spotId param and convert into number value
+    let { spotId } = useParams();
+    spotId = parseInt(spotId)
+
+    let spotDetails = useSelector(state => state.spot.singleSpot)
+    console.log('UpdateSpot spotDetails: ', spotDetails)
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors({})
-        setImgErrors({})
-        const imgErrorsObj = { previewImgError: 'Preview image is required' }
+        // setImgErrors({})
+        // const imgErrorsObj = { previewImgError: 'Preview image is required' }
 
         try {
 
@@ -58,76 +65,76 @@ function UpdateSpot() {
             //     })
             )
 
-            if (previewImg) {
-                (
-                    // if previewImg does end with ..., setPreviewImg to false, else set true
-                    previewImg.endsWith('jpg') ? setPreviewImg(false) : setPreviewImg(true) ||
-                    previewImg.endsWith('jpeg') ? setPreviewImg(false) : setPreviewImg(true) ||
-                    previewImg.endsWith('png') ? setPreviewImg(false) : setPreviewImg(true)
-                )
-            }
-            if (img1) {
-                (
-                    img1.endsWith('jpg') ? setCorrectImg1(false) : setCorrectImg1(true) ||
-                    img1.endsWith('jpeg') ? setCorrectImg1(false) : setCorrectImg1(true) ||
-                    img1.endsWith('png') ? setCorrectImg1(false) : setCorrectImg1(true)
-                )
-            }
-            if (img2) {
-                (
-                    img2.endsWith('jpg') ? setCorrectImg2(false) : setCorrectImg2(true) ||
-                    img2.endsWith('jpeg') ? setCorrectImg2(false) : setCorrectImg2(true) ||
-                    img2.endsWith('png') ? setCorrectImg2(false) : setCorrectImg2(true)
-                )
-            }
-            if (img3) {
-                (
-                    img3.endsWith('jpg') ? setCorrectImg3(false) : setCorrectImg3(true) ||
-                    img3.endsWith('jpeg') ? setCorrectImg3(false) : setCorrectImg3(true) ||
-                    img3.endsWith('png') ? setCorrectImg3(false) : setCorrectImg3(true)
-                )
-            }
-            if (img4) {
-                (
-                    img4.endsWith('jpg') ? setCorrectImg4(false) : setCorrectImg4(true) ||
-                    img4.endsWith('jpeg') ? setCorrectImg4(false) : setCorrectImg4(true) ||
-                    img4.endsWith('png') ? setCorrectImg4(false) : setCorrectImg4(true)
-                )
-            }
-            // console.log('newSpot: ', newSpot)
-            // creates new previewImg and following spot images
-            if (newSpot.id) {
-                await dispatch(createSpotImage({
-                    url: previewImg,
-                    preview: true
-                }, newSpot.id ))
-                await dispatch(createSpotImage({
-                    url: img1,
-                    preview: false
-                }, newSpot.id ))
-                await dispatch(createSpotImage({
-                    url: img2,
-                    preview: false
-                }, newSpot.id ))
-                await dispatch(createSpotImage({
-                    url: img3,
-                    preview: false
-                }, newSpot.id ))
-                await dispatch(createSpotImage({
-                    url: img4,
-                    preview: false
-                }, newSpot.id ))
-            }
+            // if (previewImg) {
+            //     (
+            //         // if previewImg does end with ..., setPreviewImg to false, else set true
+            //         previewImg.endsWith('jpg') ? setPreviewImg(false) : setPreviewImg(true) ||
+            //         previewImg.endsWith('jpeg') ? setPreviewImg(false) : setPreviewImg(true) ||
+            //         previewImg.endsWith('png') ? setPreviewImg(false) : setPreviewImg(true)
+            //     )
+            // }
+            // if (img1) {
+            //     (
+            //         img1.endsWith('jpg') ? setCorrectImg1(false) : setCorrectImg1(true) ||
+            //         img1.endsWith('jpeg') ? setCorrectImg1(false) : setCorrectImg1(true) ||
+            //         img1.endsWith('png') ? setCorrectImg1(false) : setCorrectImg1(true)
+            //     )
+            // }
+            // if (img2) {
+            //     (
+            //         img2.endsWith('jpg') ? setCorrectImg2(false) : setCorrectImg2(true) ||
+            //         img2.endsWith('jpeg') ? setCorrectImg2(false) : setCorrectImg2(true) ||
+            //         img2.endsWith('png') ? setCorrectImg2(false) : setCorrectImg2(true)
+            //     )
+            // }
+            // if (img3) {
+            //     (
+            //         img3.endsWith('jpg') ? setCorrectImg3(false) : setCorrectImg3(true) ||
+            //         img3.endsWith('jpeg') ? setCorrectImg3(false) : setCorrectImg3(true) ||
+            //         img3.endsWith('png') ? setCorrectImg3(false) : setCorrectImg3(true)
+            //     )
+            // }
+            // if (img4) {
+            //     (
+            //         img4.endsWith('jpg') ? setCorrectImg4(false) : setCorrectImg4(true) ||
+            //         img4.endsWith('jpeg') ? setCorrectImg4(false) : setCorrectImg4(true) ||
+            //         img4.endsWith('png') ? setCorrectImg4(false) : setCorrectImg4(true)
+            //     )
+            // }
+            // // console.log('newSpot: ', newSpot)
+            // // creates new previewImg and following spot images
+            // if (newSpot.id) {
+            //     await dispatch(createSpotImage({
+            //         url: previewImg,
+            //         preview: true
+            //     }, newSpot.id ))
+            //     await dispatch(createSpotImage({
+            //         url: img1,
+            //         preview: false
+            //     }, newSpot.id ))
+            //     await dispatch(createSpotImage({
+            //         url: img2,
+            //         preview: false
+            //     }, newSpot.id ))
+            //     await dispatch(createSpotImage({
+            //         url: img3,
+            //         preview: false
+            //     }, newSpot.id ))
+            //     await dispatch(createSpotImage({
+            //         url: img4,
+            //         preview: false
+            //     }, newSpot.id ))
+            // }
             // console.log('newSpot: ', newSpot)
             history.push(`/spots/${newSpot.id}`)
             // error = response.error
         } catch (error) {
-            if (!previewImg) {
-                setNeedPreviewImg(true)
-                setImgErrors(imgErrorsObj)
-                console.log('NewSpot imgErrors: ', imgErrors)
-                return imgErrors
-            }
+            // if (!previewImg) {
+            //     setNeedPreviewImg(true)
+            //     setImgErrors(imgErrorsObj)
+            //     console.log('NewSpot imgErrors: ', imgErrors)
+            //     return imgErrors
+            // }
             if (error) {
                 // data receives errors object
                 console.log('NewSpot component error: ', error)
@@ -138,6 +145,12 @@ function UpdateSpot() {
             }
         }
     }
+
+    useEffect(() => {
+        dispatch(spotsActions.getSpot(spotId))
+    }, [dispatch])
+
+    if (!spotDetails) return null;
 
     return (
         <div className='spotFormContainer'>
@@ -152,11 +165,11 @@ function UpdateSpot() {
                     <div className='c spotLocationContainer'>
                     <ul>
                         <span>Country</span>
-                        {errors.country && <span className='error sideError'>Country is required</span>}
+                        {/* {errors.country && <span className='error sideError'>Country is required</span>} */}
                         <input
                             className='i'
                             type='text'
-                            placeholder='Country'
+                            placeholder={`${spotDetails.country}`}
                             value={country}
                             onChange={(e) => setCountry(e.target.value)}
                             // required
@@ -164,11 +177,11 @@ function UpdateSpot() {
                     </ul>
                     <ul>
                         <span>Street Addrress</span>
-                        {errors.address && <span className='error sideError'>Address is required</span>}
+                        {/* {errors.address && <span className='error sideError'>Address is required</span>} */}
                         <input
                             className='i'
                             type='text'
-                            placeholder='Address'
+                            placeholder={`${spotDetails.address}`}
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
                             // required
@@ -176,12 +189,14 @@ function UpdateSpot() {
                     </ul>
                         <div className='cityStateContainer'>
                             <ul className='cityContainer'>
-                            <span>City {errors.city && <span className='error sideError'>City is required</span>}</span>
+                            <span>City
+                                {/* {errors.city && <span className='error sideError'>City is required</span>} */}
+                            </span>
 
                             <input
                                 className='cityInput'
                                 type='text'
-                                placeholder='City'
+                                placeholder={`${spotDetails.city}`}
                                 value={city}
                                 onChange={(e) => setCity(e.target.value)}
                                 // required
@@ -197,7 +212,7 @@ function UpdateSpot() {
                             <input
                                 className='stateInput'
                                 type='text'
-                                placeholder='STATE'
+                                placeholder={`${spotDetails.state}`}
                                 value={state}
                                 onChange={(e) => setState(e.target.value)}
                                 // required
@@ -216,12 +231,12 @@ function UpdateSpot() {
                         <input
                             className='descriptionInput'
                             type='text'
-                            placeholder='Please write at least 30 characters'
+                            placeholder={`${spotDetails.description}`}
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                             // required
                         />
-                        {errors.description && <span className='error bottomError'>Description needs a minimum of 30 characters</span>}
+                        {/* {errors.description && <span className='error bottomError'>Description needs a minimum of 30 characters</span>} */}
                     </div>
                     <div className='c titleContainer'>
                         <div className='t'>
@@ -233,12 +248,12 @@ function UpdateSpot() {
                         <input
                             className='i'
                             type='text'
-                            placeholder='Name of your spot'
+                            placeholder={`${spotDetails.name}`}
                             value={name}
                             onChange={e => setName(e.target.value)}
                             // required
                         />
-                        {errors.name && <span className='error bottomError'>Name is required</span>}
+                        {/* {errors.name && <span className='error bottomError'>Name is required</span>} */}
                     </div>
                     <div className='c priceContainer'>
                         <div className='t'>
@@ -252,13 +267,13 @@ function UpdateSpot() {
                             <input
                                 className='priceInput'
                                 type='text'
-                                placeholder='Price per night (USD)'
+                                placeholder={`${spotDetails.price}`}
                                 value={price}
                                 onChange={e => checkValue(e, 'change')}
                                 // required
                             />
                         </div>
-                        {errors.price && <span className='error bottomError'>Price is required</span>}
+                        {/* {errors.price && <span className='error bottomError'>Price is required</span>} */}
                     </div>
                     {/* <div className='c photoContainer'>
                         <div className='t'>
