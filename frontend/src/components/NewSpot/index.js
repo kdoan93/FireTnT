@@ -33,29 +33,21 @@ function CreateNewSpot() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setErrors({})
         // add createSpot thunk function. use components/SignUpFormModal for reference. Line 23
-        // if (!errors) {
-            // setErrors({})
-            // console.log('submitted spot: ')
-            // console.log('country: ', country)
-            // console.log('address: ', address)
-            // console.log('city: ', city)
-            // console.log('state: ', state)
-            // console.log('description: ', description)
-            // console.log('title: ', title)
-            // console.log('price: ', price)
-        // }
         // variable to save spotId
-        const newSpot = await dispatch(
-            spotsActions.createSpot({
-                country,
-                address,
-                city,
-                state,
-                description,
-                name,
-                price,
-            }))
+        try {
+            const newSpot = await dispatch(
+                spotsActions.createSpot({
+                    country,
+                    address,
+                    city,
+                    state,
+                    description,
+                    name,
+                    price,
+                })
+            )
             // console.log('newSpot: ', newSpot)
             // creates new previewImg and following spot images
             if (newSpot.id) {
@@ -67,25 +59,36 @@ function CreateNewSpot() {
                     url: img1,
                     preview: false
                 }, newSpot.id ))
+                await dispatch(createSpotImage({
+                    url: img2,
+                    preview: false
+                }, newSpot.id ))
+                await dispatch(createSpotImage({
+                    url: img3,
+                    preview: false
+                }, newSpot.id ))
+                await dispatch(createSpotImage({
+                    url: img4,
+                    preview: false
+                }, newSpot.id ))
             }
-
-    }
-
-    const submitImages = (e) => {
-        e.preventDefault();
-        return dispatch(
-            createSpotImage({
-                url: previewImg,
-                preview: true
-            })
-        )
-        .catch (async (res) => {
-            const data = await res.json();
-            console.log('DATA: ', data)
-            if (data && data.errors) {
+            history.push(`/spots/${newSpot.id}`)
+            // error = response.error
+        } catch (error) {
+            if (error) {
+                // data receives errors object
+                const data = await error.json()
                 setErrors(data.errors)
+                console.log('error: ', error)
+                console.log('data: ', data)
+                return data
             }
-        })
+            if (!previewImg) {
+                // const data = await errors.json()
+                await setErrors(error.json(errors))
+            }
+        }
+
     }
 
     return (

@@ -11,5 +11,10 @@ const UserSpots = () => {
     // useSelector selects store data objects
     const userSpots = useSelector(state => state.spot.allSpots)
 
-    
+
+    return (
+        <div>Manage Spots page</div>
+    )
 }
+
+export default UserSpots;

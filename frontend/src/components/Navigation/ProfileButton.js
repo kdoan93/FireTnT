@@ -44,7 +44,7 @@ function ProfileButton({ user }) {
     return (
         <>
           {user ? (
-            <NavLink className="createASpot" to={`/spots/new`}>
+            <NavLink className="createASpot" to='/spots/new'>
               Create a New Spot
             </NavLink>
           ) : (
@@ -65,6 +65,9 @@ function ProfileButton({ user }) {
                   <div>Hello,   {user.firstName}</div>
                   <div>{user.email}</div>
                 </div>
+                <NavLink className='manageSpots' to='/spots/current'>
+                  Manage Spots
+                </NavLink>
                 <button onClick={logout}>Log Out</button>
               </>
             ) : (
