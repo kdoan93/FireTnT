@@ -49,7 +49,7 @@ export const getUserSpots = () => async dispatch => {
     if (response.ok) {
         const userSpots = await response.json()
         dispatch(getAllUserSpots(userSpots))
-        console.log('STORE/SPOTS userSpots: ', userSpots)
+        // console.log('STORE/SPOTS userSpots: ', userSpots)
         // userSpots.map(spot => spot.ownerId)
         return userSpots
     } else {
