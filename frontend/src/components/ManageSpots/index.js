@@ -33,19 +33,25 @@ const UserSpots = () => {
                 Manage Your Spots
                 <button onClick={onClick}>Create a New Spot</button>
             </div>
-            <div className='spotsBrowser'>
+            <div className='spotsContainer'>
                 {spotsArray.map(spot => (
-                    <NavLink key={`${spot.name}`} className='spot' to={`/spots/${spot.id}`}>
-                        <div className='image'><img src={spot.previewImage} alt='spotImg' /></div>
-                        <div className='topRow'>
-                            <span className='cityState'>{spot.city}, {spot.state}</span>
-                            <span className='rating'><i className="fa-solid fa-star"></i>
-                                {!spot.avgRating ? <span>NEW</span> : spot.avgRating}
-                            </span>
+                    <div className='spotsBrowser'>
+                        <NavLink key={`${spot.name}`} className='spot' to={`/spots/${spot.id}`}>
+                            <div className='image'><img src={spot.previewImage} alt='spotImg' /></div>
+                            <div className='topRow'>
+                                <span className='cityState'>{spot.city}, {spot.state}</span>
+                                <span className='rating'><i className="fa-solid fa-star"></i>
+                                    {!spot.avgRating ? <span>NEW</span> : spot.avgRating}
+                                </span>
+                            </div>
+                            <span className='price'>${spot.price}/night</span>
+                            <div className='tooltip'>{spot.name}</div>
+                        </NavLink>
+                        <div className='bottomButtons'>
+                            <button>Update</button>
+                            <button>Delete</button>
                         </div>
-                        <span className='price'>${spot.price}/night</span>
-                        <div className='tooltip'>{spot.name}</div>
-                    </NavLink>
+                    </div>
                 ))}
             </div>
         </>
