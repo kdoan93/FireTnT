@@ -126,8 +126,8 @@ export const createSpot = (spot) => async (dispatch) => {
         body: JSON.stringify( spot )
     })
     const data = await response.json()
-    // console.log('data: ', data)
-    dispatch(getASpot(data.spot))
+    dispatch(getASpot(data))
+    console.log('createSpot THUNK data: ', data)
     return data
 };
 

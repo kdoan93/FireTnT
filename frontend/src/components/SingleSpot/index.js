@@ -9,10 +9,13 @@ const SingleSpot = () => {
 
     const dispatch = useDispatch();
     // const { id, name, previewImage, city, state, avgRating, price } = spot;
+    
     let { spotId } = useParams();
     // turn id from string into a number value
+
     spotId = parseInt(spotId)
     // selecting with 'useSelector' an object from 'store/index' then 'store/spots'
+
     let spot = useSelector(state => state.spot.singleSpot)
     // console.log('SPOT: ', spot)
 
@@ -28,12 +31,7 @@ const SingleSpot = () => {
     console.log('SINGLESPOT spot: ', spot)
 
     if (!spot) return null;
-    // if (spotImages.length < 0) return null;
-    // if (!spotImages) return null;
-    // if (!spotImages.length) return null;
-    // if (Object.values(spotImages).length === 0) return null
-
-    // console.log('firstImg: ', firstImg)
+    if (!spotImages) return null;
     const firstImg = spotImages[0]
     if (!firstImg) return null;
 

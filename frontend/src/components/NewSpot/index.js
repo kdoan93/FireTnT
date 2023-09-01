@@ -139,6 +139,7 @@ function CreateNewSpot() {
                     preview: false
                 }, newSpot.id ))
             }
+            // console.log('newSpot: ', newSpot)
             history.push(`/spots/${newSpot.id}`)
             // error = response.error
         } catch (error) {
