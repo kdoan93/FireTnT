@@ -35,8 +35,8 @@ const UserSpots = () => {
             </div>
             <div className='spotsContainer'>
                 {spotsArray.map(spot => (
-                    <div className='spotsBrowser'>
-                        <NavLink key={`${spot.name}`} className='spot' to={`/spots/${spot.id}`}>
+                    <div className='manageSpotsBrowser'>
+                        <NavLink key={`${spot.name}`} className='ownedSpot' to={`/spots/${spot.id}`}>
                             <div className='image'><img src={spot.previewImage} alt='spotImg' /></div>
                             <div className='topRow'>
                                 <span className='cityState'>{spot.city}, {spot.state}</span>
