@@ -44,14 +44,9 @@ function CreateNewSpot() {
         const imgErrorsObj = { previewImgError: 'Preview image is required' }
 
         // if no previewImg, set useState for imgErrors and return
-        if (!previewImg) {
-            setNeedPreviewImg(true)
-            setImgErrors(imgErrorsObj)
-
-        }
 
         try {
-            // variable to save newSpotId
+
             const newSpot = await dispatch(
                 // add createSpot thunk function. use components/SignUpFormModal for reference. Line 23
                 spotsActions.createSpot({
@@ -65,12 +60,12 @@ function CreateNewSpot() {
                 })
             )
 
-            if (!previewImg) {
+            // if (!previewImg) {
                 // setNeedPreviewImg(true)
                 // setImgErrors(imgErrorsObj)
                 // console.log('imgErrors: ', imgErrors)
-                return imgErrors
-            }
+                // return imgErrors
+            // }
 
             // if previewImg, set imgErrors and return
             if (previewImg) {
@@ -80,12 +75,6 @@ function CreateNewSpot() {
                     previewImg.endsWith('jpeg') ? setPreviewImg(false) : setPreviewImg(true) ||
                     previewImg.endsWith('png') ? setPreviewImg(false) : setPreviewImg(true)
                 )
-
-                // ?
-                //     setNeedPreviewImg(false)
-                //         :
-                //     setImgErrors(imgErrorsObj)
-                //     return imgErrors
             }
             if (img1) {
                 (
@@ -143,12 +132,18 @@ function CreateNewSpot() {
             history.push(`/spots/${newSpot.id}`)
             // error = response.error
         } catch (error) {
+            if (!previewImg) {
+                setNeedPreviewImg(true)
+                setImgErrors(imgErrorsObj)
+                console.log('NewSpot imgErrors: ', imgErrors)
+                return imgErrors
+            }
             if (error) {
                 // data receives errors object
+                console.log('NewSpot component error: ', error)
                 const data = await error.json()
                 setErrors(data.errors)
-                // console.log('error: ', errors)
-                // console.log('data: ', data)
+                console.log('data: ', data)
                 return data
             }
         }

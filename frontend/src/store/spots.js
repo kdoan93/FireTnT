@@ -28,9 +28,10 @@ const getAllUserSpots = spot => {
     }
 }
 
-const deleteSpot = spotId => {
+const deleteASpot = spotId => {
     return {
-        type: DELETE_SPOT
+        type: DELETE_SPOT,
+        spotId
     }
 }
 
@@ -80,6 +81,32 @@ export const getSpot = (spotId) => async dispatch => {
     }
 }
 
+// CreateSpot thunk action
+export const createSpot = (spot) => async (dispatch) => {
+
+    // console.log('createSpot spot: ', spot)
+    const response = await csrfFetch('/api/spots', {
+        method: 'POST',
+        body: JSON.stringify(spot)
+    })
+    const newSpot = await response.json()
+    dispatch(getASpot(newSpot))
+    console.log('createSpot THUNK newSpot: ', newSpot)
+    return newSpot
+};
+
+// THUNK action to delete spot
+export const deleteSpot = (spotId) => async dispatch => {
+    // fetch must be made to URL path
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+        method: 'DELETE'
+    })
+    console.log('response BEFORE delete response: ', response)
+    dispatch(deleteASpot(spotId))
+    console.log('response AFTER delete response: ', response)
+    return response;
+}
+
 
 // key into 2nd
 const initialState = { allSpots: {}, singleSpot: { SpotImages: [] } }
@@ -110,25 +137,16 @@ const spotsReducer = (state = initialState, action) => {
             return newState;
 
         case DELETE_SPOT:
-            newState = { ...state }
+            // spreading state and making copy of allSpots and singleSpot
+            newState = { ...state, allSpots: { ...state.allSpots }, singleSpot: {} }
+            // delete wanted action.spotId within newState.allSpots object
+            delete newState.allSpots[action.spotId]
+            // return the rest of the remaining newState.allSpots object
+            return newState;
 
         default:
             return state;
     }
 }
-
-// CreateSpot thunk action
-export const createSpot = (spot) => async (dispatch) => {
-
-    // console.log('createSpot spot: ', spot)
-    const response = await csrfFetch('/api/spots', {
-        method: 'POST',
-        body: JSON.stringify( spot )
-    })
-    const data = await response.json()
-    dispatch(getASpot(data))
-    console.log('createSpot THUNK data: ', data)
-    return data
-};
 
 export default spotsReducer;

@@ -42,6 +42,42 @@ export const login = (user) => async (dispatch) => {
   return response;
 };
 
+// Thunk action to call the 'GET /api/session' to restore the session user
+// GET /api/session returns the logged in user's information
+export const restoreUser = () => async (dispatch) => {
+  const response = await csrfFetch("/api/session");
+  const data = await response.json();
+  dispatch(setUser(data.user));
+  return response;
+};
+
+// Signup thunk action
+export const signup = (user) => async (dispatch) => {
+const { username, firstName, lastName, email, password } = user;
+const response = await csrfFetch("/api/users", {
+  method: "POST",
+  body: JSON.stringify({
+    username,
+    firstName,
+    lastName,
+    email,
+    password,
+  }),
+});
+const data = await response.json();
+dispatch(setUser(data.user));
+return response;
+};
+
+// Logout thunk action DELETE /api/session
+export const logout = () => async (dispatch) => {
+const response = await csrfFetch('/api/session', {
+  method: 'DELETE',
+});
+dispatch(removeUser());
+return response;
+};
+
 
 const initialState = { user: null };
 
@@ -60,51 +96,11 @@ const sessionReducer = (state = initialState, action) => {
         newState = Object.assign({}, state);
         newState.user = null;
         return newState;
-        
+
       default:
         return state;
     }
 };
-
-
-// Thunk action to call the 'GET /api/session' to restore the session user
-// GET /api/session returns the logged in user's information
-export const restoreUser = () => async (dispatch) => {
-    const response = await csrfFetch("/api/session");
-    const data = await response.json();
-    dispatch(setUser(data.user));
-    return response;
-};
-
-
-// Signup thunk action
-export const signup = (user) => async (dispatch) => {
-  const { username, firstName, lastName, email, password } = user;
-  const response = await csrfFetch("/api/users", {
-    method: "POST",
-    body: JSON.stringify({
-      username,
-      firstName,
-      lastName,
-      email,
-      password,
-    }),
-  });
-  const data = await response.json();
-  dispatch(setUser(data.user));
-  return response;
-};
-
-
-// Logout thunk action DELETE /api/session
-export const logout = () => async (dispatch) => {
-  const response = await csrfFetch('/api/session', {
-    method: 'DELETE',
-  });
-  dispatch(removeUser());
-  return response;
-};
-
 
 
 

@@ -1,13 +1,19 @@
 import { useEffect } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserSpots } from '../../store/spots'
+import { useModal } from '../../context/Modal';
+// import { getUserSpots } from '../../store/spots'
+import * as spotsActions from '../../store/spots'
+import { DeleteSpotModal } from './DeleteSpotModal';
+import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import './ManageSpots.css'
 
 const UserSpots = () => {
 
     // dispatch used to interact with redux store/db
     const dispatch = useDispatch();
+
+    const { closeModal } = useModal();
 
     const history = useHistory();
 
@@ -17,16 +23,19 @@ const UserSpots = () => {
     const spotsArray = Object.values(userSpots)
     // console.log('MANAGESPOTS spotsArray: ', spotsArray)
 
+    // onClick to handle creating new spot
     const onClick = (e) => {
         history.push('/spots/new')
     }
 
     useEffect(() => {
-        dispatch(getUserSpots())
+        dispatch(spotsActions.getUserSpots())
     }, [dispatch])
 
+
+
     // may need to handle error with async/await try/catch
-    console.log('response error: ', Response.ok)
+    // console.log('response error: ', Response.ok)
     // if (!Response.ok) return null;
 
     if (!userSpots) return null;
@@ -53,7 +62,12 @@ const UserSpots = () => {
                         </NavLink>
                         <div className='bottomButtons'>
                             <button>Update</button>
-                            <button>Delete</button>
+                            {/* Import OpenModalMenuItem, then set modalComponent to desired modal */}
+                            <OpenModalMenuItem
+                                itemText='Delete'
+                                modalComponent={<DeleteSpotModal spotId={spot.id} />}
+                            />
+                            {/* <button>Delete</button> */}
                         </div>
                     </div>
                 ))}
