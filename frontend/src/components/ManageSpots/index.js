@@ -38,7 +38,7 @@ const UserSpots = () => {
                 <button onClick={onClick}>Create a New Spot</button>
             </div>
             <div className='spotsContainer'>
-                {!Response.ok ? <NavLink to='/spots/new'>Create a new spot</NavLink> : spotsArray.map(spot => (
+                {Response.ok === false ? <NavLink to='/spots/new'>Create a new spot</NavLink> : spotsArray.map(spot => (
                     <div className='manageSpotsBrowser'>
                         <NavLink key={`${spot.name}`} className='ownedSpot' to={`/spots/${spot.id}`}>
                             <div className='image'><img src={spot.previewImage} alt='spotImg' /></div>
