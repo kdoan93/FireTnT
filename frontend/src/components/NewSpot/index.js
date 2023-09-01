@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import * as spotsActions from '../../store/spots'
+import { createSpotImage } from '../../store/spotsImages';
 import './NewSpot.css';
 
 function CreateNewSpot() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [country, setCountry] = useState('')
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
@@ -28,7 +31,7 @@ function CreateNewSpot() {
         return value.match(regex)[0];
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // add createSpot thunk function. use components/SignUpFormModal for reference. Line 23
         // if (!errors) {
@@ -42,7 +45,8 @@ function CreateNewSpot() {
             // console.log('title: ', title)
             // console.log('price: ', price)
         // }
-        return dispatch(
+        // variable to save spotId
+        const newSpot = await dispatch(
             spotsActions.createSpot({
                 country,
                 address,
@@ -51,6 +55,28 @@ function CreateNewSpot() {
                 description,
                 name,
                 price,
+            }))
+            // console.log('newSpot: ', newSpot)
+            // creates new previewImg and following spot images
+            if (newSpot.id) {
+                await dispatch(createSpotImage({
+                    url: previewImg,
+                    preview: true
+                }, newSpot.id ))
+                await dispatch(createSpotImage({
+                    url: img1,
+                    preview: false
+                }, newSpot.id ))
+            }
+
+    }
+
+    const submitImages = (e) => {
+        e.preventDefault();
+        return dispatch(
+            createSpotImage({
+                url: previewImg,
+                preview: true
             })
         )
         .catch (async (res) => {
@@ -69,7 +95,7 @@ function CreateNewSpot() {
                     <div className='locationParagraph'>
                         <div className='t'>
                             <span>Where's your place located?</span>
-                            <p>Guests will oly get your exact address once they booked a reservation.</p>
+                            <p>Guests will only get your exact address once they booked a reservation.</p>
                         </div>
                     </div>
                     <div className='c spotLocationContainer'>
@@ -132,14 +158,14 @@ function CreateNewSpot() {
                         <div className='t'>
                             <span>Describe your place to guests</span>
                             <p>
-                                Mention the best features of your space, any special amentities like fast wifi
-                                or parking, and what you love about the neighborhood.
+                            Mention the best features of your space, any special amentities like
+                            fast wifi or parking, and what you love about the neighborhood.
                             </p>
                         </div>
                         <input
                             className='descriptionInput'
                             type='text'
-                            placeholder='Description'
+                            placeholder='Please write at least 30 characters'
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                             // required
@@ -192,7 +218,7 @@ function CreateNewSpot() {
                         </div>
                         <input
                             className='i'
-                            type='text'
+                            type='url'
                             placeholder='Preview Image URL'
                             value={previewImg}
                             onChange={e => setPreviewImg(e.target.value)}
@@ -201,7 +227,7 @@ function CreateNewSpot() {
                         {errors.previewImg && <span className='error bottomError'>Preview image is required.</span>}
                         <input
                             className='i'
-                            type='text'
+                            type='url'
                             placeholder='Image URL'
                             value={img1}
                             onChange={e => setImg1(e.target.value)}
@@ -209,7 +235,7 @@ function CreateNewSpot() {
                         />
                         <input
                             className='i'
-                            type='text'
+                            type='url'
                             placeholder='Image URL'
                             value={img2}
                             onChange={e => setImg2(e.target.value)}
@@ -217,7 +243,7 @@ function CreateNewSpot() {
                         />
                         <input
                             className='i'
-                            type='text'
+                            type='url'
                             placeholder='Image URL'
                             value={img3}
                             onChange={e => setImg3(e.target.value)}
@@ -225,7 +251,7 @@ function CreateNewSpot() {
                         />
                         <input
                             className='i'
-                            type='text'
+                            type='url'
                             placeholder='Image URL'
                             value={img4}
                             onChange={e => setImg4(e.target.value)}

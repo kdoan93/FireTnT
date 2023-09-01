@@ -35,6 +35,7 @@ export const getSpots = () => async dispatch => {
     }
 };
 
+// Thunk to GET a spot
 export const getSpot = (spotId) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}`)
     if (response.ok) {
@@ -77,22 +78,15 @@ const spotsReducer = (state = initialState, action) => {
 
 // CreateSpot thunk action
 export const createSpot = (spot) => async (dispatch) => {
-    const { country, address, city, state, description, name, price } = spot;
+
+    console.log('createSpot spot: ', spot)
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
-        body: JSON.stringify({
-            country,
-            address,
-            city,
-            state,
-            description,
-            name,
-            price,
-        })
+        body: JSON.stringify( spot )
     })
     const data = await response.json()
     dispatch(getASpot(data.spot))
-    return response
+    return data
 };
 
 export default spotsReducer;
