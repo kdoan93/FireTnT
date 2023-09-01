@@ -22,8 +22,6 @@ const SpotsBrowser = () => {
         dispatch(getSpots());
     }, [dispatch]);
 
-    // if more than 4 spots, create a new row
-
     if (!spotsArray) return null;
 
     return (

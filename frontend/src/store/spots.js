@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 // TYPE_CONSTANTS
 const GET_ALL_SPOTS = 'spots/GET_ALL_SPOTS';
 const GET_SPOT = 'spots/GET_SPOT';
+const GET_USER_SPOTS = 'spots/GET_USER_SPOTS';
 
 // POJO action creator
 const getAllSpots = spot => {
@@ -19,6 +20,13 @@ const getASpot = spot => {
     }
 };
 
+const getAllUserSpots = spot => {
+    return {
+        type: GET_USER_SPOTS,
+        spot
+    }
+}
+
 
 // Thunk action to get all spots
 export const getSpots = () => async dispatch => {
@@ -34,6 +42,22 @@ export const getSpots = () => async dispatch => {
         return errors
     }
 };
+
+// Thunk action to get Current User's spots
+export const getUserSpots = () => async dispatch => {
+    const response = await csrfFetch('/api/spots/current')
+    if (response.ok) {
+        const userSpots = await response.json()
+        dispatch(getAllUserSpots(userSpots))
+        console.log('STORE/SPOTS userSpots: ', userSpots)
+        // userSpots.map(spot => spot.ownerId)
+        return userSpots
+    } else {
+        const errors = await response.json()
+        // console.log('errors in store/spots ', errors)
+        return errors
+    }
+}
 
 // Thunk to GET a spot
 export const getSpot = (spotId) => async dispatch => {
@@ -71,6 +95,13 @@ const spotsReducer = (state = initialState, action) => {
             newState.singleSpot = action.spot;
             return newState;
 
+        case GET_USER_SPOTS:
+            newState = { ...state, allSpots: {} };
+            action.spot.Spots.forEach(spot => {
+                newState.allSpots[spot.id] = spot
+            })
+            return newState;
+
         default:
             return state;
     }
@@ -85,7 +116,7 @@ export const createSpot = (spot) => async (dispatch) => {
         body: JSON.stringify( spot )
     })
     const data = await response.json()
-    console.log('data: ', data)
+    // console.log('data: ', data)
     dispatch(getASpot(data.spot))
     return data
 };

@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSpots } from '../../store/spots'
+import { getUserSpots } from '../../store/spots'
+import './ManageSpots.css'
 
 const UserSpots = () => {
 
@@ -10,10 +11,31 @@ const UserSpots = () => {
 
     // useSelector selects store data objects
     const userSpots = useSelector(state => state.spot.allSpots)
+    // console.log('userSpots: ', userSpots)
+    const spotsArray = Object.values(userSpots)
+    console.log('spotsArray: ', spotsArray)
 
+    useEffect(() => {
+        dispatch(getUserSpots())
+    }, [dispatch])
+
+    if (!userSpots) return null;
 
     return (
-        <div>Manage Spots page</div>
+        <div className='ownerSpots'>
+            <h2>hello?</h2>
+            {spotsArray.map(spot => (
+                <NavLink key={`${spot.name}`} className='spot' to={`/spots/${spot.id}`}>
+                    <div className='image'><img src={spot.previewImage} alt='spotImg' /></div>
+                    <div className='topRow'>
+                        <span className='cityState'>{spot.city}, {spot.state}</span>
+                        <span className='rating'><i className="fa-solid fa-star"></i>{!spot.avgRating ? <span>NEW</span> : spot.avgRating}</span>
+                    </div>
+                    <span className='price'>${spot.price}/night</span>
+                    <div className='tooltip'>{spot.name}</div>
+                </NavLink>
+            ))}
+        </div>
     )
 }
 
