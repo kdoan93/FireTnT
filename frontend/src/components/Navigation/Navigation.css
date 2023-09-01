@@ -108,15 +108,15 @@ i {
 
 .loginSignup {
     cursor: pointer;
+    /* border: 1px solid red; */
+    width: 100px;
 }
 
 .loginSignup div {
     /* border: 1px solid red; */
     font-size: 12px;
     font-weight: 700;
-    position: relative;
-    right: 60%;
-    padding: 3px 10px 3px 5px;
+    padding: 3px 10px;
 }
 
 .userMenu div {
