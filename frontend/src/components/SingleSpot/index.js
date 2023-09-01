@@ -14,7 +14,9 @@ const SingleSpot = () => {
     spotId = parseInt(spotId)
     // selecting with 'useSelector' an object from 'store/index' then 'store/spots'
     let spot = useSelector(state => state.spot.singleSpot)
-    // console.log('spot: ', spot)
+    console.log('SPOT: ', spot)
+
+    //spot.ownerId === session.user.id
     // getting spotImages
     const spotImages = useSelector(state => state.spot.singleSpot.SpotImages)
     const firstImg = spotImages[0]

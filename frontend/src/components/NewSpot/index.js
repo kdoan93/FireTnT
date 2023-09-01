@@ -21,6 +21,11 @@ function CreateNewSpot() {
     const [img3, setImg3] = useState('')
     const [img4, setImg4] = useState('')
     const [errors, setErrors] = useState({})
+    const [needPreviewImg, setNeedPreviewImg] = useState(false)
+    const [correctImg1, setCorrectImg1] = useState(false)
+    const [correctImg2, setCorrectImg2] = useState(false)
+    const [correctImg3, setCorrectImg3] = useState(false)
+    const [correctImg4, setCorrectImg4] = useState(false)
 
     function checkValue (e) {
         setPrice(decimalsOnly(e.target.value))
@@ -35,8 +40,40 @@ function CreateNewSpot() {
         e.preventDefault();
         setErrors({})
         // add createSpot thunk function. use components/SignUpFormModal for reference. Line 23
-        // variable to save spotId
+        if (!previewImg) {
+            console.log('previewImg: ', previewImg)
+            setNeedPreviewImg(true)
+        }
+        if (img1) {
+            (
+                img1.endsWith('jpg') ? setCorrectImg1(false) : setCorrectImg1(true) ||
+                img1.endsWith('jpeg') ? setCorrectImg1(false) : setCorrectImg1(true) ||
+                img1.endsWith('png') ? setCorrectImg1(false) : setCorrectImg1(true)
+            )
+        }
+        if (img2) {
+            (
+                img2.endsWith('jpg') ? setCorrectImg2(false) : setCorrectImg2(true) ||
+                img2.endsWith('jpeg') ? setCorrectImg2(false) : setCorrectImg2(true) ||
+                img2.endsWith('png') ? setCorrectImg2(false) : setCorrectImg2(true)
+            )
+        }
+        if (img3) {
+            (
+                img3.endsWith('jpg') ? setCorrectImg3(false) : setCorrectImg3(true) ||
+                img3.endsWith('jpeg') ? setCorrectImg3(false) : setCorrectImg3(true) ||
+                img3.endsWith('png') ? setCorrectImg3(false) : setCorrectImg3(true)
+            )
+        }
+        if (img4) {
+            (
+                img4.endsWith('jpg') ? setCorrectImg4(false) : setCorrectImg4(true) ||
+                img4.endsWith('jpeg') ? setCorrectImg4(false) : setCorrectImg4(true) ||
+                img4.endsWith('png') ? setCorrectImg4(false) : setCorrectImg4(true)
+            )
+        }
         try {
+            // variable to save newSpotId
             const newSpot = await dispatch(
                 spotsActions.createSpot({
                     country,
@@ -79,16 +116,11 @@ function CreateNewSpot() {
                 // data receives errors object
                 const data = await error.json()
                 setErrors(data.errors)
-                console.log('error: ', error)
-                console.log('data: ', data)
+                // console.log('error: ', errors)
+                // console.log('data: ', data)
                 return data
             }
-            if (!previewImg) {
-                // const data = await errors.json()
-                await setErrors(error.json(errors))
-            }
         }
-
     }
 
     return (
@@ -227,7 +259,7 @@ function CreateNewSpot() {
                             onChange={e => setPreviewImg(e.target.value)}
                             // required
                         />
-                        {errors.previewImg && <span className='error bottomError'>Preview image is required.</span>}
+                        {needPreviewImg && <span className='error'>Preview image is required.</span>}
                         <input
                             className='i'
                             type='url'
@@ -236,6 +268,7 @@ function CreateNewSpot() {
                             onChange={e => setImg1(e.target.value)}
                             // required
                         />
+                        {correctImg1 && <span className='error'>Image URL must end in .png, .jpg, .jpeg</span>}
                         <input
                             className='i'
                             type='url'
@@ -243,7 +276,8 @@ function CreateNewSpot() {
                             value={img2}
                             onChange={e => setImg2(e.target.value)}
                             // required
-                        />
+                            />
+                        {correctImg2 && <span className='error'>Image URL must end in .png, .jpg, .jpeg</span>}
                         <input
                             className='i'
                             type='url'
@@ -251,7 +285,8 @@ function CreateNewSpot() {
                             value={img3}
                             onChange={e => setImg3(e.target.value)}
                             // required
-                        />
+                            />
+                        {correctImg3 && <span className='error'>Image URL must end in .png, .jpg, .jpeg</span>}
                         <input
                             className='i'
                             type='url'
@@ -259,7 +294,8 @@ function CreateNewSpot() {
                             value={img4}
                             onChange={e => setImg4(e.target.value)}
                             // required
-                        />
+                            />
+                        {correctImg4 && <span className='error'>Image URL must end in .png, .jpg, .jpeg</span>}
                     </div>
             <button>Create Spot</button>
             </form>

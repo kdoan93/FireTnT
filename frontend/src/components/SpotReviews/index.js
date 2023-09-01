@@ -6,7 +6,7 @@ import './SpotReviews.css'
 
 const SpotReviews = () => {
     const dispatch = useDispatch();
-    // const history = useHistory();
+    const history = useHistory();
     let { spotId } = useParams();
 
     spotId = parseInt(spotId)
@@ -20,7 +20,6 @@ const SpotReviews = () => {
     }, [dispatch])
 
     if(!reviews) return null
-    // if(reviews[0].spotId !== spotId) history.push(`/spots/${spotId}`)
 
     return (
         <div className="spotReviewsContainer">
