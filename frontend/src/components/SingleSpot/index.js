@@ -17,15 +17,16 @@ const SingleSpot = () => {
     // console.log('spot: ', spot)
     // getting spotImages
     const spotImages = useSelector(state => state.spot.singleSpot.SpotImages)
+    const firstImg = spotImages[0]
 
     // Renders spot object with 'dispatch' from store using thunk function 'getSpots'
     useEffect(() => {
         dispatch(getSpot(spotId))
     }, [dispatch])
 
-    if (!spotImages) return null;
+    if (!spot) return null;
+    if (spotImages.length < 0) return null;
 
-    const firstImg = spotImages[0]
     // console.log('firstImg: ', firstImg)
     if (!firstImg) return null;
 

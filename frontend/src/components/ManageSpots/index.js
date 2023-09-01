@@ -25,6 +25,10 @@ const UserSpots = () => {
         dispatch(getUserSpots())
     }, [dispatch])
 
+    // may need to handle error with async/await try/catch
+    console.log('response error: ', Response.ok)
+    // if (!Response.ok) return null;
+
     if (!userSpots) return null;
 
     return (
@@ -34,7 +38,7 @@ const UserSpots = () => {
                 <button onClick={onClick}>Create a New Spot</button>
             </div>
             <div className='spotsContainer'>
-                {spotsArray.map(spot => (
+                {!Response.ok ? <NavLink to='/spots/new'>Create a new spot</NavLink> : spotsArray.map(spot => (
                     <div className='manageSpotsBrowser'>
                         <NavLink key={`${spot.name}`} className='ownedSpot' to={`/spots/${spot.id}`}>
                             <div className='image'><img src={spot.previewImage} alt='spotImg' /></div>
