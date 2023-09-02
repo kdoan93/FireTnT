@@ -49,10 +49,9 @@
     background-color: gray;
     color: white;
     padding: 3px;
-    /* margin: 5px 0px; */
     text-decoration: none;
     text-align: center;
-    /* border: 1px solid red; */
+    cursor: pointer;
 }
 
 .deleteButton {
