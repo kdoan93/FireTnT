@@ -46,7 +46,7 @@ const UserSpots = () => {
     return (
         <>
             <div className='manageSpotsContainer'>
-                Manage Your Spots
+                Manage Spots
                 <button onClick={onClick}>Create a New Spot</button>
             </div>
             <div className='spotsContainer'>
