@@ -1,0 +1,44 @@
+.deleteModal {
+    border: 2px solid red;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.confirmDeleteTitle {
+    text-align: center
+}
+
+.deleteButtons {
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-direction: column;
+}
+
+.deleteButtons button {
+    /* border: 1px solid green; */
+    margin: 7px 10px;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
+
+.yesButton {
+    background-color: #FF5A60;
+    border: 2px solid black;
+    color: white;
+    box-shadow: 3px 3px 1px black;
+    border-radius: 0px;
+}
+
+.noButton {
+    background-color: rgb(85, 85, 85);
+    border: 2px solid black;
+    color: white;
+    box-shadow: 3px 3px 1px black;
+    border-radius: 0px;
+}
