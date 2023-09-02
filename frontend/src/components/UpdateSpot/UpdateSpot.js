@@ -341,7 +341,7 @@ function UpdateSpot() {
                             />
                         {correctImg4 && <span className='error'>Image URL must end in .png, .jpg, .jpeg</span>}
                     </div> */}
-            <button>Create Spot</button>
+            <button>Update your Spot</button>
             </form>
         </div>
     )

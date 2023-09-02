@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 // TYPE_CONSTANTS
 const GET_ALL_REVIEWS = 'reviews/GET_ALL_REVIEWS';
+const GET_REVIEW = 'reviews/GET_REVIEW'
 
 // POJO action creator
 const getAllReviews = review => {
@@ -10,6 +11,18 @@ const getAllReviews = review => {
         review
     }
 };
+
+const getAReview = review => {
+    return {
+        type: GET_REVIEW,
+        review
+    }
+}
+
+// THUNK to create a review
+export const createReview = (spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`)
+}
 
 
 // Thunk action to get all spots
