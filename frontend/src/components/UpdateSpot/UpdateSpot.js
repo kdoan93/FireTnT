@@ -52,7 +52,20 @@ function UpdateSpot() {
 
         try {
 
-            const newSpot = await dispatch(
+
+
+            const updateSpot = await dispatch(
+
+                spotsActions.updateSpot({
+                    ...spotDetails,
+                    country,
+                    address,
+                    city,
+                    state,
+                    description,
+                    name,
+                    price
+                })
             //     // add createSpot thunk function. use components/SignUpFormModal for reference. Line 23
             //     spotsActions.createSpot({
             //         country,
@@ -126,7 +139,7 @@ function UpdateSpot() {
             //     }, newSpot.id ))
             // }
             // console.log('newSpot: ', newSpot)
-            history.push(`/spots/${newSpot.id}`)
+            history.push(`/spots/${updateSpot.id}`)
             // error = response.error
         } catch (error) {
             // if (!previewImg) {
@@ -207,7 +220,7 @@ function UpdateSpot() {
                             <ul className='stateContainer'>
                             <span>
                                 State
-                                {errors.state && <span className='error stateError'>State is required</span>}
+                                {/* {errors.state && <span className='error stateError'>State is required</span>} */}
                             </span>
                             <input
                                 className='stateInput'

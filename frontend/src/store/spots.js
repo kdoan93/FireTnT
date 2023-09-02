@@ -105,6 +105,20 @@ export const deleteSpot = (spotId) => async dispatch => {
     dispatch(deleteASpot(spotId))
     console.log('response AFTER delete response: ', response)
     return response;
+};
+
+// THUNK to update spot
+export const updateSpot = spot => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spot.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(spot)
+    });
+    if (response.ok) {
+        const updatedSpot = await response.json();
+        dispatch(getASpot(updatedSpot))
+        return updatedSpot;
+    }
 }
 
 
