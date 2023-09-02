@@ -61,10 +61,10 @@ function CreateNewSpot() {
             )
 
             // if (!previewImg) {
-                // setNeedPreviewImg(true)
-                // setImgErrors(imgErrorsObj)
-                // console.log('imgErrors: ', imgErrors)
-                // return imgErrors
+            //     setNeedPreviewImg(true)
+            //     setImgErrors(imgErrorsObj)
+            //     console.log('imgErrors: ', imgErrors)
+            //     return imgErrors
             // }
 
             // if previewImg, set imgErrors and return
@@ -128,7 +128,7 @@ function CreateNewSpot() {
                     preview: false
                 }, newSpot.id ))
             }
-            // console.log('newSpot: ', newSpot)
+            console.log('newSpot: ', newSpot)
             history.push(`/spots/${newSpot.id}`)
             // error = response.error
         } catch (error) {
@@ -136,7 +136,9 @@ function CreateNewSpot() {
                 setNeedPreviewImg(true)
                 setImgErrors(imgErrorsObj)
                 console.log('NewSpot imgErrors: ', imgErrors)
-                return imgErrors
+                const data = await error.json()
+                setErrors(data.errors)
+                return imgErrors, data
             }
             if (error) {
                 // data receives errors object

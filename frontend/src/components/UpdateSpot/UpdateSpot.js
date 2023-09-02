@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import * as spotsActions from '../../store/spots'
-import { createSpotImage } from '../../store/spotsImages';
-// import './UpdateSpot.css';
+// import { createSpotImage } from '../../store/spotsImages';
+import './UpdateSpot.css';
 
 function UpdateSpot() {
     const dispatch = useDispatch();
@@ -66,16 +66,6 @@ function UpdateSpot() {
                     name,
                     price
                 })
-            //     // add createSpot thunk function. use components/SignUpFormModal for reference. Line 23
-            //     spotsActions.createSpot({
-            //         country,
-            //         address,
-            //         city,
-            //         state,
-            //         description,
-            //         name,
-            //         price,
-            //     })
             )
 
             // if (previewImg) {
@@ -166,7 +156,7 @@ function UpdateSpot() {
     if (!spotDetails) return null;
 
     return (
-        <div className='spotFormContainer'>
+        <div className='updateFormContainer'>
             <h2>Update your Spot</h2>
             <form onSubmit={handleSubmit}>
                     <div className='locationParagraph'>
@@ -341,7 +331,7 @@ function UpdateSpot() {
                             />
                         {correctImg4 && <span className='error'>Image URL must end in .png, .jpg, .jpeg</span>}
                     </div> */}
-            <button>Update your Spot</button>
+            <button className='updateButton'>Update your Spot</button>
             </form>
         </div>
     )

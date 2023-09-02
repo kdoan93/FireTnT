@@ -1,0 +1,148 @@
+.updateFormContainer {
+    /* border: 1px solid red; */
+    max-width: 40%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: 30%;
+}
+
+h2 {
+    /* border: 1px solid blue; */
+    margin: 15px 0px 0px;
+}
+
+.updateFormContainer input {
+    margin: 0px;
+}
+
+.t {
+    /* border: 1px solid green; */
+    margin: 10px 0px;
+}
+
+.t span {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.t p {
+    color: black;
+    margin: 5px 0px;
+    font-size: 13px;
+}
+
+.spotLocationContainer span {
+    /* border: 1px solid red; */
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.i {
+    /* border: 1px solid red; */
+    max-width: 97%;
+}
+
+.spotLocationContainer ul {
+    /* border: 1px solid blue; */
+    padding: 0px;
+    margin: 5px 0px;
+}
+
+.cityContainer {
+    /* border: 1px solid red; */
+    width: 65%;
+}
+
+.cityInput {
+    max-width: 95%;
+}
+
+.cityStateContainer {
+    /* border: 2px solid red; */
+    display: flex;
+}
+
+.stateContainer {
+    width: 29.5%;
+}
+
+.commaContainer {
+    /* border: 1px solid red; */
+    display: flex;
+    font-size: 20px;
+    font-weight: 700;
+    align-items: start;
+    justify-content: end;
+    width: 3%;
+    margin-bottom: 0px;
+}
+
+.cityStateContainer ul {
+    /* border: 1px solid green; */
+    display: flex;
+    flex-direction: column;
+}
+
+.descriptionInput {
+    /* border: 2px solid red; */
+    max-width: 97%;
+    height: 100px;
+    max-height: auto;
+    display: block;
+    resize: both;
+}
+
+.dollarByInput {
+    /* border: 1px solid red; */
+    /* padding: 0px 5px; */
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.priceInput {
+    /* border: 1px solid red; */
+    width: 93%;
+}
+
+.c {
+    border-bottom: 2px solid black;
+    padding-bottom: 15px;
+}
+
+.updateButton {
+    background-color: #FF5A60;
+    border: 2px solid black;
+    color: white;
+    box-shadow: 3px 3px 1px black;
+    border-radius: 0px;
+    width: 120px;
+    height: 24px;
+    margin: 20px 35%;
+}
+
+.photoContainer input {
+    margin: 5px 0px;
+}
+
+.error {
+    color: #FF5A60;
+    font-size: 13px;
+}
+
+.sideError {
+    padding-left: 5px;
+}
+
+.stateError {
+    position: absolute;
+    width: 80%;
+    padding-left: 5px;
+}
+
+.bottomError {
+    /* border: 1px solid red; */
+    position: relative;
+    top: 5px;
+}
