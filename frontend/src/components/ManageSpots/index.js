@@ -64,7 +64,7 @@ const UserSpots = () => {
                             <div className='tooltip'>{spot.name}</div>
                         </NavLink>
                         <div className='bottomButtons'>
-                            <NavLink to={`/spots/${spot.id}/edit`}>Update</NavLink>
+                            <NavLink className='manageButtons' to={`/spots/${spot.id}/edit`}>Update</NavLink>
                             {/* Import OpenModalMenuItem, then set modalComponent to desired modal */}
                             <OpenModalMenuItem
                                 itemText='Delete'

@@ -178,7 +178,7 @@ function UpdateSpot() {
                     <div className='c spotLocationContainer'>
                     <ul>
                         <span>Country</span>
-                        {/* {errors.country && <span className='error sideError'>Country is required</span>} */}
+                        {errors.country && <span className='error sideError'>Country is required</span>}
                         <input
                             className='i'
                             type='text'
@@ -190,7 +190,7 @@ function UpdateSpot() {
                     </ul>
                     <ul>
                         <span>Street Addrress</span>
-                        {/* {errors.address && <span className='error sideError'>Address is required</span>} */}
+                        {errors.address && <span className='error sideError'>Address is required</span>}
                         <input
                             className='i'
                             type='text'
@@ -203,7 +203,7 @@ function UpdateSpot() {
                         <div className='cityStateContainer'>
                             <ul className='cityContainer'>
                             <span>City
-                                {/* {errors.city && <span className='error sideError'>City is required</span>} */}
+                                {errors.city && <span className='error sideError'>City is required</span>}
                             </span>
 
                             <input
@@ -220,7 +220,7 @@ function UpdateSpot() {
                             <ul className='stateContainer'>
                             <span>
                                 State
-                                {/* {errors.state && <span className='error stateError'>State is required</span>} */}
+                                {errors.state && <span className='error stateError'>State is required</span>}
                             </span>
                             <input
                                 className='stateInput'
@@ -249,7 +249,7 @@ function UpdateSpot() {
                             onChange={(e) => setDescription(e.target.value)}
                             // required
                         />
-                        {/* {errors.description && <span className='error bottomError'>Description needs a minimum of 30 characters</span>} */}
+                        {errors.description && <span className='error bottomError'>Description needs a minimum of 30 characters</span>}
                     </div>
                     <div className='c titleContainer'>
                         <div className='t'>
@@ -266,7 +266,7 @@ function UpdateSpot() {
                             onChange={e => setName(e.target.value)}
                             // required
                         />
-                        {/* {errors.name && <span className='error bottomError'>Name is required</span>} */}
+                        {errors.name && <span className='error bottomError'>Name is required</span>}
                     </div>
                     <div className='c priceContainer'>
                         <div className='t'>
@@ -286,7 +286,7 @@ function UpdateSpot() {
                                 // required
                             />
                         </div>
-                        {/* {errors.price && <span className='error bottomError'>Price is required</span>} */}
+                        {errors.price && <span className='error bottomError'>Price is required</span>}
                     </div>
                     {/* <div className='c photoContainer'>
                         <div className='t'>
