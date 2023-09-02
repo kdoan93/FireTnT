@@ -42,7 +42,7 @@ function App() {
             <UpdateSpot />
           </Route>
           <Route path='/spots/:spotId'>
-            <SingleSpot />
+            <SingleSpot isLoaded={isLoaded} />
             <SpotReviews />
           </Route>
           <Route>

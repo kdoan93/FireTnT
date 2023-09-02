@@ -3,37 +3,56 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getSpot } from '../../store/spots'
+import { ReviewModal } from "../ReviewModal/ReviewModal";
+import { useModal } from "../../context/Modal";
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import './SingleSpot.css'
 
 const SingleSpot = () => {
 
     const dispatch = useDispatch();
-    // const { id, name, previewImage, city, state, avgRating, price } = spot;
-    
+
+    // Selects session.user object
+    const sessionUser = useSelector(state => state.session.user)
+
+    // Getting review store data object
+    const reviews = useSelector(state => state.review.allReviews)
+    // console.log('SingleSpot reviews: ', reviews)
+    const reviewsArray = Object.values(reviews)
+    // console.log('SingleSpot reviewsArray: ', reviewsArray)
+
+    let sessionUserId = 0;
+
+    if (sessionUser) sessionUserId = sessionUser.id
+    // console.log('SingleSpot sessionUserId: ', sessionUserId)
+    let reviewed = false;
+    reviewsArray.map(
+        review => {if (review.userId === sessionUserId) reviewed = true}
+    )
+    // console.log('reviewed: ', reviewed)
+
     let { spotId } = useParams();
     // turn id from string into a number value
-
     spotId = parseInt(spotId)
     // selecting with 'useSelector' an object from 'store/index' then 'store/spots'
 
     let spot = useSelector(state => state.spot.singleSpot)
-    // console.log('SPOT: ', spot)
-
-    //spot.ownerId === session.user.id
-    // getting spotImages
+    const spotOwnerId = spot.ownerId
+    // console.log('SingleSpot spotOwner: ', spotOwnerId)
 
     // Renders spot object with 'dispatch' from store using thunk function 'getSpots'
     const spotImages = useSelector(state => state.spot.singleSpot.SpotImages)
+
     useEffect(() => {
         dispatch(getSpot(spotId))
     }, [dispatch])
 
-    console.log('SINGLESPOT spot: ', spot)
 
     if (!spot) return null;
     if (!spotImages) return null;
     const firstImg = spotImages[0]
     if (!firstImg) return null;
+    // if (!sessionUser) return null;
 
     const topBox = spotImages.slice(1, 3)
     // console.log('imgBox: ', imgBox)
@@ -103,6 +122,13 @@ const SingleSpot = () => {
                 {spot.numReviews ? `${spot.numReviews} ${spot.numReviews > 1 ? 'reviews' : 'review'}` : <p></p>}
             </h3>
             </div>
+            {sessionUserId && spotOwnerId !== sessionUserId && !reviewed ?
+                <button className="postButton">
+                    <OpenModalMenuItem itemText='Post Your Review' modalComponent={<ReviewModal spot={spot} />} />
+                </button>
+                    :
+                <></>
+            }
         </div>
     )
 }

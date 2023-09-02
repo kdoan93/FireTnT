@@ -93,7 +93,7 @@ router.get('/', validateQueryParameters, async (req, res) => {
     //  Iterate through spotsList to find avgRating for each spot in each index
     spotsList.forEach(spot => {
         //  Set base for avgRating
-        spot.avgRating = 0;
+        spot.avgRating = 0.0;
 
         //  Add each review.stars to avgRating and divide by array length to get avgRating
         spot.Reviews.forEach(review => { spot.avgRating += review.stars })

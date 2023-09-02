@@ -113,6 +113,7 @@
 .reserve {
     border: 2px solid black;
     background-color: #FF5A60;
+    box-shadow: 3px 3px 1px black;
     color: white;
     border-radius: 0px;
     position: relative;
@@ -131,4 +132,17 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+}
+
+.postButton {
+    border: 2px solid black;
+    border-radius: 0px;
+    height: auto;
+    background-color: gray;
+    color: white;
+    padding: 3px;
+    margin: 0px 25px;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 3px 3px 1px black;
 }

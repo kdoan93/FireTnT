@@ -6,7 +6,7 @@ import './SpotReviews.css'
 
 const SpotReviews = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
     let { spotId } = useParams();
 
     spotId = parseInt(spotId)
