@@ -45,21 +45,23 @@ function ProfileButton({ user }) {
 
     return (
         <>
-          {user ? (
-            <NavLink className="createASpot" to='/spots/new'>
-              Create a New Spot
-            </NavLink>
-          ) : (
-            <></>
-          )}
-          <button onClick={openMenu}>
-            <div className="menu">
-              <div className='one'></div>
-              <div className='two'></div>
-              <div className='three'></div>
-            </div>
-            <i className="fa-solid fa-circle-user"></i>
-          </button>
+          <div className="leftNav">
+            {user ? (
+              <NavLink className="createASpot" to='/spots/new'>
+                Create a New Spot
+              </NavLink>
+            ) : (
+              <></>
+            )}
+            <button onClick={openMenu}>
+              <div className="menu">
+                <div className='one'></div>
+                <div className='two'></div>
+                <div className='three'></div>
+              </div>
+              <i className="fa-solid fa-circle-user"></i>
+            </button>
+          </div>
           <ul className={ulClassName} ref={ulRef}>
             {user ? (
               <div className='userDropdown'>

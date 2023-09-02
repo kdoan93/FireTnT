@@ -27,11 +27,16 @@ button {
     cursor: pointer;
 }
 
+.leftNav {
+    /* border: 1px solid red; */
+    display: flex;
+    text-decoration: none;
+}
+
 .createASpot {
     /* border: 1px solid red; */
     text-decoration: none;
-    position: sticky;
-    left: 79%;
+    margin: 5px 20px;
 }
 
 i {
