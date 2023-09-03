@@ -39,7 +39,7 @@ const SingleSpot = () => {
 
     let spot = useSelector(state => state.spot.singleSpot)
     const spotOwnerId = spot.ownerId
-    console.log('SingleSpot spot: ', spot)
+    // console.log('SingleSpot spot: ', spot)
     // console.log('SingleSpot butcher: ', Object.values(spot)[15].toFixed(1))
 
     // Renders spot object with 'dispatch' from store using thunk function 'getSpots'

@@ -152,7 +152,7 @@ router.get('/current', requireAuth, async (req, res) => {
         delete spot.SpotImages
     })
 
-    if (!currentUserSpots.length) return res.status(404).json({ message: "Current user owns no spots" });
+    // if (!currentUserSpots.length) return res.status(404).json({ message: "Current user owns no spots" });
 
     return res.status(200).json({ Spots: userSpots })
 })

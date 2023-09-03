@@ -38,16 +38,15 @@ const UserSpots = () => {
     // console.log('response error: ', Response.ok)
     // if (!Response.ok) return console.log(Response.ok);
 
-    if (!userSpots) return null;
+    // if (userSpots) console.log('first');
+    // console.log('userSpots: ', spotsArray)
 
     return (
         <>
-            <div className='manageSpotsContainer'>
-                Manage Spots
-                <button onClick={onClick}>Create a New Spot</button>
-            </div>
+            <div className='manageSpotsContainer'> Manage Spots </div>
             <div className='spotsContainer'>
-                {!Response.ok === undefined ? <NavLink to='/spots/new'>Create a new spot</NavLink> : spotsArray.map(spot => (
+                {/* {!userSpots ? <NavLink to='/spots/new'>Create a new spot</NavLink> : spotsArray.map(spot => ( */}
+                {spotsArray.length === 0 ? <button onClick={onClick}>Create a New Spot</button> : spotsArray.map(spot => (
                     <div className='manageSpotsBrowser'>
                         <NavLink key={`${spot.name}`} className='ownedSpot' to={`/spots/${spot.id}`}>
                             <div className='image'><img src={spot.previewImage} alt='spotImg' /></div>
