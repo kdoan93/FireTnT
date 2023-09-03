@@ -46,8 +46,8 @@ function SignupFormModal() {
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
       <div className="errorsDiv">
-        {errors.email && <p>{errors.email}</p>}
         {errors.username && <p>{errors.username}</p>}
+        {errors.email && <p>{errors.email}</p>}
         {errors.firstName && <p>{errors.firstName}</p>}
         {errors.lastName && <p>{errors.lastName}</p>}
         {errors.password && <p>{errors.password}</p>}

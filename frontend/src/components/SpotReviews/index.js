@@ -12,7 +12,7 @@ const SpotReviews = () => {
 
     let { spotId } = useParams();
 
-    const sessionUser = useSelector(state => state.session.user)
+    let sessionUser = useSelector(state => state.session.user)
     // console.log('SpotReviews sessionuser: ', sessionUser)
 
     spotId = parseInt(spotId)
@@ -33,8 +33,8 @@ const SpotReviews = () => {
         dispatch(getSpotReviews(spotId))
     }, [dispatch])
 
-    if(!reviews) return
-    if(!sessionUser) return null
+    if(!reviews) return null
+    if(!sessionUser) sessionUser = 0;
 
     return (
         <div className="spotReviewsContainer">

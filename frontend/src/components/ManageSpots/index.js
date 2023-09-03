@@ -54,7 +54,7 @@ const UserSpots = () => {
                             <div className='topRow'>
                                 <span className='cityState'>{spot.city}, {spot.state}</span>
                                 <span className='rating'><i className="fa-solid fa-star"></i>
-                                    {!spot.avgRating ? <span>NEW</span> : spot.avgRating}
+                                    {!spot.avgRating ? <span>NEW</span> : spot.avgRating.toFixed(1)}
                                 </span>
                             </div>
                             <span className='price'>${spot.price}/night</span>

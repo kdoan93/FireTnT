@@ -39,7 +39,8 @@ const SingleSpot = () => {
 
     let spot = useSelector(state => state.spot.singleSpot)
     const spotOwnerId = spot.ownerId
-    // console.log('SingleSpot spotOwner: ', spotOwnerId)
+    console.log('SingleSpot spot: ', spot)
+    // console.log('SingleSpot butcher: ', Object.values(spot)[15].toFixed(1))
 
     // Renders spot object with 'dispatch' from store using thunk function 'getSpots'
     const spotImages = useSelector(state => state.spot.singleSpot.SpotImages)
@@ -103,7 +104,7 @@ const SingleSpot = () => {
                         </div>
                         <div className="ratingReviews">
                             <h5 className="rating">
-                                <i className="fa-solid fa-star"></i>{!spot.avgStarRating ? <span>NEW</span> : spot.avgStarRating}
+                                <i className="fa-solid fa-star"></i>{!spot.avgStarRating ? <span>NEW</span> : spot.avgStarRating.toFixed(1)}
                             </h5>
                             {spot.numReviews ? <i className="fa-solid fa-circle"></i> : <p></p>}
                             <h5 className="numReviews">
@@ -118,7 +119,7 @@ const SingleSpot = () => {
             </div>
             <div className="starReviews">
             <h3 className="reviewsRating">
-                <i className="fa-solid fa-star"></i>{!spot.avgStarRating ? <span>NEW</span> : spot.avgStarRating}
+                <i className="fa-solid fa-star"></i>{!spot.avgStarRating ? <span>NEW</span> : spot.avgStarRating.toFixed(1)}
             </h3>
             {spot.numReviews ? <i className="fa-solid fa-circle"></i> : <p></p>}
             <h3 className="reviewsNumReviews">
