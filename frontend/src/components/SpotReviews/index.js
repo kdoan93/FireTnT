@@ -20,7 +20,14 @@ const SpotReviews = () => {
     let reviews = useSelector(state => state.review.allReviews)
     const spotReviews = Object.values(reviews)
     // console.log('IN SpotReviews: spotReviews: ', spotReviews)
-    console.log('SpotReviews reviews: ', reviews)
+    // console.log('SpotReviews reviews: ', reviews)
+
+    function lowBudgetDateConverter(date) {
+        let newDate = String(new Date(date))
+        let month = newDate.substring(4, 7)
+        let year = newDate.substring(10, 16)
+        return month.concat(year)
+    }
 
     useEffect(() => {
         dispatch(getSpotReviews(spotId))
@@ -35,7 +42,8 @@ const SpotReviews = () => {
                 <div key={`${review.id}`} className="review">
                     {/* <h2>hello</h2> */}
                     <span className="name">{review.User.firstName}</span>
-                    <span className="date">{review.createdAt}</span>
+                    {/* <span className="date">{Date(review.createdAt).substring(4,16)}</span> */}
+                    <span className="date">{lowBudgetDateConverter(review.createdAt)}</span>
                     <div className="reviewBody">{review.review}</div>
                 {review.User.id === sessionUser.id ?
                     <button className="deleteReviewButton">

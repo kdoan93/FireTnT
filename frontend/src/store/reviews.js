@@ -81,10 +81,6 @@ const reviewReducer = (state = initialState, action) => {
 
         case GET_REVIEW:
             newState = { ...state, aReview: {} }
-            // console.log('review: ', review)
-            // action.review.Reviews.forEach(review => {
-            //     newState.allReviews[review.id] = review
-            // })
             newState.aReview = action.review;
             console.log('store/reviews newState: ', newState)
             return newState;
