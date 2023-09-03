@@ -14,13 +14,13 @@ const SpotReviews = () => {
     let { spotId } = useParams();
 
     const sessionUser = useSelector(state => state.session.user)
-    console.log('SpotReviews sessionuser: ', sessionUser)
+    // console.log('SpotReviews sessionuser: ', sessionUser)
 
     spotId = parseInt(spotId)
 
     let reviews = useSelector(state => state.review.allReviews)
     const spotReviews = Object.values(reviews)
-    // console.log('IN SpotReviews: spotReviews: ', spotReviews[0].User.id)
+    console.log('IN SpotReviews: spotReviews: ', spotReviews)
 
     useEffect(() => {
         dispatch(getSpotReviews(spotId))
@@ -37,7 +37,7 @@ const SpotReviews = () => {
                     <span className="date">{review.createdAt}</span>
                     <div className="reviewBody">{review.review}</div>
                 {review.User.id === sessionUser.id ?
-                    <OpenModalMenuItem itemText='Delete' modalComponent={<DeleteReviewModal spotId={spotId.id} />} />
+                    <OpenModalMenuItem itemText='Delete' modalComponent={<DeleteReviewModal reviewId={review.id} />} />
                         :
                     <></>
                 }

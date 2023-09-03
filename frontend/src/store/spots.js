@@ -8,32 +8,16 @@ const DELETE_SPOT = 'spots/DELETE_SPOT'
 
 // POJO action creator
 const getAllSpots = spot => {
-    return {
-        type: GET_ALL_SPOTS,
-        spot
-    }
-};
+    return { type: GET_ALL_SPOTS, spot } };
 
 const getASpot = spot => {
-    return {
-        type: GET_SPOT,
-        spot
-    }
-};
+    return { type: GET_SPOT, spot } };
 
 const getAllUserSpots = spot => {
-    return {
-        type: GET_USER_SPOTS,
-        spot
-    }
-}
+    return { type: GET_USER_SPOTS, spot } }
 
 const deleteASpot = spotId => {
-    return {
-        type: DELETE_SPOT,
-        spotId
-    }
-}
+    return { type: DELETE_SPOT, spotId } }
 
 
 // Thunk action to get all spots

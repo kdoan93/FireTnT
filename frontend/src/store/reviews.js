@@ -3,21 +3,17 @@ import { csrfFetch } from "./csrf";
 // TYPE_CONSTANTS
 const GET_ALL_REVIEWS = 'reviews/GET_ALL_REVIEWS';
 const GET_REVIEW = 'reviews/GET_REVIEW'
+const DELETE_REVIEW = 'reviews/DELETE_REVIEW'
 
 // POJO action creator
 const getAllReviews = review => {
-    return {
-        type: GET_ALL_REVIEWS,
-        review
-    }
-};
+    return { type: GET_ALL_REVIEWS, review } };
 
 const getAReview = review => {
-    return {
-        type: GET_REVIEW,
-        review
-    }
-}
+    return { type: GET_REVIEW, review } }
+
+const deleteAReview = reviewId => {
+    return { type: DELETE_REVIEW, reviewId } }
 
 // THUNK to create a review
 export const createReview = (review, spotId) => async dispatch => {
@@ -53,6 +49,20 @@ export const getSpotReviews = (spotId) => async dispatch => {
     }
 }
 
+// Thunk action to delete review
+export const deleteReview = (reviewId) => async dispatch => {
+    const response = await csrfFetch(`/api/reviews/${reviewId}`, {
+        method: 'DELETE'
+    })
+    if (response.ok) {
+        dispatch(deleteAReview(reviewId))
+        return response
+    } else {
+        const errors = await response.json()
+        return errors;
+    }
+}
+
 
 // key into second
 const initialState = { allReviews: {} }
@@ -69,7 +79,9 @@ const reviewReducer = (state = initialState, action) => {
             })
             return newState;
 
-        // case GET_REVIEW:
+        case DELETE_REVIEW:
+            newState = { ...state, allReviews: { ...state.allReviews } }
+            delete newState.allReviews[action.reviewId]
 
         default:
             return state;
