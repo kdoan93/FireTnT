@@ -1,6 +1,6 @@
 .reviewModal {
     border: 5px solid black;
-    border-radius: 10px;
+    border-radius: 9px;
     display: flex;
     flex-direction: column;
 }
@@ -11,16 +11,18 @@
 }
 
 .reviewInput {
+    border: 2px solid black;
     width: 90%;
-    margin: 0px 10px;
+    margin-left: 15px;
     height: 150px;
     box-sizing: border-box;
+    font-family: sans-serif;
 }
 
-::placeholder {
+/* ::placeholder {
     position: relative;
     top: -65px;
-}
+} */
 
 .reviewInput #value {
     color: red;

@@ -45,13 +45,14 @@ export const ReviewModal = ({ spot }) => {
             <h2 className='reviewTitle'>How was your stay?</h2>
             <form onSubmit={handleSubmit}>
 
-                <input
+                <textarea
                     className='reviewInput'
-                    type='text'
+                    type='textarea'
                     placeholder='Leave your review here...'
                     value={reviewText}
                     onChange={e => setReviewText(e.target.value)}
-                />
+                >
+                </textarea>
 
                 <div className='starRatingContainer'>
 
