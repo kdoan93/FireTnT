@@ -68,7 +68,7 @@ function CreateNewSpot() {
                     previewImg.endsWith('jpeg') ? setPreviewImg(false) : setPreviewImg(true) ||
                     previewImg.endsWith('png') ? setPreviewImg(false) : setPreviewImg(true)
                 )
-            } 
+            }
             if (img1) {
                 (
                     img1.endsWith('jpg') ? setCorrectImg1(false) : setCorrectImg1(true) ||
@@ -221,7 +221,6 @@ function CreateNewSpot() {
                         <input
                             className='descriptionInput'
                             type='text'
-                            // multiline='true'
                             placeholder='Please write at least 30 characters'
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}

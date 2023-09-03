@@ -19,10 +19,15 @@
     font-family: sans-serif;
 }
 
-/* ::placeholder {
-    position: relative;
-    top: -65px;
-} */
+.reviewErrorsText {
+    /* border: 1px solid red; */
+    font-weight: 700;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+}
 
 .reviewInput #value {
     color: red;

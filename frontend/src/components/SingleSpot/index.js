@@ -48,12 +48,13 @@ const SingleSpot = () => {
     useEffect(() => {
         dispatch(getSpot(spotId))
         // dispatch(getSpotReviews(spot.id))
-    }, [dispatch, spotId])
+    }, [dispatch, ReviewModal])
 
-    console.log('spot.avgStarRating: ', spot.avgStarRating)
+    console.log('SingleSpot spot: ', spot)
+    console.log('SingleSpot spot.avgStarRating: ', spot.avgStarRating)
 
 
-    if (!spot) return null;
+    // if (!spot) return null;
     if (!spotImages) return null;
     const firstImg = spotImages[0]
     if (!firstImg) return null;

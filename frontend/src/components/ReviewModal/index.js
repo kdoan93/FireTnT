@@ -12,38 +12,42 @@ export const ReviewModal = ({ spot }) => {
     const [starRating, setStarRating] = useState(0)
     const [tempRating, setTempRating] = useState(starRating)
     const [errors, setErrors] = useState({})
-
     const { closeModal } = useModal();
+
+    // useEffect(() => {
+
+        // setErrors(errors)
+
+    // }, [reviewText, starRating])
 
     const handleSubmit = (e) => {
         e.preventDefault();
         // console.log('starRating: ', starRating)
         // console.log('reviewText: ', reviewText)
-
         setErrors({})
+        // if (starRating < 1) setErrors(errors.stars="Please add star rating.")
+        // if (reviewText.length < 10) setErrors(errors.review="Review must be at least 10 characters long")
+
+
+        // console.log('errors: ', errors)
+        // if (errors) return
 
         return dispatch(reviewActions.createReview({
             review: reviewText, stars: starRating
         }, spot.id))
         .then(closeModal)
-        // .catch(async (response) => {
-        //     console.log('res: ', response)
-        //     const data = await response.json()
-        //     if (data && data.errors) {
-        //         setErrors(data.errors)
-        //     }
-        // })
-        // return newReview;
+        .catch(error => {
+             setErrors(error)})
     }
-
-    // may not need useEffect *******
-    // useEffect(() => {
-    //     dispatch(reviewActions.getSpotReviews(spot.id))
-    // }, [dispatch])
 
     return (
         <div className='reviewModal'>
             <h2 className='reviewTitle'>How was your stay?</h2>
+            <div className='reviewErrorsText'>
+                {errors.stars && <span className='error'>{errors.stars}</span>}
+                {errors.review && <span className='error'>{errors.review}</span>}
+                {errors.error && <span className='error'>{errors}</span>}
+            </div>
             <form onSubmit={handleSubmit}>
 
                 <textarea
@@ -117,7 +121,9 @@ export const ReviewModal = ({ spot }) => {
                         <div className='starsText'>Stars</div>
                 </div>
 
-                <button className='submitReviewButton' disabled={!starRating || reviewText.length < 10}>
+                <button className='submitReviewButton'
+                disabled={!starRating || reviewText.length < 10}
+                >
                     Submit Your Review
                 </button>
 
