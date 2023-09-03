@@ -1,5 +1,5 @@
 .deleteModal {
-    border: 2px solid black;
+    border: 5px solid black;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -41,4 +41,9 @@
     color: white;
     box-shadow: 3px 3px 1px black;
     border-radius: 0px;
+}
+
+.deleteParagraph {
+    /* border: 1px solid red; */
+    text-align: center;
 }

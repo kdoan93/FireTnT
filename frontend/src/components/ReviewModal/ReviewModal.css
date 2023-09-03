@@ -1,0 +1,64 @@
+.reviewModal {
+    border: 5px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewTitle {
+    text-align: center;
+    margin: 15px;
+}
+
+.reviewInput {
+    width: 90%;
+    margin: 0px 10px;
+    height: 150px;
+    box-sizing: border-box;
+}
+
+::placeholder {
+    position: relative;
+    top: -65px;
+}
+
+.reviewInput #value {
+    color: red;
+}
+
+.starRatingContainer {
+    /* border: 1px solid red; */
+    text-align: center;
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.starRatingContainer div {
+    /* border: 1px solid blue; */
+    font-size: 20px;
+}
+
+.starsText {
+    margin-left: 5px;
+}
+
+.submitReviewButton {
+    border: 2px solid black;
+    border-radius: 0px;
+    background-color: #FF5A60;
+    color: white;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 10px 10px 10px 15px;
+    box-shadow: 3px 3px 1px black;
+}
+
+.submitReviewButton:disabled {
+    background-color: white;
+    color: gray;
+    border: 2px solid gray;
+    box-shadow: 3px 3px 1px gray;
+}

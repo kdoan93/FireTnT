@@ -2,11 +2,11 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { deleteReview } from '../../store/reviews'
 
-export default function DeleteReviewModal({ reviewId }) {
+export const DeleteReviewModal = ({ reviewId }) => {
 
     const dispatch = useDispatch();
 
-    const { closeModal } = useModal;
+    const { closeModal } = useModal();
 
     const handleClick = (e) => {
         e.preventDefault();

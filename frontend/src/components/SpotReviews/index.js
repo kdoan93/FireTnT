@@ -3,8 +3,7 @@ import { useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { getSpotReviews } from "../../store/reviews";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
-import DeleteReviewModal from "../ReviewModal/DeleteReviewModal";
-import { useModal } from "../../context/Modal";
+import { DeleteReviewModal } from "../ReviewModal/DeleteReviewModal";
 import './SpotReviews.css'
 
 const SpotReviews = () => {
@@ -27,6 +26,7 @@ const SpotReviews = () => {
     }, [dispatch])
 
     if(!reviews) return null
+    if(!sessionUser) return null
 
     return (
         <div className="spotReviewsContainer">
@@ -37,7 +37,9 @@ const SpotReviews = () => {
                     <span className="date">{review.createdAt}</span>
                     <div className="reviewBody">{review.review}</div>
                 {review.User.id === sessionUser.id ?
-                    <OpenModalMenuItem itemText='Delete' modalComponent={<DeleteReviewModal reviewId={review.id} />} />
+                    <button className="deleteReviewButton">
+                        <OpenModalMenuItem itemText='Delete' modalComponent={<DeleteReviewModal reviewId={review.id} />} />
+                    </button>
                         :
                     <></>
                 }

@@ -2,9 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react';
 import { useModal } from '../../context/Modal'
 import * as reviewActions from '../../store/reviews'
-// import spotsReducer from '../../store/spots';
-// import { mapValueFieldNames } from 'sequelize/types/utils';
-// import {}
+import './ReviewModal.css'
 
 export const ReviewModal = ({ spot }) => {
 
@@ -50,7 +48,7 @@ export const ReviewModal = ({ spot }) => {
                 <input
                     className='reviewInput'
                     type='text'
-                    placeholder='Just a quick review.'
+                    placeholder='Leave your review here...'
                     value={reviewText}
                     onChange={e => setReviewText(e.target.value)}
                 />
@@ -114,7 +112,7 @@ export const ReviewModal = ({ spot }) => {
                         onMouseLeave={() => setTempRating(5)}
                     >
                     </div>
-
+                        <div className='starsText'>Stars</div>
                 </div>
 
                 <button className='submitReviewButton' disabled={!starRating || reviewText.length < 10}>
