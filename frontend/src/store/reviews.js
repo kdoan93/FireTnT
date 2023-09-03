@@ -20,8 +20,22 @@ const getAReview = review => {
 }
 
 // THUNK to create a review
-export const createReview = (spotId) => async dispatch => {
-    const response = await csrfFetch(`/api/spots/${spotId}/reviews`)
+export const createReview = (review, spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(review)
+    })
+    if (response.ok) {
+        console.log('store/reviews review: ', review)
+        console.log('store/reviews createReview response: ', response)
+        const newReview = await response.json()
+        dispatch(getAReview(newReview))
+        return newReview
+    } else {
+        const errors = await response.json()
+        return errors;
+    }
 }
 
 
@@ -54,6 +68,8 @@ const reviewReducer = (state = initialState, action) => {
                 newState.allReviews[review.id] = review
             })
             return newState;
+
+        // case GET_REVIEW:
 
         default:
             return state;

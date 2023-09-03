@@ -2,18 +2,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { getSpotReviews } from "../../store/reviews";
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
+import DeleteReviewModal from "../ReviewModal/DeleteReviewModal";
+import { useModal } from "../../context/Modal";
 import './SpotReviews.css'
 
 const SpotReviews = () => {
+
     const dispatch = useDispatch();
-    // const history = useHistory();
+
     let { spotId } = useParams();
+
+    const sessionUser = useSelector(state => state.session.user)
+    console.log('SpotReviews sessionuser: ', sessionUser)
 
     spotId = parseInt(spotId)
 
     let reviews = useSelector(state => state.review.allReviews)
     const spotReviews = Object.values(reviews)
-    // console.log('IN SpotReviews: spotReviews: ', spotReviews)
+    // console.log('IN SpotReviews: spotReviews: ', spotReviews[0].User.id)
 
     useEffect(() => {
         dispatch(getSpotReviews(spotId))
@@ -29,6 +36,11 @@ const SpotReviews = () => {
                     <span className="name">{review.User.firstName}</span>
                     <span className="date">{review.createdAt}</span>
                     <div className="reviewBody">{review.review}</div>
+                {review.User.id === sessionUser.id ?
+                    <OpenModalMenuItem itemText='Delete' modalComponent={<DeleteReviewModal spotId={spotId.id} />} />
+                        :
+                    <></>
+                }
                 </div>
             ))}
         </div>

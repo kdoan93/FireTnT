@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useModal } from '../../context/Modal'
-import spotsReducer from '../../store/spots';
+import * as reviewActions from '../../store/reviews'
+// import spotsReducer from '../../store/spots';
 // import { mapValueFieldNames } from 'sequelize/types/utils';
 // import {}
 
@@ -12,6 +13,7 @@ export const ReviewModal = ({ spot }) => {
     const [reviewText, setReviewText] = useState('')
     const [starRating, setStarRating] = useState(0)
     const [tempRating, setTempRating] = useState(starRating)
+    const [errors, setErrors] = useState({})
 
     const { closeModal } = useModal();
 
@@ -19,7 +21,26 @@ export const ReviewModal = ({ spot }) => {
         e.preventDefault();
         console.log('starRating: ', starRating)
         console.log('reviewText: ', reviewText)
+
+        setErrors({})
+
+        return dispatch(reviewActions.createReview({
+            review: reviewText, stars: starRating
+        }, spot.id))
+        .then(closeModal)
+        .catch(async (res) => {
+            const data = await res.json()
+            if (data && data.errors) {
+                setErrors(data.errors)
+            }
+        })
+        // return newReview;
     }
+
+    // may not need useEffect *******
+    useEffect(() => {
+        dispatch(reviewActions.getSpotReviews(spot.id))
+    }, [dispatch])
 
     return (
         <div className='reviewModal'>

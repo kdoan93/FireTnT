@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getSpot } from '../../store/spots'
-import { ReviewModal } from "../ReviewModal/ReviewModal";
+import { ReviewModal } from "../ReviewModal";
 import { useModal } from "../../context/Modal";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import './SingleSpot.css'

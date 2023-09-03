@@ -89,6 +89,7 @@ export const createSpot = (spot) => async (dispatch) => {
         method: 'POST',
         body: JSON.stringify(spot)
     })
+    console.log('store/spot spot: ', spot)
     const newSpot = await response.json()
     dispatch(getASpot(newSpot))
     console.log('createSpot THUNK newSpot: ', newSpot)
@@ -101,9 +102,9 @@ export const deleteSpot = (spotId) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'DELETE'
     })
-    console.log('response BEFORE delete response: ', response)
+    console.log('spotId BEFORE delete response: ', spotId)
     dispatch(deleteASpot(spotId))
-    console.log('response AFTER delete response: ', response)
+    console.log('spotId AFTER delete response: ', spotId)
     return response;
 };
 
@@ -124,7 +125,6 @@ export const updateSpot = spot => async dispatch => {
 
 // key into 2nd
 const initialState = { allSpots: {}, singleSpot: { SpotImages: [] } }
-// const initialState = { allSpots: {}, singleSpot: {} }
 
 const spotsReducer = (state = initialState, action) => {
     let newState;

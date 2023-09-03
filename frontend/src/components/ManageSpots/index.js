@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useModal } from '../../context/Modal';
 // import { getUserSpots } from '../../store/spots'
 import * as spotsActions from '../../store/spots'
 import { DeleteSpotModal } from './DeleteSpotModal';
@@ -12,8 +11,6 @@ const UserSpots = () => {
 
     // dispatch used to interact with redux store/db
     const dispatch = useDispatch();
-
-    const { closeModal } = useModal();
 
     const history = useHistory();
 
@@ -66,11 +63,7 @@ const UserSpots = () => {
                         <div className='bottomButtons'>
                             <NavLink className='manageButtons' to={`/spots/${spot.id}/edit`}>Update</NavLink>
                             {/* Import OpenModalMenuItem, then set modalComponent to desired modal */}
-                            <OpenModalMenuItem
-                                itemText='Delete'
-                                modalComponent={<DeleteSpotModal spotId={spot.id} />}
-                            />
-                            {/* <button>Delete</button> */}
+                            <OpenModalMenuItem itemText='Delete' modalComponent={<DeleteSpotModal spotId={spot.id} />} />
                         </div>
                     </div>
                 ))}

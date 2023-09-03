@@ -5,3 +5,4 @@ build
 *.db
 fetch-routes
 routes.js
+sequelizeNotes.md
