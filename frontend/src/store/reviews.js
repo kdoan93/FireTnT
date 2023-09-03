@@ -77,7 +77,7 @@ const reviewReducer = (state = initialState, action) => {
             // console.log('action: ', action.spotId)
             action.review.Reviews.forEach(review => {
                 // console.log('LOOK newState: ', newState)
-                newState.spot[review.id] = review // puts new review into all reviews
+                newState.spot[review.id] = review
             })
             return newState;
 

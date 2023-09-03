@@ -48,7 +48,9 @@ const SingleSpot = () => {
     useEffect(() => {
         dispatch(getSpot(spotId))
         // dispatch(getSpotReviews(spot.id))
-    }, [dispatch])
+    }, [dispatch, spotId])
+
+    console.log('spot.avgStarRating: ', spot.avgStarRating)
 
 
     if (!spot) return null;
