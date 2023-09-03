@@ -1,8 +1,9 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { deleteReview } from '../../store/reviews'
+import * as reviewActions from '../../store/reviews'
+import { useEffect } from "react";
 
-export const DeleteReviewModal = ({ reviewId }) => {
+export const DeleteReviewModal = ({ review }) => {
 
     const dispatch = useDispatch();
 
@@ -10,8 +11,12 @@ export const DeleteReviewModal = ({ reviewId }) => {
 
     const handleClick = (e) => {
         e.preventDefault();
-        return dispatch(deleteReview(reviewId)).then(closeModal)
+        return dispatch(reviewActions.deleteReview(review.id)).then(closeModal)
     }
+
+    useEffect(() => {
+        dispatch(reviewActions.getSpotReviews(review.spotId))
+    }, [dispatch])
 
     return (
         <div className="deleteModal">

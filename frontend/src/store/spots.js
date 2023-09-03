@@ -67,16 +67,15 @@ export const getSpot = (spotId) => async dispatch => {
 
 // CreateSpot thunk action
 export const createSpot = (spot) => async (dispatch) => {
-
     // console.log('createSpot spot: ', spot)
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
         body: JSON.stringify(spot)
     })
-    console.log('store/spot spot: ', spot)
+    // console.log('store/spot spot: ', spot)
     const newSpot = await response.json()
     dispatch(getASpot(newSpot))
-    console.log('createSpot THUNK newSpot: ', newSpot)
+    // console.log('createSpot THUNK newSpot: ', newSpot)
     return newSpot
 };
 
@@ -86,9 +85,9 @@ export const deleteSpot = (spotId) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'DELETE'
     })
-    console.log('spotId BEFORE delete response: ', spotId)
+    // console.log('spotId BEFORE delete response: ', spotId)
     dispatch(deleteASpot(spotId))
-    console.log('spotId AFTER delete response: ', spotId)
+    // console.log('spotId AFTER delete response: ', spotId)
     return response;
 };
 

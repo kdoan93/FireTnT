@@ -19,13 +19,14 @@ const SpotReviews = () => {
 
     let reviews = useSelector(state => state.review.allReviews)
     const spotReviews = Object.values(reviews)
-    console.log('IN SpotReviews: spotReviews: ', spotReviews)
+    // console.log('IN SpotReviews: spotReviews: ', spotReviews)
+    console.log('SpotReviews reviews: ', reviews)
 
     useEffect(() => {
         dispatch(getSpotReviews(spotId))
     }, [dispatch])
 
-    if(!reviews) return null
+    if(!reviews) return
     if(!sessionUser) return null
 
     return (
@@ -38,7 +39,7 @@ const SpotReviews = () => {
                     <div className="reviewBody">{review.review}</div>
                 {review.User.id === sessionUser.id ?
                     <button className="deleteReviewButton">
-                        <OpenModalMenuItem itemText='Delete' modalComponent={<DeleteReviewModal reviewId={review.id} />} />
+                        <OpenModalMenuItem itemText='Delete' modalComponent={<DeleteReviewModal review={review} />} />
                     </button>
                         :
                     <></>

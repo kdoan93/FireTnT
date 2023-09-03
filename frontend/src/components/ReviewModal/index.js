@@ -26,19 +26,20 @@ export const ReviewModal = ({ spot }) => {
             review: reviewText, stars: starRating
         }, spot.id))
         .then(closeModal)
-        .catch(async (res) => {
-            const data = await res.json()
-            if (data && data.errors) {
-                setErrors(data.errors)
-            }
-        })
+        // .catch(async (response) => {
+        //     console.log('res: ', response)
+        //     const data = await response.json()
+        //     if (data && data.errors) {
+        //         setErrors(data.errors)
+        //     }
+        // })
         // return newReview;
     }
 
     // may not need useEffect *******
-    useEffect(() => {
-        dispatch(reviewActions.getSpotReviews(spot.id))
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(reviewActions.getSpotReviews(spot.id))
+    // }, [dispatch])
 
     return (
         <div className='reviewModal'>

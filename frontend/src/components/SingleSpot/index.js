@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getSpot } from '../../store/spots'
+import { getSpotReviews } from "../../store/reviews";
 import { ReviewModal } from "../ReviewModal";
 import { useModal } from "../../context/Modal";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
@@ -45,6 +46,7 @@ const SingleSpot = () => {
 
     useEffect(() => {
         dispatch(getSpot(spotId))
+        // dispatch(getSpotReviews(spot.id))
     }, [dispatch])
 
 
@@ -52,6 +54,7 @@ const SingleSpot = () => {
     if (!spotImages) return null;
     const firstImg = spotImages[0]
     if (!firstImg) return null;
+    if (!reviews) return null
     // if (!sessionUser) return null;
 
     const topBox = spotImages.slice(1, 3)

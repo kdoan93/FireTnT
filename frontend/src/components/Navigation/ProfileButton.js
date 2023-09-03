@@ -61,7 +61,6 @@ function ProfileButton({ user }) {
               </div>
               <i className="fa-solid fa-circle-user"></i>
             </button>
-          </div>
           <ul className={ulClassName} ref={ulRef}>
             {user ? (
               <div className='userDropdown'>
@@ -92,6 +91,7 @@ function ProfileButton({ user }) {
                 </div>
             )}
           </ul>
+          </div>
         </>
       );
     }

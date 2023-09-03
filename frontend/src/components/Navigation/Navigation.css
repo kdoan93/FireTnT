@@ -37,6 +37,7 @@ button {
     /* border: 1px solid red; */
     text-decoration: none;
     margin: 5px 20px;
+    color: #FF5A60;
 }
 
 i {
@@ -59,9 +60,10 @@ i {
     border: 1px solid black;
     background-color: white;
     position: absolute;
-    right: 13px;
+    /* right: 13px; */
+    right: 1%;
     width: auto;
-    top: 50px;
+    top: 45px;
     padding: 0px;
 }
 

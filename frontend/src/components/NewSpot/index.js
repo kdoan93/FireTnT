@@ -42,7 +42,7 @@ function CreateNewSpot() {
         setErrors({})
         setImgErrors({})
         const imgErrorsObj = { previewImgError: 'Preview image is required' }
-
+        // if (!previewImg) return;
         // if no previewImg, set useState for imgErrors and return
 
         try {
@@ -60,13 +60,6 @@ function CreateNewSpot() {
                 })
             )
 
-            // if (!previewImg) {
-            //     setNeedPreviewImg(true)
-            //     setImgErrors(imgErrorsObj)
-            //     console.log('imgErrors: ', imgErrors)
-            //     return imgErrors
-            // }
-
             // if previewImg, set imgErrors and return
             if (previewImg) {
                 (
@@ -75,7 +68,7 @@ function CreateNewSpot() {
                     previewImg.endsWith('jpeg') ? setPreviewImg(false) : setPreviewImg(true) ||
                     previewImg.endsWith('png') ? setPreviewImg(false) : setPreviewImg(true)
                 )
-            }
+            } 
             if (img1) {
                 (
                     img1.endsWith('jpg') ? setCorrectImg1(false) : setCorrectImg1(true) ||
@@ -128,16 +121,16 @@ function CreateNewSpot() {
                     preview: false
                 }, newSpot.id ))
             }
-            console.log('newSpot: ', newSpot)
+            console.log('NewSpot newSpot: ', newSpot)
             history.push(`/spots/${newSpot.id}`)
             // error = response.error
         } catch (error) {
             if (!previewImg) {
                 setNeedPreviewImg(true)
                 setImgErrors(imgErrorsObj)
-                console.log('NewSpot imgErrors: ', imgErrors)
                 const data = await error.json()
                 setErrors(data.errors)
+                console.log('NewSpot errors: ', errors)
                 return imgErrors, data
             }
             if (error) {

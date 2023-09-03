@@ -23,11 +23,11 @@ export const createReview = (review, spotId) => async dispatch => {
         body: JSON.stringify(review)
     })
     if (response.ok) {
-        console.log('store/reviews review: ', review)
         console.log('store/reviews createReview response: ', response)
-        const newReview = await response.json()
-        dispatch(getAReview(newReview))
-        return newReview
+        const review = await response.json()
+        console.log('store/reviews createReview review: ', review)
+        dispatch(getAReview(review))
+        return review
     } else {
         const errors = await response.json()
         return errors;
@@ -35,7 +35,7 @@ export const createReview = (review, spotId) => async dispatch => {
 }
 
 
-// Thunk action to get all spots
+// Thunk action to get all spot reviews
 export const getSpotReviews = (spotId) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`)
     if (response.ok) {
@@ -65,7 +65,7 @@ export const deleteReview = (reviewId) => async dispatch => {
 
 
 // key into second
-const initialState = { allReviews: {} }
+const initialState = { allReviews: {}, aReview: {} }
 
 const reviewReducer = (state = initialState, action) => {
     let newState;
@@ -79,9 +79,20 @@ const reviewReducer = (state = initialState, action) => {
             })
             return newState;
 
+        case GET_REVIEW:
+            newState = { ...state, aReview: {} }
+            // console.log('review: ', review)
+            // action.review.Reviews.forEach(review => {
+            //     newState.allReviews[review.id] = review
+            // })
+            newState.aReview = action.review;
+            console.log('store/reviews newState: ', newState)
+            return newState;
+
         case DELETE_REVIEW:
             newState = { ...state, allReviews: { ...state.allReviews } }
             delete newState.allReviews[action.reviewId]
+            return newState;
 
         default:
             return state;
