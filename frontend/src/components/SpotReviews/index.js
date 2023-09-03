@@ -17,7 +17,7 @@ const SpotReviews = () => {
 
     spotId = parseInt(spotId)
 
-    let reviews = useSelector(state => state.review.allReviews)
+    let reviews = useSelector(state => state.review.spot)
     const spotReviews = Object.values(reviews)
     // console.log('IN SpotReviews: spotReviews: ', spotReviews)
     // console.log('SpotReviews reviews: ', reviews)

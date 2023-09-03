@@ -17,7 +17,7 @@ const SingleSpot = () => {
     const sessionUser = useSelector(state => state.session.user)
 
     // Getting review store data object
-    const reviews = useSelector(state => state.review.allReviews)
+    const reviews = useSelector(state => state.review.spot)
     // console.log('SingleSpot reviews: ', reviews)
     const reviewsArray = Object.values(reviews)
     // console.log('SingleSpot reviewsArray: ', reviewsArray)
