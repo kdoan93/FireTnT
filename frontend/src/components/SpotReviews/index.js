@@ -11,16 +11,16 @@ const SpotReviews = () => {
     const dispatch = useDispatch();
 
     let { spotId } = useParams();
+    spotId = parseInt(spotId)
 
     let sessionUser = useSelector(state => state.session.user)
     // console.log('SpotReviews sessionuser: ', sessionUser)
 
-    spotId = parseInt(spotId)
-
     let reviews = useSelector(state => state.review.spot)
-    const spotReviews = Object.values(reviews)
-    // console.log('IN SpotReviews: spotReviews: ', spotReviews)
     // console.log('SpotReviews reviews: ', reviews)
+
+    const spotReviews = Object.values(reviews).reverse()
+    // console.log('IN SpotReviews: spotReviews: ', spotReviews)
 
     function lowBudgetDateConverter(date) {
         let newDate = String(new Date(date))
@@ -47,7 +47,7 @@ const SpotReviews = () => {
                     <div className="reviewBody">{review.review}</div>
                 {review.User.id === sessionUser.id ?
                     <button className="deleteReviewButton">
-                        <OpenModalMenuItem itemText='Delete' modalComponent={<DeleteReviewModal review={review} />} />
+                        <OpenModalMenuItem itemText='Delete' modalComponent={<DeleteReviewModal review={review}/>}/>
                     </button>
                         :
                     <></>

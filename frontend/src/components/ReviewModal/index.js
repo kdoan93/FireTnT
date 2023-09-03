@@ -17,8 +17,8 @@ export const ReviewModal = ({ spot }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('starRating: ', starRating)
-        console.log('reviewText: ', reviewText)
+        // console.log('starRating: ', starRating)
+        // console.log('reviewText: ', reviewText)
 
         setErrors({})
 

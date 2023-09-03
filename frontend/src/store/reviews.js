@@ -25,7 +25,7 @@ export const createReview = (review, spotId) => async dispatch => {
     if (response.ok) {
         // console.log('store/reviews createReview response: ', response)
         const review = await response.json()
-        console.log('store/reviews createReview review: ', review)
+        // console.log('store/reviews createReview review: ', review)
         dispatch(getSpotReviews(review.spotId))
         return review
     } else {
@@ -74,9 +74,9 @@ const reviewReducer = (state = initialState, action) => {
             newState = { ...state, spot: { } };
             // key into 'review' from above action creator and 'Reviews' from the return in backend route
             // newState.spot[action.spotId] = {}
-            console.log('action: ', action.spotId)
+            // console.log('action: ', action.spotId)
             action.review.Reviews.forEach(review => {
-                console.log('LOOK newState: ', newState)
+                // console.log('LOOK newState: ', newState)
                 newState.spot[review.id] = review // puts new review into all reviews
             })
             return newState;

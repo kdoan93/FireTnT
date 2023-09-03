@@ -29,18 +29,6 @@ const UserSpots = () => {
         dispatch(spotsActions.getUserSpots())
     }, [dispatch])
 
-    // function onClickUpdate(spotId) {
-    //     // e.preventDefault()
-    //     history.push(`/spots/${spotId}/new`)
-    // }
-
-    // may need to handle error with async/await try/catch
-    // console.log('response error: ', Response.ok)
-    // if (!Response.ok) return console.log(Response.ok);
-
-    // if (userSpots) console.log('first');
-    // console.log('userSpots: ', spotsArray)
-
     return (
         <>
             <div className='manageSpotsContainer'> Manage Spots </div>
