@@ -218,14 +218,15 @@ function CreateNewSpot() {
                             fast wifi or parking, and what you love about the neighborhood.
                             </p>
                         </div>
-                        <input
+                        <textarea
                             className='descriptionInput'
                             type='text'
                             placeholder='Please write at least 30 characters'
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                             // required
-                        />
+                        >
+                        </textarea>
                         {errors.description && <span className='error bottomError'>Description needs a minimum of 30 characters</span>}
                     </div>
                     <div className='c titleContainer'>

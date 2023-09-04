@@ -25,11 +25,11 @@ export const ReviewModal = ({ spot }) => {
         // console.log('starRating: ', starRating)
         // console.log('reviewText: ', reviewText)
         setErrors({})
-        // if (starRating < 1) setErrors(errors.stars="Please add star rating.")
-        // if (reviewText.length < 10) setErrors(errors.review="Review must be at least 10 characters long")
+        if (starRating < 1) setErrors(errors.stars="Please add star rating.")
+        if (reviewText.length < 10) setErrors(errors.review="Review must be at least 10 characters long")
 
 
-        // console.log('errors: ', errors)
+        console.log('errors: ', errors)
         // if (errors) return
 
         return dispatch(reviewActions.createReview({
