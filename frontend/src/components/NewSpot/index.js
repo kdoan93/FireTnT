@@ -41,8 +41,8 @@ function CreateNewSpot() {
         e.preventDefault();
         setErrors({})
         setImgErrors({})
+        setNeedPreviewImg(false)
         const imgErrorsObj = { previewImgError: 'Preview image is required' }
-        // if (!previewImg) return;
         // if no previewImg, set useState for imgErrors and return
 
         try {
@@ -58,11 +58,12 @@ function CreateNewSpot() {
                     name,
                     price,
                 })
-            )
+                )
+                if (!previewImg) return;
 
-            // if previewImg, set imgErrors and return
-            if (previewImg) {
-                (
+                // if previewImg, set imgErrors and return
+                if (previewImg) {
+                    (
                     // if previewImg does end with ..., setPreviewImg to false, else set true
                     previewImg.endsWith('jpg') ? setPreviewImg(false) : setPreviewImg(true) ||
                     previewImg.endsWith('jpeg') ? setPreviewImg(false) : setPreviewImg(true) ||
@@ -124,21 +125,24 @@ function CreateNewSpot() {
             console.log('NewSpot newSpot: ', newSpot)
             history.push(`/spots/${newSpot.id}`)
             // error = response.error
+        // catches errors from backend validations
         } catch (error) {
-            if (!previewImg) {
-                setNeedPreviewImg(true)
-                setImgErrors(imgErrorsObj)
-                const data = await error.json()
-                setErrors(data.errors)
-                console.log('NewSpot errors: ', errors)
-                return imgErrors, data
-            }
+
             if (error) {
                 // data receives errors object
                 console.log('NewSpot component error: ', error)
                 const data = await error.json()
                 setErrors(data.errors)
                 console.log('data: ', data)
+
+                if (!previewImg) {
+                    // throws error for previewImg required
+                    setNeedPreviewImg(true)
+                    setImgErrors(imgErrorsObj)
+                    console.log('imgErrors: ', imgErrors)
+                    return imgErrors, data
+                } else
+
                 return data
             }
         }

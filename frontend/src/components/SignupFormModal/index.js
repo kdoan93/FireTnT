@@ -34,6 +34,7 @@ function SignupFormModal() {
         if (data && data.errors) {
           setErrors(data.errors);
         }
+
       });
     }
     return setErrors({
@@ -46,7 +47,7 @@ function SignupFormModal() {
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
       <div className="errorsDiv">
-        {errors.username && <p>{errors.username}</p>}
+        {errors.username && <p>Username must be unique</p>}
         {errors.email && <p>{errors.email}</p>}
         {errors.firstName && <p>{errors.firstName}</p>}
         {errors.lastName && <p>{errors.lastName}</p>}
@@ -60,7 +61,7 @@ function SignupFormModal() {
                     placeholder="First Name"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
-                    required
+                    // required
                 />
             </label>
         </ul>
@@ -71,7 +72,7 @@ function SignupFormModal() {
                     placeholder="Last Name"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
-                    required
+                    // required
                 />
             </label>
         </ul>
@@ -82,7 +83,7 @@ function SignupFormModal() {
                     placeholder="Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    required
+                    // required
                 />
             </label>
         </ul>
@@ -93,7 +94,7 @@ function SignupFormModal() {
                     placeholder="Username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    required
+                    // required
                 />
             </label>
         </ul>
@@ -104,7 +105,7 @@ function SignupFormModal() {
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    required
+                    // required
                 />
             </label>
         </ul>
@@ -115,7 +116,7 @@ function SignupFormModal() {
                     placeholder="Confirm Password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    required
+                    // required
                 />
             </label>
         </ul>
