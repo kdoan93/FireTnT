@@ -38,7 +38,8 @@ const SpotReviews = () => {
 
     return (
         <div className="spotReviewsContainer">
-            {!spotReviews.length ? <h2>Be the first to post a review!</h2> : spotReviews.map(review => (
+            {!spotReviews.length && sessionUser ? <h2>Be the first to post a review!</h2> : <></>}
+            {!spotReviews.length ? <></> : spotReviews.map(review => (
                 <div key={`${review.id}`} className="review">
                     {/* <h2>hello</h2> */}
                     <span className="name">{review.User.firstName}</span>

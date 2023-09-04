@@ -47,7 +47,6 @@ const SingleSpot = () => {
 
     useEffect(() => {
         dispatch(getSpot(spotId))
-        // dispatch(getSpotReviews(spot.id))
     }, [dispatch, reviewsArray.length])
 
     // console.log('SingleSpot spot: ', spot)
