@@ -14,7 +14,7 @@
     border: 2px solid black;
     width: 90%;
     margin-left: 15px;
-    height: 150px;
+    height: 100px;
     box-sizing: border-box;
     font-family: sans-serif;
 }
@@ -56,10 +56,11 @@
     background-color: #FF5A60;
     color: white;
     width: 90%;
+    height: 45px;
     display: flex;
     justify-content: center;
     text-align: center;
-    margin: 10px 10px 10px 15px;
+    margin: 10px 10px 20px 15px;
     box-shadow: 3px 3px 1px black;
 }
 

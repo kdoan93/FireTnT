@@ -98,9 +98,10 @@
 .ratingReviews {
     /* border: 1px solid blue; */
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: baseline;
-    width: 55%;
+    width: 40%;
+    margin-left: 10px;
     max-height: 80%;
 }
 

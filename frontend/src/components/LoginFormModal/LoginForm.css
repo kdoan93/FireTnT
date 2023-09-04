@@ -32,6 +32,7 @@ form label {
     position: relative;
     display: flex;
     justify-content: center;
+    height: 40px;
     left: 5%;
     width: 90%;
     border-radius: 0px;

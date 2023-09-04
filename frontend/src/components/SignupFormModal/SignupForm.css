@@ -7,6 +7,7 @@
     justify-content: center;
     right: 20px;
     width: 315px;
+    height: 45px;
     border-radius: 0px;
     box-shadow: 3px 3px 1px black;
     margin-bottom: 10px;
@@ -21,7 +22,5 @@
 
 .errorsDiv {
     /* border: 1px solid red; */
-    /* position: relative;
-    left: 10px; */
     padding-left: 15px;
 }
