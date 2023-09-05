@@ -127,7 +127,7 @@ function CreateNewSpot() {
                     console.log('ERRORS in img4 format')
                     setCorrectImg4(false)
                     return imgErrors, data, correctImg4
-                } else return data
+                } else return imgErrors, data
             }
         }
     }
