@@ -61,6 +61,7 @@ function LoginFormModal() {
             </label>
           </ul>
           <button
+            className="logInButton"
             type="submit"
             disabled={credential.length < 4 || password.length < 6}
           >
@@ -68,9 +69,9 @@ function LoginFormModal() {
           </button>
         </div>
       </form>
-      <NavLink exact to='/' className='demoUser' onClick={(e) => demoLogin()}>
+      <button className='demoUser' onClick={(e) => demoLogin()}>
         Demo User
-      </NavLink>
+      </button>
     </div>
   );
 }

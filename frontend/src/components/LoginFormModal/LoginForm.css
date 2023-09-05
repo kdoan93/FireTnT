@@ -25,7 +25,7 @@ form label {
     right: 7%;
 }
 
-.LoginFormModal button {
+.logInButton {
     border: 2px solid black;
     background-color: #FF5A60;
     color: white;
@@ -40,7 +40,7 @@ form label {
     margin-bottom: 10px;
 }
 
-.LoginFormModal button:disabled {
+.logInButton:disabled {
     border: 2px solid gray;
     background-color: white;
     color: gray;
@@ -53,9 +53,14 @@ form p {
 }
 
 .demoUser {
-    /* border: 1px solid red; */
+    border: 1px solid white;
+    background-color: white;
+    position: relative;
     display: flex;
-    color: #FF5A60;
     justify-content: center;
-    padding: 15px 0px 30px 0px;
+    height: 40px;
+    left: 37%;
+    /* width: 90%; */
+    border-radius: 0px;
+    margin-bottom: 10px;
 }

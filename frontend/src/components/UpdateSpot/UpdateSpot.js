@@ -7,14 +7,17 @@ import './UpdateSpot.css';
 
 function UpdateSpot() {
     const dispatch = useDispatch();
+    let { spotId } = useParams();
+    spotId = parseInt(spotId)
+    let spotDetails = useSelector(state => state.spot.singleSpot)
     const history = useHistory();
-    const [country, setCountry] = useState('')
-    const [address, setAddress] = useState('')
-    const [city, setCity] = useState('')
-    const [state, setState] = useState('')
-    const [description, setDescription] = useState('')
-    const [name, setName] = useState('')
-    const [price, setPrice] = useState()
+    const [country, setCountry] = useState(spotDetails.country)
+    const [address, setAddress] = useState(spotDetails.address)
+    const [city, setCity] = useState(spotDetails.city)
+    const [state, setState] = useState(spotDetails.state)
+    const [description, setDescription] = useState(spotDetails.description)
+    const [name, setName] = useState(spotDetails.name)
+    const [price, setPrice] = useState(spotDetails.price)
     const [errors, setErrors] = useState({})
     // const [img1, setImg1] = useState('')
     // const [img2, setImg2] = useState('')
@@ -37,11 +40,6 @@ function UpdateSpot() {
         return value.match(regex)[0];
     }
 
-    // Use spotId param and convert into number value
-    let { spotId } = useParams();
-    spotId = parseInt(spotId)
-
-    let spotDetails = useSelector(state => state.spot.singleSpot)
     console.log('UpdateSpot spotDetails: ', spotDetails)
 
     const handleSubmit = async (e) => {
@@ -51,8 +49,6 @@ function UpdateSpot() {
         // const imgErrorsObj = { previewImgError: 'Preview image is required' }
 
         try {
-
-
 
             const updateSpot = await dispatch(
 
@@ -151,7 +147,7 @@ function UpdateSpot() {
 
     useEffect(() => {
         dispatch(spotsActions.getSpot(spotId))
-    }, [dispatch])
+    }, [dispatch, spotId])
 
     if (!spotDetails) return null;
 
@@ -231,14 +227,15 @@ function UpdateSpot() {
                             fast wifi or parking, and what you love about the neighborhood.
                             </p>
                         </div>
-                        <input
+                        <textarea
                             className='descriptionInput'
                             type='text'
                             placeholder={`${spotDetails.description}`}
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                             // required
-                        />
+                        >
+                        </textarea>
                         {errors.description && <span className='error bottomError'>Description needs a minimum of 30 characters</span>}
                     </div>
                     <div className='c titleContainer'>
