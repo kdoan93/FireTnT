@@ -7,17 +7,14 @@ import './UpdateSpot.css';
 
 function UpdateSpot() {
     const dispatch = useDispatch();
-    let { spotId } = useParams();
-    spotId = parseInt(spotId)
-    let spotDetails = useSelector(state => state.spot.singleSpot)
     const history = useHistory();
-    const [country, setCountry] = useState(spotDetails.country)
-    const [address, setAddress] = useState(spotDetails.address)
-    const [city, setCity] = useState(spotDetails.city)
-    const [state, setState] = useState(spotDetails.state)
-    const [description, setDescription] = useState(spotDetails.description)
-    const [name, setName] = useState(spotDetails.name)
-    const [price, setPrice] = useState(spotDetails.price)
+    const [country, setCountry] = useState('')
+    const [address, setAddress] = useState('')
+    const [city, setCity] = useState('')
+    const [state, setState] = useState('')
+    const [description, setDescription] = useState('')
+    const [name, setName] = useState('')
+    const [price, setPrice] = useState()
     const [errors, setErrors] = useState({})
     // const [img1, setImg1] = useState('')
     // const [img2, setImg2] = useState('')
@@ -39,6 +36,11 @@ function UpdateSpot() {
         const regex = /([0-9]*[\.|\,]{0,1}[0-9]{0,2})/s;
         return value.match(regex)[0];
     }
+
+    let spotDetails = useSelector(state => state.spot.singleSpot)
+    // Use spotId param and convert into number value
+    let { spotId } = useParams();
+    spotId = parseInt(spotId)
 
     console.log('UpdateSpot spotDetails: ', spotDetails)
 
@@ -147,7 +149,7 @@ function UpdateSpot() {
 
     useEffect(() => {
         dispatch(spotsActions.getSpot(spotId))
-    }, [dispatch, spotId])
+    }, [dispatch])
 
     if (!spotDetails) return null;
 
@@ -227,15 +229,14 @@ function UpdateSpot() {
                             fast wifi or parking, and what you love about the neighborhood.
                             </p>
                         </div>
-                        <textarea
+                        <input
                             className='descriptionInput'
                             type='text'
                             placeholder={`${spotDetails.description}`}
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                             // required
-                        >
-                        </textarea>
+                        />
                         {errors.description && <span className='error bottomError'>Description needs a minimum of 30 characters</span>}
                     </div>
                     <div className='c titleContainer'>
