@@ -100,7 +100,7 @@ function CreateNewSpot() {
                 await dispatch(createSpotImage({ url: img3, preview: false }, newSpot.id ))
                 await dispatch(createSpotImage({ url: img4, preview: false }, newSpot.id ))
             }
-            console.log('NewSpot newSpot: ', newSpot)
+            // console.log('NewSpot newSpot: ', newSpot)
             history.push(`/spots/${newSpot.id}`)
             // error = response.error
             // catches errors from backend validations
@@ -119,19 +119,19 @@ function CreateNewSpot() {
                     // console.log('imgErrors: ', imgErrors)
                     // return imgErrors, data
                 } if (img1 && correctImg1) {
-                    console.log('ERRORS in img1 format')
+                    // console.log('ERRORS in img1 format')
                     setCorrectImg1(false)
                     // return imgErrors, data, correctImg1
                 } if (img2 && !correctImg2) {
-                    console.log('ERRORS in img2 format')
+                    // console.log('ERRORS in img2 format')
                     setCorrectImg2(false)
                     // return imgErrors, data, correctImg2
                 } if (img3 && !correctImg3) {
-                    console.log('ERRORS in img3 format')
+                    // console.log('ERRORS in img3 format')
                     setCorrectImg1(false)
                     // return imgErrors, data, correctImg3
                 } if (img4 && !correctImg4) {
-                    console.log('ERRORS in img4 format')
+                    // console.log('ERRORS in img4 format')
                     setCorrectImg4(false)
                     // return imgErrors, data, correctImg4
                 } else return imgErrors, data, correctImg1, correctImg2, correctImg3, correctImg4

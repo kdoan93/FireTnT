@@ -6,7 +6,7 @@ const { User } = require('../db/models');
 const { secret, expiresIn } = jwtConfig;
 
 /***        1st Authentication Middleware function      ***/
-/*      Sendsa a JWT Cookie     */
+/*      Sends a JWT Cookie     */
 //  setTokenCookie() will be used in login and signup routes
 const setTokenCookie = (res, user) => {
 

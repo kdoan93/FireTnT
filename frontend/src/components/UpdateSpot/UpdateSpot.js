@@ -138,10 +138,10 @@ function UpdateSpot() {
             // }
             if (error) {
                 // data receives errors object
-                console.log('NewSpot component error: ', error)
+                // console.log('NewSpot component error: ', error)
                 const data = await error.json()
                 setErrors(data.errors)
-                console.log('data: ', data)
+                // console.log('data: ', data)
                 return data
             }
         }
