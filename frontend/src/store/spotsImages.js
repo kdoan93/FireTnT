@@ -14,13 +14,11 @@ const postAnImage = spotImage => {
 // POST spotImage thunk action
 export const createSpotImage = (spotImage, spotId) => async (dispatch) => {
     const { url, preview } = spotImage;
-    // console.log('spotId: ', spotId)
     const response = await csrfFetch(`/api/spots/${spotId}/images`, {
         method: 'POST',
         body: JSON.stringify({ url, preview })
     })
     const data = await response.json()
-    // console.log('store/spotsImages response: ', data)
     return data;
 }
 

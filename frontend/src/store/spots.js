@@ -23,11 +23,9 @@ const deleteASpot = spotId => {
 // Thunk action to get all spots
 export const getSpots = () => async dispatch => {
     const response = await csrfFetch(`/api/spots`)
-    // console.log('response: ', response)
     if (response.ok) {
         const spot = await response.json()
         dispatch(getAllSpots(spot))
-        // console.log('spots', spot)
         return spot
     } else {
         const errors = await response.json();
@@ -41,12 +39,9 @@ export const getUserSpots = () => async dispatch => {
     if (response.ok) {
         const userSpots = await response.json()
         dispatch(getAllUserSpots(userSpots))
-        // console.log('STORE/SPOTS userSpots: ', userSpots)
-        // userSpots.map(spot => spot.ownerId)
         return userSpots
     } else {
         const errors = await response.json()
-        // console.log('errors in store/spots ', errors)
         return errors
     }
 }
@@ -57,7 +52,6 @@ export const getSpot = (spotId) => async dispatch => {
     if (response.ok) {
         const spot = await response.json()
         dispatch(getASpot(spot))
-        // console.log('getSpot: ', spot)
         return spot
     } else {
         const errors = await response.json();
@@ -67,15 +61,12 @@ export const getSpot = (spotId) => async dispatch => {
 
 // CreateSpot thunk action
 export const createSpot = (spot) => async (dispatch) => {
-    // console.log('createSpot spot: ', spot)
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
         body: JSON.stringify(spot)
     })
-    // console.log('store/spot spot: ', spot)
     const newSpot = await response.json()
     dispatch(getASpot(newSpot))
-    // console.log('createSpot THUNK newSpot: ', newSpot)
     return newSpot
 };
 
@@ -85,9 +76,7 @@ export const deleteSpot = (spotId) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'DELETE'
     })
-    // console.log('spotId BEFORE delete response: ', spotId)
     dispatch(deleteASpot(spotId))
-    // console.log('spotId AFTER delete response: ', spotId)
     return response;
 };
 

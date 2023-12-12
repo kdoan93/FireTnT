@@ -66,7 +66,6 @@ router.get('/current', requireAuth, async (req, res) => {
             review.Spot.previewImage = image.url
         } } )
 
-        // console.log('LOOK HERE: ', review.Spot.SpotImages)
         if (!review.Spot.previewImage) review.Spot.previewImage = "Spot Image couldn't be found"
 
         delete review.Spot.SpotImages

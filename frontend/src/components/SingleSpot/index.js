@@ -1,4 +1,3 @@
-// import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -18,19 +17,15 @@ const SingleSpot = () => {
 
     // Getting review store data object
     const reviews = useSelector(state => state.review.spot)
-    // console.log('SingleSpot reviews: ', reviews)
     const reviewsArray = Object.values(reviews)
-    // console.log('SingleSpot reviewsArray: ', reviewsArray)
 
     let sessionUserId = 0;
 
     if (sessionUser) sessionUserId = sessionUser.id
-    // console.log('SingleSpot sessionUserId: ', sessionUserId)
     let reviewed = false;
     reviewsArray.map(
         review => {if (review.userId === sessionUserId) reviewed = true}
     )
-    // console.log('reviewed: ', reviewed)
 
     let { spotId } = useParams();
     // turn id from string into a number value
@@ -39,8 +34,6 @@ const SingleSpot = () => {
 
     let spot = useSelector(state => state.spot.singleSpot)
     const spotOwnerId = spot.ownerId
-    // console.log('SingleSpot spot: ', spot)
-    // console.log('SingleSpot butcher: ', Object.values(spot)[15].toFixed(1))
 
     // Renders spot object with 'dispatch' from store using thunk function 'getSpots'
     const spotImages = useSelector(state => state.spot.singleSpot.SpotImages)
@@ -49,18 +42,12 @@ const SingleSpot = () => {
         dispatch(getSpot(spotId))
     }, [dispatch, reviewsArray.length])
 
-    // console.log('SingleSpot spot: ', spot)
-    // console.log('SingleSpot spot.avgStarRating: ', spot.avgStarRating)
-
-    // if (!spot) return null;
     if (!spotImages) return null;
     const firstImg = spotImages[0]
     if (!firstImg) return null;
     if (!reviews) return null
-    // if (!sessionUser) return null;
 
     const topBox = spotImages.slice(1, 3)
-    // console.log('imgBox: ', imgBox)
 
     const bottomBox = spotImages.slice(3)
 
