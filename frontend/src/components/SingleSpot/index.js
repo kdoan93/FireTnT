@@ -1,11 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from 'react';
+import React, { Component, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import ReactDOM from 'react-dom'
 import { getSpot } from '../../store/spots'
 import { getSpotReviews } from "../../store/reviews";
 import { ReviewModal } from "../ReviewModal";
 import { useModal } from "../../context/Modal";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 import './SingleSpot.css'
 
 const SingleSpot = () => {
@@ -62,6 +65,17 @@ const SingleSpot = () => {
                 <h2>{spot.name}</h2>
                 <h5>{spot.city}, {spot.state}, {spot.country}</h5>
             </div>
+
+            {/*
+            <Carousel infiniteLoop='true'>
+                
+                {spotImages.map((image) => (
+                    <div>
+                        <img key={image.url} src={image.url} />
+                    </div>
+                ))}
+            </Carousel>
+            */}
 
             <div className="imagesContainer">
                 <div className="bigImg"><img src={firstImg.url} alt='firstImg' /></div>
