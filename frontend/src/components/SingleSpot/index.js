@@ -7,8 +7,8 @@ import { getSpotReviews } from "../../store/reviews";
 import { ReviewModal } from "../ReviewModal";
 import { useModal } from "../../context/Modal";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
+// import "react-responsive-carousel/lib/styles/carousel.min.css";
+// import { Carousel } from 'react-responsive-carousel';
 import './SingleSpot.css'
 
 const SingleSpot = () => {
