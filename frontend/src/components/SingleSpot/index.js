@@ -66,16 +66,16 @@ const SingleSpot = () => {
                 <h5>{spot.city}, {spot.state}, {spot.country}</h5>
             </div>
 
-            {/*
-            <Carousel infiniteLoop='true'>
-                
+
+            {/* <Carousel className="carousel-container" infiniteLoop='true'>
+
                 {spotImages.map((image) => (
                     <div>
-                        <img key={image.url} src={image.url} />
+                        <img key={image.url} src={image.url}/>
                     </div>
                 ))}
-            </Carousel>
-            */}
+            </Carousel> */}
+
 
             <div className="imagesContainer">
                 <div className="bigImg"><img src={firstImg.url} alt='firstImg' /></div>
