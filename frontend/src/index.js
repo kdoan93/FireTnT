@@ -30,6 +30,8 @@ if (process.env.NODE_ENV !== "production") {
   window.reviewsActions = reviewsActions;
 }
 
+console.log('STRING HERE <<<<<<<<<<<<<<<<')
+
 // Wrap the application with the Modal provider and render the Modal component
 // after the App component so that all the Modal content will be layered as
 // HTML elements on top of the all the other HTML elements:
