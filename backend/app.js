@@ -43,6 +43,7 @@ app.use( csurf({
   }
 })
 );
+
 /***    SECURITY MIDDLEWARE  ***/
 
 //  Connects all the routes

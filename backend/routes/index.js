@@ -11,6 +11,7 @@ if (process.env.NODE_ENV === 'production') {
   // Serve the frontend's index.html file at the root route
   router.get('/', (req, res) => {
     res.cookie('XSRF-TOKEN', req.csrfToken());
+    console.log('STRING HERE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
     res.sendFile(
       path.resolve(__dirname, '../../frontend', 'public', 'index.html')
     );
