@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { Component, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import ReactDOM from 'react-dom'
+// import ReactDOM from 'react-dom'
 import { getSpot } from '../../store/spots'
-import { getSpotReviews } from "../../store/reviews";
+// import { getSpotReviews } from "../../store/reviews";
 import { ReviewModal } from "../ReviewModal";
-import { useModal } from "../../context/Modal";
+// import { useModal } from "../../context/Modal";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 // import "react-responsive-carousel/lib/styles/carousel.min.css";
 // import { Carousel } from 'react-responsive-carousel';
@@ -43,7 +43,7 @@ const SingleSpot = () => {
 
     useEffect(() => {
         dispatch(getSpot(spotId))
-    }, [dispatch, reviewsArray.length])
+    }, [dispatch, reviewsArray.length, spotId])
 
     if (!spotImages) return null;
     const firstImg = spotImages[0]

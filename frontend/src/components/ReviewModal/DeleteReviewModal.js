@@ -16,7 +16,7 @@ export const DeleteReviewModal = ({ review }) => {
 
     useEffect(() => {
         dispatch(reviewActions.getSpotReviews(review.spotId))
-    }, [dispatch])
+    }, [dispatch, review.spotId])
 
     return (
         <div className="deleteModal">

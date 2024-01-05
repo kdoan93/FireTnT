@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getSpotReviews } from "../../store/reviews";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import { DeleteReviewModal } from "../ReviewModal/DeleteReviewModal";
@@ -28,7 +28,7 @@ const SpotReviews = () => {
 
     useEffect(() => {
         dispatch(getSpotReviews(spotId))
-    }, [dispatch])
+    }, [dispatch, spotId])
 
     if(!reviews) return null
     if(!sessionUser) sessionUser = 0;

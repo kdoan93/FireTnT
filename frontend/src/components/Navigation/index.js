@@ -12,11 +12,11 @@ function Navigation({ isLoaded }){
   return (
       <div className='navigationBar'>
         <NavLink exact to="/" className='home-button' >
-            <img className='logo' src={airbnbLogo} />
+            <img className='logo' src={airbnbLogo} alt='logo' />
         </NavLink>
         {isLoaded && (
           <ProfileButton className='profileButton' user={sessionUser} />
-          
+
         )}
       </div>
   );

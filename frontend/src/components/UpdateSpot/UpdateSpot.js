@@ -61,7 +61,7 @@ function UpdateSpot() {
 
     useEffect(() => {
         dispatch(spotsActions.getSpot(spotId))
-    }, [dispatch])
+    }, [dispatch, spotId])
 
     if (!spotDetails) return null;
 
