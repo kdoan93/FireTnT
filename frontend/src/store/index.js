@@ -16,7 +16,7 @@ let enhancer;
 // MAY BE ISSUE
 // LOOKING FOR REDUX LOGGER when in production
 
-if (process.env.NODE_ENV == 'production') {
+if (process.env.NODE_ENV === 'production') {
   enhancer = applyMiddleware(thunk);
 } else {
   const logger = require('redux-logger').default;
