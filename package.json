@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/kdoan93/FireTnT/issues"
   },
-  "homepage": "https://github.com/kdoan93/FireTnT#readme"
+  "homepage": "https://github.com/kdoan93/FireTnT#readme",
+  "devDependencies": {
+    "@types/react-router-dom": "^5.3.3"
+  }
 }
