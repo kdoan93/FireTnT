@@ -39,9 +39,6 @@ function Root() {
       <Provider store={store}>
         <BrowserRouter>
           <App />
-          <h1>
-            Sanity check
-          </h1>
           <Modal />
         </BrowserRouter>
       </Provider>
