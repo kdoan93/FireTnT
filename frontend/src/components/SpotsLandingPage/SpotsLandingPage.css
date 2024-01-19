@@ -82,3 +82,29 @@
 
     flex: 1 will cause to auto shrink with equal width
   } */
+
+
+.about-links-container {
+    border-top: 1px solid #FF5A60;
+    bottom: 1%;
+    display: flex;
+    gap: 50px;
+    text-align: start;
+    font-weight: 700;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-links-container div {
+    margin-top: 20px;
+
+}
+
+.about-links-container a {
+    color: #FF5A60;
+    text-decoration: none;
+}
+
+.gap {
+    margin-right: 10px;
+}
