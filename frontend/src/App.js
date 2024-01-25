@@ -53,6 +53,20 @@ function App() {
           </Route>
         </Switch>
       )}
+      <div className='about-links-container'>
+        <div>
+            <a href='https://github.com/kdoan93/ShiftTalkers'>
+                <i class="fa-brands fa-square-github fa-2xl gap"/>
+                GitHub
+            </a>
+        </div>
+        <div>
+            <a href="https://www.linkedin.com/in/kdoan93/">
+                <i class="fa-brands fa-linkedin fa-2xl gap"/>
+                LinkedIn
+            </a>
+        </div>
+      </div>
     </>
   );
 }
