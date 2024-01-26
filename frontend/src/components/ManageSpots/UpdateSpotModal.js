@@ -69,33 +69,39 @@ export const UpdateSpotModal = ({ spot }) => {
             <form onSubmit={handleSubmit}>
                     <div className='locationParagraph'>
                         <div className='t'>
-                            <span>Where's your place located?</span>
+                            <span>Update your place's location?</span>
                             <p>Guests will only get your exact address once they booked a reservation.</p>
                         </div>
                     </div>
                     <div className='c spotLocationContainer'>
-                    <ul>
-                        <span>Country</span>
-                        {errors.country && <span className='error sideError'>Country is required</span>}
-                        <input
-                            className='i'
-                            type='text'
-                            placeholder={`${spot.country}`}
-                            value={country}
-                            onChange={(e) => setCountry(e.target.value)}
-                        />
-                    </ul>
-                    <ul>
-                        <span>Street Addrress</span>
-                        {errors.address && <span className='error sideError'>Address is required</span>}
-                        <input
-                            className='i'
-                            type='text'
-                            placeholder={`${spot.address}`}
-                            value={address}
-                            onChange={(e) => setAddress(e.target.value)}
-                        />
-                    </ul>
+                        <div className="spotLocationUpper">
+                            <ul>
+                                <span>Street Address</span>
+                                {errors.address && <span className='error sideError'>Address is required</span>}
+                                <ul>
+                                    <input
+                                        className='i'
+                                        type='text'
+                                        placeholder={`${spot.address}`}
+                                        value={address}
+                                        onChange={(e) => setAddress(e.target.value)}
+                                    />
+                                </ul>
+                            </ul>
+                            <ul>
+                                <span>Country</span>
+                                {errors.country && <span className='error sideError'>Country is required</span>}
+                                <ul>
+                                    <input
+                                        className='i'
+                                        type='text'
+                                        placeholder={`${spot.country}`}
+                                        value={country}
+                                        onChange={(e) => setCountry(e.target.value)}
+                                    />
+                                </ul>
+                            </ul>
+                        </div>
                         <div className='cityStateContainer'>
                             <ul className='cityContainer'>
                             <span>City

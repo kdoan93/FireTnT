@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import * as spotsActions from '../../store/spots'
-import './UpdateSpot.css';
+// import './UpdateSpot.css';
 
 function UpdateSpot({ props }){
     // WIP: May have to change NavLink @ "components/ManageSpots/index.js" to button, thread prop, and history.push(`/spots/${spot.id}/edit`)
@@ -74,7 +74,7 @@ function UpdateSpot({ props }){
             <form onSubmit={handleSubmit}>
                     <div className='locationParagraph'>
                         <div className='t'>
-                            <span>Where's your place located?</span>
+                            <span>Update your place's location?</span>
                             <p>Guests will only get your exact address once they booked a reservation.</p>
                         </div>
                     </div>
