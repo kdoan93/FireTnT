@@ -33,7 +33,7 @@ function LoginFormModal() {
   }
 
   return (
-    <div className="LoginFormModal">
+    <div className="loginFormModal">
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <div className="loginModalInputsButton">
@@ -68,10 +68,10 @@ function LoginFormModal() {
             Log In
           </button>
         </div>
-      </form>
       <button className='demoUser' onClick={(e) => demoLogin()}>
         Demo User
       </button>
+      </form>
     </div>
   );
 }

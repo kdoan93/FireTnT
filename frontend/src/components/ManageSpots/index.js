@@ -1,12 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as spotsActions from '../../store/spots'
 import { DeleteSpotModal } from './DeleteSpotModal';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import './ManageSpots.css'
+import { UpdateSpotModal } from './UpdateSpotModal';
 
 const UserSpots = () => {
+
+    const [buttonClicked, setButtonClicked] = useState(false)
 
     // dispatch used to interact with redux store/db
     const dispatch = useDispatch();
@@ -22,9 +25,20 @@ const UserSpots = () => {
         history.push('/spots/new')
     }
 
+    const buttonClick = () => {
+        console.log('button clicked')
+        setButtonClicked(true)
+    }
+
+    const unButtonClick = (event) => {
+        console.log('button UN clicked')
+        setButtonClicked(false)
+    }
+
     useEffect(() => {
+
         dispatch(spotsActions.getUserSpots())
-    }, [dispatch])
+    }, [dispatch, spotsArray.length])
 
     return (
         <>
@@ -44,7 +58,8 @@ const UserSpots = () => {
                             <div className='tooltip'>{spot.name}</div>
                         </NavLink>
                         <div className='bottomButtons'>
-                            <NavLink className='manageButtons' to={`/spots/${spot.id}/edit`} props={{spot}} >Update</NavLink>
+                            {/* <NavLink className='manageButtons' to={`/spots/${spot.id}/edit`} props={{spot}} >Update</NavLink> */}
+                            <OpenModalMenuItem itemText='Update' modalComponent={<UpdateSpotModal spot={spot} />} />
                             <OpenModalMenuItem itemText='Delete' modalComponent={<DeleteSpotModal spotId={spot.id} />} />
                         </div>
                     </div>

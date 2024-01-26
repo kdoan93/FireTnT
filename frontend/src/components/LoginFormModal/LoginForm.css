@@ -1,7 +1,29 @@
 #modal-content {
     /* border: 2px solid red; */
     border-radius: 10px;
-    width: 350px;
+    /* width: 350px; */
+    width: auto;
+}
+
+#modal-content form {
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#modal-content form ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.loginFormModal {
+    border: 2px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 400px;
 }
 
 h1 {
@@ -13,17 +35,19 @@ h1 {
 input {
     border: 2px solid black;
     box-shadow: 1px 1px 1px black;
-    width: 100%;
+    width: 87%;
+    height: 25px;
+    margin: 0px 20px;
 }
 
-form label {
-    /* border: 1px solid red; */
+/* form label {
+    border: 1px solid red;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     right: 7%;
-}
+} */
 
 .logInButton {
     border: 2px solid black;
@@ -53,14 +77,14 @@ form p {
 }
 
 .demoUser {
-    border: 1px solid white;
+    border: 2px solid white;
     background-color: white;
     position: relative;
     display: flex;
     justify-content: center;
     height: 40px;
-    left: 37%;
-    /* width: 90%; */
+    left: 5%;
+    width: 90%;
     border-radius: 0px;
     margin-bottom: 10px;
 }
