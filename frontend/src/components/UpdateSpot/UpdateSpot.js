@@ -4,16 +4,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as spotsActions from '../../store/spots'
 import './UpdateSpot.css';
 
-function UpdateSpot() {
+function UpdateSpot({ props }){
+    // WIP: May have to change NavLink @ "components/ManageSpots/index.js" to button, thread prop, and history.push(`/spots/${spot.id}/edit`)
     const dispatch = useDispatch();
+    let spotDetails = useSelector(state => state.spot.singleSpot)
     const history = useHistory();
-    const [country, setCountry] = useState('')
-    const [address, setAddress] = useState('')
-    const [city, setCity] = useState('')
-    const [state, setState] = useState('')
-    const [description, setDescription] = useState('')
-    const [name, setName] = useState('')
-    const [price, setPrice] = useState()
+    const [country, setCountry] = useState(props.spot.country)
+    const [address, setAddress] = useState(props.spot.address)
+    const [city, setCity] = useState(props.spot.city)
+    const [state, setState] = useState(props.spot.state)
+    const [description, setDescription] = useState(props.spot.description)
+    const [name, setName] = useState(props.spot.name)
+    const [price, setPrice] = useState(props.spot.price)
+    const [submitted, setSubmitted] = useState(false)
     const [errors, setErrors] = useState({})
 
     function checkValue (e) {
@@ -25,7 +28,7 @@ function UpdateSpot() {
         return value.match(regex)[0];
     }
 
-    let spotDetails = useSelector(state => state.spot.singleSpot)
+    // let spotDetails = useSelector(state => state.spot.singleSpot)
     // Use spotId param and convert into number value
     let { spotId } = useParams();
     spotId = parseInt(spotId)
@@ -35,9 +38,7 @@ function UpdateSpot() {
         setErrors({})
 
         try {
-
-            const updateSpot = await dispatch(
-
+            await dispatch(
                 spotsActions.updateSpot({
                     ...spotDetails,
                     country,
@@ -49,7 +50,8 @@ function UpdateSpot() {
                     price
                 })
             )
-            history.push(`/spots/${updateSpot.id}`)
+            setSubmitted(true)
+            history.push(`/spots/${spotId}`)
         } catch (error) {
             if (error) {
                 const data = await error.json()
@@ -60,10 +62,11 @@ function UpdateSpot() {
     }
 
     useEffect(() => {
+        setSubmitted(false)
         dispatch(spotsActions.getSpot(spotId))
     }, [dispatch, spotId])
 
-    if (!spotDetails) return null;
+    if (!spotDetails) return;
 
     return (
         <div className='updateFormContainer'>

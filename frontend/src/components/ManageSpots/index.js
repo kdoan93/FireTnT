@@ -44,7 +44,7 @@ const UserSpots = () => {
                             <div className='tooltip'>{spot.name}</div>
                         </NavLink>
                         <div className='bottomButtons'>
-                            <NavLink className='manageButtons' to={`/spots/${spot.id}/edit`}>Update</NavLink>
+                            <NavLink className='manageButtons' to={`/spots/${spot.id}/edit`} props={{spot}} >Update</NavLink>
                             <OpenModalMenuItem itemText='Delete' modalComponent={<DeleteSpotModal spotId={spot.id} />} />
                         </div>
                     </div>
