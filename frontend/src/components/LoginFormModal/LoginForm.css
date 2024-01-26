@@ -1,7 +1,6 @@
 #modal-content {
-    /* border: 2px solid red; */
+    border: 2px solid black;
     border-radius: 10px;
-    /* width: 350px; */
     width: auto;
 }
 
@@ -14,7 +13,7 @@
 
 #modal-content form ul {
     list-style-type: none;
-    padding: 0;
+    padding-inline-start: 0px;
 }
 
 .loginFormModal {
@@ -32,22 +31,13 @@ h1 {
     justify-content: center;
 }
 
-input {
+.loginFormModal input {
     border: 2px solid black;
     box-shadow: 1px 1px 1px black;
-    width: 87%;
+    width: 92%;
     height: 25px;
-    margin: 0px 20px;
+    margin: 0px 10px;
 }
-
-/* form label {
-    border: 1px solid red;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    right: 7%;
-} */
 
 .logInButton {
     border: 2px solid black;

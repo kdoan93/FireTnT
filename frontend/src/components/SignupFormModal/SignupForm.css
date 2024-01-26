@@ -1,16 +1,34 @@
+.signupContainer {
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.signupContainer input {
+    border: 2px solid black;
+    box-shadow: 1px 1px 1px black;
+    width: 87%;
+    height: 25px;
+}
+
+form ul {
+    margin: 10px;
+}
+
 .signupButton {
     border: 2px solid black;
     background-color: #FF5A60;
     color: white;
     position: relative;
+    left: 15px;
     display: flex;
     justify-content: center;
-    right: 20px;
-    width: 315px;
+    width: 84%;
     height: 45px;
     border-radius: 0px;
-    box-shadow: 3px 3px 1px black;
-    margin-bottom: 10px;
+    box-shadow: 2px 2px 1px black;
+    margin-bottom: 15px;
 }
 
 .signupButton:disabled {
