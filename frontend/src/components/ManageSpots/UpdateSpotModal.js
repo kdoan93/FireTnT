@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useModal } from "../../context/Modal";
-import { updateSpot } from "../../store/spots";
+import { thunkUpdateSpot } from "../../store/spots";
 import * as spotsActions from "../../store/spots";
 import './UpdateSpotModal.css'
 
@@ -35,8 +35,8 @@ export const UpdateSpotModal = ({ spot }) => {
         setErrors({})
 
         try {
-            await dispatch(
-                updateSpot({
+            dispatch(
+                thunkUpdateSpot({
                     ...spot,
                     country,
                     address,
@@ -60,7 +60,7 @@ export const UpdateSpotModal = ({ spot }) => {
 
     useEffect(() => {
         dispatch(spotsActions.getSpot(spot.id))
-    }, [dispatch, spot])
+    }, [dispatch])
 
 
     return (
