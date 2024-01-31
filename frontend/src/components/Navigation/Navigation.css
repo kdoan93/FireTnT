@@ -22,8 +22,10 @@ button {
     background-color: transparent;
     border-radius: 20px;
     display: flex;
+    justify-content: center;
     align-items: center;
-    height: 30px;
+    height: 35px;
+    width: 60px;
     cursor: pointer;
 }
 
@@ -60,17 +62,17 @@ i {
     border: 1px solid black;
     background-color: white;
     position: absolute;
-    /* right: 13px; */
+    display: flex;
+    justify-content: center;
     right: 1%;
-    width: auto;
-    top: 45px;
-    padding: 0px;
+    width: 160px;
+    top: 50px;
+    padding: 10px;
 }
 
 .userDropdown {
-    border: 1px solid black;
-    width: auto;
-    /* padding: 0px 10px; */
+    /* border: 1px solid red; */
+    width: 160px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -78,28 +80,27 @@ i {
 
 .manageSpots {
     border-bottom: 2px solid black;
-    width: 85%;
+    width: 160px;
     display: flex;
-    justify-content: start;
+    justify-content: center;
     text-decoration: none;
-    text-align: left;
     padding-bottom: 5px;
 }
 
 .dt {
     color: black;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
 }
 
 .userMenu {
     /* border: 1px solid blue; */
     border-bottom: 2px solid black;
-    padding-bottom: 5px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    max-width: 95%;
+    width: 160px;
     margin: 0px 10px 5px 10px;
 }
 
@@ -108,10 +109,9 @@ i {
     background-color: gray;
     color: white;
     width: 70%;
-    margin: 5px;
+    margin-top: 10px;
     display: flex;
     justify-content: center;
-
 }
 
 .loginSignup {
@@ -129,10 +129,8 @@ i {
 
 .userMenu div {
     /* border: 1px solid red; */
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
-    /* position: relative; */
-    /* right: 25%; */
     padding-top: 3px;
     padding-bottom: 3px;
 }
