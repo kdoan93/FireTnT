@@ -65,7 +65,7 @@ function ProfileButton({ user }) {
             {user ? (
               <div className='userDropdown'>
                 <div className="userMenu">
-                  <div className='dt'>Hello,   {user.firstName}</div>
+                  <div className='dt'>Hello,   {user.firstName}!</div>
                   <div className='dt'>{user.email}</div>
                 </div>
                   <NavLink className='dt manageSpots' to='/spots/current'>
