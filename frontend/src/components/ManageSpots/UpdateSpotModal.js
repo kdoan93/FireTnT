@@ -70,7 +70,7 @@ export const UpdateSpotModal = ({ spot }) => {
                     <div className='locationParagraph'>
                         <div className='t'>
                             <span>Update your place's location?</span>
-                            <p>Guests will only get your exact address once they have booked a reservation.</p>
+                            <p>Guests will only get your exact address once they booked a reservation.</p>
                         </div>
                     </div>
                     <div className='c spotLocationContainer'>
