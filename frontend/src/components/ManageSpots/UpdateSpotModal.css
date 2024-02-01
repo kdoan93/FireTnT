@@ -11,9 +11,9 @@ h2 {
     margin: 15px 0px;
 }
 
-.updateFormContainer input {
+/* .updateFormContainer input {
     margin: 0px;
-}
+} */
 
 .t {
     /* border: 1px solid green; */
@@ -49,7 +49,7 @@ h2 {
 }
 
 .spotLocationUpper input {
-    width: 96%;
+    width: 100%;
 }
 
 .cityContainer {
@@ -67,7 +67,7 @@ h2 {
 }
 
 .stateContainer {
-    width: 29.5%;
+    width: 31.5%;
 }
 
 .commaContainer {
@@ -81,19 +81,27 @@ h2 {
     margin-bottom: 0px;
 }
 
+.cityStateContainer span {
+    /* border: 1px solid red; */
+    margin-bottom: 5px;
+}
+
 .cityStateContainer ul {
     /* border: 1px solid green; */
     display: flex;
     flex-direction: column;
 }
 
-.descriptionInput {
-    /* border: 2px solid red; */
-    max-width: 97%;
+.updateDescriptionInput {
+    /* border: 2px solid black; */
+    font-family: sans-serif;
+    width: 96%;
     height: 100px;
-    max-height: auto;
-    display: block;
-    resize: both;
+    padding: 11px;
+    display: flex;
+    justify-content: flex-start;
+    text-wrap: wrap;
+    resize: vertical;
 }
 
 .dollarByInput {

@@ -141,9 +141,9 @@ export const UpdateSpotModal = ({ spot }) => {
                             fast wifi or parking, and what you love about the neighborhood.
                             </p>
                         </div>
-                        <input
-                            className='descriptionInput'
-                            type='text'
+                        <textarea
+                            className='updateDescriptionInput'
+                            type='textarea'
                             placeholder={`${spot.description}`}
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
