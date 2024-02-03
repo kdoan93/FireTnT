@@ -59,7 +59,8 @@ i {
 }
 
 .profile-dropdown {
-    border: 2px solid black;
+    /* border: 2px solid black; */
+    box-shadow: 0px 0px 5px 1px gray;
     background-color: white;
     border-radius: 15px;
     position: absolute;
@@ -83,13 +84,12 @@ i {
     display: flex;
     justify-content: center;
     text-decoration: none;
-    padding-bottom: 5px;
+    padding: 10px 0px;
 }
 
 .dt {
     color: black;
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 16px;
 }
 
 .userMenu {
@@ -100,7 +100,7 @@ i {
     flex-direction: column;
     justify-content: center;
     width: 160px;
-    margin: 0px 10px 5px 10px;
+    margin: 0px 10px;
     padding-bottom: 5px;
 }
 
@@ -116,22 +116,19 @@ i {
 }
 
 .loginSignup {
-    cursor: pointer;
     /* border: 1px solid red; */
-    width: 100px;
+    cursor: pointer;
+    width: 100%;
 }
 
 .loginSignup div {
     /* border: 1px solid red; */
-    font-size: 12px;
-    font-weight: 700;
-    padding: 3px 10px;
+    font-size: 16px;
+    padding: 10px;
 }
 
 .userMenu div {
     /* border: 1px solid red; */
-    font-size: 14px;
-    font-weight: 700;
-    padding-top: 3px;
-    padding-bottom: 3px;
+    font-size: 16px;
+    padding: 5px;
 }
