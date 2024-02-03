@@ -79,7 +79,7 @@ i {
 }
 
 .manageSpots {
-    border-bottom: 2px solid black;
+    border-bottom: 1px solid black;
     width: 160px;
     display: flex;
     justify-content: center;
@@ -94,7 +94,7 @@ i {
 
 .userMenu {
     /* border: 1px solid blue; */
-    border-bottom: 2px solid black;
+    border-bottom: 1px solid black;
     display: flex;
     align-items: center;
     flex-direction: column;
