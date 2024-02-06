@@ -51,7 +51,9 @@ function ProfileButton({ user }) {
                 // <NavLink className="createASpot" to='/spots/new'>
                 //   Create a New Spot
                 // </NavLink>
-                <OpenModalMenuItem itemText='Create a Spot' modalComponent={<CreateSpotModal/>} />
+                <div className="createASpot">
+                  <OpenModalMenuItem itemText='Create a Spot' modalComponent={<CreateSpotModal/>} />
+                </div>
             ) : (
               <></>
             )}

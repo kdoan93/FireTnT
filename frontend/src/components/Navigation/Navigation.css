@@ -38,8 +38,11 @@ button {
 .createASpot {
     /* border: 1px solid red; */
     text-decoration: none;
+    font-weight: 700;
     margin: 5px 20px;
     color: #FF5A60;
+    cursor: pointer;
+    padding: 3px;
 }
 
 i {

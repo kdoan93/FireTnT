@@ -7,7 +7,6 @@ import Navigation from "./components/Navigation";
 import SpotsBrowser from './components/SpotsLandingPage'
 import SingleSpot from "./components/SingleSpot";
 import SpotReviews from "./components/SpotReviews";
-import CreateNewSpot from "./components/NewSpot";
 import UserSpots from "./components/ManageSpots";
 
 function App() {
@@ -30,9 +29,6 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <SpotsBrowser />
-          </Route>
-          <Route path='/spots/new'>
-            <CreateNewSpot />
           </Route>
           <Route path='/spots/current'>
             <UserSpots />

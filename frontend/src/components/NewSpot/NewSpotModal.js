@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { createSpotImage } from "../../store/spotsImages";
 import { useModal } from "../../context/Modal";
 import * as spotsActions from '../../store/spots'
-// import './SpotModal.css'
+import './NewSpot.css'
 
 function CreateSpotModal() {
     const dispatch = useDispatch();
