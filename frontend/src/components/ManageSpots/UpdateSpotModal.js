@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useModal } from "../../context/Modal";
 import { thunkUpdateSpot } from "../../store/spots";
 import * as spotsActions from "../../store/spots";
-import './UpdateSpotModal.css'
+import './SpotModal.css'
 
 
 export const UpdateSpotModal = ({ spot }) => {
@@ -64,7 +64,7 @@ export const UpdateSpotModal = ({ spot }) => {
 
 
     return (
-        <div className='updateFormContainer'>
+        <div className='formContainer'>
             <h2>Update your Spot</h2>
             <form onSubmit={handleSubmit}>
                     <div className='locationParagraph'>
@@ -104,7 +104,8 @@ export const UpdateSpotModal = ({ spot }) => {
                         </div>
                         <div className='cityStateContainer'>
                             <ul className='cityContainer'>
-                            <span>City
+                            <span>
+                                City
                                 {errors.city && <span className='error sideError'>City is required</span>}
                             </span>
 
@@ -137,12 +138,12 @@ export const UpdateSpotModal = ({ spot }) => {
                         <div className='t'>
                             <span>Describe your place to guests</span>
                             <p>
-                            Mention the best features of your space, any special amentities like
-                            fast wifi or parking, and what you love about the neighborhood.
+                                Mention the best features of your space, any special amentities like
+                                fast wifi or parking, and what you love about the neighborhood.
                             </p>
                         </div>
                         <textarea
-                            className='updateDescriptionInput'
+                            className='descriptionInput'
                             type='textarea'
                             placeholder={`${spot.description}`}
                             value={description}
@@ -152,7 +153,7 @@ export const UpdateSpotModal = ({ spot }) => {
                     </div>
                     <div className='c titleContainer'>
                         <div className='t'>
-                            <span>Create a title for your spot</span>
+                            <span>Update your spot's title</span>
                             <p>
                                 Catch guests' attention with a spot title that highlights what makes your place special.
                             </p>
@@ -168,7 +169,7 @@ export const UpdateSpotModal = ({ spot }) => {
                     </div>
                     <div className='c priceContainer'>
                         <div className='t'>
-                            <span>Set a base price for your spot</span>
+                            <span>Update the base price for your spot</span>
                             <p>
                                 Competitive pricing can help your listing stand out and rank higher in search results.
                             </p>
@@ -185,7 +186,7 @@ export const UpdateSpotModal = ({ spot }) => {
                         </div>
                         {errors.price && <span className='error bottomError'>Price is required</span>}
                     </div>
-            <button className='updateButton'>Update your Spot</button>
+            <button className='spotButton'>Update Spot</button>
             </form>
         </div>
     )
