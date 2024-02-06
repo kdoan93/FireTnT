@@ -245,7 +245,6 @@ function CreateSpotModal() {
                         </div>
                         <div className="previewImg">
                             <input
-                                className="i"
                                 type='url'
                                 placeholder='Preview Image URL'
                                 value={previewImg}

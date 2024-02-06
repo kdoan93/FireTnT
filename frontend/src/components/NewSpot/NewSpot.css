@@ -6,8 +6,8 @@
 
 .previewImg input {
     /* border: 1px solid red; */
-    width: 100%;
-    margin: 5px;
+    width: 98.5%;
+    margin: 10px 0px;
 }
 
 .lowers {
@@ -18,6 +18,6 @@
 
 .lowers input {
     /* border: 1px solid blue; */
-    margin-left: 5px;
+    margin: 7px 0px;
     width: 47%;
 }
