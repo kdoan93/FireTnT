@@ -1,5 +1,5 @@
 #modal-content {
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: 10px;
     width: auto;
     display: flex;
@@ -20,12 +20,12 @@
 }
 
 .loginFormModal {
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 400px;
+    width: 350px;
 }
 
 h1 {
@@ -35,26 +35,21 @@ h1 {
 }
 
 .loginFormModal input {
-    border: 2px solid black;
+    border: 1px solid black;
     box-shadow: 1px 1px 1px black;
-    width: 92%;
-    height: 25px;
-    margin: 0px 10px;
+    width: 88%;
+    height: 30px;
+    margin: 10px 15px;
 }
 
 .logInButton {
     border: 2px solid black;
     background-color: #FF5A60;
     color: white;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    height: 40px;
-    left: 5%;
     width: 90%;
-    border-radius: 0px;
-    box-shadow: 3px 3px 1px black;
-    margin-bottom: 10px;
+    height: 45px;
+    box-shadow: 2px 2px 1px black;
+    margin: 15px 15px 25px;
 }
 
 .logInButton:disabled {
