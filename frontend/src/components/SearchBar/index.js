@@ -31,22 +31,22 @@ const SearchBar = ({ placeholder, data }) => {
     }
 
     return (
-        <div className='search-bar-container'>
-            <div className='search-bar-icon'>
+        <div className='searchbar-container'>
+            <div className='searchbar-icon'>
                 <i className='fa-solid fa-magnifying-glass'/>
             </div>
             <input
                 type='text'
                 value={wordEntered}
-                className='search-bar'
+                className='searchbar'
                 placeholder={placeholder}
                 onChange={handleResults}
             />
-            <div className='search-bar-icon'>
+            <div className='searchbar-clear'>
                 {wordEntered.length !== 0 && <i onClick={clearInput} id='search-clear-button' className='fa-solid fa-x'></i>}
             </div>
             {filteredData.length !== 0 &&
-                <div className='search-bar-results'>
+                <div className='searchbar-results'>
                     {filteredData.map((data) => {
                         let price = data.price
                         let templatePrice = []
@@ -55,13 +55,16 @@ const SearchBar = ({ placeholder, data }) => {
                         }
 
                         return (
-                            <div className='search-bar-results' onClick={() => toSpot(data.id)}>
-                                <div className='search-bar-result-img-container'>
-                                    <img className='search-bar-result-img' src={data.previewImage}></img>
+                            <div className='searchbar-result' onClick={() => toSpot(data.id)}>
+                                <div className='searchbar-results-img-container'>
+                                    <img className='searchbar-results-img' src={data.previewImage}></img>
                                 </div>
-                                <div className='search-bar-result-info-container'>
-                                    <div className='search-bar-result-name-address'>
-                                        {data.name} ({data.city}, {data.state})
+                                <div className='searchbar-result-texts'>
+                                    <div className='searchbar-results-name'>
+                                        {data.name}
+                                    </div>
+                                    <div className='searchbar-results-location'>
+                                        {data.city}, {data.state}
                                     </div>
                                 </div>
                             </div>
