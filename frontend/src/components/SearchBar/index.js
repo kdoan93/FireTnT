@@ -60,10 +60,10 @@ const SearchBar = ({ placeholder, data }) => {
                                     <img className='searchbar-results-img' src={data.previewImage}></img>
                                 </div>
                                 <div className='searchbar-result-texts'>
-                                    <div className='searchbar-results-name'>
+                                    <div className='searchbar-result-name'>
                                         {data.name}
                                     </div>
-                                    <div className='searchbar-results-location'>
+                                    <div className='searchbar-result-location'>
                                         {data.city}, {data.state}
                                     </div>
                                 </div>
