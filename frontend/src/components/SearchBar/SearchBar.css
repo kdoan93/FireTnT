@@ -94,17 +94,15 @@
 
 .searchbar-result-name{
     /* border: 1px solid red; */
-    /* overflow: hidden; */
-    /* display: block; */
-    text-overflow: ellipsis;
     white-space: nowrap;
     width: 100%;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 700;
 }
 
-.searchbar-result-location {
+.searchbar-result-lower {
     /* border: 1px solid red; */
+    white-space: nowrap;
     font-size: 15px;
 }
 

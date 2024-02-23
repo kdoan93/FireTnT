@@ -49,10 +49,6 @@ const SearchBar = ({ placeholder, data }) => {
                 <div className='searchbar-results'>
                     {filteredData.map((data) => {
                         let price = data.price
-                        let templatePrice = []
-                        for (let i = 0; i < price; i++) {
-                            templatePrice.push('$')
-                        }
 
                         return (
                             <div className='searchbar-result' onClick={() => toSpot(data.id)}>
@@ -63,8 +59,13 @@ const SearchBar = ({ placeholder, data }) => {
                                     <div className='searchbar-result-name'>
                                         {data.name}
                                     </div>
-                                    <div className='searchbar-result-location'>
-                                        {data.city}, {data.state}
+                                    <div className='searchbar-result-lower'>
+                                        <div className='searchbar-result-price'>
+                                            ${price}/night
+                                        </div>
+                                        <div className='searchbar-result-location'>
+                                            {data.city}, {data.state}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
