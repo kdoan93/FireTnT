@@ -7,14 +7,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 10px 80px;
 }
 
 .logo {
     /* border: 3px solid red; */
     height: 40px;
-    padding-left: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 15px 0px 25px;
 }
 
 button {
@@ -67,9 +66,9 @@ i {
     background-color: white;
     border-radius: 15px;
     position: absolute;
-    right: 1%;
+    right: 93px;
     width: 160px;
-    top: 50px;
+    top: 55px;
     padding: 10px;
 }
 
