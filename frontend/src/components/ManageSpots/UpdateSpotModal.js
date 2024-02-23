@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useModal } from "../../context/Modal";
-import { updateSpot } from "../../store/spots";
+import { thunkUpdateSpot } from "../../store/spots";
 import * as spotsActions from "../../store/spots";
-import './UpdateSpotModal.css'
+import './SpotModal.css'
 
 
 export const UpdateSpotModal = ({ spot }) => {
@@ -35,8 +35,8 @@ export const UpdateSpotModal = ({ spot }) => {
         setErrors({})
 
         try {
-            await dispatch(
-                updateSpot({
+            dispatch(
+                thunkUpdateSpot({
                     ...spot,
                     country,
                     address,
@@ -60,17 +60,17 @@ export const UpdateSpotModal = ({ spot }) => {
 
     useEffect(() => {
         dispatch(spotsActions.getSpot(spot.id))
-    }, [dispatch, spot])
+    }, [dispatch])
 
 
     return (
-        <div className='updateFormContainer'>
+        <div className='formContainer'>
             <h2>Update your Spot</h2>
             <form onSubmit={handleSubmit}>
                     <div className='locationParagraph'>
                         <div className='t'>
                             <span>Update your place's location?</span>
-                            <p>Guests will only get your exact address once they booked a reservation.</p>
+                            <p>Guests will only get your exact address once they have booked a reservation.</p>
                         </div>
                     </div>
                     <div className='c spotLocationContainer'>
@@ -104,7 +104,8 @@ export const UpdateSpotModal = ({ spot }) => {
                         </div>
                         <div className='cityStateContainer'>
                             <ul className='cityContainer'>
-                            <span>City
+                            <span>
+                                City
                                 {errors.city && <span className='error sideError'>City is required</span>}
                             </span>
 
@@ -137,13 +138,13 @@ export const UpdateSpotModal = ({ spot }) => {
                         <div className='t'>
                             <span>Describe your place to guests</span>
                             <p>
-                            Mention the best features of your space, any special amentities like
-                            fast wifi or parking, and what you love about the neighborhood.
+                                Mention the best features of your space, any special amentities like
+                                fast wifi or parking, and what you love about the neighborhood.
                             </p>
                         </div>
-                        <input
+                        <textarea
                             className='descriptionInput'
-                            type='text'
+                            type='textarea'
                             placeholder={`${spot.description}`}
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
@@ -152,7 +153,7 @@ export const UpdateSpotModal = ({ spot }) => {
                     </div>
                     <div className='c titleContainer'>
                         <div className='t'>
-                            <span>Create a title for your spot</span>
+                            <span>Update your spot's title</span>
                             <p>
                                 Catch guests' attention with a spot title that highlights what makes your place special.
                             </p>
@@ -168,7 +169,7 @@ export const UpdateSpotModal = ({ spot }) => {
                     </div>
                     <div className='c priceContainer'>
                         <div className='t'>
-                            <span>Set a base price for your spot</span>
+                            <span>Update the base price for your spot</span>
                             <p>
                                 Competitive pricing can help your listing stand out and rank higher in search results.
                             </p>
@@ -185,7 +186,7 @@ export const UpdateSpotModal = ({ spot }) => {
                         </div>
                         {errors.price && <span className='error bottomError'>Price is required</span>}
                     </div>
-            <button className='updateButton'>Update your Spot</button>
+            <button className='spotButton'>Update Spot</button>
             </form>
         </div>
     )

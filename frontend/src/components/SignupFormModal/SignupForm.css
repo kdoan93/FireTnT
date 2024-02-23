@@ -1,34 +1,33 @@
 .signupContainer {
     /* border: 2px solid red; */
+    width: 350px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
 }
 
-.signupContainer input {
-    border: 2px solid black;
-    box-shadow: 1px 1px 1px black;
-    width: 87%;
-    height: 25px;
+.signupContainer form {
+    /* border: 1px solid red; */
+    width: 100%;
 }
 
-form ul {
-    margin: 10px;
+.signupContainer input {
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+    width: 88%;
+    height: 30px;
+    margin: 10px 15px;
 }
 
 .signupButton {
     border: 2px solid black;
     background-color: #FF5A60;
     color: white;
-    position: relative;
-    left: 15px;
-    display: flex;
-    justify-content: center;
-    width: 84%;
+    width: 90%;
     height: 45px;
-    border-radius: 0px;
     box-shadow: 2px 2px 1px black;
-    margin-bottom: 15px;
+    margin: 15px 15px 25px;
 }
 
 .signupButton:disabled {

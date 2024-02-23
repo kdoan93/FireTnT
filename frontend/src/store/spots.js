@@ -4,19 +4,24 @@ import { csrfFetch } from "./csrf";
 const GET_ALL_SPOTS = 'spots/GET_ALL_SPOTS';
 const GET_SPOT = 'spots/GET_SPOT';
 const GET_USER_SPOTS = 'spots/GET_USER_SPOTS';
-const DELETE_SPOT = 'spots/DELETE_SPOT'
+const UPDATE_SPOT = "spots/UPDATE_SPOT";
+const DELETE_SPOT = 'spots/DELETE_SPOT';
 
 // POJO action creator
-const getAllSpots = spot => {
+const getAllSpots = (spot) => {
     return { type: GET_ALL_SPOTS, spot } };
 
-const getASpot = spot => {
+const getASpot = (spot) => {
     return { type: GET_SPOT, spot } };
 
-const getAllUserSpots = spot => {
+const getAllUserSpots = (spot) => {
     return { type: GET_USER_SPOTS, spot } }
 
-const deleteASpot = spotId => {
+const updateSpot = (spot) => {
+    return { type: UPDATE_SPOT, spot}
+}
+
+const deleteASpot = (spotId) => {
     return { type: DELETE_SPOT, spotId } }
 
 
@@ -81,7 +86,7 @@ export const deleteSpot = (spotId) => async dispatch => {
 };
 
 // THUNK to update spot
-export const updateSpot = spot => async dispatch => {
+export const thunkUpdateSpot = spot => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${spot.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -89,8 +94,11 @@ export const updateSpot = spot => async dispatch => {
     });
     if (response.ok) {
         const updatedSpot = await response.json();
-        dispatch(getASpot(updatedSpot))
+        dispatch(updateSpot(updatedSpot))
         return updatedSpot;
+    } else {
+        const errors = await response.json()
+        return errors;
     }
 }
 
@@ -121,6 +129,18 @@ const spotsReducer = (state = initialState, action) => {
                 newState.allSpots[spot.id] = spot
             })
             return newState;
+
+        case UPDATE_SPOT:
+            newState = {
+                ...state,
+                allSpots: {},
+                singleSpot: { ...state.singleSpot }
+            }
+            newState.singleSpot = {
+                ...newState.singleSpot,
+                ...action.post
+            }
+            return newState
 
         case DELETE_SPOT:
             // spreading state and making copy of allSpots and singleSpot

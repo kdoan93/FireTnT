@@ -5,6 +5,7 @@ import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import CreateSpotModal from "../NewSpot/NewSpotModal";
 import './Navigation.css'
 
 function ProfileButton({ user }) {
@@ -47,9 +48,12 @@ function ProfileButton({ user }) {
         <>
           <div className="leftNav">
             {user ? (
-              <NavLink className="createASpot" to='/spots/new'>
-                Create a New Spot
-              </NavLink>
+                // <NavLink className="createASpot" to='/spots/new'>
+                //   Create a New Spot
+                // </NavLink>
+                <div className="createASpot">
+                  <OpenModalMenuItem itemText='Create a Spot' modalComponent={<CreateSpotModal/>} />
+                </div>
             ) : (
               <></>
             )}
@@ -65,7 +69,7 @@ function ProfileButton({ user }) {
             {user ? (
               <div className='userDropdown'>
                 <div className="userMenu">
-                  <div className='dt'>Hello,   {user.firstName}</div>
+                  <div className='dt'>Hello,   {user.firstName}!</div>
                   <div className='dt'>{user.email}</div>
                 </div>
                   <NavLink className='dt manageSpots' to='/spots/current'>

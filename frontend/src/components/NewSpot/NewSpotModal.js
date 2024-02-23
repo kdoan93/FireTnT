@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { createSpotImage } from "../../store/spotsImages";
+import { useModal } from "../../context/Modal";
 import * as spotsActions from '../../store/spots'
-import { createSpotImage } from '../../store/spotsImages';
-import './NewSpot.css';
+import './NewSpot.css'
 
-function CreateNewSpot() {
+function CreateSpotModal() {
     const dispatch = useDispatch();
     const history = useHistory();
     const [country, setCountry] = useState('')
@@ -27,6 +28,8 @@ function CreateNewSpot() {
     const [correctImg2, setCorrectImg2] = useState(true)
     const [correctImg3, setCorrectImg3] = useState(true)
     const [correctImg4, setCorrectImg4] = useState(true)
+
+    const { closeModal } = useModal()
 
     function checkValue (e) {
         setPrice(decimalsOnly(e.target.value))
@@ -87,7 +90,7 @@ function CreateNewSpot() {
                 await dispatch(createSpotImage({ url: img3, preview: false }, newSpot.id ))
                 await dispatch(createSpotImage({ url: img4, preview: false }, newSpot.id ))
             }
-            history.push(`/spots/${newSpot.id}`)
+            closeModal()
         } catch (error) {
 
             if (error) {
@@ -111,41 +114,50 @@ function CreateNewSpot() {
     }
 
     return (
-        <div className='spotFormContainer'>
+        <div className='formContainer'>
             <h2>Create a new Spot</h2>
             <form onSubmit={handleSubmit}>
                     <div className='locationParagraph'>
                         <div className='t'>
                             <span>Where's your place located?</span>
-                            <p>Guests will only get your exact address once they booked a reservation.</p>
+                            <p>Guests will only get your exact address once they have booked a reservation.</p>
                         </div>
                     </div>
                     <div className='c spotLocationContainer'>
-                    <ul>
-                        <span>Country</span>
-                        {errors.country && <span className='error sideError'>Country is required</span>}
-                        <input
-                            className='i'
-                            type='text'
-                            placeholder='Country'
-                            value={country}
-                            onChange={(e) => setCountry(e.target.value)}
-                        />
-                    </ul>
-                    <ul>
-                        <span>Street Addrress</span>
-                        {errors.address && <span className='error sideError'>Address is required</span>}
-                        <input
-                            className='i'
-                            type='text'
-                            placeholder='Address'
-                            value={address}
-                            onChange={(e) => setAddress(e.target.value)}
-                        />
-                    </ul>
+                        <div className="spotLocationUpper">
+                            <ul>
+                                <span>Street Addrress</span>
+                                {errors.address && <span className='error sideError'>Address is required</span>}
+                                <ul>
+                                    <input
+                                        className='i'
+                                        type='text'
+                                        placeholder='Address'
+                                        value={address}
+                                        onChange={(e) => setAddress(e.target.value)}
+                                    />
+                                </ul>
+                            </ul>
+                            <ul>
+                                <span>Country</span>
+                                {errors.country && <span className='error sideError'>Country is required</span>}
+                                <ul>
+                                    <input
+                                        className='i'
+                                        type='text'
+                                        placeholder='Country'
+                                        value={country}
+                                        onChange={(e) => setCountry(e.target.value)}
+                                    />
+                                </ul>
+                            </ul>
+                        </div>
                         <div className='cityStateContainer'>
                             <ul className='cityContainer'>
-                            <span>City {errors.city && <span className='error sideError'>City is required</span>}</span>
+                            <span>
+                                City
+                                {errors.city && <span className='error sideError'>City is required</span>}
+                            </span>
 
                             <input
                                 className='cityInput'
@@ -165,7 +177,7 @@ function CreateNewSpot() {
                             <input
                                 className='stateInput'
                                 type='text'
-                                placeholder='STATE'
+                                placeholder='State'
                                 value={state}
                                 onChange={(e) => setState(e.target.value)}
                             />
@@ -176,8 +188,8 @@ function CreateNewSpot() {
                         <div className='t'>
                             <span>Describe your place to guests</span>
                             <p>
-                            Mention the best features of your space, any special amentities like
-                            fast wifi or parking, and what you love about the neighborhood.
+                                Mention the best features of your space, any special amentities like
+                                fast wifi or parking, and what you love about the neighborhood.
                             </p>
                         </div>
                         <textarea
@@ -186,8 +198,7 @@ function CreateNewSpot() {
                             placeholder='Please write at least 30 characters'
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                        >
-                        </textarea>
+                        />
                         {errors.description && <span className='error bottomError'>Description needs a minimum of 30 characters</span>}
                     </div>
                     <div className='c titleContainer'>
@@ -232,52 +243,53 @@ function CreateNewSpot() {
                                 Submit a link to at least one photo to publish your spot.
                             </p>
                         </div>
-                        <input
-                            className='i'
-                            type='url'
-                            placeholder='Preview Image URL'
-                            value={previewImg}
-                            onChange={e => setPreviewImg(e.target.value)}
-                        />
-                        {needPreviewImg && <span className='error'>Preview image is required.</span>}
-                        {previewImg && !needPreviewImg && <span className='error'>Image URL must end in .png, .jpg, .jpeg</span>}
-                        <input
-                            className='i'
-                            type='url'
-                            placeholder='Image URL'
-                            value={img1}
-                            onChange={e => setImg1(e.target.value)}
-                        />
-                        {!correctImg1 && <span className='error'>Image URL must end in .png, .jpg, .jpeg</span>}
-                        <input
-                            className='i'
-                            type='url'
-                            placeholder='Image URL'
-                            value={img2}
-                            onChange={e => setImg2(e.target.value)}
+                        <div className="previewImg">
+                            <input
+                                type='url'
+                                placeholder='Preview Image URL'
+                                value={previewImg}
+                                onChange={e => setPreviewImg(e.target.value)}
                             />
-                        {!correctImg2 && <span className='error'>Image URL must end in .png, .jpg, .jpeg</span>}
-                        <input
-                            className='i'
-                            type='url'
-                            placeholder='Image URL'
-                            value={img3}
-                            onChange={e => setImg3(e.target.value)}
+                            {needPreviewImg && <span className='error'>Preview image is required.</span>}
+                            {previewImg && !needPreviewImg && <span className='error'>Image URL must end in .png, .jpg, .jpeg</span>}
+                        </div>
+                        <div className="upperImgs lowers">
+                            <input
+                                type='url'
+                                placeholder='Image URL'
+                                value={img1}
+                                onChange={e => setImg1(e.target.value)}
                             />
-                        {!correctImg3 && <span className='error'>Image URL must end in .png, .jpg, .jpeg</span>}
-                        <input
-                            className='i'
-                            type='url'
-                            placeholder='Image URL'
-                            value={img4}
-                            onChange={e => setImg4(e.target.value)}
-                            />
-                        {!correctImg4 && <span className='error'>Image URL must end in .png, .jpg, .jpeg</span>}
+                            {!correctImg1 && <span className='error'>Image URL must end in .png, .jpg, .jpeg</span>}
+                            <input
+                                type='url'
+                                placeholder='Image URL'
+                                value={img2}
+                                onChange={e => setImg2(e.target.value)}
+                                />
+                            {!correctImg2 && <span className='error'>Image URL must end in .png, .jpg, .jpeg</span>}
+                        </div>
+                        <div className="lowerImgs lowers">
+                            <input
+                                type='url'
+                                placeholder='Image URL'
+                                value={img3}
+                                onChange={e => setImg3(e.target.value)}
+                                />
+                            {!correctImg3 && <span className='error'>Image URL must end in .png, .jpg, .jpeg</span>}
+                            <input
+                                type='url'
+                                placeholder='Image URL'
+                                value={img4}
+                                onChange={e => setImg4(e.target.value)}
+                                />
+                            {!correctImg4 && <span className='error'>Image URL must end in .png, .jpg, .jpeg</span>}
+                        </div>
                     </div>
-            <button>Create Spot</button>
+            <button className="spotButton">Create Spot</button>
             </form>
         </div>
     )
 }
 
-export default CreateNewSpot;
+export default CreateSpotModal;

@@ -7,9 +7,7 @@ import Navigation from "./components/Navigation";
 import SpotsBrowser from './components/SpotsLandingPage'
 import SingleSpot from "./components/SingleSpot";
 import SpotReviews from "./components/SpotReviews";
-import CreateNewSpot from "./components/NewSpot";
 import UserSpots from "./components/ManageSpots";
-import UpdateSpot from "./components/UpdateSpot/UpdateSpot";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,14 +30,8 @@ function App() {
           <Route exact path='/'>
             <SpotsBrowser />
           </Route>
-          <Route path='/spots/new'>
-            <CreateNewSpot />
-          </Route>
           <Route path='/spots/current'>
             <UserSpots />
-          </Route>
-          <Route path='/spots/:spotId/edit'>
-            <UpdateSpot />
           </Route>
           <Route path='/spots/:spotId'>
             <SingleSpot isLoaded={isLoaded} />

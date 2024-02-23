@@ -1,24 +1,19 @@
-.updateFormContainer {
+.formContainer {
     /* border: 1px solid red; */
-    max-width: 40%;
+    width: 90%;
     display: flex;
+    align-items: center;
     flex-direction: column;
-    position: relative;
-    left: 30%;
 }
 
 h2 {
     /* border: 1px solid blue; */
-    margin: 15px 0px 0px;
-}
-
-.updateFormContainer input {
-    margin: 0px;
+    margin: 15px 0px;
 }
 
 .t {
     /* border: 1px solid green; */
-    margin: 10px 0px;
+    margin: 5px 0px;
 }
 
 .t span {
@@ -32,21 +27,26 @@ h2 {
     font-size: 13px;
 }
 
-.spotLocationContainer span {
-    /* border: 1px solid red; */
-    font-size: 13px;
-    font-weight: 700;
-}
-
 .i {
     /* border: 1px solid red; */
-    max-width: 97%;
+    max-width: 97.5%;
 }
 
 .spotLocationContainer ul {
     /* border: 1px solid blue; */
     padding: 0px;
+    font-weight: 700;
     margin: 5px 0px;
+}
+
+.spotLocationUpper {
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+}
+
+.spotLocationUpper input {
+    width: 100%;
 }
 
 .cityContainer {
@@ -64,7 +64,7 @@ h2 {
 }
 
 .stateContainer {
-    width: 29.5%;
+    width: 31.5%;
 }
 
 .commaContainer {
@@ -78,19 +78,28 @@ h2 {
     margin-bottom: 0px;
 }
 
+.cityStateContainer span {
+    /* border: 1px solid red; */
+    margin-bottom: 5px;
+}
+
 .cityStateContainer ul {
     /* border: 1px solid green; */
     display: flex;
+    font-weight: 700;
     flex-direction: column;
 }
 
 .descriptionInput {
-    /* border: 2px solid red; */
-    max-width: 97%;
+    /* border: 2px solid black; */
+    font-family: sans-serif;
+    width: 96%;
     height: 100px;
-    max-height: auto;
-    display: block;
-    resize: both;
+    padding: 11px;
+    display: flex;
+    justify-content: flex-start;
+    text-wrap: wrap;
+    resize: vertical;
 }
 
 .dollarByInput {
@@ -106,25 +115,29 @@ h2 {
     width: 93%;
 }
 
+.titleContainer input  {
+    /* border: 1px solid red; */
+    width: 100%;
+}
+
 .c {
     border-bottom: 2px solid black;
     padding-bottom: 15px;
 }
 
-.updateButton {
+.spotButton {
     background-color: #FF5A60;
     border: 2px solid black;
     color: white;
     box-shadow: 3px 3px 1px black;
-    border-radius: 0px;
     width: 120px;
-    height: 24px;
-    margin: 20px 35%;
+    height: 40px;
+    margin: 20px 41%;
 }
 
-.photoContainer input {
+/* .photoContainer input {
     margin: 5px 0px;
-}
+} */
 
 .error {
     color: #FF5A60;

@@ -7,14 +7,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 10px 80px;
 }
 
 .logo {
     /* border: 3px solid red; */
     height: 40px;
-    padding-left: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 15px 0px 25px;
 }
 
 button {
@@ -23,7 +22,9 @@ button {
     border-radius: 20px;
     display: flex;
     align-items: center;
-    height: 30px;
+    justify-content: center;
+    height: 35px;
+    width: 60px;
     cursor: pointer;
 }
 
@@ -36,8 +37,11 @@ button {
 .createASpot {
     /* border: 1px solid red; */
     text-decoration: none;
+    font-weight: 700;
     margin: 5px 20px;
     color: #FF5A60;
+    cursor: pointer;
+    padding: 3px;
 }
 
 i {
@@ -57,50 +61,49 @@ i {
 }
 
 .profile-dropdown {
-    border: 1px solid black;
+    /* border: 2px solid black; */
+    box-shadow: 0px 0px 5px 1px gray;
     background-color: white;
+    border-radius: 15px;
     position: absolute;
-    /* right: 13px; */
-    right: 1%;
-    width: auto;
-    top: 45px;
-    padding: 0px;
+    right: 93px;
+    width: 160px;
+    top: 55px;
+    padding: 10px;
 }
 
 .userDropdown {
-    border: 1px solid black;
-    width: auto;
-    /* padding: 0px 10px; */
+    /* border: 1px solid black; */
+    width: 160px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .manageSpots {
-    border-bottom: 2px solid black;
-    width: 85%;
+    border-bottom: 1px solid black;
+    width: 160px;
     display: flex;
-    justify-content: start;
+    justify-content: center;
     text-decoration: none;
-    text-align: left;
-    padding-bottom: 5px;
+    padding: 10px 0px;
 }
 
 .dt {
     color: black;
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 16px;
 }
 
 .userMenu {
     /* border: 1px solid blue; */
-    border-bottom: 2px solid black;
-    padding-bottom: 5px;
+    border-bottom: 1px solid black;
     display: flex;
+    align-items: center;
     flex-direction: column;
     justify-content: center;
-    max-width: 95%;
-    margin: 0px 10px 5px 10px;
+    width: 160px;
+    margin: 0px 10px;
+    padding-bottom: 5px;
 }
 
 .profile-dropdown button {
@@ -108,31 +111,26 @@ i {
     background-color: gray;
     color: white;
     width: 70%;
-    margin: 5px;
+    margin-top: 10px;
     display: flex;
     justify-content: center;
 
 }
 
 .loginSignup {
-    cursor: pointer;
     /* border: 1px solid red; */
-    width: 100px;
+    cursor: pointer;
+    width: 100%;
 }
 
 .loginSignup div {
     /* border: 1px solid red; */
-    font-size: 12px;
-    font-weight: 700;
-    padding: 3px 10px;
+    font-size: 16px;
+    padding: 10px;
 }
 
 .userMenu div {
     /* border: 1px solid red; */
-    font-size: 12px;
-    font-weight: 700;
-    /* position: relative; */
-    /* right: 25%; */
-    padding-top: 3px;
-    padding-bottom: 3px;
+    font-size: 16px;
+    padding: 5px;
 }

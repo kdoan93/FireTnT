@@ -1,10 +1,18 @@
+/* .spotsBrowser {
+    border: 1px solid red;
+    width: 95%;
+    display: flex;
+    align-content: center;
+} */
+
 .innerSpotsBrowser {
     /* border: 1px solid black; */
-    margin-top: 20px;
+    margin: 30px 80px;
     display: flex;
     justify-content: center;
     align-content: stretch;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .spot {
@@ -15,7 +23,7 @@
     width: 22%;
     height: auto;
     object-fit: fill;
-    margin: 5px 20px;
+    /* margin: 5px 20px; */
     text-decoration: none;
     color: black;
 }
