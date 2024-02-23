@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router'
+import './SearchBar.css'
 
 const SearchBar = ({ placeholder, data }) => {
     const history = useHistory()
@@ -30,18 +31,18 @@ const SearchBar = ({ placeholder, data }) => {
     }
 
     return (
-        <div className='searchBar-container'>
-            <div className='searchBar-icon'>
+        <div className='search-bar-container'>
+            <div className='search-bar-icon'>
                 <i className='fa-solid fa-magnifying-glass'/>
             </div>
             <input
                 type='text'
                 value={wordEntered}
-                className='searchBar'
+                className='search-bar'
                 placeholder={placeholder}
                 onChange={handleResults}
             />
-            <div className='searchBar-icon'>
+            <div className='search-bar-icon'>
                 {wordEntered.length !== 0 && <i onClick={clearInput} id='search-clear-button' className='fa-solid fa-x'></i>}
             </div>
             {filteredData.length !== 0 &&
