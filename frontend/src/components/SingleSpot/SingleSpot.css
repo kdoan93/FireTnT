@@ -1,7 +1,7 @@
 .entireSpot {
     /* border: 1px solid red; */
     /* max-width: 1000px; */
-    margin-top: 20px;
+    margin: 20px 80px;
 }
 
 .nameLocation h2 {
@@ -44,7 +44,7 @@
     /* border: 1px solid red; */
     max-width: 80%;
     position: relative;
-    left: 25px;
+    /* left: 25px; */
 }
 
 .imagesContainer {
@@ -54,7 +54,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 25px;
+    /* margin: 25px; */
 }
 
 .bigImg {
@@ -124,10 +124,10 @@
 
 .spotDetails {
     border-bottom: 1px solid black;
-    width: 95%;
+    /* width: 95%; */
     height: 200px;
     position: relative;
-    left: 25px;
+    /* left: 25px; */
     display: flex;
 }
 
@@ -200,7 +200,7 @@
     /* border: 1px solid blue; */
     width: 15%;
     position: relative;
-    left: 25px;
+    /* left: 25px; */
     display: flex;
     justify-content: space-between;
     align-items: baseline;
