@@ -196,8 +196,10 @@
     width: 15%;
     position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: baseline;
+    gap: 10px;
+    margin-top: 20px;
 }
 
 .postButton {

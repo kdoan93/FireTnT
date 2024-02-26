@@ -120,13 +120,13 @@ const SingleSpot = () => {
                 </div>
             </div>
             <div className="starReviews">
-            <h3 className="reviewsRating">
-                <i className="fa-solid fa-star"></i>{!spot.avgStarRating ? <span>NEW</span> : spot.avgStarRating.toFixed(1)}
-            </h3>
-            {spot.numReviews ? <i className="fa-solid fa-circle"></i> : <p></p>}
-            <h3 className="reviewsNumReviews">
-                {spot.numReviews ? `${spot.numReviews} ${spot.numReviews > 1 ? 'reviews' : 'review'}` : <p></p>}
-            </h3>
+                <h3 className="reviewsRating">
+                    <i className="fa-solid fa-star"></i>{!spot.avgStarRating ? <span>NEW</span> : spot.avgStarRating.toFixed(1)}
+                </h3>
+                {spot.numReviews ? <i className="fa-solid fa-circle"></i> : <p></p>}
+                <h3 className="reviewsNumReviews">
+                    {spot.numReviews ? `${spot.numReviews} ${spot.numReviews > 1 ? 'reviews' : 'review'}` : <p></p>}
+                </h3>
             </div>
             {sessionUserId && spotOwnerId !== sessionUserId && !reviewed ?
                 <button className="postButton">
