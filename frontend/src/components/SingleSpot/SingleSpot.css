@@ -1,6 +1,5 @@
 .entireSpot {
     /* border: 1px solid red; */
-    /* max-width: 1000px; */
     margin: 20px 80px;
 }
 
@@ -28,8 +27,6 @@
 
 .thumbs {
     border: 1px solid red;
-    /* margin: 20px; */
-    /* flex-direction: column; */
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
@@ -44,17 +41,14 @@
     /* border: 1px solid red; */
     max-width: 80%;
     position: relative;
-    /* left: 25px; */
 }
 
 .imagesContainer {
     /* border: 1px solid blue; */
-    /* max-width: 1000px; */
     max-height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* margin: 25px; */
 }
 
 .bigImg {
@@ -82,7 +76,6 @@
     max-width: 48%;
     max-height: 48%;
     object-fit: fill;
-    /* margin: 1px 0px 3px 5px; */
     margin: 2px 4px;
     flex-wrap: wrap;
 }
@@ -94,7 +87,6 @@
         width: 47%;
         height: 47%;
         object-fit: fill;
-        /* margin: 1px 0px 3px 5px; */
         margin: 2px 4px;
         flex-wrap: wrap;
     }
@@ -115,7 +107,6 @@
         width: 40%;
         height: 40%;
         object-fit: fill;
-        /* margin: 1px 0px 3px 5px; */
         margin: 2px 4px;
         flex-wrap: wrap;
     }
@@ -127,7 +118,6 @@
     /* width: 95%; */
     height: 200px;
     position: relative;
-    /* left: 25px; */
     display: flex;
 }
 
@@ -143,7 +133,6 @@
     height: 100px;
     margin-top: 20px;
     border-radius: 10px;
-    /* display: flex; */
 }
 
 .topInfo {
@@ -159,8 +148,6 @@
     /* border: 1px solid black; */
     width: 50%;
     height: 90%;
-    /* position: relative; */
-    /* bottom: 10px; */
     display: flex;
     align-items: baseline;
 }
@@ -200,7 +187,6 @@
     /* border: 1px solid blue; */
     width: 15%;
     position: relative;
-    /* left: 25px; */
     display: flex;
     justify-content: space-between;
     align-items: baseline;
