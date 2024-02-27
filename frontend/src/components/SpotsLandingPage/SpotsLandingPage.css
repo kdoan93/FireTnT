@@ -97,11 +97,11 @@
     font-weight: 700;
     align-items: center;
     justify-content: center;
+    margin: 0px 80px 20px;
 }
 
 .about-links-container div {
-    margin-top: 20px;
-
+    margin-top: 30px;
 }
 
 .about-links-container a {
