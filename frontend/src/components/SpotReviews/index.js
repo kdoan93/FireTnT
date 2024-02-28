@@ -38,8 +38,10 @@ const SpotReviews = () => {
             {!spotReviews.length && sessionUser ? <h2>Be the first to post a review!</h2> : <></>}
             {!spotReviews.length ? <></> : spotReviews.map(review => (
                 <div key={`${review.id}`} className="review">
-                    <span className="name">{review.User.firstName}</span>
-                    <span className="date">{lowBudgetDateConverter(review.createdAt)}</span>
+                    <div className="nameDateContainer">
+                        <span className="name">{review.User.firstName}</span>
+                        <span className="date">{lowBudgetDateConverter(review.createdAt)}</span>
+                    </div>
                     <div className="reviewBody">{review.review}</div>
                 {review.User.id === sessionUser.id ?
                     <button className="deleteReviewButton">
