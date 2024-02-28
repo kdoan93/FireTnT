@@ -1,5 +1,5 @@
 .reviewModal {
-    border: 5px solid black;
+    border: 1px solid black;
     border-radius: 9px;
     display: flex;
     flex-direction: column;
@@ -7,16 +7,22 @@
 
 .reviewTitle {
     text-align: center;
-    margin: 15px;
+    margin: 20px 20px 0px;
 }
 
 .reviewInput {
     border: 2px solid black;
-    width: 90%;
-    margin-left: 15px;
+    width: 100%;
     height: 100px;
     box-sizing: border-box;
     font-family: sans-serif;
+}
+
+.reviewModal form {
+    /* border: 1px solid red; */
+    padding: 20px;
+    display: flex;
+    align-items: center;
 }
 
 .reviewErrorsText {
@@ -44,6 +50,7 @@
 .starRatingContainer div {
     /* border: 1px solid blue; */
     font-size: 20px;
+    padding-top: 10px;
 }
 
 .starsText {
@@ -55,7 +62,7 @@
     border-radius: 0px;
     background-color: #FF5A60;
     color: white;
-    width: 90%;
+    width: 100%;
     height: 45px;
     display: flex;
     justify-content: center;
