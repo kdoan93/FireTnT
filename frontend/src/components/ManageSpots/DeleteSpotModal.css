@@ -1,5 +1,5 @@
 .deleteModal {
-    border: 5px solid black;
+    border: 1px solid black;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -13,12 +13,14 @@
 .deleteButtons {
     /* border: 1px solid blue; */
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 20px;
 }
 
 .deleteButtons button {
     /* border: 1px solid green; */
     margin: 7px 10px;
+    width: 40%;
     align-items: center;
     text-align: center;
     display: flex;
@@ -46,4 +48,5 @@
 .deleteParagraph {
     /* border: 1px solid red; */
     text-align: center;
+    padding: 10px 20px;
 }
