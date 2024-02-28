@@ -208,9 +208,10 @@
     height: auto;
     background-color: gray;
     color: white;
-    padding: 3px;
-    margin: 0px 25px;
+    padding: 10px 0px;
     text-decoration: none;
     text-align: center;
     box-shadow: 3px 3px 1px black;
+    font-size: 14px;
+    width: 130px;
 }
