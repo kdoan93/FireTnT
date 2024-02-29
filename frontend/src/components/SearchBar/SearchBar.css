@@ -107,5 +107,6 @@
 }
 
 #search-clear-button{
+    /* border: 1px solid red; */
     cursor: pointer;
 }

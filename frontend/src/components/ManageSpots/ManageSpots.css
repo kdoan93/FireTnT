@@ -47,10 +47,10 @@
     border: 2px solid black;
     border-radius: 0px;
     height: auto;
-    width: 25%;
+    width: 50%;
     background-color: gray;
     color: white;
-    padding: 3px;
+    padding: 7px;
     text-decoration: none;
     text-align: center;
     cursor: pointer;
