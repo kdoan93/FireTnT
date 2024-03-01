@@ -52,50 +52,63 @@ function CreateSpotModal() {
         const imgErrorsObj = { previewImgError: 'Preview image is required' }
         // if no previewImg, set useState for imgErrors and return
 
-        try {
+        // try {
 
-            const newSpot = await dispatch(
-                spotsActions.createSpot({ country, address, city, state, description, name, price })
-            )
-            if (!previewImg) return;
+            if (!previewImg) setNeedPreviewImg(true);
+
             if (previewImg) {
                 previewImg.endsWith('jpg') ? setNeedPreviewImg(false) : setNeedPreviewImg(true) ||
                 previewImg.endsWith('jpeg') ? setNeedPreviewImg(false) : setNeedPreviewImg(true) ||
                 previewImg.endsWith('png') ? setNeedPreviewImg(false) : setNeedPreviewImg(true)
             }
+
             if (img1) { (
                     img1.endsWith('jpg') ? setCorrectImg1(true) : setCorrectImg1(false) ||
                     img1.endsWith('jpeg') ? setCorrectImg1(true) : setCorrectImg1(false) ||
                     img1.endsWith('png') ? setCorrectImg1(true) : setCorrectImg1(false)
             ) }
+
             if (img2) { (
                     img2.endsWith('jpg') ? setCorrectImg2(true) : setCorrectImg2(false) ||
                     img2.endsWith('jpeg') ? setCorrectImg2(true) : setCorrectImg2(false) ||
                     img2.endsWith('png') ? setCorrectImg2(true) : setCorrectImg2(false)
             ) }
+
             if (img3) { (
                     img3.endsWith('jpg') ? setCorrectImg3(true) : setCorrectImg3(false) ||
                     img3.endsWith('jpeg') ? setCorrectImg3(true) : setCorrectImg3(false) ||
                     img3.endsWith('png') ? setCorrectImg3(true) : setCorrectImg3(false)
             ) }
+
             if (img4) { (
                     img4.endsWith('jpg') ? setCorrectImg4(true) : setCorrectImg4(false) ||
                     img4.endsWith('jpeg') ? setCorrectImg4(true) : setCorrectImg4(false) ||
                     img4.endsWith('png') ? setCorrectImg4(true) : setCorrectImg4(false)
             ) }
-            if (newSpot.id) {
+
+            let newSpot = null
+
+            if (!needPreviewImg || !correctImg1 || !correctImg2 || !correctImg3 || !correctImg4) {
+                newSpot = await dispatch(
+                    spotsActions.createSpot({ country, address, city, state, description, name, price })
+                )
+            }
+
+            if (newSpot) {
                 await dispatch(createSpotImage({ url: previewImg, preview: true }, newSpot.id ))
                 await dispatch(createSpotImage({ url: img1, preview: false }, newSpot.id ))
                 await dispatch(createSpotImage({ url: img2, preview: false }, newSpot.id ))
                 await dispatch(createSpotImage({ url: img3, preview: false }, newSpot.id ))
                 await dispatch(createSpotImage({ url: img4, preview: false }, newSpot.id ))
             }
-            closeModal()
-        } catch (error) {
 
-            if (error) {
-                const data = await error.json()
-                setErrors(data.errors)
+            closeModal()
+
+        // } catch (errors) {
+
+            if (errors) {
+                // const data = await errors.json()
+                setErrors(errors)
 
                 if (!previewImg) {
                     setNeedPreviewImg(true)
@@ -108,9 +121,10 @@ function CreateSpotModal() {
                     setCorrectImg1(false)
                 } if (img4 && !correctImg4) {
                     setCorrectImg4(false)
-                } else return imgErrors, data, correctImg1, correctImg2, correctImg3, correctImg4
+                // } else return imgErrors, data, correctImg1, correctImg2, correctImg3, correctImg4
+                } else return imgErrors, correctImg1, correctImg2, correctImg3, correctImg4
             }
-        }
+        // }
     }
 
     return (
