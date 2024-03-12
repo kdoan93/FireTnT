@@ -50,81 +50,76 @@ function CreateSpotModal() {
         setCorrectImg3(true)
         setCorrectImg4(true)
         const imgErrorsObj = { previewImgError: 'Preview image is required' }
-        // if no previewImg, set useState for imgErrors and return
 
-        // try {
+        if (!previewImg) setNeedPreviewImg(true);
 
-            if (!previewImg) setNeedPreviewImg(true);
+        if (previewImg) {
+            previewImg.includes('.jpg') ? setNeedPreviewImg(false) : setNeedPreviewImg(true) ||
+            previewImg.includes('.jpeg') ? setNeedPreviewImg(false) : setNeedPreviewImg(true) ||
+            previewImg.includes('.png') ? setNeedPreviewImg(false) : setNeedPreviewImg(true)
+            setNeedPreviewImg(false)
+        }
 
-            if (previewImg) {
-                previewImg.endsWith('jpg') ? setNeedPreviewImg(false) : setNeedPreviewImg(true) ||
-                previewImg.endsWith('jpeg') ? setNeedPreviewImg(false) : setNeedPreviewImg(true) ||
-                previewImg.endsWith('png') ? setNeedPreviewImg(false) : setNeedPreviewImg(true)
-            }
+        if (img1) { (
+                img1.includes('.jpg') ? setCorrectImg1(true) : setCorrectImg1(false) ||
+                img1.includes('.jpeg') ? setCorrectImg1(true) : setCorrectImg1(false) ||
+                img1.includes('.png') ? setCorrectImg1(true) : setCorrectImg1(false)
+        ) }
 
-            if (img1) { (
-                    img1.endsWith('jpg') ? setCorrectImg1(true) : setCorrectImg1(false) ||
-                    img1.endsWith('jpeg') ? setCorrectImg1(true) : setCorrectImg1(false) ||
-                    img1.endsWith('png') ? setCorrectImg1(true) : setCorrectImg1(false)
-            ) }
+        if (img2) { (
+                img2.includes('.jpg') ? setCorrectImg2(true) : setCorrectImg2(false) ||
+                img2.includes('.jpeg') ? setCorrectImg2(true) : setCorrectImg2(false) ||
+                img2.includes('.png') ? setCorrectImg2(true) : setCorrectImg2(false)
+        ) }
 
-            if (img2) { (
-                    img2.endsWith('jpg') ? setCorrectImg2(true) : setCorrectImg2(false) ||
-                    img2.endsWith('jpeg') ? setCorrectImg2(true) : setCorrectImg2(false) ||
-                    img2.endsWith('png') ? setCorrectImg2(true) : setCorrectImg2(false)
-            ) }
+        if (img3) { (
+                img3.includes('.jpg') ? setCorrectImg3(true) : setCorrectImg3(false) ||
+                img3.includes('.jpeg') ? setCorrectImg3(true) : setCorrectImg3(false) ||
+                img3.includes('.png') ? setCorrectImg3(true) : setCorrectImg3(false)
+        ) }
 
-            if (img3) { (
-                    img3.endsWith('jpg') ? setCorrectImg3(true) : setCorrectImg3(false) ||
-                    img3.endsWith('jpeg') ? setCorrectImg3(true) : setCorrectImg3(false) ||
-                    img3.endsWith('png') ? setCorrectImg3(true) : setCorrectImg3(false)
-            ) }
+        if (img4) { (
+                img4.includes('.jpg') ? setCorrectImg4(true) : setCorrectImg4(false) ||
+                img4.includes('.jpeg') ? setCorrectImg4(true) : setCorrectImg4(false) ||
+                img4.includes('.png') ? setCorrectImg4(true) : setCorrectImg4(false)
+        ) }
 
-            if (img4) { (
-                    img4.endsWith('jpg') ? setCorrectImg4(true) : setCorrectImg4(false) ||
-                    img4.endsWith('jpeg') ? setCorrectImg4(true) : setCorrectImg4(false) ||
-                    img4.endsWith('png') ? setCorrectImg4(true) : setCorrectImg4(false)
-            ) }
+        let newSpot = null
 
-            let newSpot = null
+        console.log(needPreviewImg)
 
-            if (!needPreviewImg || !correctImg1 || !correctImg2 || !correctImg3 || !correctImg4) {
-                newSpot = await dispatch(
-                    spotsActions.createSpot({ country, address, city, state, description, name, price })
-                )
-            }
-
-            if (newSpot) {
-                await dispatch(createSpotImage({ url: previewImg, preview: true }, newSpot.id ))
-                await dispatch(createSpotImage({ url: img1, preview: false }, newSpot.id ))
-                await dispatch(createSpotImage({ url: img2, preview: false }, newSpot.id ))
-                await dispatch(createSpotImage({ url: img3, preview: false }, newSpot.id ))
-                await dispatch(createSpotImage({ url: img4, preview: false }, newSpot.id ))
-            }
+        if (!needPreviewImg) {
+            newSpot = await dispatch(
+                spotsActions.createSpot({ country, address, city, state, description, name, price })
+            )
 
             closeModal()
+        }
 
-        // } catch (errors) {
+        if (newSpot && !needPreviewImg) {
+            await dispatch(createSpotImage({ url: previewImg, preview: true }, newSpot.id ))
+            await dispatch(createSpotImage({ url: img1, preview: false }, newSpot.id ))
+            await dispatch(createSpotImage({ url: img2, preview: false }, newSpot.id ))
+            await dispatch(createSpotImage({ url: img3, preview: false }, newSpot.id ))
+            await dispatch(createSpotImage({ url: img4, preview: false }, newSpot.id ))
+        }
 
-            if (errors) {
-                // const data = await errors.json()
-                setErrors(errors)
+        if (errors) {
+            setErrors(errors)
 
-                if (!previewImg) {
-                    setNeedPreviewImg(true)
-                    setImgErrors(true)
-                } if (img1 && correctImg1) {
-                    setCorrectImg1(false)
-                } if (img2 && !correctImg2) {
-                    setCorrectImg2(false)
-                } if (img3 && !correctImg3) {
-                    setCorrectImg1(false)
-                } if (img4 && !correctImg4) {
-                    setCorrectImg4(false)
-                // } else return imgErrors, data, correctImg1, correctImg2, correctImg3, correctImg4
-                } else return imgErrors, correctImg1, correctImg2, correctImg3, correctImg4
-            }
-        // }
+            if (!previewImg) {
+                setNeedPreviewImg(true)
+                setImgErrors(true)
+            } if (img1 && correctImg1) {
+                setCorrectImg1(false)
+            } if (img2 && !correctImg2) {
+                setCorrectImg2(false)
+            } if (img3 && !correctImg3) {
+                setCorrectImg1(false)
+            } if (img4 && !correctImg4) {
+                setCorrectImg4(false)
+            } else return imgErrors, correctImg1, correctImg2, correctImg3, correctImg4
+        }
     }
 
     return (
@@ -265,7 +260,7 @@ function CreateSpotModal() {
                                 onChange={e => setPreviewImg(e.target.value)}
                             />
                             {needPreviewImg && <span className='error'>Preview image is required.</span>}
-                            {previewImg && !needPreviewImg && <span className='error'>Image URL must end in .png, .jpg, .jpeg</span>}
+                            {previewImg && !needPreviewImg && <span className='error'>Preview image URL must end in .png, .jpg, .jpeg</span>}
                         </div>
                         <div className="upperImgs lowers">
                             <input
@@ -274,14 +269,14 @@ function CreateSpotModal() {
                                 value={img1}
                                 onChange={e => setImg1(e.target.value)}
                             />
-                            {!correctImg1 && <span className='error'>Image URL must end in .png, .jpg, .jpeg</span>}
+                            {!correctImg1 && <span className='error'>Image 1 URL must end in .png, .jpg, .jpeg</span>}
                             <input
                                 type='url'
                                 placeholder='Image URL'
                                 value={img2}
                                 onChange={e => setImg2(e.target.value)}
                                 />
-                            {!correctImg2 && <span className='error'>Image URL must end in .png, .jpg, .jpeg</span>}
+                            {!correctImg2 && <span className='error'>Image 2 URL must end in .png, .jpg, .jpeg</span>}
                         </div>
                         <div className="lowerImgs lowers">
                             <input
@@ -290,14 +285,14 @@ function CreateSpotModal() {
                                 value={img3}
                                 onChange={e => setImg3(e.target.value)}
                                 />
-                            {!correctImg3 && <span className='error'>Image URL must end in .png, .jpg, .jpeg</span>}
+                            {!correctImg3 && <span className='error'>Image 3 URL must end in .png, .jpg, .jpeg</span>}
                             <input
                                 type='url'
                                 placeholder='Image URL'
                                 value={img4}
                                 onChange={e => setImg4(e.target.value)}
                                 />
-                            {!correctImg4 && <span className='error'>Image URL must end in .png, .jpg, .jpeg</span>}
+                            {!correctImg4 && <span className='error'>Image 4 URL must end in .png, .jpg, .jpeg</span>}
                         </div>
                     </div>
             <button className="spotButton">Create Spot</button>
