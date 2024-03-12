@@ -23,11 +23,12 @@ function CreateSpotModal() {
     const [errors, setErrors] = useState({})
     const [imgErrors, setImgErrors] = useState(false)
     const [previewImg, setPreviewImg] = useState('')
-    const [needPreviewImg, setNeedPreviewImg] = useState(false)
+    const [correctPreviewImg, setCorrectPreviewImg] = useState(false)
     const [correctImg1, setCorrectImg1] = useState(true)
     const [correctImg2, setCorrectImg2] = useState(true)
     const [correctImg3, setCorrectImg3] = useState(true)
     const [correctImg4, setCorrectImg4] = useState(true)
+    const [submitted, setSubmitted] = useState(false)
 
     const { closeModal } = useModal()
 
@@ -44,20 +45,19 @@ function CreateSpotModal() {
         e.preventDefault();
         setErrors({})
         setImgErrors({})
-        setNeedPreviewImg(false)
+        setCorrectPreviewImg(false)
         setCorrectImg1(true)
         setCorrectImg2(true)
         setCorrectImg3(true)
         setCorrectImg4(true)
-        const imgErrorsObj = { previewImgError: 'Preview image is required' }
+        setSubmitted(true)
 
-        if (!previewImg) setNeedPreviewImg(true);
+        if (!previewImg) setCorrectPreviewImg(false);
 
         if (previewImg) {
-            previewImg.includes('.jpg') ? setNeedPreviewImg(false) : setNeedPreviewImg(true) ||
-            previewImg.includes('.jpeg') ? setNeedPreviewImg(false) : setNeedPreviewImg(true) ||
-            previewImg.includes('.png') ? setNeedPreviewImg(false) : setNeedPreviewImg(true)
-            setNeedPreviewImg(false)
+            previewImg.includes('.jpg') ? setCorrectPreviewImg(true) : setCorrectPreviewImg(false) ||
+            previewImg.includes('.jpeg') ? setCorrectPreviewImg(true) : setCorrectPreviewImg(false) ||
+            previewImg.includes('.png') ? setCorrectPreviewImg(true) : setCorrectPreviewImg(false)
         }
 
         if (img1) { (
@@ -86,17 +86,20 @@ function CreateSpotModal() {
 
         let newSpot = null
 
-        console.log(needPreviewImg)
+        console.log("correctPreviewImg: ", correctPreviewImg)
 
-        if (!needPreviewImg) {
+        if (correctPreviewImg) {
             newSpot = await dispatch(
                 spotsActions.createSpot({ country, address, city, state, description, name, price })
             )
+            setCorrectPreviewImg(false)
+            setSubmitted(false)
 
             closeModal()
         }
 
-        if (newSpot && !needPreviewImg) {
+        if (newSpot && correctPreviewImg) {
+            console.log("Image if statement")
             await dispatch(createSpotImage({ url: previewImg, preview: true }, newSpot.id ))
             await dispatch(createSpotImage({ url: img1, preview: false }, newSpot.id ))
             await dispatch(createSpotImage({ url: img2, preview: false }, newSpot.id ))
@@ -106,9 +109,10 @@ function CreateSpotModal() {
 
         if (errors) {
             setErrors(errors)
+            setSubmitted(true)
 
             if (!previewImg) {
-                setNeedPreviewImg(true)
+                setCorrectPreviewImg(false)
                 setImgErrors(true)
             } if (img1 && correctImg1) {
                 setCorrectImg1(false)
@@ -259,8 +263,8 @@ function CreateSpotModal() {
                                 value={previewImg}
                                 onChange={e => setPreviewImg(e.target.value)}
                             />
-                            {needPreviewImg && <span className='error'>Preview image is required.</span>}
-                            {previewImg && !needPreviewImg && <span className='error'>Preview image URL must end in .png, .jpg, .jpeg</span>}
+                            {submitted && !previewImg && <span className='error'>Preview image is required.</span>}
+                            {submitted && previewImg && !correctPreviewImg && <span className='error'>Preview image URL must end in .png, .jpg, .jpeg</span>}
                         </div>
                         <div className="upperImgs lowers">
                             <input
