@@ -62,33 +62,33 @@ function CreateSpotModal() {
         if (!price) errors.price = 1
 
         if (previewImg) {
-            previewImg.includes('.jpg') ? setCorrectPreviewImg(true) : setCorrectPreviewImg(false) ||
-            previewImg.includes('.jpeg') ? setCorrectPreviewImg(true) : setCorrectPreviewImg(false) ||
-            previewImg.includes('.png') ? setCorrectPreviewImg(true) : setCorrectPreviewImg(false)
+            previewImg.includes('jpg') ? setCorrectPreviewImg(true) : setCorrectPreviewImg(false) ||
+            previewImg.includes('jpeg') ? setCorrectPreviewImg(true) : setCorrectPreviewImg(false) ||
+            previewImg.includes('png') ? setCorrectPreviewImg(true) : setCorrectPreviewImg(false)
         }
 
         if (img1) { (
-                img1.includes('.jpg') ? setCorrectImg1(true) : setCorrectImg1(false) ||
-                img1.includes('.jpeg') ? setCorrectImg1(true) : setCorrectImg1(false) ||
-                img1.includes('.png') ? setCorrectImg1(true) : setCorrectImg1(false)
+                img1.includes('jpg') ? setCorrectImg1(true) : setCorrectImg1(false) ||
+                img1.includes('jpeg') ? setCorrectImg1(true) : setCorrectImg1(false) ||
+                img1.includes('png') ? setCorrectImg1(true) : setCorrectImg1(false)
         ) }
 
         if (img2) { (
-                img2.includes('.jpg') ? setCorrectImg2(true) : setCorrectImg2(false) ||
-                img2.includes('.jpeg') ? setCorrectImg2(true) : setCorrectImg2(false) ||
-                img2.includes('.png') ? setCorrectImg2(true) : setCorrectImg2(false)
+                img2.includes('jpg') ? setCorrectImg2(true) : setCorrectImg2(false) ||
+                img2.includes('jpeg') ? setCorrectImg2(true) : setCorrectImg2(false) ||
+                img2.includes('png') ? setCorrectImg2(true) : setCorrectImg2(false)
         ) }
 
         if (img3) { (
-                img3.includes('.jpg') ? setCorrectImg3(true) : setCorrectImg3(false) ||
-                img3.includes('.jpeg') ? setCorrectImg3(true) : setCorrectImg3(false) ||
-                img3.includes('.png') ? setCorrectImg3(true) : setCorrectImg3(false)
+                img3.includes('jpg') ? setCorrectImg3(true) : setCorrectImg3(false) ||
+                img3.includes('jpeg') ? setCorrectImg3(true) : setCorrectImg3(false) ||
+                img3.includes('png') ? setCorrectImg3(true) : setCorrectImg3(false)
         ) }
 
         if (img4) { (
-                img4.includes('.jpg') ? setCorrectImg4(true) : setCorrectImg4(false) ||
-                img4.includes('.jpeg') ? setCorrectImg4(true) : setCorrectImg4(false) ||
-                img4.includes('.png') ? setCorrectImg4(true) : setCorrectImg4(false)
+                img4.includes('jpg') ? setCorrectImg4(true) : setCorrectImg4(false) ||
+                img4.includes('jpeg') ? setCorrectImg4(true) : setCorrectImg4(false) ||
+                img4.includes('png') ? setCorrectImg4(true) : setCorrectImg4(false)
         ) }
 
         let newSpot = null
@@ -271,7 +271,7 @@ function CreateSpotModal() {
                                 onChange={e => setPreviewImg(e.target.value)}
                             />
                             {submitted && !previewImg && <span className='error'>Preview image is required.</span>}
-                            {submitted && previewImg && !correctPreviewImg && <span className='error'>Preview image URL must end in .png, .jpg, .jpeg</span>}
+                            {submitted && previewImg && !correctPreviewImg && <span className='error'>Preview image URL must contain: .jpeg, .jpg, or .png</span>}
                         </div>
                         <div className="upperImgs lowers">
                             <input
@@ -280,14 +280,14 @@ function CreateSpotModal() {
                                 value={img1}
                                 onChange={e => setImg1(e.target.value)}
                             />
-                            {!correctImg1 && <span className='error'>Image 1 URL must end in .png, .jpg, .jpeg</span>}
+                            {!correctImg1 && <span className='error'>Image 1 URL must contain: .jpeg, .jpg, or .png</span>}
                             <input
                                 type='url'
                                 placeholder='Image URL'
                                 value={img2}
                                 onChange={e => setImg2(e.target.value)}
                                 />
-                            {!correctImg2 && <span className='error'>Image 2 URL must end in .png, .jpg, .jpeg</span>}
+                            {!correctImg2 && <span className='error'>Image 2 URL must contain: .jpeg, .jpg, or .png</span>}
                         </div>
                         <div className="lowerImgs lowers">
                             <input
@@ -296,14 +296,14 @@ function CreateSpotModal() {
                                 value={img3}
                                 onChange={e => setImg3(e.target.value)}
                                 />
-                            {!correctImg3 && <span className='error'>Image 3 URL must end in .png, .jpg, .jpeg</span>}
+                            {!correctImg3 && <span className='error'>Image 3 URL must contain: .jpeg, .jpg, or .png</span>}
                             <input
                                 type='url'
                                 placeholder='Image URL'
                                 value={img4}
                                 onChange={e => setImg4(e.target.value)}
                                 />
-                            {!correctImg4 && <span className='error'>Image 4 URL must end in .png, .jpg, .jpeg</span>}
+                            {!correctImg4 && <span className='error'>Image 4 URL must contain: .jpeg, .jpg, or .png</span>}
                         </div>
                     </div>
             <button className="spotButton">Create Spot</button>
