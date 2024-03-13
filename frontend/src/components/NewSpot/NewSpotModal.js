@@ -53,6 +53,13 @@ function CreateSpotModal() {
         setSubmitted(true)
 
         if (!previewImg) setCorrectPreviewImg(false);
+        if (!country) errors.country = 1
+        if (!address) errors.address = 1
+        if (!city) errors.city = 1
+        if (!state) errors.state = 1
+        if (!description) errors.description = 1
+        if (!name) errors.name = 1
+        if (!price) errors.price = 1
 
         if (previewImg) {
             previewImg.includes('.jpg') ? setCorrectPreviewImg(true) : setCorrectPreviewImg(false) ||
