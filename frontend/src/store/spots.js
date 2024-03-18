@@ -130,7 +130,7 @@ const spotsReducer = (state = initialState, action) => {
             return newState;
 
         case GET_SPOT:
-            newState = { ...state, singleSpot: {} }
+            newState = { ...state, singleSpot: { SpotImages: [] } }
             newState.singleSpot = action.spot;
             return newState;
 
@@ -164,7 +164,7 @@ const spotsReducer = (state = initialState, action) => {
 
         case DELETE_SPOT:
             // spreading state and making copy of allSpots and singleSpot
-            newState = { ...state, allSpots: { ...state.allSpots }, singleSpot: {} }
+            newState = { ...state, allSpots: { ...state.allSpots }, singleSpot: { SpotImages: [] } }
             // delete wanted action.spotId within newState.allSpots object
             delete newState.allSpots[action.spotId]
             // return the rest of the remaining newState.allSpots object

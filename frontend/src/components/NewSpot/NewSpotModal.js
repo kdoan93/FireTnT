@@ -93,25 +93,21 @@ function CreateSpotModal() {
 
         let newSpot = null
 
-        console.log("correctPreviewImg: ", correctPreviewImg)
-
         if (correctPreviewImg) {
             newSpot = await dispatch(
                 spotsActions.createSpot({ country, address, city, state, description, name, price })
             )
+
+            await dispatch(createSpotImage({ url: previewImg, preview: true }, newSpot.id ))
+            if (correctImg1) await dispatch(createSpotImage({ url: img1, preview: false }, newSpot.id ))
+            if (correctImg2) await dispatch(createSpotImage({ url: img2, preview: false }, newSpot.id ))
+            if (correctImg3) await dispatch(createSpotImage({ url: img3, preview: false }, newSpot.id ))
+            if (correctImg4) await dispatch(createSpotImage({ url: img4, preview: false }, newSpot.id ))
+
             setCorrectPreviewImg(false)
             setSubmitted(false)
 
             closeModal()
-        }
-
-        if (newSpot && correctPreviewImg) {
-            console.log("Image if statement")
-            await dispatch(createSpotImage({ url: previewImg, preview: true }, newSpot.id ))
-            await dispatch(createSpotImage({ url: img1, preview: false }, newSpot.id ))
-            await dispatch(createSpotImage({ url: img2, preview: false }, newSpot.id ))
-            await dispatch(createSpotImage({ url: img3, preview: false }, newSpot.id ))
-            await dispatch(createSpotImage({ url: img4, preview: false }, newSpot.id ))
         }
 
         if (errors) {
@@ -121,15 +117,13 @@ function CreateSpotModal() {
             if (!previewImg) {
                 setCorrectPreviewImg(false)
                 setImgErrors(true)
-            } if (img1 && correctImg1) {
-                setCorrectImg1(false)
-            } if (img2 && !correctImg2) {
-                setCorrectImg2(false)
-            } if (img3 && !correctImg3) {
-                setCorrectImg1(false)
-            } if (img4 && !correctImg4) {
-                setCorrectImg4(false)
-            } else return imgErrors, correctImg1, correctImg2, correctImg3, correctImg4
+            }
+            if (img1 && !correctImg1) setCorrectImg1(false)
+            if (img2 && !correctImg2) setCorrectImg2(false)
+            if (img3 && !correctImg3) setCorrectImg1(false)
+            if (img4 && !correctImg4) setCorrectImg4(false)
+            
+            else return imgErrors, correctImg1, correctImg2, correctImg3, correctImg4
         }
     }
 
@@ -280,14 +274,14 @@ function CreateSpotModal() {
                                 value={img1}
                                 onChange={e => setImg1(e.target.value)}
                             />
-                            {!correctImg1 && <span className='error'>Image 1 URL must contain: .jpeg, .jpg, or .png</span>}
+                            {submitted && !correctImg1 && <span className='error'>Image 1 URL must contain: .jpeg, .jpg, or .png</span>}
                             <input
                                 type='url'
                                 placeholder='Image URL'
                                 value={img2}
                                 onChange={e => setImg2(e.target.value)}
                                 />
-                            {!correctImg2 && <span className='error'>Image 2 URL must contain: .jpeg, .jpg, or .png</span>}
+                            {submitted && !correctImg2 && <span className='error'>Image 2 URL must contain: .jpeg, .jpg, or .png</span>}
                         </div>
                         <div className="lowerImgs lowers">
                             <input
@@ -296,14 +290,14 @@ function CreateSpotModal() {
                                 value={img3}
                                 onChange={e => setImg3(e.target.value)}
                                 />
-                            {!correctImg3 && <span className='error'>Image 3 URL must contain: .jpeg, .jpg, or .png</span>}
+                            {submitted && !correctImg3 && <span className='error'>Image 3 URL must contain: .jpeg, .jpg, or .png</span>}
                             <input
                                 type='url'
                                 placeholder='Image URL'
                                 value={img4}
                                 onChange={e => setImg4(e.target.value)}
                                 />
-                            {!correctImg4 && <span className='error'>Image 4 URL must contain: .jpeg, .jpg, or .png</span>}
+                            {submitted && !correctImg4 && <span className='error'>Image 4 URL must contain: .jpeg, .jpg, or .png</span>}
                         </div>
                     </div>
             <button className="spotButton">Create Spot</button>

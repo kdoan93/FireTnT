@@ -1,5 +1,5 @@
 import { csrfFetch } from "./csrf";
-
+/*
 // TYPE_CONSTANTS
 const POST_SPOT_IMAGE = 'spots/POST_SPOT_IMAGE';
 
@@ -27,25 +27,24 @@ const initialState = {}
 // const spotImageReducer = ( state = initialState, action) => {
 
 // }
+*/
+
+// /*
 
 
-/*
-
-
-import { csrfFetch } from "./csrf";
 
 // TYPE_CONSTANTS
 const GET_ALL_SPOT_IMAGES = 'spots/GET_ALL_SPOT_IMAGES';
-const POST_SPOT_IMAGE = 'spots/POST_SPOT_IMAGE';
+const CREATE_SPOT_IMAGE = 'spots/CREATE_SPOT_IMAGE';
 
 // POJO action creator
 const getAllSpotImages = (image, spotId) => {
     return { type: GET_ALL_SPOT_IMAGES, image, spotId }
 }
 
-const postAnImage = spotImage => {
+const createImage = spotImage => {
     return {
-        type: POST_SPOT_IMAGE,
+        type: CREATE_SPOT_IMAGE,
         spotImage
     }
 };
@@ -71,7 +70,7 @@ export const createSpotImage = (spotImage, spotId) => async (dispatch) => {
     })
     if (response.ok) {
         const newImage = await response.json()
-        dispatch(postAnImage(newImage))
+        dispatch(createImage(newImage))
         return newImage;
     } else {
         const errors = await response.json()
@@ -87,10 +86,20 @@ const spotsImageReducer = ( state = initialState, action ) => {
 
         case GET_ALL_SPOT_IMAGES:
             newState = { ...state, singleSpot: {} }
-            // Create action state
+            return newState
+
+        // case CREATE_SPOT_IMAGE:
+        //     newState = {
+        //         ...state,
+        //         all
+        //     }
+
+        default:
+            return state;
     }
+
 }
 
+export default spotsImageReducer
 
-
-*/
+// */
