@@ -25,16 +25,6 @@ const UserSpots = () => {
         history.push('/spots/new')
     }
 
-    const buttonClick = () => {
-        console.log('button clicked')
-        setButtonClicked(true)
-    }
-
-    const unButtonClick = (event) => {
-        console.log('button UN clicked')
-        setButtonClicked(false)
-    }
-
     useEffect(() => {
 
         dispatch(spotsActions.getUserSpots())
