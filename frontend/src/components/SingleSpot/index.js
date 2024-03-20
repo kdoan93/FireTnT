@@ -10,6 +10,7 @@ import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 // import "react-responsive-carousel/lib/styles/carousel.min.css";
 // import { Carousel } from 'react-responsive-carousel';
 import './SingleSpot.css'
+import { getSpotImages } from "../../store/spotsImages";
 
 const SingleSpot = () => {
 
@@ -43,6 +44,7 @@ const SingleSpot = () => {
 
     useEffect(() => {
         dispatch(getSpot(spotId))
+        dispatch(getSpotImages(spotId))
     }, [dispatch, reviewsArray.length, spotId])
 
     if (!spotImages) return null;
