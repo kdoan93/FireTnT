@@ -266,6 +266,16 @@ router.get('/:spotId/reviews', async (req, res) => {
 })
 
 
+/***        Get all spot images by Spot's id                ***/
+router.get('/:spotId/images', async (req, res) => {
+    const imagesById = await SpotImage.findAll( {
+        where: { spotId: req.params.spotId }
+    } )
+
+    return res.status(200).json({ SpotImages: imagesById })
+})
+
+
 /***        Add an image to a spot based on spot's id       ***/
 router.post('/:spotId/images', requireAuth, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId);
