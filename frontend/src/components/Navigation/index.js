@@ -26,18 +26,22 @@ function Navigation({ isLoaded }){
 
   return (
       <div className='navigationBar'>
-        <NavLink exact to="/" className='home-button' >
-            <img className='logo' src={airbnbLogo} alt='logo' />
-        </NavLink>
+        <div className='upperNav'>
+          <NavLink exact to="/" className='home-button' >
+              <img className='logo' src={airbnbLogo} alt='logo' />
+          </NavLink>
 
-        <SearchBar
-          placeholder={'Search destinations'}
-          data={allSpots}
-        />
+          {isLoaded && (
+            <ProfileButton className='profileButton' user={sessionUser} />
+          )}
+        </div>
 
-        {isLoaded && (
-          <ProfileButton className='profileButton' user={sessionUser} />
-        )}
+        <div className='searchBar'>
+          <SearchBar
+            placeholder={'Search destinations'}
+            data={allSpots}
+          />
+        </div>
       </div>
   );
 }

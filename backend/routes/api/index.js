@@ -24,7 +24,7 @@ router.post('/test', function(req, res) {
 
 
 
-/***    Middlware for testing user authentication routes
+// /***    Middlware for testing user authentication routes
  //  Middlware to restore user session
  router.get('/restore-user', (req, res) => res.json(req.user));
 
@@ -42,7 +42,7 @@ router.post('/test', function(req, res) {
      setTokenCookie(res, user);
      return res.json({ user: user });
  });
-***/
+// ***/
 
 
 
