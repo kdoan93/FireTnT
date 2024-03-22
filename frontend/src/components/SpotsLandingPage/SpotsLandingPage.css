@@ -12,6 +12,7 @@
     /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
+
     min-width: 215px;
     width: 22%;
     height: auto;
@@ -92,4 +93,10 @@
 
 .gap {
     margin-right: 10px;
+}
+
+@media screen and (max-width: 650px) {
+    .spot {
+        width: 100%;
+    }
 }
