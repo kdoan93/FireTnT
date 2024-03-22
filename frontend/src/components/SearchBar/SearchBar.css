@@ -19,6 +19,11 @@
     font-family: sans-serif;
 }
 
+.searchbar-container input {
+    /* border: 1px solid red; */
+    border-radius: 30px;
+}
+
 .searchbar::placeholder{
     color: gray;
 }
@@ -109,4 +114,10 @@
 #search-clear-button{
     /* border: 1px solid red; */
     cursor: pointer;
+}
+
+@media screen and (max-width: 750px) {
+    .searchbar-container {
+        width: 90%;
+    }
 }
