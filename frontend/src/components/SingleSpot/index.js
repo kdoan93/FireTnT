@@ -11,6 +11,7 @@ import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 // import { Carousel } from 'react-responsive-carousel';
 import './SingleSpot.css'
 import { getSpotImages } from "../../store/spotsImages";
+import Bookings from "../Bookings/bookings";
 
 const SingleSpot = () => {
 
@@ -116,8 +117,11 @@ const SingleSpot = () => {
                             </h5>
                         </div>
                     </div>
-                    <button className="reserve" onClick={handleClick}>
+                    {/* <button className="reserve" onClick={handleClick}>
                             Reserve
+                    </button> */}
+                    <button className="reserve">
+                        <OpenModalMenuItem itemText='Book your trip!' modalComponent={<Bookings />} />
                     </button>
                 </div>
             </div>
