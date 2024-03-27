@@ -116,15 +116,9 @@ const SingleSpot = () => {
                             </h5>
                         </div>
                     </div>
-                    <button className="reserve" onClick={handleClick}>
+                    <button className="reserve" onClick={handleClick} spotty={spot} >
                             Reserve
                     </button>
-
-                    {/* <button className="reserve" onClick={onClick(spot)}> */}
-                    {/* <button className="reserve">
-                        Reserve
-                    </button> */}
-                    {/* <OpenModalMenuItem itemText='Reserve' modalComponent={<Bookings spot={spot} />} /> */}
 
                 </div>
             </div>
