@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { Component, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 // import ReactDOM from 'react-dom'
 import { getSpot } from '../../store/spots'
 // import { getSpotReviews } from "../../store/reviews";
@@ -11,11 +11,13 @@ import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 // import { Carousel } from 'react-responsive-carousel';
 import './SingleSpot.css'
 import { getSpotImages } from "../../store/spotsImages";
-import Bookings from "../Bookings/bookings";
+import Bookings from "../Bookings";
 
 const SingleSpot = () => {
 
     const dispatch = useDispatch();
+
+    let history = useHistory()
 
     // Selects session.user object
     const sessionUser = useSelector(state => state.session.user)
@@ -54,12 +56,12 @@ const SingleSpot = () => {
     if (!reviews) return null
 
     const topBox = spotImages.slice(1, 3)
-
     const bottomBox = spotImages.slice(3)
 
     const handleClick = (e) => {
         e.preventDefault();
-        alert("FEATURE COMING SOON!")
+        console.log(spotId)
+        history.push(`/spots/${spotId}/booking`)
     }
 
     return (
@@ -69,16 +71,13 @@ const SingleSpot = () => {
                 <h5>{spot.city}, {spot.state}, {spot.country}</h5>
             </div>
 
-
             {/* <Carousel className="carousel-container" infiniteLoop='true'>
-
                 {spotImages.map((image) => (
                     <div>
                         <img key={image.url} src={image.url}/>
                     </div>
                 ))}
             </Carousel> */}
-
 
             <div className="imagesContainer">
                 <div className="bigImg"><img src={firstImg.url} alt='firstImg' /></div>
@@ -117,12 +116,16 @@ const SingleSpot = () => {
                             </h5>
                         </div>
                     </div>
-                    {/* <button className="reserve" onClick={handleClick}>
+                    <button className="reserve" onClick={handleClick}>
                             Reserve
-                    </button> */}
-                    <button className="reserve">
-                        <OpenModalMenuItem itemText='Book your trip!' modalComponent={<Bookings />} />
                     </button>
+
+                    {/* <button className="reserve" onClick={onClick(spot)}> */}
+                    {/* <button className="reserve">
+                        Reserve
+                    </button> */}
+                    {/* <OpenModalMenuItem itemText='Reserve' modalComponent={<Bookings spot={spot} />} /> */}
+
                 </div>
             </div>
             <div className="starReviews">

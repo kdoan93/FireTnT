@@ -1,0 +1,14 @@
+.bookingsContainer {
+    /* border: 1px solid red; */
+    display: flex;
+}
+
+.bookingsLeft {
+    /* border: 1px solid blue; */
+    width: 50%;
+}
+
+.bookingsRight {
+    /* border: 1px solid yellow; */
+    width: 50%;
+}
