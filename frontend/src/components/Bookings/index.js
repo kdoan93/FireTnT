@@ -5,9 +5,7 @@ import './bookings.css'
 import { getSpot } from "../../store/spots";
 
 
-function Bookings({spotty}) {
-
-    console.log('>>>>>>>>>>>', spotty)
+function Bookings() {
 
     let {spotId} = useParams()
     const history = useHistory()
@@ -17,15 +15,17 @@ function Bookings({spotty}) {
 
     let spot = useSelector(state => state.spot.singleSpot)
 
+    console.log(spot)
+
     const spotImages = useSelector(state => state.spot.singleSpot.SpotImages)
 
 
     function getPreviewImg (spotImages) {
         let previewImg = null
         for(let image of spotImages) {
-            if (image.preview === true) previewImg = image
+            if (image.preview === true) previewImg = image.url
         }
-        return previewImg.url
+        return previewImg
     }
 
     let previewImage = getPreviewImg(spotImages)
@@ -37,6 +37,8 @@ function Bookings({spotty}) {
     const onClick = () => {
         history.push(`/spots/${spotId}`)
     }
+
+    if (!previewImage) return null
 
     return (
         <div className="bookingsContainer">
@@ -58,8 +60,15 @@ function Bookings({spotty}) {
             </div>
             <div className="bookingsRight">
                 <div className="bookingsRightUpper">
-                    {/* <img src={previewImage} /> */}
-                    {spot.name}
+                    <div className="bookingsRightUpperLeft">
+                        <img className="bookingsImg" src={previewImage} />
+                    </div>
+                    <div className="bookingsRightUpperRight">
+                        <h4>
+                            {spot.name}
+                        </h4>
+                        <i class="fa-solid fa-star"></i>{spot.avgStarRating} ({spot.numReviews})
+                    </div>
                 </div>
             </div>
         </div>

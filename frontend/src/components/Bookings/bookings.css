@@ -1,14 +1,30 @@
 .bookingsContainer {
-    /* border: 1px solid red; */
+    border: 1px solid red;
     display: flex;
+    margin: 0px 80px;
 }
 
 .bookingsLeft {
-    /* border: 1px solid blue; */
+    border: 1px solid blue;
     width: 50%;
 }
 
 .bookingsRight {
-    /* border: 1px solid yellow; */
+    border: 1px solid yellow;
     width: 50%;
+}
+
+.bookingsRightUpper {
+    border: 1px solid red;
+    display: flex;
+}
+
+.bookingsRightUpperLeft {
+    border: 1px solid blue;
+    width: 25%;
+}
+
+.bookingsImg {
+    /* border: 1px solid red; */
+    width: 100%;
 }

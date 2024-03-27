@@ -60,7 +60,6 @@ const SingleSpot = () => {
 
     const handleClick = (e) => {
         e.preventDefault();
-        console.log(spotId)
         history.push(`/spots/${spotId}/booking`)
     }
 
@@ -116,7 +115,7 @@ const SingleSpot = () => {
                             </h5>
                         </div>
                     </div>
-                    <button className="reserve" onClick={handleClick} spotty={spot} >
+                    <button className="reserve" onClick={handleClick} >
                             Reserve
                     </button>
 
