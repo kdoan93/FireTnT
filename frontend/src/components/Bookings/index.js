@@ -67,8 +67,14 @@ function Bookings() {
                         <h4>
                             {spot.name}
                         </h4>
-                        <i class="fa-solid fa-star"></i>{spot.avgStarRating} ({spot.numReviews})
+                        <i class="fa-solid fa-star"></i>{spot.avgStarRating > 0 ? spot.avgStarRating : "NEW"} ({spot.numReviews})
                     </div>
+                </div>
+                <div className="bookingsRightUpperMid">
+                    <h3>
+                        Price details
+                    </h3>
+                    ${spot.price} x ___ nights
                 </div>
             </div>
         </div>
