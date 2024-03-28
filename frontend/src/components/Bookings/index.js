@@ -71,10 +71,53 @@ function Bookings() {
                     </div>
                 </div>
                 <div className="bookingsRightUpperMid">
-                    <h3>
+                    <p className="bookingsPriceDetails">
                         Price details
-                    </h3>
-                    ${spot.price} x ___ nights
+                    </p>
+                    <div className="bookingsRightPrices">
+                        <div>
+                            <p>
+                                ${spot.price.toFixed(2)} x ___ nights
+                            </p>
+                            <p>
+                                ${spot.price.toFixed(2)}
+                                {/* Func to get price total / night */}
+                            </p>
+                        </div>
+                        <div>
+                            <p>
+                                Cleaning fee
+                            </p>
+                            <p>
+                                {/* Cleaning fee = price/night total * .1 */}
+                                $50
+                            </p>
+                        </div>
+                        <div>
+                            <p>
+                                Airbnb service fee
+                            </p>
+                            <p>
+                                ${(spot.price * .08).toFixed(2)}
+                            </p>
+                        </div>
+                        <div>
+                            <p>
+                                Taxes
+                            </p>
+                            <p>
+                                {/* Taxes = price/night total * .05 */}
+                            </p>
+                        </div>
+                        <div>
+                            <p className="bookingsTotal">
+                                Total(USD)
+                            </p>
+                            <p>
+                                {/* Add all prices here */}
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
