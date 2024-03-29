@@ -38,11 +38,48 @@ function Bookings() {
         history.push(`/spots/${spotId}`)
     }
 
+    let nights = 1
+
+    let spotPrice = spot.price
+
+    function pricePerNight () {
+        let price = spotPrice * nights
+        return parseFloat(price)
+    }
+
+    function cleaningFee () {
+        let cleaningFee = spotPrice * .03
+        return parseFloat(cleaningFee)
+    }
+
+    function serviceFee () {
+        let serviceFee = spotPrice * .08
+        return parseFloat(serviceFee)
+    }
+
+    function taxes () {
+        let taxes = spotPrice * .05
+        return parseFloat(taxes)
+    }
+
+    function total () {
+        let total = pricePerNight() + cleaningFee() + serviceFee() + taxes()
+        return parseFloat(total)
+    }
+
+    // let cleaningFee = (spotPrice * .03).toFixed(2)
+
+    // let serviceFee = (spotPrice * .08).toFixed(2)
+
+    // let taxes = (spotPrice * .05).toFixed(2)
+
+    // let total = parseFloat(cleaningFee) + parseFloat(serviceFee) + parseFloat(taxes)
+
     if (!previewImage) return null
 
     return (
         <div className="bookingsContainer">
-            <button className="fa-less-than" onClick={onClick} />
+            <button className="bookingsReturn fa-solid fa-less-than" onClick={onClick} />
             <div className="bookingsLeft">
                 <h2>
                     Request to book
@@ -67,7 +104,9 @@ function Bookings() {
                         <h4>
                             {spot.name}
                         </h4>
-                        <i class="fa-solid fa-star"></i>{spot.avgStarRating > 0 ? spot.avgStarRating : "NEW"} ({spot.numReviews})
+                        <p className="bookingsRating">
+                            <i class="fa-solid fa-star"></i>{spot.avgStarRating > 0 ? spot.avgStarRating : "NEW"} ({spot.numReviews})
+                        </p>
                     </div>
                 </div>
                 <div className="bookingsRightUpperMid">
@@ -77,10 +116,10 @@ function Bookings() {
                     <div className="bookingsRightPrices">
                         <div>
                             <p>
-                                ${spot.price.toFixed(2)} x ___ nights
+                                ${spot.price.toFixed(2)} x {nights} {nights > 1 ? "nights" : "night"}
                             </p>
                             <p>
-                                ${spot.price.toFixed(2)}
+                                ${pricePerNight().toFixed(2)}
                                 {/* Func to get price total / night */}
                             </p>
                         </div>
@@ -89,8 +128,7 @@ function Bookings() {
                                 Cleaning fee
                             </p>
                             <p>
-                                {/* Cleaning fee = price/night total * .1 */}
-                                $50
+                                ${cleaningFee().toFixed(2)}
                             </p>
                         </div>
                         <div>
@@ -98,7 +136,7 @@ function Bookings() {
                                 Airbnb service fee
                             </p>
                             <p>
-                                ${(spot.price * .08).toFixed(2)}
+                                ${serviceFee().toFixed(2)}
                             </p>
                         </div>
                         <div>
@@ -106,7 +144,7 @@ function Bookings() {
                                 Taxes
                             </p>
                             <p>
-                                {/* Taxes = price/night total * .05 */}
+                                ${taxes().toFixed(2)}
                             </p>
                         </div>
                         <div>
@@ -114,7 +152,7 @@ function Bookings() {
                                 Total(USD)
                             </p>
                             <p>
-                                {/* Add all prices here */}
+                                ${total().toFixed(2)}
                             </p>
                         </div>
                     </div>
