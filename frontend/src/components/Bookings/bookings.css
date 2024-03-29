@@ -69,3 +69,8 @@
     /* border: 1px solid purple; */
     margin: 16px 0px 0px;
 }
+
+.bookingsTotalContainer {
+    border-top: 1px solid gray;
+    margin-top: 16px;
+}

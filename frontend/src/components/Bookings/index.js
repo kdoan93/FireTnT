@@ -147,7 +147,7 @@ function Bookings() {
                                 ${taxes().toFixed(2)}
                             </p>
                         </div>
-                        <div>
+                        <div className="bookingsTotalContainer">
                             <p className="bookingsTotal">
                                 Total(USD)
                             </p>
