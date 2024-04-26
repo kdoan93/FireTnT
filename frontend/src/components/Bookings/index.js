@@ -42,6 +42,8 @@ function Bookings() {
 
     let spotPrice = spot.price
 
+    console.log('typeof spotPrice', typeof(spotPrice))
+
     function pricePerNight () {
         let price = spotPrice * nights
         return parseFloat(price)
@@ -110,7 +112,7 @@ function Bookings() {
                     <div className="bookingsRightPrices">
                         <div>
                             <p>
-                                ${spotPrice.toFixed(2)} x {nights} {nights > 1 ? "nights" : "night"}
+                                ${Number(spotPrice).toFixed(2)} x {nights} {nights > 1 ? "nights" : "night"}
                             </p>
                             <p>
                                 ${pricePerNight().toFixed(2)}
