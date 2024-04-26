@@ -75,6 +75,8 @@ function Bookings() {
 
     // let total = parseFloat(cleaningFee) + parseFloat(serviceFee) + parseFloat(taxes)
 
+    if (!spot) return null
+
     if (!previewImage) return null
 
     return (
