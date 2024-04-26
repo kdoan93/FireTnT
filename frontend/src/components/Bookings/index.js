@@ -40,19 +40,17 @@ function Bookings() {
 
     let spotPrice = spot.price
 
-    console.log('typeof spotPrice', typeof(spotPrice))
-
     function pricePerNight () {
         let price = spotPrice * nights
         return parseFloat(price)
     }
 
     function subtractNight () {
-        setNights(nights--)
+        return setNights(nights--)
     }
 
     function addNight() {
-        setNights(nights++)
+        return setNights(nights++)
     }
 
     function cleaningFee () {
@@ -93,7 +91,7 @@ function Bookings() {
                         Dates
                     </h4>
 
-                    {/* <div>
+                    <div>
                         Testing functionality for pricing
                         <button onClick={subtractNight}>
                             -
@@ -101,7 +99,7 @@ function Bookings() {
                         <button onClick={addNight}>
                             +
                         </button>
-                    </div> */}
+                    </div>
                     {/* Show selected booking dates here */}
                     {/* "Edit" will bring calendar modal to select dates */}
                 </div>
