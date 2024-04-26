@@ -67,16 +67,8 @@ function Bookings() {
         return parseFloat(total)
     }
 
-    // let cleaningFee = (spotPrice * .03).toFixed(2)
-
-    // let serviceFee = (spotPrice * .08).toFixed(2)
-
-    // let taxes = (spotPrice * .05).toFixed(2)
-
-    // let total = parseFloat(cleaningFee) + parseFloat(serviceFee) + parseFloat(taxes)
-
     if (!spot) return null
-
+    if (!spotPrice) return null
     if (!previewImage) return null
 
     return (
@@ -118,7 +110,7 @@ function Bookings() {
                     <div className="bookingsRightPrices">
                         <div>
                             <p>
-                                ${spot.price.toFixed(2)} x {nights} {nights > 1 ? "nights" : "night"}
+                                ${spotPrice.toFixed(2)} x {nights} {nights > 1 ? "nights" : "night"}
                             </p>
                             <p>
                                 ${pricePerNight().toFixed(2)}
