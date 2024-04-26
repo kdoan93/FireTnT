@@ -91,7 +91,7 @@ function Bookings() {
                         Dates
                     </h4>
 
-                    <div>
+                    {/* <div>
                         Testing functionality for pricing
                         <button onClick={subtractNight}>
                             -
@@ -99,7 +99,8 @@ function Bookings() {
                         <button onClick={addNight}>
                             +
                         </button>
-                    </div>
+                    </div> */}
+                    
                     {/* Show selected booking dates here */}
                     {/* "Edit" will bring calendar modal to select dates */}
                 </div>
