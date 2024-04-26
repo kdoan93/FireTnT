@@ -1,11 +1,13 @@
 import { useHistory, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import './bookings.css'
 import { getSpot } from "../../store/spots";
 
 
 function Bookings() {
+
+    let [nights, setNights] = useState(1)
 
     let {spotId} = useParams()
     const history = useHistory()
@@ -14,8 +16,6 @@ function Bookings() {
     spotId = parseInt(spotId)
 
     let spot = useSelector(state => state.spot.singleSpot)
-
-    console.log(spot)
 
     const spotImages = useSelector(state => state.spot.singleSpot.SpotImages)
 
@@ -38,13 +38,19 @@ function Bookings() {
         history.push(`/spots/${spotId}`)
     }
 
-    let nights = 1
-
     let spotPrice = spot.price
 
     function pricePerNight () {
         let price = spotPrice * nights
         return parseFloat(price)
+    }
+
+    function subtractNight () {
+        setNights(nights--)
+    }
+
+    function addNight() {
+        setNights(nights++)
     }
 
     function cleaningFee () {
@@ -67,16 +73,7 @@ function Bookings() {
         return parseFloat(total)
     }
 
-    // let cleaningFee = (spotPrice * .03).toFixed(2)
-
-    // let serviceFee = (spotPrice * .08).toFixed(2)
-
-    // let taxes = (spotPrice * .05).toFixed(2)
-
-    // let total = parseFloat(cleaningFee) + parseFloat(serviceFee) + parseFloat(taxes)
-
     if (!spot) return null
-
     if (!previewImage) return null
 
     return (
@@ -93,6 +90,16 @@ function Bookings() {
                     <h4>
                         Dates
                     </h4>
+
+                    {/* <div>
+                        Testing functionality for pricing
+                        <button onClick={subtractNight}>
+                            -
+                        </button>
+                        <button onClick={addNight}>
+                            +
+                        </button>
+                    </div> */}
                     {/* Show selected booking dates here */}
                     {/* "Edit" will bring calendar modal to select dates */}
                 </div>
