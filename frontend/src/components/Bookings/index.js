@@ -87,9 +87,18 @@ function Bookings() {
                     <h3>
                         Your trip
                     </h3>
-                    <h4>
-                        Dates
-                    </h4>
+
+                    <div className="dateSelection">
+                        <div>
+                            Check-in
+                            {/* Show selected booking dates here */}
+                        </div>
+                        <div>
+                            Checkout
+                            {/* Show selected booking dates here */}
+                        </div>
+                    </div>
+
 
                     {/* <div>
                         Testing functionality for pricing
@@ -100,8 +109,7 @@ function Bookings() {
                             +
                         </button>
                     </div> */}
-                    {/* Show selected booking dates here */}
-                    {/* "Edit" will bring calendar modal to select dates */}
+
                 </div>
             </div>
             <div className="bookingsRight">
@@ -158,7 +166,7 @@ function Bookings() {
                         </div>
                         <div>
                             <p className="bookingsTotal">
-                                Total(USD)
+                                Total (USD)
                             </p>
                             <p>
                                 ${total().toFixed(2)}
