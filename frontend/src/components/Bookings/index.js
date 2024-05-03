@@ -3,11 +3,15 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import './bookings.css'
 import { getSpot } from "../../store/spots";
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 
 function Bookings() {
 
     let [nights, setNights] = useState(1)
+    let [checkinDate, setCheckinDate] = useState(new Date())
+    let [checkoutDate, setCheckoutDate] = useState(new Date())
 
     let {spotId} = useParams()
     const history = useHistory()
@@ -87,9 +91,30 @@ function Bookings() {
                     <h3>
                         Your trip
                     </h3>
-                    <h4>
-                        Dates
-                    </h4>
+
+                    <div className="dateSelection">
+                        <div className="dateSelectionBox" >
+                            <div className="dateSelectionText">
+                                Check-in
+                            </div>
+                            <DatePicker
+                                className="datePicker"
+                                selected={checkinDate}
+                                onChange={(date) => setCheckinDate(date)}
+                            />
+                        </div>
+                        <div className="dateSelectionBox" >
+                            <div className="dateSelectionText">
+                                Checkout
+                            </div>
+                            <DatePicker
+                                className="datePicker"
+                                selected={checkoutDate}
+                                onChange={(date) => setCheckoutDate(date)}
+                            />
+                        </div>
+                    </div>
+
 
                     {/* <div>
                         Testing functionality for pricing
@@ -100,9 +125,8 @@ function Bookings() {
                             +
                         </button>
                     </div> */}
-                    
-                    {/* Show selected booking dates here */}
-                    {/* "Edit" will bring calendar modal to select dates */}
+
+
                 </div>
             </div>
             <div className="bookingsRight">
@@ -159,7 +183,7 @@ function Bookings() {
                         </div>
                         <div className="bookingsTotalContainer">
                             <p className="bookingsTotal">
-                                Total(USD)
+                                Total (USD)
                             </p>
                             <p>
                                 ${total().toFixed(2)}

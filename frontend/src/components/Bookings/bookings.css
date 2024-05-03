@@ -15,6 +15,30 @@
     width: 50%;
 }
 
+.dateSelection {
+    /* border: 1px solid red; */
+    display: flex;
+    padding-right: 40px;
+    /* justify-content: space-around; */
+}
+
+.dateSelectionText {
+    border-bottom: 1px solid black;
+    width: 100%;
+    margin: 5px 0px;
+}
+
+.datePicker {
+    /* border: 1px solid red; */
+    margin: 5px 0px 10px;
+}
+
+.dateSelectionBox {
+    border: 1px solid black;
+    text-align: center;
+    width: 50%;
+}
+
 .bookingsRight {
     border: 1px solid gray;
     padding: 24px;
