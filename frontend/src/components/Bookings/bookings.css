@@ -15,6 +15,26 @@
     width: 50%;
 }
 
+.dateSelection span {
+    border-bottom: 1px solid black;
+}
+
+.dateSelection .react-datepicker-wrapper {
+    border: none;
+    width: 100%;
+    padding: 10px 0px;
+}
+
+.dateSelection .react-datepicker__input-container {
+    border: none;
+    width: 100%;
+}
+
+.checkin {
+    /* border: 1px solid red; */
+    /* width: 100%; */
+}
+
 .dateSelection {
     /* border: 1px solid red; */
     display: flex;

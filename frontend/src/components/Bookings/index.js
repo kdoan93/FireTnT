@@ -3,11 +3,15 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import './bookings.css'
 import { getSpot } from "../../store/spots";
+import DatePicker from 'react-datepicker'
+// import 'react-datepicker/dist/react-datepicker.css'
 
 
 function Bookings() {
 
     let [nights, setNights] = useState(1)
+    let [checkinDate, setCheckinDate] = useState(new Date())
+    let [checkoutDate, setCheckoutDate] = useState(new Date())
 
     let {spotId} = useParams()
     const history = useHistory()
@@ -90,12 +94,26 @@ function Bookings() {
 
                     <div className="dateSelection">
                         <div>
-                            Check-in
+                            <span>
+                                Check-in
+                            </span>
                             {/* Show selected booking dates here */}
+                            <DatePicker
+                                className="checkin"
+                                selected={checkinDate}
+                                onChange={(date) => setCheckinDate(date)}
+                            />
                         </div>
                         <div>
-                            Checkout
+                            <span>
+                                Checkout
+                            </span>
                             {/* Show selected booking dates here */}
+                            <DatePicker
+                                className="checkin"
+                                selected={checkoutDate}
+                                onChange={(date) => setCheckoutDate(date)}
+                            />
                         </div>
                     </div>
 
