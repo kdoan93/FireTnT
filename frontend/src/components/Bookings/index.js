@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import './bookings.css'
 import { getSpot } from "../../store/spots";
 import DatePicker from 'react-datepicker'
-// import 'react-datepicker/dist/react-datepicker.css'
+import 'react-datepicker/dist/react-datepicker.css'
 
 
 function Bookings() {
@@ -93,24 +93,24 @@ function Bookings() {
                     </h3>
 
                     <div className="dateSelection">
-                        <div>
-                            <span>
+                        <div className="dateSelectionBox" >
+                            <div className="dateSelectionText">
                                 Check-in
-                            </span>
+                            </div>
                             {/* Show selected booking dates here */}
                             <DatePicker
-                                className="checkin"
+                                className="datePicker"
                                 selected={checkinDate}
                                 onChange={(date) => setCheckinDate(date)}
                             />
                         </div>
-                        <div>
-                            <span>
+                        <div className="dateSelectionBox" >
+                            <div className="dateSelectionText">
                                 Checkout
-                            </span>
+                            </div>
                             {/* Show selected booking dates here */}
                             <DatePicker
-                                className="checkin"
+                                className="datePicker"
                                 selected={checkoutDate}
                                 onChange={(date) => setCheckoutDate(date)}
                             />
