@@ -32,11 +32,13 @@ function Bookings() {
         return previewImg
     }
 
+    // if (checkinDate > checkoutDate) console.log('CHECKOUT DATE BEFORE CHECKIN!')
+
     let previewImage = getPreviewImg(spotImages)
 
     useEffect(() => {
         dispatch(getSpot(spotId))
-    }, [dispatch])
+    }, [dispatch, checkinDate, checkoutDate])
 
     const onClick = () => {
         history.push(`/spots/${spotId}`)
