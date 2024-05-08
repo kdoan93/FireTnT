@@ -5,6 +5,7 @@ import './bookings.css'
 import { getSpot } from "../../store/spots";
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import { getSpotBookings } from "../../store/bookings";
 
 
 function Bookings() {
@@ -38,6 +39,7 @@ function Bookings() {
 
     useEffect(() => {
         dispatch(getSpot(spotId))
+        dispatch(getSpotBookings(spotId))
     }, [dispatch, checkinDate, checkoutDate])
 
     const onClick = () => {

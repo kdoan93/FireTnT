@@ -6,10 +6,12 @@ const DELETE_REVIEW = 'reviews/DELETE_REVIEW'
 
 // POJO action creator
 const getAllReviews = (review, spotId) => {
-    return { type: GET_ALL_REVIEWS, review, spotId } };
+    return { type: GET_ALL_REVIEWS, review, spotId }
+};
 
 const deleteAReview = reviewId => {
-    return { type: DELETE_REVIEW, reviewId } }
+    return { type: DELETE_REVIEW, reviewId }
+}
 
 // THUNK to create a review
 export const createReview = (review, spotId) => async dispatch => {
