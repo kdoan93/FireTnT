@@ -1,13 +1,13 @@
 import { csrfFetch } from "./csrf";
 
 
-const GET_ALL_BOOKINGS = 'bookings/GET_ALL_BOOKINGS'
-const ADD_BOOKING = 'bookings/ADD_BOOKING'
-const DELETE_BOOKING = 'bookings/DELETE_BOOKING'
+const GET_ALL_BOOKINGS = '/GET_ALL_BOOKINGS'
+const ADD_BOOKING = 'booking/ADD_BOOKING'
+const DELETE_BOOKING = 'booking/DELETE_BOOKING'
 
 
-const getAllBookings = (bookings, spotId) => {
-    return { type: GET_ALL_BOOKINGS, bookings, spotId}
+const getAllBookings = (booking, spotId) => {
+    return { type: GET_ALL_BOOKINGS, booking, spotId}
 }
 
 const addBooking = (bookingId) => {
@@ -22,9 +22,9 @@ const deleteBooking = (bookingId) => {
 export const getSpotBookings = (spotId) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}/bookings`)
     if (response.ok) {
-        const bookings = await response.json()
-        dispatch(getAllBookings(bookings, spotId))
-        return bookings
+        const booking = await response.json()
+        dispatch(getAllBookings(booking))
+        return booking
     } else {
         const errors = await response.json()
         return errors
@@ -40,7 +40,7 @@ const bookingReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_ALL_BOOKINGS:
             newState = { ...state, spot: {} }
-            action.bookings.Bookings.forEach(booking => {
+            action.booking.Bookings.forEach(booking => {
                 newState.spot[booking.id] = booking
             })
             return newState

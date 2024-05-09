@@ -24,6 +24,9 @@ function Bookings() {
 
     const spotImages = useSelector(state => state.spot.singleSpot.SpotImages)
 
+    const bookings = useSelector(state => state.booking.spot)
+
+    // console.log('>>>>>>>>>>>>>>>>', bookings)
 
     function getPreviewImg (spotImages) {
         let previewImg = null

@@ -15,6 +15,7 @@ import { restoreCSRF, csrfFetch } from './store/csrf';
 import * as sessionActions from './store/session';
 import * as spotsActions from './store/spots';
 import * as reviewsActions from './store/reviews';
+import * as bookingsActions from './store/bookings'
 
 // store variable used to access Redux store
 const store = configureStore();
@@ -28,6 +29,7 @@ if (process.env.NODE_ENV !== "production") {
   window.sessionActions = sessionActions;
   window.spotsActions = spotsActions;
   window.reviewsActions = reviewsActions;
+  window.bookingsActions = bookingsActions;
 }
 
 // Wrap the application with the Modal provider and render the Modal component
@@ -56,6 +58,8 @@ ReactDOM.render(
 
 /*
 import React from 'react';
+import './index.css';
+import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { ModalProvider, Modal } from "./context/Modal";
@@ -65,9 +69,7 @@ import { restoreCSRF, csrfFetch } from './store/csrf';
 import * as sessionActions from './store/session';
 import * as spotsActions from './store/spots';
 import * as reviewsActions from './store/reviews';
-import './index.css';
 
-import { createRoot } from 'react-dom/client'
 const container = document.getElementById('root')
 const root = createRoot(container)
 
