@@ -26,7 +26,7 @@ function Bookings() {
 
     const bookings = useSelector(state => state.booking.spot)
 
-    // console.log('>>>>>>>>>>>>>>>>', bookings)
+    console.log('>>>>>>>>>>>>>>>>', bookings)
 
     function getPreviewImg (spotImages) {
         let previewImg = null
