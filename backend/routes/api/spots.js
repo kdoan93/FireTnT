@@ -352,7 +352,7 @@ router.post('/:spotId/bookings', requireAuth, validateBooking, async (req, res) 
     if (!spot) return res.status(404).json({ message: "Spot couldn't be found" })
 
     //  Spot cannot belong to current user
-    if (req.user.id === spot.ownerId) return res.status(403).json({ message: "Forbidden" })
+    if (req.user.id === spot.ownerId) return res.status(403).json({ message: "Spot can't be booked by owner" })
 
 
     //  Get the booking for a spot and compare if req.body dates conflict with booked dates

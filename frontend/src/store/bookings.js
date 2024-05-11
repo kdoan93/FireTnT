@@ -14,7 +14,7 @@ const addBooking = (bookingId) => {
     return { type: ADD_BOOKING, bookingId }
 }
 
-const deleteBooking = (bookingId) => {
+const removeBooking = (bookingId) => {
     return { type: DELETE_BOOKING, bookingId }
 }
 
@@ -25,6 +25,35 @@ export const getSpotBookings = (spotId) => async dispatch => {
         const booking = await response.json()
         dispatch(getAllBookings(booking))
         return booking
+    } else {
+        const errors = await response.json()
+        return errors
+    }
+}
+
+export const createBooking = (booking, spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}/bookings`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(booking)
+    })
+    if (response.ok) {
+        const booking = await response.json()
+        dispatch(getSpotBookings(booking.spotId))
+        return booking
+    } else {
+        const errors = await response.json()
+        return errors
+    }
+}
+
+export const deleteBooking = (bookingId) => async dispatch => {
+    const response = await csrfFetch(`/api/bookings/${bookingId}`, {
+        method: 'DELETE'
+    })
+    if (response.ok) {
+        dispatch(removeBooking(bookingId))
+        return response
     } else {
         const errors = await response.json()
         return errors
@@ -43,6 +72,16 @@ const bookingReducer = (state = initialState, action) => {
             action.booking.Bookings.forEach(booking => {
                 newState.spot[booking.id] = booking
             })
+            return newState
+
+        case ADD_BOOKING:
+            newState = { ...state, spot: { ...action.booking } }
+            newState.singleSpot[action.booking.id] = action.booking
+            return newState
+
+        case DELETE_BOOKING:
+            newState = { ...state, spot: { ...state.spot } }
+            delete newState.spot[action.bookingId]
             return newState
 
         default:
