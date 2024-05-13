@@ -57,7 +57,7 @@ function App() {
             </a>
         </div>
         <div>
-            <a href='https://github.com/kdoan93/ShiftTalkers'>
+            <a href='https://github.com/kdoan93/FireTnT'>
               <i class="fa-brands fa-square-github fa-2xl gap"/>
               GitHub
             </a>
