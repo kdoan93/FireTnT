@@ -6,6 +6,9 @@ import { getSpot } from "../../store/spots";
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { createBooking, getSpotBookings } from "../../store/bookings";
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
+import { DeleteBookingModal } from "./deleteBookingModal";
+import '../ManageSpots/ManageSpots.css'
 
 
 function Bookings() {
@@ -46,7 +49,7 @@ function Bookings() {
 
     let previewImage = getPreviewImg(spotImages)
 
-    const handleSubmit = async (e) => {
+    const submitBooking = async (e) => {
         e.preventDefault()
         await dispatch(
             createBooking({
@@ -54,8 +57,12 @@ function Bookings() {
                 endDate: checkoutDate
             }, spotId)
         )
-
     }
+
+    // const deleteBooking = async (e) => {
+    //     e.preventDefault()
+    //     return dispatch(deleteBooking())
+    // }
 
     useEffect(() => {
         dispatch(getSpot(spotId))
@@ -117,7 +124,7 @@ function Bookings() {
                         Your trip
                     </h3>
 
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={submitBooking}>
 
                         <div className="dateSelection">
                             <div className="dateSelectionBox" >
@@ -155,14 +162,15 @@ function Bookings() {
                                 <p>
                                     Booking ID: {booking.id}
                                 </p>
-                                <h5>Start</h5>
-                                <button>
-                                    {booking.startDate}
-                                </button>
-                                <h5>End</h5>
-                                <button>
-                                    {booking.endDate}
-                                </button>
+                                <p>
+                                    Start: {booking.startDate}
+                                </p>
+                                <p>
+                                    End: {booking.endDate}
+                                </p>
+                                <div className="bottomButtons">
+                                    <OpenModalMenuItem  itemText='Delete Booking' modalComponent={<DeleteBookingModal bookingId={booking.id} />} />
+                                </div>
                             </div>
                         ))}
                     </div>
