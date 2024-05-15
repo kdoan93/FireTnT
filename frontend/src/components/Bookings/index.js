@@ -5,7 +5,7 @@ import './bookings.css'
 import { getSpot } from "../../store/spots";
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import { getSpotBookings } from "../../store/bookings";
+import { createBooking, getSpotBookings } from "../../store/bookings";
 
 
 function Bookings() {
@@ -19,18 +19,18 @@ function Bookings() {
     const dispatch = useDispatch()
 
     spotId = parseInt(spotId)
-
     let spot = useSelector(state => state.spot.singleSpot)
 
     const spotImages = useSelector(state => state.spot.singleSpot.SpotImages)
 
     let bookings = useSelector(state => state.booking.spot)
-
     bookings = Object.values(bookings)
 
-    bookings.map(booking => console.log("booking: ", booking.startDate))
+    // bookings.map(booking => console.log("booking: ", booking.startDate.slice(0, 10)))
+    // let first = bookings[0].startDate.slice(0, 10)
+    // console.log(">>>>>>>>>>", first)
 
-    console.log("IN DATE: ", new Date(checkinDate))
+    console.log("IN DATE: ", checkinDate.toDateString())
 
     // console.log("OUT DATE: ", checkoutDate)
 
@@ -45,6 +45,17 @@ function Bookings() {
     // if (checkinDate > checkoutDate) console.log('CHECKOUT DATE BEFORE CHECKIN!')
 
     let previewImage = getPreviewImg(spotImages)
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        await dispatch(
+            createBooking({
+                startDate: checkinDate,
+                endDate: checkoutDate
+            }, spotId)
+        )
+
+    }
 
     useEffect(() => {
         dispatch(getSpot(spotId))
@@ -106,28 +117,35 @@ function Bookings() {
                         Your trip
                     </h3>
 
-                    <div className="dateSelection">
-                        <div className="dateSelectionBox" >
-                            <div className="dateSelectionText">
-                                Check-in
+                    <form onSubmit={handleSubmit}>
+
+                        <div className="dateSelection">
+                            <div className="dateSelectionBox" >
+                                <div className="dateSelectionText">
+                                    Check-in
+                                </div>
+                                <DatePicker
+                                    className="datePicker"
+                                    selected={checkinDate}
+                                    onChange={(date) => setCheckinDate(date)}
+                                />
                             </div>
-                            <DatePicker
-                                className="datePicker"
-                                selected={checkinDate}
-                                onChange={(date) => setCheckinDate(date)}
-                            />
-                        </div>
-                        <div className="dateSelectionBox" >
-                            <div className="dateSelectionText">
-                                Checkout
+                            <div className="dateSelectionBox" >
+                                <div className="dateSelectionText">
+                                    Checkout
+                                </div>
+                                <DatePicker
+                                    className="datePicker"
+                                    selected={checkoutDate}
+                                    onChange={(date) => setCheckoutDate(date)}
+                                />
                             </div>
-                            <DatePicker
-                                className="datePicker"
-                                selected={checkoutDate}
-                                onChange={(date) => setCheckoutDate(date)}
-                            />
                         </div>
-                    </div>
+
+                        <button>Book it!</button>
+
+                    </form>
+
 
                     {/* REMOVE AFTER TESTING */}
 
@@ -135,7 +153,7 @@ function Bookings() {
                         {bookings.map(booking => (
                             <div className={`bookingContainer ${booking.id}`}>
                                 <p>
-                                    {booking.id}
+                                    Booking ID: {booking.id}
                                 </p>
                                 <h5>Start</h5>
                                 <button>

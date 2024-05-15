@@ -39,7 +39,7 @@ export const createBooking = (booking, spotId) => async dispatch => {
     })
     if (response.ok) {
         const booking = await response.json()
-        dispatch(getSpotBookings(booking.spotId))
+        dispatch(addBooking(booking.spotId))
         return booking
     } else {
         const errors = await response.json()
