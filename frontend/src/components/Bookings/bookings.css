@@ -40,6 +40,17 @@
     width: 50%;
 }
 
+.bookingContainer {
+    border: 1px solid red;
+    display: grid;
+    text-align: center;
+}
+
+.bookingContainer button {
+    border: 1px solid red;
+    width: auto;
+}
+
 .bookingsRight {
     border: 1px solid gray;
     padding: 24px;

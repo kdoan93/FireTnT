@@ -24,9 +24,15 @@ function Bookings() {
 
     const spotImages = useSelector(state => state.spot.singleSpot.SpotImages)
 
-    const bookings = useSelector(state => state.booking.spot)
+    let bookings = useSelector(state => state.booking.spot)
 
-    // console.log('>>>>>>>>>>>>>>>>', bookings)
+    bookings = Object.values(bookings)
+
+    bookings.map(booking => console.log("booking: ", booking.startDate))
+
+    console.log("IN DATE: ", new Date(checkinDate))
+
+    // console.log("OUT DATE: ", checkoutDate)
 
     function getPreviewImg (spotImages) {
         let previewImg = null
@@ -86,6 +92,7 @@ function Bookings() {
 
     if (!spot) return null
     if (!previewImage) return null
+    if (!bookings) return null
 
     return (
         <div className="bookingsContainer">
@@ -122,17 +129,27 @@ function Bookings() {
                         </div>
                     </div>
 
+                    {/* REMOVE AFTER TESTING */}
 
-                    {/* <div>
-                        Testing functionality for pricing
-                        <button onClick={subtractNight}>
-                            -
-                        </button>
-                        <button onClick={addNight}>
-                            +
-                        </button>
-                    </div> */}
+                    <div>
+                        {bookings.map(booking => (
+                            <div className={`bookingContainer ${booking.id}`}>
+                                <p>
+                                    {booking.id}
+                                </p>
+                                <h5>Start</h5>
+                                <button>
+                                    {booking.startDate}
+                                </button>
+                                <h5>End</h5>
+                                <button>
+                                    {booking.endDate}
+                                </button>
+                            </div>
+                        ))}
+                    </div>
 
+                    {/* REMOVE AFTER TESTING */}
 
                 </div>
             </div>
