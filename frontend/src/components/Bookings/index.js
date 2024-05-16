@@ -13,9 +13,8 @@ import '../ManageSpots/ManageSpots.css'
 
 function Bookings() {
 
-    let [nights, setNights] = useState(1)
-    let [checkinDate, setCheckinDate] = useState(new Date())
-    let [checkoutDate, setCheckoutDate] = useState(new Date())
+    let [startDate, setStartDate] = useState(new Date())
+    let [endDate, setEndDate] = useState(new Date())
 
     let {spotId} = useParams()
     const history = useHistory()
@@ -33,9 +32,11 @@ function Bookings() {
     // let first = bookings[0].startDate.slice(0, 10)
     // console.log(">>>>>>>>>>", first)
 
-    console.log("IN DATE: ", checkinDate.toDateString())
+    // console.log("IN DATE: ", startDate.toDateString())
 
-    // console.log("OUT DATE: ", checkoutDate)
+    // console.log(">>>>>>", (endDate - startDate) / 86399240) // 86399240 === 1 day
+
+    // console.log("OUT DATE: ", endDate)
 
     function getPreviewImg (spotImages) {
         let previewImg = null
@@ -45,29 +46,17 @@ function Bookings() {
         return previewImg
     }
 
-    // if (checkinDate > checkoutDate) console.log('CHECKOUT DATE BEFORE CHECKIN!')
-
     let previewImage = getPreviewImg(spotImages)
 
     const submitBooking = async (e) => {
         e.preventDefault()
-        await dispatch(
-            createBooking({
-                startDate: checkinDate,
-                endDate: checkoutDate
-            }, spotId)
-        )
+        await dispatch( createBooking( { startDate, endDate }, spotId ) )
     }
-
-    // const deleteBooking = async (e) => {
-    //     e.preventDefault()
-    //     return dispatch(deleteBooking())
-    // }
 
     useEffect(() => {
         dispatch(getSpot(spotId))
         dispatch(getSpotBookings(spotId))
-    }, [dispatch, checkinDate, checkoutDate])
+    }, [dispatch, startDate, endDate])
 
     const onClick = () => {
         history.push(`/spots/${spotId}`)
@@ -75,17 +64,11 @@ function Bookings() {
 
     let spotPrice = spot.price
 
+    let nights = Math.round((endDate - startDate) / 86399240)
+
     function pricePerNight () {
         let price = spotPrice * nights
         return parseFloat(price)
-    }
-
-    function subtractNight () {
-        return setNights(nights--)
-    }
-
-    function addNight() {
-        return setNights(nights++)
     }
 
     function cleaningFee () {
@@ -133,8 +116,8 @@ function Bookings() {
                                 </div>
                                 <DatePicker
                                     className="datePicker"
-                                    selected={checkinDate}
-                                    onChange={(date) => setCheckinDate(date)}
+                                    selected={startDate}
+                                    onChange={(date) => setStartDate(date)}
                                 />
                             </div>
                             <div className="dateSelectionBox" >
@@ -143,20 +126,20 @@ function Bookings() {
                                 </div>
                                 <DatePicker
                                     className="datePicker"
-                                    selected={checkoutDate}
-                                    onChange={(date) => setCheckoutDate(date)}
+                                    selected={endDate}
+                                    onChange={(date) => setEndDate(date)}
                                 />
                             </div>
                         </div>
 
-                        <button>Book it!</button>
+                        {/* <button>Book it!</button> */}
 
                     </form>
 
 
                     {/* REMOVE AFTER TESTING */}
 
-                    <div>
+                    {/* <div>
                         {bookings.map(booking => (
                             <div className={`bookingContainer ${booking.id}`}>
                                 <p>
@@ -173,7 +156,7 @@ function Bookings() {
                                 </div>
                             </div>
                         ))}
-                    </div>
+                    </div> */}
 
                     {/* REMOVE AFTER TESTING */}
 
