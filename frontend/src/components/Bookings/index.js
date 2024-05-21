@@ -50,7 +50,8 @@ function Bookings() {
 
     const submitBooking = async (e) => {
         e.preventDefault()
-        await dispatch( createBooking( { startDate, endDate }, spotId ) )
+        // await dispatch( createBooking( { startDate, endDate }, spotId ) )
+        alert("Booking feature coming soon!")
     }
 
     useEffect(() => {
@@ -132,7 +133,7 @@ function Bookings() {
                             </div>
                         </div>
 
-                        {/* <button>Book it!</button> */}
+                        {/* <button className="bookingsButton">Book it!</button> */}
 
                     </form>
 
@@ -181,7 +182,7 @@ function Bookings() {
                         Price details
                     </p>
                     <div className="bookingsRightPrices">
-                        <div>
+                        <div className="pricesDivider">
                             <p>
                                 ${Number(spotPrice).toFixed(2)} x {nights} {nights > 1 ? "nights" : "night"}
                             </p>
@@ -190,7 +191,7 @@ function Bookings() {
                                 {/* Func to get price total / night */}
                             </p>
                         </div>
-                        <div>
+                        <div className="pricesDivider">
                             <p>
                                 Cleaning fee
                             </p>
@@ -198,7 +199,7 @@ function Bookings() {
                                 ${cleaningFee().toFixed(2)}
                             </p>
                         </div>
-                        <div>
+                        <div className="pricesDivider">
                             <p>
                                 Airbnb service fee
                             </p>
@@ -206,7 +207,7 @@ function Bookings() {
                                 ${serviceFee().toFixed(2)}
                             </p>
                         </div>
-                        <div>
+                        <div className="pricesDivider">
                             <p>
                                 Taxes
                             </p>
