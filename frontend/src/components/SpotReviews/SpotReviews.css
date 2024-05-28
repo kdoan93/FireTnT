@@ -7,7 +7,6 @@
 
 .review {
     /* border: 1px solid red; */
-    border-bottom: 1px solid gray;
     display: flex;
     flex-direction: column;
     margin: 0px 87px 20px 0px;
