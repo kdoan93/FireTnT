@@ -51,6 +51,7 @@ function Bookings() {
     const submitBooking = async (e) => {
         e.preventDefault()
         await dispatch( createBooking( { startDate, endDate }, spotId ) )
+        // alert("Booking feature coming soon!")
     }
 
     useEffect(() => {
@@ -132,14 +133,14 @@ function Bookings() {
                             </div>
                         </div>
 
-                        {/* <button>Book it!</button> */}
+                        {/* <button className="bookingsButton">Book it!</button> */}
 
                     </form>
 
 
                     {/* REMOVE AFTER TESTING */}
 
-                    {/* <div>
+                    <div>
                         {bookings.map(booking => (
                             <div className={`bookingContainer ${booking.id}`}>
                                 <p>
@@ -156,7 +157,7 @@ function Bookings() {
                                 </div>
                             </div>
                         ))}
-                    </div> */}
+                    </div>
 
                     {/* REMOVE AFTER TESTING */}
 

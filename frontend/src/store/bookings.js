@@ -76,7 +76,7 @@ const bookingReducer = (state = initialState, action) => {
 
         case ADD_BOOKING:
             newState = { ...state, spot: { ...action.booking } }
-            newState.singleSpot[action.booking.id] = action.booking
+            newState.singleSpot[action.bookingId] = action.booking
             return newState
 
         case DELETE_BOOKING:
