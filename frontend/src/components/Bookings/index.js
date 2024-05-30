@@ -25,8 +25,7 @@ function Bookings() {
 
     const spotImages = useSelector(state => state.spot.singleSpot.SpotImages)
 
-    let bookings = useSelector(state => state.booking.spot)
-    bookings = Object.values(bookings)
+    let bookings = useSelector(state => state.booking.booking)
 
     // bookings.map(booking => console.log("booking: ", booking.startDate.slice(0, 10)))
     // let first = bookings[0].startDate.slice(0, 10)
@@ -96,6 +95,9 @@ function Bookings() {
     if (!previewImage) return null
     if (!bookings) return null
 
+
+    bookings = Object.values(bookings)
+
     return (
         <div className="bookingsContainer">
             <button className="bookingsReturn fa-solid fa-less-than" onClick={onClick} />
@@ -110,7 +112,7 @@ function Bookings() {
 
                     <form onSubmit={submitBooking}>
 
-                        <div className="dateSelection">
+                        <div className="dateSelection" >
                             <div className="dateSelectionBox" >
                                 <div className="dateSelectionText">
                                     Check-in
@@ -133,7 +135,7 @@ function Bookings() {
                             </div>
                         </div>
 
-                        {/* <button className="bookingsButton">Book it!</button> */}
+                        <button className="bookingsButton">Book it!</button>
 
                     </form>
 
@@ -142,7 +144,8 @@ function Bookings() {
 
                     <div>
                         {bookings.map(booking => (
-                            <div className={`bookingContainer ${booking.id}`}>
+                            <div className={`bookingContainer`}>
+                            {/* <div className={`bookingContainer ${booking.id}`}> */}
                                 <p>
                                     Booking ID: {booking.id}
                                 </p>

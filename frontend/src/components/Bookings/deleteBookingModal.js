@@ -9,9 +9,17 @@ export const DeleteBookingModal = ({ bookingId }) => {
 
     const { closeModal } = useModal();
 
-    const handleClick = (e) => {
+    const handleClick = async (e) => {
         e.preventDefault();
-        return dispatch(deleteBooking(bookingId)).then(closeModal)
+        try {
+            return dispatch(deleteBooking(bookingId)).then(closeModal)
+        } catch(error) {
+            if (error) {
+                error = await error.json()
+                console.log('look >>>>>>>>>', error)
+                return error
+            }
+        }
     }
 
     return (
