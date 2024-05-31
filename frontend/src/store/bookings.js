@@ -76,7 +76,6 @@ const bookingReducer = (state = initialState, action) => {
 
         case ADD_BOOKING:
             newState = { ...state, booking: { ...state.booking } }
-            console.log("newState.booking", newState)
             newState.booking[action.booking.id] = action.booking
             return newState
 
