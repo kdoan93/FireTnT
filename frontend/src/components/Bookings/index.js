@@ -100,7 +100,7 @@ function Bookings() {
 
     let testDate = bookings[0].startDate.slice(0, 10)
 
-    console.log('>>>>>>>>>>>>>>', testDate)
+    // console.log('>>>>>>>>>>>>>>', testDate)
 
     return (
         <div className="bookingsContainer">
@@ -148,10 +148,9 @@ function Bookings() {
 
                     {/* REMOVE AFTER TESTING */}
 
-                    <div>
+                    {/* <div>
                         {bookings.map(booking => (
                             <div className={`bookingContainer`}>
-                            {/* <div className={`bookingContainer ${booking.id}`}> */}
                                 <p>
                                     Booking ID: {booking.id}
                                 </p>
@@ -166,7 +165,7 @@ function Bookings() {
                                 </div>
                             </div>
                         ))}
-                    </div>
+                    </div> */}
 
                     {/* REMOVE AFTER TESTING */}
 
