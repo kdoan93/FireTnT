@@ -10,8 +10,8 @@ const getAllBookings = (booking, spotId) => {
     return { type: GET_ALL_BOOKINGS, booking, spotId}
 }
 
-const addBooking = (bookingId) => {
-    return { type: ADD_BOOKING, bookingId }
+const addBooking = (booking) => {
+    return { type: ADD_BOOKING, booking }
 }
 
 const removeBooking = (bookingId) => {
@@ -39,7 +39,7 @@ export const createBooking = (booking, spotId) => async dispatch => {
     })
     if (response.ok) {
         const booking = await response.json()
-        dispatch(addBooking(spotId))
+        dispatch(addBooking(booking))
         return booking
     } else {
         const errors = await response.json()
@@ -68,20 +68,20 @@ const bookingReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case GET_ALL_BOOKINGS:
-            newState = { ...state, spot: {} }
+            newState = { ...state, booking: {} }
             action.booking.Bookings.forEach(booking => {
-                newState.spot[booking.id] = booking
+                newState.booking[booking.id] = booking
             })
             return newState
 
         case ADD_BOOKING:
-            newState = { ...state, spot: { ...action.booking } }
-            newState.singleSpot[action.booking.id] = action.booking
+            newState = { ...state, booking: { ...state.booking } }
+            newState.booking[action.booking.id] = action.booking
             return newState
 
         case DELETE_BOOKING:
-            newState = { ...state, spot: { ...state.spot } }
-            delete newState.spot[action.bookingId]
+            newState = { ...state, booking: { ...state.booking } }
+            delete newState.booking[action.bookingId]
             return newState
 
         default:

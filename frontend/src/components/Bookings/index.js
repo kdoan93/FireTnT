@@ -25,8 +25,7 @@ function Bookings() {
 
     const spotImages = useSelector(state => state.spot.singleSpot.SpotImages)
 
-    let bookings = useSelector(state => state.booking.spot)
-    bookings = Object.values(bookings)
+    let bookings = useSelector(state => state.booking.booking)
 
     // bookings.map(booking => console.log("booking: ", booking.startDate.slice(0, 10)))
     // let first = bookings[0].startDate.slice(0, 10)
@@ -50,8 +49,8 @@ function Bookings() {
 
     const submitBooking = async (e) => {
         e.preventDefault()
-        // await dispatch( createBooking( { startDate, endDate }, spotId ) )
-        alert("Booking feature coming soon!")
+        await dispatch( createBooking( { startDate, endDate }, spotId ) )
+        // alert("Booking feature coming soon!")
     }
 
     useEffect(() => {
@@ -96,6 +95,13 @@ function Bookings() {
     if (!previewImage) return null
     if (!bookings) return null
 
+
+    bookings = Object.values(bookings)
+
+    let testDate = bookings[0].startDate.slice(0, 10)
+
+    // console.log('>>>>>>>>>>>>>>', testDate)
+
     return (
         <div className="bookingsContainer">
             <button className="bookingsReturn fa-solid fa-less-than" onClick={onClick} />
@@ -110,7 +116,7 @@ function Bookings() {
 
                     <form onSubmit={submitBooking}>
 
-                        <div className="dateSelection">
+                        <div className="dateSelection" >
                             <div className="dateSelectionBox" >
                                 <div className="dateSelectionText">
                                     Check-in
@@ -119,6 +125,7 @@ function Bookings() {
                                     className="datePicker"
                                     selected={startDate}
                                     onChange={(date) => setStartDate(date)}
+                                    monthsShown={3}
                                 />
                             </div>
                             <div className="dateSelectionBox" >
@@ -129,6 +136,7 @@ function Bookings() {
                                     className="datePicker"
                                     selected={endDate}
                                     onChange={(date) => setEndDate(date)}
+                                    monthsShown={3}
                                 />
                             </div>
                         </div>
@@ -142,7 +150,7 @@ function Bookings() {
 
                     {/* <div>
                         {bookings.map(booking => (
-                            <div className={`bookingContainer ${booking.id}`}>
+                            <div className={`bookingContainer`}>
                                 <p>
                                     Booking ID: {booking.id}
                                 </p>
