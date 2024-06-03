@@ -100,7 +100,7 @@ function Bookings() {
 
     let testDate = bookings[0].startDate.slice(0, 10)
 
-    // console.log('>>>>>>>>>>>>>>', testDate)
+    console.log('>>>>>>>>>>>>>>', new Date(testDate))
 
     return (
         <div className="bookingsContainer">
@@ -125,7 +125,8 @@ function Bookings() {
                                     className="datePicker"
                                     selected={startDate}
                                     onChange={(date) => setStartDate(date)}
-                                    monthsShown={3}
+                                    monthsShown={2}
+                                    // excludeDates={testDate}
                                 />
                             </div>
                             <div className="dateSelectionBox" >
@@ -136,7 +137,7 @@ function Bookings() {
                                     className="datePicker"
                                     selected={endDate}
                                     onChange={(date) => setEndDate(date)}
-                                    monthsShown={3}
+                                    monthsShown={2}
                                 />
                             </div>
                         </div>
