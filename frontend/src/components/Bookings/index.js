@@ -20,6 +20,8 @@ function Bookings() {
     const history = useHistory()
     const dispatch = useDispatch()
 
+    let booked = []
+
     spotId = parseInt(spotId)
     let spot = useSelector(state => state.spot.singleSpot)
 
@@ -98,9 +100,31 @@ function Bookings() {
 
     bookings = Object.values(bookings)
 
-    let testDate = bookings[0].startDate.slice(0, 10)
+    let getBookings = () => {
+        bookings.map(booking => {
+            booked.push(getDates(booking.startDate, booking.endDate))
+        })
+    }
 
-    console.log('>>>>>>>>>>>>>>', new Date(testDate))
+    getBookings()
+
+    Date.prototype.addDays = function(days) {
+        let date = new Date(this.valueOf())
+        date.setDate(date.getDate() + days)
+        return date
+    }
+
+    function getDates(startDate, endDate) {
+        let dateArray = new Array()
+        let currentDate = startDate
+        while (currentDate <= endDate) {
+            dateArray.push(new Date(currentDate))
+            currentDate = currentDate.addDays(1)
+        }
+        return dateArray
+    }
+
+    console.log('>>>', booked)
 
     return (
         <div className="bookingsContainer">
@@ -126,7 +150,7 @@ function Bookings() {
                                     selected={startDate}
                                     onChange={(date) => setStartDate(date)}
                                     monthsShown={2}
-                                    // excludeDates={testDate}
+                                    excludeDates={booked}
                                 />
                             </div>
                             <div className="dateSelectionBox" >
@@ -142,14 +166,14 @@ function Bookings() {
                             </div>
                         </div>
 
-                        {/* <button className="bookingsButton">Book it!</button> */}
+                        <button className="bookingsButton">Book it!</button>
 
                     </form>
 
 
                     {/* REMOVE AFTER TESTING */}
 
-                    {/* <div>
+                    <div>
                         {bookings.map(booking => (
                             <div className={`bookingContainer`}>
                                 <p>
@@ -166,7 +190,7 @@ function Bookings() {
                                 </div>
                             </div>
                         ))}
-                    </div> */}
+                    </div>
 
                     {/* REMOVE AFTER TESTING */}
 
