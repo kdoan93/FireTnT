@@ -100,31 +100,31 @@ function Bookings() {
 
     bookings = Object.values(bookings)
 
-    let getBookings = () => {
-        bookings.map(booking => {
-            booked.push(getDates(booking.startDate, booking.endDate))
-        })
-    }
+    // let getBookings = () => {
+    //     bookings.map(booking => {
+    //         booked.push(getDates(booking.startDate, booking.endDate))
+    //     })
+    // }
 
-    getBookings()
+    // getBookings()
 
-    Date.prototype.addDays = function(days) {
-        let date = new Date(this.valueOf())
-        date.setDate(date.getDate() + days)
-        return date
-    }
+    // Date.prototype.addDays = function(days) {
+    //     let date = new Date(this.valueOf())
+    //     date.setDate(date.getDate() + days)
+    //     return date
+    // }
 
-    function getDates(startDate, endDate) {
-        let dateArray = new Array()
-        let currentDate = startDate
-        while (currentDate <= endDate) {
-            dateArray.push(new Date(currentDate))
-            currentDate = currentDate.addDays(1)
-        }
-        return dateArray
-    }
+    // function getDates(startDate, endDate) {
+    //     let dateArray = new Array()
+    //     let currentDate = startDate
+    //     while (currentDate <= endDate) {
+    //         dateArray.push(new Date(currentDate))
+    //         currentDate = currentDate.addDays(1)
+    //     }
+    //     return dateArray
+    // }
 
-    console.log('>>>', booked)
+    // console.log('>>>', booked)
 
     return (
         <div className="bookingsContainer">
@@ -215,7 +215,7 @@ function Bookings() {
                         Price details
                     </p>
                     <div className="bookingsRightPrices">
-                        <div>
+                        <div className="pricesDivider">
                             <p>
                                 ${Number(spotPrice).toFixed(2)} x {nights} {nights > 1 ? "nights" : "night"}
                             </p>
@@ -224,7 +224,7 @@ function Bookings() {
                                 {/* Func to get price total / night */}
                             </p>
                         </div>
-                        <div>
+                        <div className="pricesDivider">
                             <p>
                                 Cleaning fee
                             </p>
@@ -232,7 +232,7 @@ function Bookings() {
                                 ${cleaningFee().toFixed(2)}
                             </p>
                         </div>
-                        <div>
+                        <div className="pricesDivider">
                             <p>
                                 Airbnb service fee
                             </p>
@@ -240,7 +240,7 @@ function Bookings() {
                                 ${serviceFee().toFixed(2)}
                             </p>
                         </div>
-                        <div>
+                        <div className="pricesDivider">
                             <p>
                                 Taxes
                             </p>

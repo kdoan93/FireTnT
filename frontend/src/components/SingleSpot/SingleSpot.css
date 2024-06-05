@@ -169,7 +169,7 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    width: 40%;
+    width: 50%;
     margin-left: 10px;
     max-height: 80%;
 }
@@ -196,7 +196,7 @@
 
 .starReviews {
     /* border: 1px solid blue; */
-    width: 15%;
+    width: 20%;
     position: relative;
     display: flex;
     justify-content: flex-start;

@@ -51,8 +51,8 @@
     text-align: center;
 }
 
-.bookingContainer button {
-    border: 1px solid red;
+.bookingsButton {
+    /* border: 1px solid red; */
     width: auto;
 }
 
@@ -106,12 +106,18 @@
     justify-content: space-between;
 }
 
+.pricesDivider {
+    border-bottom: 1px dashed grey;
+    padding-bottom: 5px;
+}
+
 .bookingsRightPrices div p {
     /* border: 1px solid purple; */
     margin: 16px 0px 0px;
 }
 
 .bookingsTotalContainer {
-    border-top: 1px solid gray;
+    /* border-top: 1px solid black; */
     margin-top: 16px;
+    font-weight: 700;
 }
