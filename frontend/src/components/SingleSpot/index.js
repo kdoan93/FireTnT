@@ -29,6 +29,7 @@ const SingleSpot = () => {
     let sessionUserId = 0;
 
     if (sessionUser) sessionUserId = sessionUser.id
+
     let reviewed = false;
     reviewsArray.map(
         review => {if (review.userId === sessionUserId) reviewed = true}
@@ -60,7 +61,8 @@ const SingleSpot = () => {
 
     const handleClick = (e) => {
         e.preventDefault();
-        history.push(`/spots/${spotId}/booking`)
+        if (sessionUserId) history.push(`/spots/${spotId}/booking`)
+        else alert("Please log in to book a spot!")
     }
 
     return (
