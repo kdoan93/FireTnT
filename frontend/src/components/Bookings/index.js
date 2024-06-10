@@ -51,7 +51,13 @@ function Bookings() {
 
     const submitBooking = async (e) => {
         e.preventDefault()
-        await dispatch( createBooking( { startDate, endDate }, spotId ) )
+        try {
+            await dispatch( createBooking( { startDate, endDate }, spotId ) )
+
+        } catch (errors) {
+            if (startDate > endDate) alert(`Unable to book! The check-in date is after the checkout date.`)
+            else alert('Sorry, this spot is already booked for the specified dates')
+        }
         // alert("Booking feature coming soon!")
     }
 
@@ -173,14 +179,14 @@ function Bookings() {
                             </div>
                         </div>
 
-                        {/* <button className="bookingsButton">Book it!</button> */}
+                        <button className="bookingsButton">Book it!</button>
 
                     </form>
 
 
                     {/* REMOVE AFTER TESTING */}
 
-                    {/* <div>
+                    <div>
                         {bookings.map(booking => (
                             <div className={`bookingContainer`}>
                                 <p>
@@ -197,7 +203,7 @@ function Bookings() {
                                 </div>
                             </div>
                         ))}
-                    </div> */}
+                    </div>
 
                     {/* REMOVE AFTER TESTING */}
 
