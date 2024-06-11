@@ -56,7 +56,7 @@ function Bookings() {
 
         } catch (errors) {
             if (startDate > endDate) alert(`Unable to book! The check-in date is after the checkout date.`)
-            else alert('Sorry, this spot is already booked for the specified dates')
+            else alert('Sorry, your booking includes currently booked dates')
         }
         // alert("Booking feature coming soon!")
     }
@@ -151,7 +151,7 @@ function Bookings() {
                         Your trip
                     </h3>
 
-                    <form onSubmit={submitBooking}>
+                    <form className="formContainer" onSubmit={submitBooking}>
 
                         <div className="dateSelection" >
                             <div className="dateSelectionBox" >
@@ -166,7 +166,7 @@ function Bookings() {
                                     excludeDates={booked}
                                 />
                             </div>
-                            <div className="dateSelectionBox" >
+                            <div className="dateSelectionBox checkout" >
                                 <div className="dateSelectionText">
                                     Checkout
                                 </div>
