@@ -106,38 +106,21 @@ function Bookings() {
 
     bookings = Object.values(bookings)
 
-
-    // Date.prototype.addDays = function(days) {
-    //     let date = new Date(this.valueOf())
-    //     date.setDate(date.getDate() + days)
-    //     return date
-    // }
-
-    function getDates(startDate, endDate) {
-            let dateArray = new Array()
-            let currentDate = startDate
-            // console.log("before ", currentDate)
-            while (currentDate <= endDate) {
-                dateArray.push(new Date(currentDate))
-                // currentDate = currentDate.addDays(1)
-                currentDate = new Date(currentDate + 1)
-                // console.log("after ", new Date(currentDate) > new Date(endDate))
+    function fillDates(startDate, endDate) {
+        let end = new Date(endDate)
+        for (let d = new Date(startDate); d <= end; d.setDate(d.getDate() + 1)) {
+            booked.push(new Date(d))
         }
-        // console.log('dateArray: ', dateArray)
-        return dateArray
     }
-
-    // console.log("bookings: ", bookings)
 
     let getBookings = (bookings) => {
         bookings.map(booking => {
-            booked.push(booking.startDate, booking.endDate)
+            fillDates(booking.startDate, booking.endDate)
+            // booked.push(booking.startDate, booking.endDate)
         })
     }
 
     getBookings(bookings)
-
-    // console.log('>>>', booked)
 
     return (
         <div className="bookingsContainer">
@@ -175,11 +158,12 @@ function Bookings() {
                                     selected={endDate}
                                     onChange={(date) => setEndDate(date)}
                                     monthsShown={2}
+                                    excludeDates={booked}
                                 />
                             </div>
                         </div>
 
-                        <button className="bookingsButton">Book it!</button>
+                        <button className="bookingsButton">Reserve</button>
 
                     </form>
 
