@@ -24,24 +24,25 @@ function Trips() {
         <>
             <div className="tripsContainer">
                 {userBookings.map(booking => (
-                    <div className={`singleTrip`}>
-                        <NavLink key={`${booking.id}`} className='spot' to={`/spots/${booking.spotId}`} >
-                            <div>
+                    <div className={`singleTripContainer`}>
+                        <NavLink key={`${booking.id}`} className='trip' to={`/spots/${booking.spotId}`} >
+                            <div className="image">
                                 <img className="bookingPreviewImg" src={booking.Spot.previewImage} alt="bookingImg" />
                             </div>
-                            <p>
-                                Booking location: {booking.Spot.city}
-                            </p>
-                            <p>
-                                Hosted by: {booking.Spot.ownerId}
-                            </p>
-                            <p>
-                                Start: {booking.startDate}
-                            </p>
-                            <p>
-                                End: {booking.endDate}
-                            </p>
-
+                            <div className="tripDetails">
+                                <p>
+                                    Booking location: {booking.Spot.city}
+                                </p>
+                                <p>
+                                    Hosted by: {booking.Spot.ownerId}
+                                </p>
+                                <p>
+                                    Start: {booking.startDate}
+                                </p>
+                                <p>
+                                    End: {booking.endDate}
+                                </p>
+                            </div>
                         </NavLink>
                         <div className="bottomButtons">
                             <OpenModalMenuItem  itemText='Delete Booking' modalComponent={<DeleteBookingModal bookingId={booking.id} />} />
