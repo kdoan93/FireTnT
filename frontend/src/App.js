@@ -9,6 +9,7 @@ import SingleSpot from "./components/SingleSpot";
 import SpotReviews from "./components/SpotReviews";
 import UserSpots from "./components/ManageSpots";
 import Bookings from "./components/Bookings";
+import Trips from './components/Bookings/Trips';
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,9 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <SpotsBrowser />
+          </Route>
+          <Route path='/trips'>
+            <Trips />
           </Route>
           <Route path='/spots/current'>
             <UserSpots />

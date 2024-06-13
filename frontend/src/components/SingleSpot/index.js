@@ -62,7 +62,7 @@ const SingleSpot = () => {
     const handleClick = (e) => {
         e.preventDefault();
         if (sessionUserId) history.push(`/spots/${spotId}/booking`)
-        else alert("Please log in to book a spot!")
+        else alert("Please log in to reserve a spot!")
     }
 
     return (

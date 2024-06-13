@@ -29,16 +29,6 @@ function Bookings() {
 
     let bookings = useSelector(state => state.booking.booking)
 
-    // bookings.map(booking => console.log("booking: ", booking.startDate.slice(0, 10)))
-    // let first = bookings[0].startDate.slice(0, 10)
-    // console.log(">>>>>>>>>>", first)
-
-    // console.log("IN DATE: ", startDate.toDateString())
-
-    // console.log(">>>>>>", (endDate - startDate) / 86399240) // 86399240 === 1 day
-
-    // console.log("OUT DATE: ", endDate)
-
     function getPreviewImg (spotImages) {
         let previewImg = null
         for(let image of spotImages) {
@@ -58,7 +48,6 @@ function Bookings() {
             if (startDate > endDate) alert(`Unable to book! The check-in date is after the checkout date.`)
             else alert('Sorry, your booking includes currently booked dates')
         }
-        // alert("Booking feature coming soon!")
     }
 
     useEffect(() => {

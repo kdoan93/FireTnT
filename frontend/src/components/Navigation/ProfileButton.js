@@ -75,6 +75,9 @@ function ProfileButton({ user }) {
                   <NavLink className='dt manageSpots' to='/spots/current'>
                     Manage Spots
                   </NavLink>
+                  <NavLink className='dt manageSpots' to='/trips'>
+                    Trips
+                  </NavLink>
                 <button className='logoutButton' onClick={logout}>Log Out</button>
               </div>
             ) : (
