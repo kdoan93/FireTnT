@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
+import { NavLink } from "react-router-dom";
 import { getUserBookings } from "../../store/bookings"
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import { DeleteBookingModal } from "./deleteBookingModal";
@@ -8,52 +9,45 @@ import { DeleteBookingModal } from "./deleteBookingModal";
 function Trips() {
     const dispatch = useDispatch()
     let userBookings = useSelector(state => state.booking.booking)
-    userBookings = Object.values(userBookings)
-    console.log("userBookings ", userBookings)
+    // console.log("userBookings ", userBookings)
 
     let booked = []
 
     useEffect(() => {
         dispatch(getUserBookings())
-    }, [dispatch])
+        }, [dispatch])
 
     if (!userBookings) return null
+    userBookings = Object.values(userBookings)
 
     return (
         <>
-            <div>
-            <div>
-                        {userBookings.map(booking => (
-                            <div className={`bookingContainer`}>
-                                <p>
-                                    Booking location: {booking.Spot.city}
-                                </p>
-                                <p>
-                                    Hosted by: {booking.Spot.ownerId}
-                                </p>
-                                <p>
-                                    Start: {booking.startDate}
-                                </p>
-                                <p>
-                                    End: {booking.endDate}
-                                </p>
-                                <div className="bottomButtons">
-                                    <OpenModalMenuItem  itemText='Delete Booking' modalComponent={<DeleteBookingModal bookingId={booking.id} />} />
-                                </div>
+            <div className="tripsContainer">
+                {userBookings.map(booking => (
+                    <div className={`singleTrip`}>
+                        <NavLink key={`${booking.id}`} className='spot' to={`/spots/${booking.spotId}`} >
+                            <div>
+                                <img className="bookingPreviewImg" src={booking.Spot.previewImage} alt="bookingImg" />
                             </div>
-                        ))}
-                    </div>
-                <h1>
-                    TRIPS
-                </h1>
-                {/* Current and future trips will show here */}
-            </div>
+                            <p>
+                                Booking location: {booking.Spot.city}
+                            </p>
+                            <p>
+                                Hosted by: {booking.Spot.ownerId}
+                            </p>
+                            <p>
+                                Start: {booking.startDate}
+                            </p>
+                            <p>
+                                End: {booking.endDate}
+                            </p>
 
-            <div>
-                <h2>
-                    Where you've been
-                </h2>
-                {/* Past trips will be shown here */}
+                        </NavLink>
+                        <div className="bottomButtons">
+                            <OpenModalMenuItem  itemText='Delete Booking' modalComponent={<DeleteBookingModal bookingId={booking.id} />} />
+                        </div>
+                    </div>
+                ))}
             </div>
         </>
     )

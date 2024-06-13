@@ -54,12 +54,6 @@
     width: 50%;
 }
 
-.bookingContainer {
-    border: 1px solid red;
-    display: grid;
-    text-align: center;
-}
-
 .bookingsButton {
     border: 1px solid red;
     height: 50px;
@@ -136,4 +130,27 @@
     /* border-top: 1px solid black; */
     margin-top: 16px;
     font-weight: 700;
+}
+
+.tripsContainer {
+    border: 1px solid black;
+    /* display: flex;
+    flex-direction: column;
+    margin: 40px 80px; */
+    margin: 30px 80px;
+    display: flex;
+    justify-content: center;
+    align-content: stretch;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.singleTrip {
+    border: 1px solid red;
+    /* display: flex; */
+    text-align: center;
+}
+
+.bookingPreviewImg {
+    width: 75px;
 }

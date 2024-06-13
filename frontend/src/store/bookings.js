@@ -11,8 +11,8 @@ const getAllBookings = (booking, spotId) => {
     return { type: GET_ALL_BOOKINGS, booking, spotId}
 }
 
-const getAllUserBookings = (bookings, userId) => {
-    return { type: GET_ALL_USER_BOOKINGS, bookings, userId }
+const getAllUserBookings = (bookings) => {
+    return { type: GET_ALL_USER_BOOKINGS, bookings }
 }
 
 const addBooking = (booking) => {
@@ -93,6 +93,7 @@ const bookingReducer = (state = initialState, action) => {
 
         case GET_ALL_USER_BOOKINGS:
             newState = { ...state, booking: {} }
+            // console.log("bookings switch: ", newState)
             action.bookings.Bookings.forEach(booking => {
                 newState.booking[booking.id] = booking
             })
