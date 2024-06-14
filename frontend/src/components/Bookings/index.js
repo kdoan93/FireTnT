@@ -159,7 +159,7 @@ function Bookings() {
 
                     {/* REMOVE AFTER TESTING */}
 
-                    <div>
+                    {/* <div>
                         {bookings.map(booking => (
                             <div className={`bookingContainer`}>
                                 <p>
@@ -176,7 +176,7 @@ function Bookings() {
                                 </div>
                             </div>
                         ))}
-                    </div>
+                    </div> */}
 
                     {/* REMOVE AFTER TESTING */}
 

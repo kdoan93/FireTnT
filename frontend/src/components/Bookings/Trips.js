@@ -13,6 +13,38 @@ function Trips() {
 
     let booked = []
 
+    function convertDate(start, end) {
+        start = start.toString()
+        end = end.toString()
+
+        let dateStr = ''
+
+        let monthNums = {
+            '01': "Jan",
+            '02': 'Feb',
+            '03': 'Mar',
+            '04': 'Apr',
+            '05': 'May',
+            '06': 'Jun',
+            '07': 'Jul',
+            '08': 'Aug',
+            '09': 'Sep',
+            '10': 'Oct',
+            '11': 'Nov',
+            '12': 'Dec'
+        }
+
+        let startMonth = start.slice(5, 7)
+        let startDays = start.slice(8, 10)
+        let startYear = start.slice(0, 4)
+
+        let endMonth = end.slice(5, 7)
+        let endDays = end.slice(8, 10)
+        let endYears = end.slice(0, 4)
+
+        return dateStr + monthNums[startMonth] + ' ' + startDays + ' - ' + monthNums[endMonth] + ' ' + endDays + ', ' + endYears
+    }
+
     useEffect(() => {
         dispatch(getUserBookings())
         }, [dispatch])
@@ -30,21 +62,21 @@ function Trips() {
                                 <img className="bookingPreviewImg" src={booking.Spot.previewImage} alt="bookingImg" />
                             </div>
                             <div className="tripDetails">
-                                <p>
-                                    Booking location: {booking.Spot.city}
+                                <p className="tripCity">
+                                    {booking.Spot.city}
                                 </p>
                                 <p>
                                     Hosted by: {booking.Spot.ownerId}
                                 </p>
                                 <p>
-                                    Start: {booking.startDate}
+                                    {convertDate(booking.startDate, booking.endDate)}
                                 </p>
                                 <p>
-                                    End: {booking.endDate}
+                                    {/* End: {convertDate(booking.endDate)} */}
                                 </p>
                             </div>
                         </NavLink>
-                        <div className="bottomButtons">
+                        <div className="tripButton">
                             <OpenModalMenuItem  itemText='Delete Booking' modalComponent={<DeleteBookingModal bookingId={booking.id} />} />
                         </div>
                     </div>
