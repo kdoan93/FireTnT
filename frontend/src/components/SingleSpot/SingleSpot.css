@@ -192,6 +192,8 @@
     width: 90%;
     left: 17px;
     margin-top: 5px;
+    font-weight: 700;
+    font-size: larger;
 }
 
 .reserve div {
@@ -201,6 +203,7 @@
     justify-content: center;
     width: 100%;
     height: 100%;
+    font-size: larger;
 }
 
 .starReviews {
