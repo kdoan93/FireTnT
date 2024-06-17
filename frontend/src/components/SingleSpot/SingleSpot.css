@@ -194,6 +194,15 @@
     margin-top: 5px;
 }
 
+.reserve div {
+    /* border: 1px solid green; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
 .starReviews {
     /* border: 1px solid blue; */
     width: 20%;

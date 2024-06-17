@@ -12,6 +12,7 @@ import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import './SingleSpot.css'
 import { getSpotImages } from "../../store/spotsImages";
 import Bookings from "../Bookings";
+import { UpdateSpotModal } from "../ManageSpots/UpdateSpotModal";
 
 const SingleSpot = () => {
 
@@ -117,9 +118,15 @@ const SingleSpot = () => {
                             </h5>
                         </div>
                     </div>
-                    <button className="reserve" onClick={handleClick} >
+                    {spotOwnerId === sessionUserId ?
+                        <button className="reserve">
+                            <OpenModalMenuItem itemText='Update Owned Spot' modalComponent={ <UpdateSpotModal spot={spot} /> }/>
+                        </button>
+                        :
+                        <button className="reserve" onClick={handleClick} >
                             Reserve
-                    </button>
+                        </button>
+                    }
 
                 </div>
             </div>
