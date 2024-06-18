@@ -43,6 +43,7 @@ function Bookings() {
         e.preventDefault()
         try {
             await dispatch( createBooking( { startDate, endDate }, spotId ) )
+            alert("Spot has been booked!")
 
         } catch (errors) {
             if (startDate > endDate) alert(`Unable to book! The check-in date is after the checkout date.`)
@@ -122,9 +123,7 @@ function Bookings() {
                     <h3>
                         Your trip
                     </h3>
-
                     <form className="formContainer" onSubmit={submitBooking}>
-
                         <div className="dateSelection" >
                             <div className="dateSelectionBox" >
                                 <div className="dateSelectionText">
@@ -151,35 +150,8 @@ function Bookings() {
                                 />
                             </div>
                         </div>
-
                         <button className="bookingsButton">Reserve</button>
-
                     </form>
-
-
-                    {/* REMOVE AFTER TESTING */}
-
-                    {/* <div>
-                        {bookings.map(booking => (
-                            <div className={`bookingContainer`}>
-                                <p>
-                                    Booking ID: {booking.id}
-                                </p>
-                                <p>
-                                    Start: {booking.startDate}
-                                </p>
-                                <p>
-                                    End: {booking.endDate}
-                                </p>
-                                <div className="bottomButtons">
-                                    <OpenModalMenuItem  itemText='Delete Booking' modalComponent={<DeleteBookingModal bookingId={booking.id} />} />
-                                </div>
-                            </div>
-                        ))}
-                    </div> */}
-
-                    {/* REMOVE AFTER TESTING */}
-
                 </div>
             </div>
             <div className="bookingsRight">
