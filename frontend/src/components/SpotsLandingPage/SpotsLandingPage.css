@@ -2,7 +2,6 @@
     /* border: 1px solid black; */
     margin: 30px 80px;
     display: flex;
-    justify-content: center;
     align-content: stretch;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -12,7 +11,6 @@
     /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
-
     min-width: 215px;
     width: 22%;
     height: auto;

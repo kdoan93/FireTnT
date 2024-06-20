@@ -21,10 +21,10 @@
 .spotsContainer {
     /* border: 1px solid green; */
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-content: stretch;
     flex-wrap: wrap;
-    margin: 20px 0px;
+    margin: 30px 80px;
     /* position: relative;
     left: 10px; */
 }

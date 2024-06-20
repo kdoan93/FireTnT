@@ -77,7 +77,7 @@ function Trips() {
                             </div>
                         </NavLink>
                         <div className="tripButton">
-                            <OpenModalMenuItem  itemText='Delete Booking' modalComponent={<DeleteBookingModal bookingId={booking.id} />} />
+                                <OpenModalMenuItem className='delete' itemText='Delete Booking' modalComponent={<DeleteBookingModal bookingId={booking.id} />} />
                         </div>
                     </div>
                 ))}
