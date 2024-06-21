@@ -54,6 +54,7 @@ function Trips() {
 
     return (
         <>
+            <div className="title">My Trips</div>
             <div className="tripsContainer">
                 {userBookings.map(booking => (
                     <div className={`singleTripContainer`}>

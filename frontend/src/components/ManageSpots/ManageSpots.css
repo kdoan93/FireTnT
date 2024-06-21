@@ -1,24 +1,11 @@
-.manageSpotsContainer {
+.manageContainer {
     /* border: 1px solid red; */
     margin: 20px 80px 0px;
     font-weight: 700;
     font-size: 21px;
 }
 
-.spotsContainer button {
-    border: 2px solid black;
-    border-radius: 0px;
-    height: auto;
-    background-color: gray;
-    color: white;
-    padding: 3px;
-    margin: 5px 10px;
-    text-decoration: none;
-    text-align: center;
-    box-shadow: 3px 3px 1px black;
-}
-
-.spotsContainer {
+.manageContainer {
     /* border: 1px solid green; */
     display: flex;
     justify-content: space-between;
@@ -27,20 +14,6 @@
     margin: 30px 80px;
     /* position: relative;
     left: 10px; */
-}
-
-.manageButtons {
-    border: 2px solid black;
-    border-radius: 0px;
-    height: auto;
-    width: 25%;
-    background-color: gray;
-    color: white;
-    padding: 3px;
-    /* margin: 5px 0px; */
-    text-decoration: none;
-    text-align: center;
-    box-shadow: 3px 3px 1px black;
 }
 
 .bottomButtons div {
@@ -55,14 +28,13 @@
     text-align: center;
     cursor: pointer;
     box-shadow: 3px 3px 1px black;
-    margin-left: 5px;
 }
 
 .deleteButton {
     border: 1px solid red;
 }
 
-.manageSpotsBrowser {
+.singleManageContainer {
     /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
@@ -70,7 +42,7 @@
     width: 22%;
     height: auto;
     object-fit: fill;
-    margin: 5px 20px;
+    /* margin: 5px 20px; */
     text-decoration: none;
     color: black;
 }
@@ -79,16 +51,14 @@
     /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
-    min-height: 200px;
-    height: auto;
     width: 100%;
+    height: auto;
     object-fit: fill;
-    margin: 0px 5px;
     text-decoration: none;
     color: black;
 }
 
-.manageSpotsBrowser .ownedSpot img {
+.singleManageContainer .ownedSpot img {
     /* border: 1px solid green; */
     min-width: 215px;
     width: 100%;
@@ -155,11 +125,33 @@
 }
 
 
-/* May need for making more rows */
-/* @media (max-width: 400px) {
-    .flex-grid {
-      display: block;
+@media screen and (max-width: 650px) {
+    .singleManageContainer {
+        width: 100%;
+    }
+}
+
+@media screen and (max-device-width: 768px) {
+    .manageContainer {
+        /* border: 1px solid red; */
+        flex-direction: column;
+        align-items: center;
     }
 
-    flex: 1 will cause to auto shrink with equal width
-  } */
+    .singleManageContainer {
+        /* border: 1px solid yellow; */
+        width: 100%;
+        padding-bottom: 20px;
+    }
+
+    .singleManageContainer span {
+        /* border: 1px solid red; */
+        padding: 5px 0px;
+        font-size: large;
+    }
+
+    .manageContainer .singleManageContainer img {
+        /* border: 1px solid red; */
+        height: 500px;
+    }
+}

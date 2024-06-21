@@ -32,10 +32,12 @@ const UserSpots = () => {
 
     return (
         <>
-            <div className='manageSpotsContainer'> Manage Spots </div>
-            <div className='spotsContainer'>
+            <div className='title'> Manage Spots </div>
+            {/* <div className='spotsContainer'> */}
+            <div className='manageContainer'>
                 {spotsArray.length === 0 ? <button onClick={onClick}>Create a New Spot</button> : spotsArray.map(spot => (
-                    <div className='manageSpotsBrowser'>
+                    // <div className='manageSpotsBrowser'>
+                    <div className='singleManageContainer'>
                         <NavLink key={`${spot.name}`} className='ownedSpot' to={`/spots/${spot.id}`}>
                             <div className='image'><img src={spot.previewImage} alt='spotImg' /></div>
                             <div className='topRow'>

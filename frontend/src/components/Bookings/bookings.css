@@ -132,6 +132,13 @@
     font-weight: 700;
 }
 
+.title {
+    /* border: 1px solid black; */
+    margin: 0px 80px;
+    font-size: xx-large;
+    font-weight: 700;
+}
+
 .tripsContainer {
     /* border: 1px solid black; */
     margin: 30px 80px;
@@ -203,9 +210,7 @@
     .singleTripContainer {
         width: 100%;
     }
-
 }
-
 
 @media screen and (max-device-width: 768px) {
     .tripsContainer {
