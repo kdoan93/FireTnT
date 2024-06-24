@@ -9,7 +9,7 @@ import { DeleteBookingModal } from "./deleteBookingModal";
 function Trips() {
     const dispatch = useDispatch()
     let userBookings = useSelector(state => state.booking.booking)
-    // console.log("userBookings ", userBookings)
+
 
     let booked = []
 
@@ -51,6 +51,8 @@ function Trips() {
 
     if (!userBookings) return null
     userBookings = Object.values(userBookings)
+    if (!userBookings[0].Spot) return null
+    // console.log("userBookings ", userBookings[0].Spot)
 
     return (
         <>
