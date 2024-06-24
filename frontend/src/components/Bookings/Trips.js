@@ -51,14 +51,17 @@ function Trips() {
 
     if (!userBookings) return null
     userBookings = Object.values(userBookings)
-    if (!userBookings[0].Spot) return null
-    // console.log("userBookings ", userBookings[0].Spot)
+    if (userBookings.length && !userBookings[0].Spot) return null
+    // console.log("userBookings ", userBookings)
 
     return (
         <>
             <div className="title">My Trips</div>
             <div className="tripsContainer">
-                {userBookings.map(booking => (
+                {!userBookings.length ?
+                <h2>You don't have any bookings yet, let's fix that!</h2>
+                :
+                userBookings.map(booking => (
                     <div className={`singleTripContainer`}>
                         <NavLink key={`${booking.id}`} className='trip' to={`/spots/${booking.spotId}`} >
                             <div className="image">
