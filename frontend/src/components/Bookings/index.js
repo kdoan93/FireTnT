@@ -39,17 +39,17 @@ function Bookings() {
 
     let previewImage = getPreviewImg(spotImages)
 
-    const submitBooking = async (e) => {
-        e.preventDefault()
-        try {
-            await dispatch( createBooking( { startDate, endDate }, spotId ) )
-            alert("Spot has been booked!")
+    // const submitBooking = async (e) => {
+    //     e.preventDefault()
+    //     try {
+    //         await dispatch( createBooking( { startDate, endDate }, spotId ) )
+    //         alert("Spot has been booked!")
 
-        } catch (errors) {
-            if (startDate > endDate) alert(`Unable to book! The check-in date is after the checkout date.`)
-            else alert('Sorry, your booking includes currently booked dates')
-        }
-    }
+    //     } catch (errors) {
+    //         if (startDate > endDate) alert(`Unable to book! The check-in date is after the checkout date.`)
+    //         else alert('Sorry, your booking includes currently booked dates')
+    //     }
+    // }
 
     useEffect(() => {
         dispatch(getSpot(spotId))
@@ -87,6 +87,20 @@ function Bookings() {
     function total () {
         let total = pricePerNight() + cleaningFee() + serviceFee() + taxes()
         return parseFloat(total)
+    }
+
+    const submitBooking = async (e) => {
+        e.preventDefault()
+        try {
+            await dispatch( createBooking( { startDate, endDate }, spotId ) )
+            alert(
+                `Spot has been booked! \nTotal price: $${total().toFixed(2)}`
+            )
+
+        } catch (errors) {
+            if (startDate > endDate) alert(`Unable to book! The check-in date is after the checkout date.`)
+            else alert('Sorry, your booking includes currently booked dates')
+        }
     }
 
     if (!spot) return null
