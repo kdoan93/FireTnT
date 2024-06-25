@@ -105,7 +105,7 @@ const SingleSpot = () => {
                 <div className="infoBox">
                     <div className="topInfo">
                         <div className="priceNight">
-                            <h3 className="price">${spot.price} </h3>
+                            <h3 className="price">${spot.price} / </h3>
                             <h5 className="night"> night</h5>
                         </div>
                         <div className="ratingReviews">
@@ -118,16 +118,17 @@ const SingleSpot = () => {
                             </h5>
                         </div>
                     </div>
-                    {spotOwnerId === sessionUserId ?
-                        <button className="reserve">
-                            <OpenModalMenuItem itemText='Update Owned Spot' modalComponent={ <UpdateSpotModal spot={spot} /> }/>
-                        </button>
-                        :
-                        <button className="reserve" onClick={handleClick} >
-                            Reserve
-                        </button>
-                    }
-
+                    <div className="bottomInfo">
+                        {spotOwnerId === sessionUserId ?
+                            <button className="reserve">
+                                <OpenModalMenuItem itemText='Update Owned Spot' modalComponent={ <UpdateSpotModal spot={spot} /> }/>
+                            </button>
+                            :
+                            <button className="reserve" onClick={handleClick} >
+                                Reserve
+                            </button>
+                        }
+                    </div>
                 </div>
             </div>
             <div className="starReviews">
