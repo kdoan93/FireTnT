@@ -39,18 +39,6 @@ function Bookings() {
 
     let previewImage = getPreviewImg(spotImages)
 
-    // const submitBooking = async (e) => {
-    //     e.preventDefault()
-    //     try {
-    //         await dispatch( createBooking( { startDate, endDate }, spotId ) )
-    //         alert("Spot has been booked!")
-
-    //     } catch (errors) {
-    //         if (startDate > endDate) alert(`Unable to book! The check-in date is after the checkout date.`)
-    //         else alert('Sorry, your booking includes currently booked dates')
-    //     }
-    // }
-
     useEffect(() => {
         dispatch(getSpot(spotId))
         dispatch(getSpotBookings(spotId))
@@ -89,8 +77,51 @@ function Bookings() {
         return parseFloat(total)
     }
 
+    function compareDates(start, today) {
+        start = start.toString()
+        today = today.toString()
+
+        let startStr = ''
+        let todayStr = ''
+
+        let monthNums = {
+            "Jan" : "01",
+            'Feb' : "02",
+            'Mar' : "03",
+            'Apr' : "04",
+            'May' : "05",
+            'Jun' : "06",
+            'Jul' : "07",
+            'Aug' : "08",
+            'Sep' : "09",
+            'Oct' : "10",
+            'Nov' : "11",
+            'Dec' : "12"
+        }
+
+        let startMonth = start.slice(4, 7)
+        let startDays = start.slice(8, 10)
+        let startYear = start.slice(11, 15)
+
+        let todayMonth = today.slice(4, 7)
+        let todayDays = today.slice(8, 10)
+        let todayYear = today.slice(11, 15)
+
+        startStr = monthNums[startMonth] + startDays + startYear
+        todayStr = monthNums[todayMonth] + todayDays + todayYear
+
+        // console.log("startStr: ", startStr, todayStr, startStr >= todayStr)
+
+        return startStr < todayStr
+    }
+
+    console.log(compareDates(startDate, new Date()))
+
     const submitBooking = async (e) => {
         e.preventDefault()
+
+        if (compareDates(startDate, new Date())) return alert("Sorry! You can't book dates before today!")
+
         try {
             await dispatch( createBooking( { startDate, endDate }, spotId ) )
             alert(
@@ -120,7 +151,6 @@ function Bookings() {
     let getBookings = (bookings) => {
         bookings.map(booking => {
             fillDates(booking.startDate, booking.endDate)
-            // booked.push(booking.startDate, booking.endDate)
         })
     }
 
