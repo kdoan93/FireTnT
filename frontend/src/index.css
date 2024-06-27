@@ -2,7 +2,9 @@
     font-family: sans-serif;
     /* width: 1024px; */
     /* max-width: 1440px; */
-    margin: 5px;
+    /* margin: 5px; */
+    width: 90%;
+    margin: auto;
 }
 
 input { /* modal */
