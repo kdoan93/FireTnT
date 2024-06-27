@@ -124,43 +124,28 @@ const spotsReducer = (state = initialState, action) => {
         case GET_ALL_SPOTS:
             newState = { ...state, allSpots: {} };
             // key into 'spot' from action creator and 'Spots' from the return in backend route
-            action.spot.Spots.forEach(spot => {
-                newState.allSpots[spot.id] = spot
-            });
+            action.spot.Spots.forEach(spot => { newState.allSpots[spot.id] = spot });
             return newState;
 
         case GET_SPOT:
-            newState = { ...state, singleSpot: { SpotImages: [] } }
-            newState.singleSpot = action.spot;
+            newState = { ...state, singleSpot: action.spot }
             return newState;
 
         case GET_USER_SPOTS:
             newState = { ...state, allSpots: {} };
-            action.spot.Spots.forEach(spot => {
-                newState.allSpots[spot.id] = spot
-            })
+            action.spot.Spots.forEach(spot => { newState.allSpots[spot.id] = spot })
             return newState;
 
         case CREATE_SPOT:
-            newState = {
-                ...state,
-                allSpots: { ...state.allSpots },
-                singleSpot: { ...action.spot }
-            }
+            newState = { ...state, allSpots: { ...state.allSpots }, singleSpot: { ...action.spot } }
             newState.allSpots[action.spot.id] = action.spot
-            return newState
+            return newState;
 
         case UPDATE_SPOT:
-            newState = {
-                ...state,
-                allSpots: {},
-                singleSpot: { ...state.singleSpot }
-            }
-            newState.singleSpot = {
-                ...newState.singleSpot,
-                ...action.post
-            }
-            return newState
+            newState = { ...state, allSpots: { ...state.allSpots }, singleSpot: { ...state.singleSpot } }
+            newState.allSpots[action.spot.id] = { ...action.spot }
+            newState.singleSpot = { ...newState.singleSpot, ...action.spot }
+            return newState;
 
         case DELETE_SPOT:
             // spreading state and making copy of allSpots and singleSpot
