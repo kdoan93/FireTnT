@@ -123,4 +123,14 @@
         /* border: 1px solid red; */
         height: 500px;
     }
+
+    .topRow {
+        /* border: 1px solid red; */
+        font-size: x-large;
+    }
+
+    .price {
+        /* border: 1px solid red; */
+        font-size: larger;
+    }
 }
