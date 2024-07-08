@@ -173,7 +173,17 @@ i {
     }
 
     .leftNav {
-        border: 1px solid red;
+        /* border: 1px solid red; */
+        width: 34%;
         height: 80px;
+        justify-content: end;
+    }
+
+    .home-button {
+        /* border: 1px solid red; */
+        width: 66%;
+        display: flex;
+        justify-content: end;
+        margin-bottom: 10px;
     }
 }
