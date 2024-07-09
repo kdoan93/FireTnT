@@ -131,7 +131,7 @@
     }
 }
 
-@media screen and (max-device-width: 768px) {
+@media screen and (max-device-width: 700px) {
     .manageContainer {
         /* border: 1px solid red; */
         flex-direction: column;

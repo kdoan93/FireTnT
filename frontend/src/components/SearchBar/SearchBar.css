@@ -116,7 +116,7 @@
     cursor: pointer;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 700px) {
     .searchbar-container {
         width: 90%;
     }

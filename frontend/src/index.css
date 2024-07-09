@@ -12,3 +12,18 @@ input { /* modal */
     margin-left: 5px;
     padding-left: 5px;
 }
+
+@media screen and (max-device-width: 700px) {
+
+    #root {
+        /* border: 1px solid red; */
+        width: 100%;
+        margin: 0;
+    }
+
+    body {
+        /* border: 1px solid green; */
+        margin: 0;
+    }
+
+}
