@@ -3,7 +3,7 @@
     /* width: 1024px; */
     /* max-width: 1440px; */
     /* margin: 5px; */
-    width: 90%;
+    width: 95%;
     margin: auto;
 }
 
@@ -15,15 +15,13 @@ input { /* modal */
 
 @media screen and (max-device-width: 700px) {
 
-    #root {
+    body {
         /* border: 1px solid red; */
-        width: 100%;
         margin: 0;
     }
 
-    body {
-        /* border: 1px solid green; */
-        margin: 0;
+    #root {
+        border: 1px solid red;
     }
 
 }
