@@ -167,6 +167,10 @@ i {
 }
 
 @media screen and (max-device-width: 700px) {
+    .navigationBar {
+        margin: 20px 0;
+    }
+
     .logo {
         /* border: 1px solid red; */
         height: 80px;

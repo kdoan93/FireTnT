@@ -213,10 +213,15 @@
 }
 
 @media screen and (max-device-width: 700px) {
+    .title {
+        margin: 0;
+    }
+
     .tripsContainer {
         /* border: 1px solid red; */
         flex-direction: column;
         align-items: center;
+        margin: 20px 0;
     }
 
     .singleTripContainer {
