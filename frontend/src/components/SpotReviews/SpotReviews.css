@@ -42,3 +42,10 @@
     text-align: center;
     box-shadow: 3px 3px 1px black;
 }
+
+@media screen and (max-device-width: 700px) {
+    .spotReviewsContainer {
+        /* border: 1px solid red; */
+        margin: 20px 0;
+    }
+}

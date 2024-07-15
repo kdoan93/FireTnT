@@ -233,3 +233,11 @@
     font-size: 14px;
     width: 130px;
 }
+
+
+@media screen and (max-device-width: 700px) {
+    .entireSpot {
+        /* border: 1px solid red; */
+        margin: 20px 0;
+    }
+}
