@@ -26,5 +26,8 @@
   "homepage": "https://github.com/kdoan93/FireTnT#readme",
   "devDependencies": {
     "@types/react-router-dom": "^5.3.3"
+  },
+  "dependencies": {
+    "react-responsive-carousel": "^3.2.23"
   }
 }

@@ -9,34 +9,6 @@
     height: auto;
 }
 
-.carousel-root {
-    /* border: 1px solid red; */
-    display: flex;
-    padding: 25px;
-}
-
-.carousel {
-    border: 1px solid blue;
-    display: grid;
-}
-
-.carousel-root .thumbs-wrapper {
-    padding: 0;
-    margin: 0;
-}
-
-.thumbs {
-    border: 1px solid red;
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.thumbs #li {
-    border: 1px solid green;
-    width: 50%;
-}
-
 .nameLocation {
     /* border: 1px solid red; */
     max-width: 80%;

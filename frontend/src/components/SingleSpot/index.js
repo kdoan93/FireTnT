@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import React, { Component, useEffect } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 // import ReactDOM from 'react-dom'
 import { getSpot } from '../../store/spots'
@@ -7,14 +7,16 @@ import { getSpot } from '../../store/spots'
 import { ReviewModal } from "../ReviewModal";
 // import { useModal } from "../../context/Modal";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
-// import "react-responsive-carousel/lib/styles/carousel.min.css";
-// import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 import './SingleSpot.css'
 import { getSpotImages } from "../../store/spotsImages";
 import Bookings from "../Bookings";
 import { UpdateSpotModal } from "../ManageSpots/UpdateSpotModal";
 
 const SingleSpot = () => {
+
+    const [isMobile, setIsMobile] = useState(false)
 
     const dispatch = useDispatch();
 
@@ -32,9 +34,7 @@ const SingleSpot = () => {
     if (sessionUser) sessionUserId = sessionUser.id
 
     let reviewed = false;
-    reviewsArray.map(
-        review => {if (review.userId === sessionUserId) reviewed = true}
-    )
+    reviewsArray.map( review => {if (review.userId === sessionUserId) reviewed = true} )
 
     let { spotId } = useParams();
     // turn id from string into a number value
@@ -47,10 +47,18 @@ const SingleSpot = () => {
     // Renders spot object with 'dispatch' from store using thunk function 'getSpots'
     const spotImages = useSelector(state => state.spot.singleSpot.SpotImages)
 
+    const checkScreenSize = () => {
+        if (window.innerWidth < 700) setIsMobile(true)
+        else setIsMobile(false)
+    }
+
     useEffect(() => {
         dispatch(getSpot(spotId))
         dispatch(getSpotImages(spotId))
+        window.addEventListener("resize", checkScreenSize)
     }, [dispatch, reviewsArray.length, spotId])
+
+    // console.log("IS MOBILE??", isMobile, window.innerWidth)
 
     if (!spotImages) return null;
     const firstImg = spotImages[0]
@@ -73,15 +81,15 @@ const SingleSpot = () => {
                 <h5>{spot.city}, {spot.state}, {spot.country}</h5>
             </div>
 
-            {/* <Carousel className="carousel-container" infiniteLoop='true'>
+            {isMobile && <Carousel infiniteLoop='true' axis="horizontal">
                 {spotImages.map((image) => (
                     <div>
                         <img key={image.url} src={image.url}/>
                     </div>
                 ))}
-            </Carousel> */}
+            </Carousel>}
 
-            <div className="imagesContainer">
+            {!isMobile && <div className="imagesContainer">
                 <div className="bigImg"><img src={firstImg.url} alt='firstImg' /></div>
                 <div className="imgBox">
                     <div className="topBox">
@@ -95,7 +103,7 @@ const SingleSpot = () => {
                         ))}
                     </div>
                 </div>
-            </div>
+            </div>}
 
             <div className="spotDetails">
                 <div className="ownerAndDescription">
