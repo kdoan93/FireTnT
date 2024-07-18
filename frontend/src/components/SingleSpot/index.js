@@ -14,9 +14,9 @@ import { getSpotImages } from "../../store/spotsImages";
 import Bookings from "../Bookings";
 import { UpdateSpotModal } from "../ManageSpots/UpdateSpotModal";
 
-const SingleSpot = () => {
+import { isMobile } from "react-device-detect";
 
-    const [isMobile, setIsMobile] = useState(false)
+const SingleSpot = () => {
 
     const dispatch = useDispatch();
 
@@ -47,18 +47,12 @@ const SingleSpot = () => {
     // Renders spot object with 'dispatch' from store using thunk function 'getSpots'
     const spotImages = useSelector(state => state.spot.singleSpot.SpotImages)
 
-    const checkScreenSize = () => {
-        if (window.innerWidth < 700) setIsMobile(true)
-        else setIsMobile(false)
-    }
-
     useEffect(() => {
         dispatch(getSpot(spotId))
         dispatch(getSpotImages(spotId))
-        window.addEventListener("resize", checkScreenSize)
     }, [dispatch, reviewsArray.length, spotId])
 
-    // console.log("IS MOBILE??", isMobile, window.innerWidth)
+    console.log("IS MOBILE??", isMobile, window.innerWidth)
 
     if (!spotImages) return null;
     const firstImg = spotImages[0]
