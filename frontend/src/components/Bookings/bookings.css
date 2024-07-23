@@ -13,6 +13,7 @@
 .bookingsLeft {
     /* border: 1px solid blue; */
     width: 50%;
+    padding-right: 20px;
 }
 
 .dateSelection {
@@ -238,5 +239,35 @@
     .tripsContainer .singleTripContainer img {
         /* border: 1px solid red; */
         height: 500px;
+    }
+
+    .bookingsContainer {
+        flex-direction: column-reverse;
+        align-items: center;
+        margin: 0 20px;
+    }
+
+    .bookingsLeft {
+        width: 100%;
+        padding: 0;
+    }
+
+    .formContainer {
+        width: 100%;
+    }
+
+    .bookingsRight {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .bookingsRightUpper {
+        /* flex-direction: column-reverse; */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .bookingsImg {
+        height: 200px;
     }
 }

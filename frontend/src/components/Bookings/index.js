@@ -6,6 +6,7 @@ import { getSpot } from "../../store/spots";
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { createBooking, getSpotBookings } from "../../store/bookings";
+import { isMobile } from "react-device-detect";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import { DeleteBookingModal } from "./deleteBookingModal";
 import '../ManageSpots/ManageSpots.css'
@@ -160,14 +161,14 @@ function Bookings() {
         <div className="bookingsContainer">
             <button className="bookingsReturn fa-solid fa-less-than" onClick={onClick} />
             <div className="bookingsLeft">
-                <h2>
+                {!isMobile && <h2>
                     Request to book
-                </h2>
+                </h2>}
+                {!isMobile && <h3>
+                    Your trip
+                </h3>}
                 <div className="bookingsDate">
-                    <h3>
-                        Your trip
-                    </h3>
-                    <form className="formContainer" onSubmit={submitBooking}>
+                    <form className="bookingFormContainer" onSubmit={submitBooking}>
                         <div className="dateSelection" >
                             <div className="dateSelectionBox" >
                                 <div className="dateSelectionText">
@@ -198,6 +199,7 @@ function Bookings() {
                     </form>
                 </div>
             </div>
+
             <div className="bookingsRight">
                 <div className="bookingsRightUpper">
                     <div className="bookingsRightUpperLeft">
@@ -261,6 +263,9 @@ function Bookings() {
                     </div>
                 </div>
             </div>
+            {isMobile && <h2>
+                    Request to book
+            </h2>}
         </div>
     )
 }
