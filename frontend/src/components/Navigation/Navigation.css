@@ -19,10 +19,6 @@
     margin-bottom: 10px;
 }
 
-/* .searchBar {
-    border: 1px solid red;
-} */
-
 .logo {
     /* border: 3px solid red; */
     height: 40px;
@@ -176,18 +172,23 @@ i {
         height: 80px;
     }
 
+    .navigationMobileSpace {
+        /* border: 1px solid red; */
+        width: 33%;
+    }
+
     .leftNav {
         /* border: 1px solid red; */
-        width: 34%;
+        width: 33%;
         height: 80px;
         justify-content: end;
     }
 
     .home-button {
         /* border: 1px solid red; */
-        width: 66%;
+        width: 34%;
         display: flex;
-        justify-content: end;
         margin-bottom: 10px;
+        justify-content: center;
     }
 }
