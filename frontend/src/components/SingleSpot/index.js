@@ -52,7 +52,7 @@ const SingleSpot = () => {
         dispatch(getSpotImages(spotId))
     }, [dispatch, reviewsArray.length, spotId])
 
-    console.log("IS MOBILE??", isMobile, window.innerWidth)
+    // console.log("IS MOBILE??", isMobile, window.innerWidth)
 
     if (!spotImages) return null;
     const firstImg = spotImages[0]

@@ -20,7 +20,7 @@ const UserSpots = () => {
     const userSpots = useSelector(state => state.spot.allSpots)
     const spotsArray = Object.values(userSpots)
 
-    console.log("Manage Spots spotsArray: ", spotsArray)
+    // console.log("Manage Spots spotsArray: ", spotsArray)
 
     // onClick to handle creating new spot
     const onClick = (e) => {

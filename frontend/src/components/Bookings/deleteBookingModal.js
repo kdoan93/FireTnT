@@ -16,7 +16,7 @@ export const DeleteBookingModal = ({ bookingId }) => {
         } catch(error) {
             if (error) {
                 error = await error.json()
-                console.log('look >>>>>>>>>', error)
+                // console.log('look >>>>>>>>>', error)
                 return error
             }
         }
