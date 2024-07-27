@@ -230,6 +230,13 @@
         padding-bottom: 20px;
     }
 
+    .tripDetails p {
+        /* border: 1px solid red; */
+        font-size: larger;
+        font-weight: 700;
+        margin: 10px 0px;
+    }
+
     .singleTripContainer span {
         /* border: 1px solid red; */
         padding: 5px 0px;
