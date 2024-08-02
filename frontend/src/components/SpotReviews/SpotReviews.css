@@ -1,15 +1,18 @@
 .spotReviewsContainer {
     /* border: 1px solid red; */
-    width: 95%;
+    /* width: 95%; */
     position: relative;
-    margin: 0px 80px;
+    margin: 0px 80px 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .review {
     /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
-    margin: 0px 87px 20px 0px;
+    width: 50%;
+    /* margin: 0px 87px 20px 0px; */
 }
 
 .name {

@@ -52,7 +52,7 @@ function Trips() {
     if (!userBookings) return null
     userBookings = Object.values(userBookings)
     if (userBookings.length && !userBookings[0].Spot) return null
-    // console.log("userBookings ", userBookings)
+    console.log("userBookings ", userBookings)
 
     return (
         <>
@@ -69,16 +69,13 @@ function Trips() {
                             </div>
                             <div className="tripDetails">
                                 <p className="tripCity">
-                                    {booking.Spot.city}
+                                    {booking.Spot.city}, {booking.Spot.state}
                                 </p>
                                 <p>
                                     Hosted by: {booking.Spot.ownerId}
                                 </p>
                                 <p>
-                                    {convertDate(booking.startDate, booking.endDate)}
-                                </p>
-                                <p>
-                                    {/* End: {convertDate(booking.endDate)} */}
+                                    Booked dates: {convertDate(booking.startDate, booking.endDate)}
                                 </p>
                             </div>
                         </NavLink>
