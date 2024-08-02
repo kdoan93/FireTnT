@@ -53,7 +53,7 @@ function App() {
           </Route>
         </Switch>
       )}
-      <div className='about-links-container'>
+      <div className='aboutLinksContainer'>
         <div>
             <a href="https://www.linkedin.com/in/kdoan93/">
               <i class="fa-brands fa-linkedin fa-2xl gap"/>
