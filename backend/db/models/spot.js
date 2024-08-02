@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'ownerId',
         as: 'Owner'
       })
+      Spot.belongsTo(models.User, {
+        foreignKey: 'firstName',
+        as: 'ownerName'
+      })
       Spot.hasMany(models.SpotImage, {
         foreignKey: 'spotId',
         onDelete: 'CASCADE',
@@ -30,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Spot.init({
     ownerId: DataTypes.INTEGER,
+    firstName: DataTypes.STRING,
     address: {
       type: DataTypes.STRING,
       allowNull: false,

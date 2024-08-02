@@ -14,6 +14,7 @@ module.exports = {
     await Spot.bulkCreate([
       {
         ownerId: 1,
+        ownerName: 'Kenny',
         address: "1 Disney Lane",
         city: "Greenville",
         state: "South Carolina",
@@ -26,6 +27,7 @@ module.exports = {
       },
       {
         ownerId: 2,
+        ownerName: 'John',
         address: "2 Universal Lane",
         city: "Blue Ridge",
         state: "Georgia",
@@ -38,6 +40,7 @@ module.exports = {
       },
       {
         ownerId: 3,
+        ownerName: 'Derp',
         address: "3 Main Street",
         city: "Bolton",
         state: "New York",
@@ -50,6 +53,7 @@ module.exports = {
       },
       {
         ownerId: 4,
+        ownerName: 'Demo',
         address: "4 Main Street",
         city: "Breckenridge",
         state: "Colorado",
@@ -62,6 +66,7 @@ module.exports = {
       },
       {
         ownerId: 1,
+        ownerName: 'Kenny',
         address: "350 Mountain Road",
         city: "Macon",
         state: "North Carolina",
@@ -74,6 +79,7 @@ module.exports = {
       },
       {
         ownerId: 2,
+        ownerName: 'John',
         address: "21 Watershed Way",
         city: "Bryson City",
         state: "North Carolina",
@@ -86,6 +92,7 @@ module.exports = {
       },
       {
         ownerId: 3,
+        ownerName: 'Derp',
         address: "320 Shore Way",
         city: "Isle of Palms",
         state: "South Carolina",
@@ -98,6 +105,7 @@ module.exports = {
       },
       {
         ownerId: 4,
+        ownerName: 'Demo',
         address: "119 W 42nd Street",
         city: "Manhattan",
         state: "New York",
@@ -110,6 +118,7 @@ module.exports = {
       },
       {
         ownerId: 1,
+        ownerName: 'Kenny',
         address: "1 Hollywood Drive",
         city: "Los Angeles",
         state: "California",
@@ -122,6 +131,7 @@ module.exports = {
       },
       {
         ownerId: 2,
+        ownerName: 'John',
         address: "93 Fresh Street",
         city: "Beverly Hills",
         state: "California",
@@ -134,6 +144,7 @@ module.exports = {
       },
       {
         ownerId: 3,
+        ownerName: 'Derp',
         address: "4 Lake Lane",
         city: "Zephyr Cove",
         state: "Nevada",
@@ -146,6 +157,7 @@ module.exports = {
       },
       {
         ownerId: 4,
+        ownerName: 'Demo',
         address: "360 Coast View Drive",
         city: "Jenner",
         state: "California",
