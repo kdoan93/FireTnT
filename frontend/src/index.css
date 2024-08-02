@@ -13,28 +13,11 @@ input { /* modal */
     padding-left: 5px;
 }
 
-.about-links-container {
-    border-top: 1px solid #FF5A60;
-    bottom: 1%;
-    display: flex;
-    gap: 50px;
-    text-align: start;
-    font-weight: 700;
-    align-items: center;
-    justify-content: space-evenly;
-    margin: 0px 80px 20px;
-}
-
 @media screen and (max-device-width: 700px) {
 
     body {
         /* border: 1px solid red; */
         margin: 0;
-    }
-
-    .about-links-container {
-        /* border: 1px solid red; */
-        margin: 20px 0;
     }
 
 }
