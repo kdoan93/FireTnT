@@ -33,6 +33,8 @@ const SpotReviews = () => {
     if(!reviews) return null
     if(!sessionUser) sessionUser = 0;
 
+    console.log("reviews: ", reviews)
+
     return (
         <div className="spotReviewsContainer">
             {!spotReviews.length && sessionUser ? <h2>Be the first to post a review!</h2> : <></>}

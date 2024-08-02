@@ -135,6 +135,7 @@
 }
 
 
+
 .ratingReviews {
     /* border: 1px solid blue; */
     display: flex;
@@ -190,6 +191,10 @@
     align-items: baseline;
     gap: 10px;
     margin-top: 20px;
+}
+
+.starReviews h2 {
+    margin-top: 0;
 }
 
 .postButton {
