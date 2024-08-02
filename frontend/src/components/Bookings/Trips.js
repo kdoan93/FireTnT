@@ -52,7 +52,7 @@ function Trips() {
     if (!userBookings) return null
     userBookings = Object.values(userBookings)
     if (userBookings.length && !userBookings[0].Spot) return null
-    console.log("userBookings ", userBookings)
+    // console.log("userBookings ", userBookings)
 
     return (
         <>

@@ -15,6 +15,11 @@
     /* margin: 0px 87px 20px 0px; */
 }
 
+.nameDateContainer {
+    border-bottom: 1px solid #FF5A60;
+    width: fit-content;
+}
+
 .name {
     font-size: 18px;
     font-weight: 700;
