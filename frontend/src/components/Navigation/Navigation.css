@@ -98,6 +98,10 @@ i {
     padding: 10px 0px;
 }
 
+.manageSpots:hover {
+    background-color: lightgray;
+}
+
 .dt {
     color: black;
     font-size: 16px;
