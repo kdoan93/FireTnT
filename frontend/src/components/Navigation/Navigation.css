@@ -142,6 +142,11 @@ i {
     padding: 10px;
 }
 
+.loginSignup div:hover {
+    background-color: lightgray;
+    border-radius: 10px;
+}
+
 .userMenu div {
     /* border: 1px solid red; */
     font-size: 16px;
