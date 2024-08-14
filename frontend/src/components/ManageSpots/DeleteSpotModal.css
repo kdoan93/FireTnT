@@ -27,22 +27,15 @@
     justify-content: center;
     align-items: center;
     height: 50px;
-}
-
-.yesButton {
-    background-color: #FF5A60;
-    border: 2px solid black;
-    color: white;
-    box-shadow: 3px 3px 1px black;
-    border-radius: 0px;
-}
-
-.noButton {
     background-color: rgb(85, 85, 85);
     border: 2px solid black;
     color: white;
     box-shadow: 3px 3px 1px black;
     border-radius: 0px;
+}
+
+.deleteButtons button:hover {
+    background-color: #FF5A60;
 }
 
 .deleteParagraph {
