@@ -68,6 +68,11 @@
     border-radius: 10px;
 }
 
+.singleManageContainer .ownedSpot img:hover {
+    box-shadow: 5px 5px 10px gray;
+    transition: 0.4s;
+}
+
 .tooltip {
     /* border: 1px solid green; */
     visibility: hidden;
