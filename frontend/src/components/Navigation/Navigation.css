@@ -100,6 +100,7 @@ i {
 
 .manageSpots:hover {
     background-color: lightgray;
+    transition: 0.3s
 }
 
 .dt {
@@ -145,6 +146,7 @@ i {
 .loginSignup div:hover {
     background-color: lightgray;
     border-radius: 10px;
+    transition: 0.3s;
 }
 
 .userMenu div {

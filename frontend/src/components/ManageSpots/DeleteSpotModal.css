@@ -36,6 +36,7 @@
 
 .deleteButtons button:hover {
     background-color: #FF5A60;
+    transition: 0.3s;
 }
 
 .deleteParagraph {

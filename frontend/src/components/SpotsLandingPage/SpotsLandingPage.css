@@ -32,7 +32,7 @@
 
 .spotsBrowser .spot img:hover {
     box-shadow: 5px 5px 10px gray;
-    transition: 0.4s;
+    transition: 0.3s;
 }
 
 .tooltip {
@@ -50,12 +50,13 @@
     background-color: white;
     border: 1px solid black;
     border-radius: 10px;
-    transition: opacity 0.4s;
+    transition: opacity 0.3s;
 }
 
 .spot:hover .tooltip {
     visibility: visible;
     opacity: 1;
+    transition: 0.3s;
 }
 
 .spot span {

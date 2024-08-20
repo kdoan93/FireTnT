@@ -74,6 +74,7 @@
 .searchbar-result:hover{
     background-color: lightgrey;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 .searchbar-results-img-container{
