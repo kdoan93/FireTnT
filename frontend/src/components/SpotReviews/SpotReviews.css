@@ -51,6 +51,11 @@
     box-shadow: 3px 3px 1px black;
 }
 
+.deleteReviewButton:hover {
+    background-color: #FF5A60;
+    transition: 0.3s;
+}
+
 @media screen and (max-device-width: 700px) {
     .spotReviewsContainer {
         /* border: 1px solid red; */
