@@ -46,7 +46,7 @@ function ProfileButton({ user }) {
 
     return (
         <>
-          <div className="leftNav">
+          <div className="rightNav">
             {user ? (
                 // <NavLink className="createASpot" to='/spots/new'>
                 //   Create a New Spot

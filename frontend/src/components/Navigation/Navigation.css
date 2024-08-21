@@ -36,10 +36,17 @@ button {
     cursor: pointer;
 }
 
-.leftNav {
+.rightNav {
     /* border: 1px solid red; */
     display: flex;
     text-decoration: none;
+}
+
+.rightNav button:hover {
+    /* border: 1px solid red; */
+    background-color: lightgray;
+    box-shadow: 3px 3px 5px gray;
+    transition: 0.3s;
 }
 
 .createASpot {
@@ -57,6 +64,7 @@ i {
 }
 
 .menu {
+    /* border: 1px solid red; */
     flex-direction: column;
     padding-right: 2px;
 }
