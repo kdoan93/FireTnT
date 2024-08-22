@@ -13,7 +13,7 @@
     /* border: 1px solid red; */
     border: none;
     height: 30px;
-    width: 70%;
+    width: 83%;
     padding: 10px;
     font-size: 15px;
     font-family: sans-serif;
@@ -110,6 +110,17 @@
     /* border: 1px solid red; */
     white-space: nowrap;
     font-size: 15px;
+}
+
+.searchbar-clear {
+    /* border: 1px solid red; */
+    margin-left: 5px;
+    padding: 3px;
+}
+
+.searchbar-clear:hover {
+    background-color: lightgray;
+    border-radius: 5px;
 }
 
 #search-clear-button{
