@@ -50,13 +50,27 @@ button {
 }
 
 .createASpot {
-    /* border: 1px solid red; */
+    /* border: 1px solid blue; */
+    display: flex;
+    align-items: center;
     text-decoration: none;
     font-weight: 700;
-    margin: 5px 20px;
+    margin: 0 20px;
     color: #FF5A60;
     cursor: pointer;
     padding: 3px;
+}
+
+.createASpot:hover {
+    color: white;
+    background-color: #FF5A60;
+    border-radius: 20px;
+    transition: 0.3s;
+    box-shadow: 3px 3px 5px gray;
+}
+
+.createASpot div {
+    margin: 0 10px;
 }
 
 i {
