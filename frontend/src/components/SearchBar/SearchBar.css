@@ -114,18 +114,22 @@
 
 .searchbar-clear {
     /* border: 1px solid red; */
-    margin-left: 5px;
-    padding: 3px;
+    margin-right: 10px;
+    padding: 10px;
 }
 
 .searchbar-clear:hover {
     background-color: lightgray;
-    border-radius: 5px;
+    border-radius: 50%;
 }
 
 #search-clear-button{
     /* border: 1px solid red; */
     cursor: pointer;
+    /* padding: 5px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media screen and (max-width: 700px) {
