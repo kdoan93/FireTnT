@@ -50,7 +50,8 @@ button {
 }
 
 .createASpot {
-    /* border: 1px solid blue; */
+    border: 1px solid #FF5A60;
+    border-radius: 30px;
     display: flex;
     align-items: center;
     text-decoration: none;

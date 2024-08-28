@@ -160,16 +160,22 @@
 }
 
 .reserve {
-    border: 2px solid black;
-    background-color: #FF5A60;
-    box-shadow: 3px 3px 1px black;
-    color: white;
-    border-radius: 0px;
+    border: 2px solid #FF5A60;
+    /* background-color: #FF5A60; */
+    color: #FF5A60;
+    border-radius: 45px;
     width: 90%;
     height: 45px;
     margin: 15px;
     font-weight: 700;
     font-size: larger;
+}
+
+.reserve:hover {
+    transition: 0.3s;
+    background-color: #FF5A60;
+    color: white;
+    box-shadow: 5px 5px 10px gray;
 }
 
 .bottomInfo div {
