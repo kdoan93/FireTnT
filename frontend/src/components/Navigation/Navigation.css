@@ -16,12 +16,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.upperNav a {
+    /* border: 1px solid blue; */
+    height: 100%;
+    margin: 0;
 }
 
 .logo {
     /* border: 3px solid red; */
-    height: 40px;
+    height: 80px;
 }
 
 button {
@@ -76,6 +82,7 @@ button {
 }
 
 i {
+    /* border: 1px solid red; */
     height: 12px;
 }
 
@@ -201,21 +208,14 @@ i {
         margin: 20px 0;
     }
 
-    .logo {
-        /* border: 1px solid red; */
-        height: 80px;
-    }
-
     .navigationMobileSpace {
         /* border: 1px solid red; */
         width: 33%;
     }
 
-    .leftNav {
+    .logo {
         /* border: 1px solid red; */
-        width: 33%;
         height: 80px;
-        justify-content: end;
     }
 
     .home-button {
@@ -225,4 +225,20 @@ i {
         margin-bottom: 10px;
         justify-content: center;
     }
+
+    .rightNav {
+        /* border: 1px solid red; */
+        width: 33%;
+        height: 80px;
+        justify-content: end;
+    }
+
+    .createASpot {
+        height: 25px;
+    }
+
+    .profileButton {
+        height: 50px;
+    }
+
 }
