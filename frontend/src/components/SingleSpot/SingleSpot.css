@@ -191,17 +191,20 @@
 
 .starReviews {
     /* border: 1px solid blue; */
-    width: 20%;
-    position: relative;
     display: flex;
-    justify-content: flex-start;
+    justify-content: start;
     align-items: baseline;
     gap: 10px;
-    margin-top: 20px;
+    margin: 20px 0;
 }
 
 .starReviews h2 {
-    margin-top: 0;
+    margin: 0;
+}
+
+.starReviews i {
+    /* border: 1px solid red; */
+
 }
 
 .postButton {
