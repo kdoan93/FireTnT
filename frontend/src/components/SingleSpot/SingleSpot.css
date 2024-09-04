@@ -202,11 +202,6 @@
     margin: 0;
 }
 
-.starReviews i {
-    /* border: 1px solid red; */
-
-}
-
 .postButton {
     border: 2px solid black;
     border-radius: 0px;
@@ -220,7 +215,6 @@
     font-size: 14px;
     width: 130px;
 }
-
 
 @media screen and (max-device-width: 700px) {
     .entireSpot {
