@@ -30,6 +30,11 @@
     box-shadow: 3px 3px 1px black;
 }
 
+.bottomButtons div:hover {
+    background-color: #FF5A60;
+    transition: 0.3s;
+}
+
 .deleteButton {
     border: 1px solid red;
 }
