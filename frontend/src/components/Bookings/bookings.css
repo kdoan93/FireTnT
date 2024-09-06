@@ -200,6 +200,11 @@
     /* margin: 0px 20px; */
 }
 
+.tripButton:hover {
+    background-color: #FF5A60;
+    transition: 0.3s;
+}
+
 .tripButton div {
     /* border: 1px solid red; */
     display: flex;
