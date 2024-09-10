@@ -56,7 +56,7 @@ export const ReviewModal = ({ spot }) => {
                             (tempRating >= 1 ? "fa-solid fa-star" : "fa-regular fa-star")
                         }
                         onMouseEnter={() => setTempRating(1)}
-                        onMouseLeave={() => setTempRating(1)}
+                        onMouseLeave={() => setTempRating(starRating)}
                     >
                     </div>
 
@@ -69,7 +69,7 @@ export const ReviewModal = ({ spot }) => {
                             (tempRating >= 2 ? "fa-solid fa-star" : "fa-regular fa-star")
                         }
                         onMouseEnter={() => setTempRating(2)}
-                        onMouseLeave={() => setTempRating(2)}
+                        onMouseLeave={() => setTempRating(starRating)}
                     >
                     </div>
                     <div
@@ -80,7 +80,7 @@ export const ReviewModal = ({ spot }) => {
                             (tempRating >= 3 ? "fa-solid fa-star" : "fa-regular fa-star")
                         }
                         onMouseEnter={() => setTempRating(3)}
-                        onMouseLeave={() => setTempRating(3)}
+                        onMouseLeave={() => setTempRating(starRating)}
                     >
                     </div>
                     <div
@@ -91,7 +91,7 @@ export const ReviewModal = ({ spot }) => {
                             (tempRating >= 4 ? "fa-solid fa-star" : "fa-regular fa-star")
                         }
                         onMouseEnter={() => setTempRating(4)}
-                        onMouseLeave={() => setTempRating(4)}
+                        onMouseLeave={() => setTempRating(starRating)}
                     >
                     </div>
                     <div
@@ -102,7 +102,7 @@ export const ReviewModal = ({ spot }) => {
                             (tempRating >= 5 ? "fa-solid fa-star" : "fa-regular fa-star")
                         }
                         onMouseEnter={() => setTempRating(5)}
-                        onMouseLeave={() => setTempRating(5)}
+                        onMouseLeave={() => setTempRating(starRating)}
                     >
                     </div>
                         <div className='starsText'>Stars</div>
