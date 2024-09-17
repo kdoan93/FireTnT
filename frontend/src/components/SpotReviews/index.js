@@ -33,7 +33,7 @@ const SpotReviews = () => {
     if(!reviews) return null
     if(!sessionUser) sessionUser = 0;
 
-    console.log("reviews: ", reviews)
+    // console.log("reviews: ", reviews)
 
     return (
         <div className="spotReviewsContainer">

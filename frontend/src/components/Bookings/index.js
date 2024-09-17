@@ -116,7 +116,7 @@ function Bookings() {
         return startStr < todayStr
     }
 
-    console.log(compareDates(startDate, new Date()))
+    // console.log(compareDates(startDate, new Date()))
 
     const submitBooking = async (e) => {
         e.preventDefault()
