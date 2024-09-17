@@ -135,6 +135,10 @@ function Bookings() {
         }
     }
 
+    const returnToSpot = () => {
+        history.push(`/spots/${spot.id}`)
+    }
+
     if (!spot) return null
     if (!previewImage) return null
     if (!bookings) return null
@@ -201,7 +205,7 @@ function Bookings() {
             </div>
 
             <div className="bookingsRight">
-                <div className="bookingsRightUpper">
+                <div className="bookingsRightUpper" onClick={returnToSpot}>
                     <div className="bookingsRightUpperLeft">
                         <img className="bookingsImg" src={previewImage} />
                     </div>
