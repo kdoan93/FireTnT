@@ -25,6 +25,8 @@ const SingleSpot = () => {
     // Selects session.user object
     const sessionUser = useSelector(state => state.session.user)
 
+    let bookings = useSelector(state => state.booking.booking)
+
     // Getting review store data object
     const reviews = useSelector(state => state.review.spot)
     const reviewsArray = Object.values(reviews)
@@ -52,12 +54,11 @@ const SingleSpot = () => {
         dispatch(getSpotImages(spotId))
     }, [dispatch, reviewsArray.length, spotId])
 
-    // console.log("IS MOBILE??", isMobile, window.innerWidth)
-
     if (!spotImages) return null;
     const firstImg = spotImages[0]
     if (!firstImg) return null;
     if (!reviews) return null
+    if (!bookings) return
 
     const topBox = spotImages.slice(1, 3)
     const bottomBox = spotImages.slice(3)
@@ -66,6 +67,52 @@ const SingleSpot = () => {
         e.preventDefault();
         if (sessionUserId) history.push(`/spots/${spotId}/booking`)
         else alert("Please log in to reserve a spot!")
+    }
+
+    function bookingPassed() {
+        let bookingsArr = Object.values(bookings)
+        bookingsArr = bookingsArr.filter(booking => booking.spotId === spotId);
+        // console.log("bookingsArr filtered: ", bookingsArr)
+
+        return compareDates(bookingsArr[bookingsArr.length-1], new Date())
+    }
+
+    // console.log(bookingPassed())
+
+    function compareDates(endBooking, today) {
+        endBooking = endBooking.toString()
+        today = today.toString()
+
+        let bookingStr = ''
+        let todayStr = ''
+
+        let monthNums = {
+            'Jan' : '01',
+            'Feb' : '02',
+            'Mar' : '03',
+            'Apr' : '04',
+            'May' : '05',
+            'Jun' : '06',
+            'Jul' : '07',
+            'Aug' : '08',
+            'Sep' : '09',
+            'Oct' : '10',
+            'Nov' : '11',
+            'Dec' : '12'
+        }
+
+        let bookingMonth = endBooking.slice(5, 7)
+        let bookingDays = endBooking.slice(8, 10)
+        let bookingYear = endBooking.slice(0, 4)
+
+        let todayMonth = today.slice(4, 7)
+        let todayDays = today.slice(8, 10)
+        let todayYear = today.slice(11, 15)
+
+        bookingStr = bookingMonth + bookingDays + bookingYear
+        todayStr = monthNums[todayMonth] + todayDays + todayYear
+        // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", 'booking ', bookingStr, 'today ', todayStr, bookingStr < todayStr)
+        return bookingStr < todayStr
     }
 
     return (
