@@ -208,11 +208,11 @@
     height: auto;
     background-color: #FF5A60;
     color: white;
-    padding: 10px 0px;
+    padding: 0px;
     text-decoration: none;
     text-align: center;
-    font-size: 14px;
     width: 150px;
+    font-size: 14px;
     font-weight: 700;
 }
 
@@ -222,7 +222,23 @@
     color: #FF5A60;
     transition: 0.3s;
     box-shadow: 5px 5px 10px gray;
+}
 
+.fakePostButton {
+    /* border: 2px solid white; */
+    border: none;
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 0;
+}
+
+.fakePostButton:hover {
+    transition: 0.3s;
+    color: #FF5A60;
 }
 
 @media screen and (max-device-width: 700px) {

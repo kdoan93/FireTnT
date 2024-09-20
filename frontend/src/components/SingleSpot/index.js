@@ -58,7 +58,7 @@ const SingleSpot = () => {
     const firstImg = spotImages[0]
     if (!firstImg) return null;
     if (!reviews) return null
-    if (!bookings) return
+    if (!bookings) return null;
 
     const topBox = spotImages.slice(1, 3)
     const bottomBox = spotImages.slice(3)
@@ -72,12 +72,10 @@ const SingleSpot = () => {
     function bookingPassed() {
         let bookingsArr = Object.values(bookings)
         bookingsArr = bookingsArr.filter(booking => booking.spotId === spotId);
-        // console.log("bookingsArr filtered: ", bookingsArr)
+        if (!bookingsArr.length) return
 
         return compareDates(bookingsArr[bookingsArr.length-1], new Date())
     }
-
-    // console.log(bookingPassed())
 
     function compareDates(endBooking, today) {
         endBooking = endBooking.toString()
@@ -111,9 +109,13 @@ const SingleSpot = () => {
 
         bookingStr = bookingMonth + bookingDays + bookingYear
         todayStr = monthNums[todayMonth] + todayDays + todayYear
-        // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", 'booking ', bookingStr, 'today ', todayStr, bookingStr < todayStr)
         return bookingStr < todayStr
     }
+
+    const bookingNotPassed = () => {
+        alert("Please post a review after your booking has ended.")
+    }
+
 
     return (
         <div className="entireSpot">
@@ -191,7 +193,11 @@ const SingleSpot = () => {
             </div>
             {sessionUserId && spotOwnerId !== sessionUserId && !reviewed ?
                 <button className="postButton">
-                    <OpenModalMenuItem itemText='Post Your Review' modalComponent={<ReviewModal spot={spot} />} />
+                    { bookingPassed() ?
+                        <OpenModalMenuItem itemText='Post Your Review' modalComponent={<ReviewModal spot={spot} />} />
+                        :
+                        <button className="fakePostButton" onClick={bookingNotPassed}>Post Your Review</button>
+                    }
                 </button>
                     :
                 <></>
