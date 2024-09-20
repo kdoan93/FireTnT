@@ -20,7 +20,7 @@ const SpotReviews = () => {
 
     let bookings = useSelector(state => state.booking.booking)
 
-    console.log("bookings: ", bookings)
+    // console.log("bookings: ", bookings)
 
     useEffect(() => {
         dispatch(getSpotReviews(spotId))
@@ -33,14 +33,15 @@ const SpotReviews = () => {
 
     function hasBooked() {
         let bookingsArr = Object.values(bookings)
-        for (let booking of bookingsArr) {
-            if (compareDates(booking.endDate, new Date())) console.log(`booking end date < today, ${booking.endDate}`)
-        }
+        bookingsArr = bookingsArr.filter(booking => booking.spotId === spotId);
+        // console.log("bookingsArr filtered: ", bookingsArr)
+
+        return bookingPassed(bookingsArr[bookingsArr.length-1], new Date())
     }
 
-    hasBooked()
+    // console.log(hasBooked())
 
-    function compareDates(endBooking, today) {
+    function bookingPassed(endBooking, today) {
         endBooking = endBooking.toString()
         today = today.toString()
 
@@ -72,7 +73,7 @@ const SpotReviews = () => {
 
         bookingStr = bookingMonth + bookingDays + bookingYear
         todayStr = monthNums[todayMonth] + todayDays + todayYear
-        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", 'booking ', bookingStr, 'today ', todayStr, bookingStr < todayStr)
+        // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", 'booking ', bookingStr, 'today ', todayStr, bookingStr < todayStr)
         return bookingStr < todayStr
     }
 
