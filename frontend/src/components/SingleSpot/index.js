@@ -74,7 +74,6 @@ const SingleSpot = () => {
         bookingsArr = bookingsArr.filter(booking => booking.spotId === spotId);
         if (!bookingsArr.length) return
 
-        console.log(compareDates(bookingsArr[bookingsArr.length-1].endDate, new Date()))
         return compareDates(bookingsArr[bookingsArr.length-1].endDate, new Date())
     }
 
@@ -110,7 +109,6 @@ const SingleSpot = () => {
 
         bookingStr = bookingMonth + bookingDays + bookingYear
         todayStr = monthNums[todayMonth] + todayDays + todayYear
-        console.log("bookingStr: ", bookingStr)
         return bookingStr < todayStr
     }
 
