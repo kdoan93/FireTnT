@@ -192,13 +192,15 @@ const SingleSpot = () => {
                 </h2>
             </div>
             {sessionUserId && spotOwnerId !== sessionUserId && !reviewed ?
-                <button className="postButton">
+                <div className="postButtonContainer">
                     { bookingPassed() ?
-                        <OpenModalMenuItem itemText='Post Your Review' modalComponent={<ReviewModal spot={spot} />} />
+                        <button className="postButton">
+                            <OpenModalMenuItem itemText='Post Your Review' modalComponent={<ReviewModal spot={spot} />} />
+                        </button>
                         :
-                        <button className="fakePostButton" onClick={bookingNotPassed}>Post Your Review</button>
+                        <button className="postButton" onClick={bookingNotPassed}>Post Your Review</button>
                     }
-                </button>
+                </div>
                     :
                 <></>
             }
