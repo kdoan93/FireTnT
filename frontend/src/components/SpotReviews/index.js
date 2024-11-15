@@ -20,7 +20,7 @@ const SpotReviews = () => {
 
     useEffect(() => {
         dispatch(getSpotReviews(spotId))
-        dispatch(getUserBookings())
+        // dispatch(getUserBookings())
     }, [dispatch, spotId])
 
     if (!reviews) return null

@@ -11,7 +11,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import './SingleSpot.css'
 import { getSpotImages } from "../../store/spotsImages";
-// import Bookings from "../Bookings";
+import Bookings from "../Bookings";
 import { UpdateSpotModal } from "../ManageSpots/UpdateSpotModal";
 
 import { isMobile } from "react-device-detect";
@@ -191,6 +191,15 @@ const SingleSpot = () => {
                     {spot.numReviews ? `${spot.numReviews} ${spot.numReviews > 1 ? 'reviews' : 'review'}` : <p></p>}
                 </h2>
             </div>
+            {sessionUserId && spotOwnerId !== sessionUserId && !reviewed ?
+                <div className="postButtonContainer">
+                    <button className="postButton">
+                        <OpenModalMenuItem itemText='Post Your Review' modalComponent={<ReviewModal spot={spot} />} />
+                    </button>
+                </div>
+                    :
+                <></>
+            }
             {/* {sessionUserId && spotOwnerId !== sessionUserId && !reviewed ?
                 <div className="postButtonContainer">
                     { bookingPassed() ?
@@ -204,6 +213,8 @@ const SingleSpot = () => {
                     :
                 <></>
             } */}
+
+
         </div>
     )
 }
