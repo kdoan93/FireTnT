@@ -11,7 +11,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import './SingleSpot.css'
 import { getSpotImages } from "../../store/spotsImages";
-import Bookings from "../Bookings";
+// import Bookings from "../Bookings";
 import { UpdateSpotModal } from "../ManageSpots/UpdateSpotModal";
 
 import { isMobile } from "react-device-detect";
@@ -25,7 +25,7 @@ const SingleSpot = () => {
     // Selects session.user object
     const sessionUser = useSelector(state => state.session.user)
 
-    let bookings = useSelector(state => state.booking.booking)
+    // let bookings = useSelector(state => state.booking.booking)
 
     // Getting review store data object
     const reviews = useSelector(state => state.review.spot)
@@ -58,7 +58,7 @@ const SingleSpot = () => {
     const firstImg = spotImages[0]
     if (!firstImg) return null;
     if (!reviews) return null
-    if (!bookings) return null;
+    // if (!bookings) return null;
 
     const topBox = spotImages.slice(1, 3)
     const bottomBox = spotImages.slice(3)
@@ -69,52 +69,52 @@ const SingleSpot = () => {
         else alert("Please log in to reserve a spot!")
     }
 
-    function bookingPassed() {
-        let bookingsArr = Object.values(bookings)
-        bookingsArr = bookingsArr.filter(booking => booking.spotId === spotId);
-        if (!bookingsArr.length) return
+    // function bookingPassed() {
+    //     let bookingsArr = Object.values(bookings)
+    //     bookingsArr = bookingsArr.filter(booking => booking.spotId === spotId);
+    //     if (!bookingsArr.length) return
 
-        return compareDates(bookingsArr[bookingsArr.length-1].endDate, new Date())
-    }
+    //     return compareDates(bookingsArr[bookingsArr.length-1].endDate, new Date())
+    // }
 
-    function compareDates(endBooking, today) {
-        endBooking = endBooking.toString()
-        today = today.toString()
+    // function compareDates(endBooking, today) {
+    //     endBooking = endBooking.toString()
+    //     today = today.toString()
 
-        let bookingStr = ''
-        let todayStr = ''
+    //     let bookingStr = ''
+    //     let todayStr = ''
 
-        let monthNums = {
-            'Jan' : '01',
-            'Feb' : '02',
-            'Mar' : '03',
-            'Apr' : '04',
-            'May' : '05',
-            'Jun' : '06',
-            'Jul' : '07',
-            'Aug' : '08',
-            'Sep' : '09',
-            'Oct' : '10',
-            'Nov' : '11',
-            'Dec' : '12'
-        }
+    //     let monthNums = {
+    //         'Jan' : '01',
+    //         'Feb' : '02',
+    //         'Mar' : '03',
+    //         'Apr' : '04',
+    //         'May' : '05',
+    //         'Jun' : '06',
+    //         'Jul' : '07',
+    //         'Aug' : '08',
+    //         'Sep' : '09',
+    //         'Oct' : '10',
+    //         'Nov' : '11',
+    //         'Dec' : '12'
+    //     }
 
-        let bookingMonth = endBooking.slice(5, 7)
-        let bookingDays = endBooking.slice(8, 10)
-        let bookingYear = endBooking.slice(0, 4)
+    //     let bookingMonth = endBooking.slice(5, 7)
+    //     let bookingDays = endBooking.slice(8, 10)
+    //     let bookingYear = endBooking.slice(0, 4)
 
-        let todayMonth = today.slice(4, 7)
-        let todayDays = today.slice(8, 10)
-        let todayYear = today.slice(11, 15)
+    //     let todayMonth = today.slice(4, 7)
+    //     let todayDays = today.slice(8, 10)
+    //     let todayYear = today.slice(11, 15)
 
-        bookingStr = bookingMonth + bookingDays + bookingYear
-        todayStr = monthNums[todayMonth] + todayDays + todayYear
-        return bookingStr < todayStr
-    }
+    //     bookingStr = bookingMonth + bookingDays + bookingYear
+    //     todayStr = monthNums[todayMonth] + todayDays + todayYear
+    //     return bookingStr < todayStr
+    // }
 
-    const bookingNotPassed = () => {
-        alert("Please post a review after your booking has ended.")
-    }
+    // const bookingNotPassed = () => {
+    //     alert("Please post a review after your booking has ended.")
+    // }
 
 
     return (
@@ -191,7 +191,7 @@ const SingleSpot = () => {
                     {spot.numReviews ? `${spot.numReviews} ${spot.numReviews > 1 ? 'reviews' : 'review'}` : <p></p>}
                 </h2>
             </div>
-            {sessionUserId && spotOwnerId !== sessionUserId && !reviewed ?
+            {/* {sessionUserId && spotOwnerId !== sessionUserId && !reviewed ?
                 <div className="postButtonContainer">
                     { bookingPassed() ?
                         <button className="postButton">
@@ -203,7 +203,7 @@ const SingleSpot = () => {
                 </div>
                     :
                 <></>
-            }
+            } */}
         </div>
     )
 }
