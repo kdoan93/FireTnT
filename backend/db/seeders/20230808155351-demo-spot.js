@@ -51,14 +51,14 @@ module.exports = {
       {
         ownerId: 4,
         address: "4 Main Street",
-        city: "Breckenridge",
-        state: "Colorado",
+        city: "Clyde",
+        state: "North Carolina",
         country: "USA",
         lat: -40.7645,
         lng: -2.4730,
-        name: "Three Sisters Lookout",
+        name: "Ultra Luxe Dome + Hot Tub + Premium Mountain View",
         description: "A FOURTH place where web developers are created",
-        price: 724.00
+        price: 324.00
       },
       {
         ownerId: 1,
@@ -135,14 +135,14 @@ module.exports = {
       {
         ownerId: 3,
         address: "4 Lake Lane",
-        city: "Zephyr Cove",
-        state: "Nevada",
+        city: "Mooresville",
+        state: "North Carolina",
         country: "USA",
         lat: 1.7645,
         lng: 27.4730,
-        name: "Million Dollar Views",
+        name: "Sterling on Strawpocket",
         description: "Sierra Sunset Estate enjoys the most ideal location a lakefront home on Lake Tahoe can boast. Less than 10 minutes to Stateline, Nevada, the opportunities for entertainment are endless.",
-        price: 28000.00
+        price: 1200.00
       },
       {
         ownerId: 4,
