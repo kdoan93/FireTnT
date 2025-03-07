@@ -141,7 +141,7 @@ module.exports = {
         lat: 1.7645,
         lng: 27.4730,
         name: "Sterling on Strawpocket",
-        description: "Sterling on Strawpocket can only be described as offering timeless beauty coupled with breathtaking sunset views over stunning Lake Norman. This home boasts three floors of spacious living space, floor-to-ceiling windows, and a main-floor open living concept with ample space for 18 people to enjoy.",
+        description: "Sterling on Strawpocket can only be described as offering timeless beauty coupled with breathtaking sunset views over stunning Lake Norman.",
         price: 1200.00
       },
       {
