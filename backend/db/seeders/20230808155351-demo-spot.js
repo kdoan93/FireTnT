@@ -123,14 +123,14 @@ module.exports = {
       {
         ownerId: 2,
         address: "93 Fresh Street",
-        city: "Beverly Hills",
+        city: "Moss Beach",
         state: "California",
         country: "USA",
         lat: 40.7245,
         lng: 12.4730,
-        name: "Chateau de Banks",
-        description: "Just off North Beverly Hills Drive, this classical French style estate is in prime location for enjoying all this iconic area has to offer.",
-        price: 16264.00
+        name: "Walk to the Beach from this Ocean Front Home",
+        description: "Your beachfront escape awaits you. Come immerse yourself in the serenity of this Pacific Ocean retreat gracefully set in a secluded beach just 25 mins south of San Francisco.",
+        price: 1000.00
       },
       {
         ownerId: 3,
@@ -141,7 +141,7 @@ module.exports = {
         lat: 1.7645,
         lng: 27.4730,
         name: "Sterling on Strawpocket",
-        description: "Sierra Sunset Estate enjoys the most ideal location a lakefront home on Lake Tahoe can boast. Less than 10 minutes to Stateline, Nevada, the opportunities for entertainment are endless.",
+        description: "Sterling on Strawpocket can only be described as offering timeless beauty coupled with breathtaking sunset views over stunning Lake Norman. This home boasts three floors of spacious living space, floor-to-ceiling windows, and a main-floor open living concept with ample space for 18 people to enjoy.",
         price: 1200.00
       },
       {
